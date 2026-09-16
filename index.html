@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A static GitHub Pages website built with HTML, CSS, and JavaScript."
+    >
+    <title>GitHub Pages Starter</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="GitHub Pages Starter home">
+        <span class="brand-mark">GP</span>
+        <span>GitHub Pages Starter</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#deploy">Deploy</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Static site ready for GitHub Pages</p>
+          <h1 id="hero-title">A clean starting point for your website.</h1>
+          <p class="hero-copy">
+            This project uses plain HTML, CSS, and JavaScript so the site is easy to edit,
+            publish, and troubleshoot.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#deploy">Deployment Steps</a>
+            <a class="button secondary" href="#features">View Features</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>Built for simple publishing</h2>
+        </div>
+        <div class="split-layout">
+          <div>
+            <p>
+              GitHub Pages works best when the website is made of static files. This starter
+              keeps everything direct: one HTML entry page, one stylesheet, one script file,
+              and an assets folder for images or downloads.
+            </p>
+            <p>
+              The site uses relative paths, so it can run locally and also work from a project
+              Pages URL such as <code>https://username.github.io/repository/</code>.
+            </p>
+          </div>
+          <div class="status-panel" aria-label="Project status">
+            <div>
+              <span class="status-label">Stack</span>
+              <strong>HTML, CSS, JavaScript</strong>
+            </div>
+            <div>
+              <span class="status-label">Hosting</span>
+              <strong>GitHub Pages</strong>
+            </div>
+            <div>
+              <span class="status-label">Build Tool</span>
+              <strong>None</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section contrast">
+        <div class="section-heading">
+          <p class="eyebrow">Features</p>
+          <h2>Useful defaults without extra tooling</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Responsive Layout</h3>
+            <p>The page adapts to phones, tablets, and desktop screens.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Accessible Navigation</h3>
+            <p>The menu uses semantic links, keyboard-friendly controls, and clear labels.</p>
+          </article>
+          <article class="feature-card">
+            <h3>No Jekyll Processing</h3>
+            <p>The <code>.nojekyll</code> file tells GitHub Pages to serve files as-is.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="deploy" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Deploy</p>
+          <h2>Publish from the repository root</h2>
+        </div>
+        <ol class="timeline">
+          <li>
+            <strong>Create a GitHub repository.</strong>
+            Use a public repository for free GitHub Pages hosting.
+          </li>
+          <li>
+            <strong>Push this folder to GitHub.</strong>
+            Keep <code>index.html</code> in the repository root.
+          </li>
+          <li>
+            <strong>Enable Pages.</strong>
+            In GitHub, open Settings, then Pages, then choose Deploy from a branch.
+          </li>
+          <li>
+            <strong>Select the source.</strong>
+            Choose branch <code>main</code> and folder <code>/ root</code>.
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Static GitHub Pages starter. No backend, no secrets, no build step.</p>
+      <button class="back-to-top" type="button">Back to top</button>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
