@@ -236,10 +236,9 @@ function renderTableTools(collection, label) {
 
 function renderEditableField(collection, index, name, value, label, multiline = false) {
   const fieldId = `${collection}-${index}`;
-  const attrs = `data-table-field="${escapeHtml(fieldId)}" data-table-name="${escapeHtml(name)}" aria-label="${escapeHtml(label)}"`;
-  return multiline
-    ? `<textarea ${attrs} rows="1">${escapeHtml(value || "")}</textarea>`
-    : `<input ${attrs} value="${escapeHtml(value || "")}">`;
+  const isLinkText = name === "url" || name === "id";
+  const attrs = `class="editable-field ${multiline ? "is-multiline" : ""} ${isLinkText ? "is-link-like" : ""}" contenteditable="true" role="textbox" data-table-field="${escapeHtml(fieldId)}" data-table-name="${escapeHtml(name)}" aria-label="${escapeHtml(label)}"`;
+  return `<span ${attrs}>${escapeHtml(value || "")}</span>`;
 }
 
 function renderRowActions(collection, index) {
@@ -299,7 +298,7 @@ function saveTableRow(collection, index) {
   const fieldId = `${collection}-${index}`;
   const fields = [...document.querySelectorAll(`[data-table-field="${CSS.escape(fieldId)}"]`)];
   fields.forEach((field) => {
-    item[field.dataset.tableName] = field.value.trim();
+    item[field.dataset.tableName] = (field.value ?? field.textContent).trim();
   });
   delete item._draft;
   if (collection === "links" && !item.url) {
@@ -572,20 +571,14 @@ function groupByCategory(items) {
 
 function renderSopTocRow(item, index) {
   const id = sopId(item);
-  const label = item.id || item.name || "";
   return `
     <tr>
       <td>
-        <a class="table-link sop-open-link" href="#${id}" data-sop-open="${id}">
-          ${escapeHtml(label)}
-        </a>
         ${renderEditableField("sops", index, "id", item.id || item.name || "", "SOP ID")}
       </td>
       <td>
-        <a class="table-link sop-open-link" href="#${id}" data-sop-open="${id}">
-          ${escapeHtml(item.title || item.type || item.name || "Untitled SOP")}
-        </a>
         ${renderEditableField("sops", index, "title", item.title || item.type || item.name || "", "SOP Title", true)}
+        <a class="table-link sop-open-link row-open-link" href="#${id}" data-sop-open="${id}">Open</a>
       </td>
       <td>${renderEditableField("sops", index, "category", item.category || item.type || "", "Category")}</td>
       <td>${renderEditableField("sops", index, "purpose", item.purpose || "", "Purpose", true)}</td>
@@ -714,10 +707,9 @@ function renderCertRow(item, index) {
     <tr>
       <td>${renderEditableField("certs", index, "track", item.track || "", "Track")}</td>
       <td>
-        <strong><a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a></strong>
         ${renderEditableField("certs", index, "name", item.name || "", "Certification")}
         ${renderEditableField("certs", index, "provider", item.provider || "", "Provider")}
-        ${renderEditableField("certs", index, "url", item.url || "", "Certification URL")}
+        <a class="table-link row-open-link" href="${escapeHtml(item.url || "#")}">Official Page</a>
       </td>
       <td>${renderEditableField("certs", index, "focus", item.focus || "", "Focus", true)}</td>
       <td>${renderEditableField("certs", index, "notes", item.notes || "", "Notes", true)}</td>

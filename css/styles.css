@@ -653,34 +653,37 @@ a {
   outline: none;
 }
 
-.data-table input,
-.data-table textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  background: #091018;
-  color: var(--text);
-  font-size: 0.78rem;
-  line-height: 1.2;
+.editable-field {
+  display: block;
+  min-height: 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: inherit;
   outline: none;
-  padding: 0.25rem 0.35rem;
+  padding: 0.05rem 0.1rem;
 }
 
-.data-table textarea {
-  min-height: 1.75rem;
-  resize: vertical;
+.editable-field.is-multiline {
+  white-space: pre-wrap;
 }
 
-.data-table input:focus,
-.data-table textarea:focus {
-  border-color: var(--accent);
+.editable-field.is-link-like {
+  color: var(--accent-strong);
 }
 
-.data-table .table-link + input,
-.data-table input + input,
-.data-table input + textarea,
-.data-table textarea + input {
-  margin-top: 0.25rem;
+.editable-field:focus {
+  border-color: rgba(77, 163, 255, 0.45);
+  background: rgba(77, 163, 255, 0.08);
+}
+
+.editable-field + .editable-field,
+.editable-field + .row-open-link {
+  margin-top: 0.2rem;
+}
+
+.row-open-link {
+  display: inline-block;
+  font-size: 0.72rem;
 }
 
 .row-actions {

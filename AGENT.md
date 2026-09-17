@@ -80,6 +80,7 @@ Global layout state:
 - left mini nav panels stick below the header/search bar so they are not covered while scrolling
 - JQS, SOPs, Certs, and Links table headers stick to the top of their table while scrolling
 - JQS, SOPs, Certs, and Links rows can be added, edited, saved, and deleted in-browser; row edits are saved to browser `localStorage`
+- editable table cells are styled to look like regular compact table text rather than boxed form fields
 
 ## Workbook Import
 
