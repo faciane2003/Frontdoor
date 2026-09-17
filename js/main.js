@@ -52,6 +52,8 @@ const DASHBOARD_SECTIONS = [
   ["alerts", "Alerts"],
   ["updates", "Webpage Updates"],
 ];
+const TABLE_STORAGE_PREFIX = "editable-table";
+const EDITABLE_TABLES = ["training", "sops", "certs", "links"];
 
 function escapeHtml(value) {
   return String(value)
@@ -72,7 +74,7 @@ function matchRecord(record, term) {
 
 function filtered(collection) {
   const data = state.data[collection];
-  return Array.isArray(data) ? data.filter((item) => matchRecord(item, state.searchTerm)) : data;
+  return Array.isArray(data) ? data.filter((item) => item._draft || matchRecord(item, state.searchTerm)) : data;
 }
 
 async function loadData() {
@@ -91,6 +93,7 @@ async function loadData() {
   }
 
   applySavedDashboard();
+  applySavedTables();
 }
 
 function setView(view) {
@@ -196,6 +199,139 @@ function saveDashboard() {
   localStorage.setItem(DASHBOARD_STORAGE_KEY, JSON.stringify(cleanDashboard));
 }
 
+function tableStorageKey(collection) {
+  return `${TABLE_STORAGE_PREFIX}:${collection}`;
+}
+
+function applySavedTables() {
+  EDITABLE_TABLES.forEach((collection) => {
+    const saved = localStorage.getItem(tableStorageKey(collection));
+    if (!saved) {
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) {
+        state.data[collection] = parsed;
+      }
+    } catch {
+      localStorage.removeItem(tableStorageKey(collection));
+    }
+  });
+}
+
+function saveTable(collection) {
+  const cleanItems = (state.data[collection] || []).map(({ _draft, ...item }) => item);
+  localStorage.setItem(tableStorageKey(collection), JSON.stringify(cleanItems));
+}
+
+function renderTableTools(collection, label) {
+  return `
+    <div class="table-tools">
+      <button class="table-add" type="button" data-table-add="${escapeHtml(collection)}">+ ${escapeHtml(label)}</button>
+    </div>
+  `;
+}
+
+function renderEditableField(collection, index, name, value, label, multiline = false) {
+  const fieldId = `${collection}-${index}`;
+  const attrs = `data-table-field="${escapeHtml(fieldId)}" data-table-name="${escapeHtml(name)}" aria-label="${escapeHtml(label)}"`;
+  return multiline
+    ? `<textarea ${attrs} rows="1">${escapeHtml(value || "")}</textarea>`
+    : `<input ${attrs} value="${escapeHtml(value || "")}">`;
+}
+
+function renderRowActions(collection, index) {
+  return `
+    <span class="row-actions">
+      <button class="row-save" type="button" data-table-save="${escapeHtml(collection)}" data-table-index="${index}">Save</button>
+      <button class="row-trash" type="button" data-table-delete="${escapeHtml(collection)}" data-table-index="${index}" aria-label="Delete row">&#128465;</button>
+    </span>
+  `;
+}
+
+function addTableRow(collection) {
+  const defaults = {
+    training: {
+      id: "",
+      title: "",
+      area: state.trainingArea || "Uncategorized",
+      tier: "",
+      standard: "",
+    },
+    sops: {
+      id: "",
+      title: "",
+      category: state.sopCategory || "General",
+      purpose: "",
+      status: "Pending",
+      updated: new Date().toISOString().slice(0, 10),
+      sections: [],
+    },
+    certs: {
+      name: "",
+      provider: "",
+      track: "",
+      phase: state.certPhase || "Foundations",
+      focus: "",
+      notes: "",
+      url: "",
+    },
+    links: {
+      name: "",
+      description: "",
+      url: "",
+      category: state.linkCategory || "Reference",
+    },
+  };
+
+  state.data[collection].push({ ...defaults[collection], _draft: true });
+  renderCollection(collection);
+}
+
+function saveTableRow(collection, index) {
+  const item = state.data[collection]?.[index];
+  if (!item) {
+    return;
+  }
+
+  const fieldId = `${collection}-${index}`;
+  const fields = [...document.querySelectorAll(`[data-table-field="${CSS.escape(fieldId)}"]`)];
+  fields.forEach((field) => {
+    item[field.dataset.tableName] = field.value.trim();
+  });
+  delete item._draft;
+  if (collection === "links" && !item.url) {
+    state.data.links.splice(index, 1);
+    saveTable(collection);
+    renderCollection(collection);
+    return;
+  }
+  saveTable(collection);
+  renderCollection(collection);
+}
+
+function deleteTableRow(collection, index) {
+  if (!state.data[collection]?.[index]) {
+    return;
+  }
+
+  state.data[collection].splice(index, 1);
+  saveTable(collection);
+  renderCollection(collection);
+}
+
+function renderCollection(collection) {
+  const renderers = {
+    training: renderTraining,
+    sops: renderSops,
+    certs: renderCerts,
+    links: renderLinks,
+  };
+  renderers[collection]?.();
+}
+
 function renderKnowledge() {
   const allItems = filtered("knowledge")
     .map((item) => ({ ...item, hierarchy: knowledgeHierarchy(item) }))
@@ -286,9 +422,9 @@ function renderTraining() {
     ? allItems.filter((item) => (item.area || "Uncategorized") === state.trainingArea)
     : allItems;
   const rows = items
-    .slice()
-    .sort((a, b) => (a.area || "").localeCompare(b.area || "") || (a.id || "").localeCompare(b.id || ""))
-    .map(renderTrainingRow)
+    .map((item) => ({ item, index: state.data.training.indexOf(item) }))
+    .sort((a, b) => (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
+    .map(({ item, index }) => renderTrainingRow(item, index))
     .join("");
 
   target.innerHTML = `
@@ -308,6 +444,7 @@ function renderTraining() {
         </nav>
       </aside>
       <div class="reference-content">
+        ${renderTableTools("training", "Add JQS Row")}
         <div class="table-wrap">
           <table class="data-table training-table">
             <thead>
@@ -316,6 +453,7 @@ function renderTraining() {
                 <th>Tier</th>
                 <th>Task</th>
                 <th>Performance Standard</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -338,13 +476,14 @@ function groupTrainingByArea(items) {
     }, {});
 }
 
-function renderTrainingRow(item) {
+function renderTrainingRow(item, index) {
   return `
     <tr>
-      <td>${escapeHtml(item.id)}</td>
-      <td>${escapeHtml(formatTier(item.tier))}</td>
-      <td>${escapeHtml(item.title)}</td>
-      <td>${escapeHtml(item.standard)}</td>
+      <td>${renderEditableField("training", index, "id", item.id, "JQS ID")}</td>
+      <td>${renderEditableField("training", index, "tier", formatTier(item.tier), "Tier")}</td>
+      <td>${renderEditableField("training", index, "title", item.title, "Task", true)}</td>
+      <td>${renderEditableField("training", index, "standard", item.standard, "Performance Standard", true)}</td>
+      <td>${renderRowActions("training", index)}</td>
     </tr>
   `;
 }
@@ -370,7 +509,7 @@ function renderSops() {
 
   const rows = groups
     .filter(([category]) => !state.sopCategory || category === state.sopCategory)
-    .map(([, sops]) => sops.map(renderSopTocRow).join(""))
+    .map(([, sops]) => sops.map((item) => renderSopTocRow(item, state.data.sops.indexOf(item))).join(""))
     .join("");
   const visibleItems = state.sopCategory
     ? allItems.filter((item) => (item.category || item.type || "General") === state.sopCategory)
@@ -393,6 +532,7 @@ function renderSops() {
         </nav>
       </aside>
       <div class="reference-content sop-content">
+        ${renderTableTools("sops", "Add SOP Row")}
         <div class="table-wrap">
           <table class="data-table sop-toc-table">
             <thead>
@@ -401,6 +541,7 @@ function renderSops() {
                 <th>Title</th>
                 <th>Category</th>
                 <th>Purpose</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -429,7 +570,7 @@ function groupByCategory(items) {
     }, {});
 }
 
-function renderSopTocRow(item) {
+function renderSopTocRow(item, index) {
   const id = sopId(item);
   const label = item.id || item.name || "";
   return `
@@ -438,14 +579,17 @@ function renderSopTocRow(item) {
         <a class="table-link sop-open-link" href="#${id}" data-sop-open="${id}">
           ${escapeHtml(label)}
         </a>
+        ${renderEditableField("sops", index, "id", item.id || item.name || "", "SOP ID")}
       </td>
       <td>
         <a class="table-link sop-open-link" href="#${id}" data-sop-open="${id}">
           ${escapeHtml(item.title || item.type || item.name || "Untitled SOP")}
         </a>
+        ${renderEditableField("sops", index, "title", item.title || item.type || item.name || "", "SOP Title", true)}
       </td>
-      <td>${escapeHtml(item.category || item.type || "")}</td>
-      <td>${escapeHtml(item.purpose || "")}</td>
+      <td>${renderEditableField("sops", index, "category", item.category || item.type || "", "Category")}</td>
+      <td>${renderEditableField("sops", index, "purpose", item.purpose || "", "Purpose", true)}</td>
+      <td>${renderRowActions("sops", index)}</td>
     </tr>
   `;
 }
@@ -523,9 +667,9 @@ function renderCerts() {
     ? allItems.filter((item) => (item.phase || "Other") === state.certPhase)
     : allItems;
   const rows = items
-    .slice()
-    .sort((a, b) => (a.phase || "").localeCompare(b.phase || "") || (a.track || "").localeCompare(b.track || "") || a.name.localeCompare(b.name))
-    .map(renderCertRow)
+    .map((item) => ({ item, index: state.data.certs.indexOf(item) }))
+    .sort((a, b) => (a.item.phase || "").localeCompare(b.item.phase || "") || (a.item.track || "").localeCompare(b.item.track || "") || (a.item.name || "").localeCompare(b.item.name || ""))
+    .map(({ item, index }) => renderCertRow(item, index))
     .join("");
 
   target.innerHTML = `
@@ -545,6 +689,7 @@ function renderCerts() {
         </nav>
       </aside>
       <div class="reference-content">
+        ${renderTableTools("certs", "Add Cert Row")}
         <div class="table-wrap">
           <table class="data-table cert-table">
             <thead>
@@ -553,6 +698,7 @@ function renderCerts() {
                 <th>Certification</th>
                 <th>Focus</th>
                 <th>Notes</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -563,16 +709,19 @@ function renderCerts() {
   `;
 }
 
-function renderCertRow(item) {
+function renderCertRow(item, index) {
   return `
     <tr>
-      <td>${escapeHtml(item.track || "")}</td>
+      <td>${renderEditableField("certs", index, "track", item.track || "", "Track")}</td>
       <td>
-        <strong><a class="table-link" href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong>
-        <span>${escapeHtml(item.provider)}</span>
+        <strong><a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a></strong>
+        ${renderEditableField("certs", index, "name", item.name || "", "Certification")}
+        ${renderEditableField("certs", index, "provider", item.provider || "", "Provider")}
+        ${renderEditableField("certs", index, "url", item.url || "", "Certification URL")}
       </td>
-      <td>${escapeHtml(item.focus)}</td>
-      <td>${escapeHtml(item.notes)}</td>
+      <td>${renderEditableField("certs", index, "focus", item.focus || "", "Focus", true)}</td>
+      <td>${renderEditableField("certs", index, "notes", item.notes || "", "Notes", true)}</td>
+      <td>${renderRowActions("certs", index)}</td>
     </tr>
   `;
 }
@@ -690,7 +839,7 @@ function onCallDisplayItem(item) {
 }
 
 function renderLinks() {
-  const allItems = filtered("links").filter((item) => item.url);
+  const allItems = filtered("links").filter((item) => item.url || item._draft);
   const target = document.querySelector("#links-list");
 
   if (!allItems.length) {
@@ -707,16 +856,17 @@ function renderLinks() {
     ? allItems.filter((item) => (item.category || "Reference") === state.linkCategory)
     : allItems;
   const rows = items
-    .slice()
-    .sort((a, b) => (a.category || "").localeCompare(b.category || "") || a.name.localeCompare(b.name))
+    .map((item) => ({ item, index: state.data.links.indexOf(item) }))
+    .sort((a, b) => (a.item.category || "").localeCompare(b.item.category || "") || (a.item.name || "").localeCompare(b.item.name || ""))
     .map(
-      (item) => `
+      ({ item, index }) => `
         <tr>
           <td>
-            <strong>${escapeHtml(item.name)}</strong>
+            ${renderEditableField("links", index, "name", item.name || "", "Resource")}
           </td>
-          <td>${escapeHtml(item.description || "")}</td>
-          <td><a class="table-link" href="${escapeHtml(item.url)}">${escapeHtml(item.url)}</a></td>
+          <td>${renderEditableField("links", index, "description", item.description || "", "Description", true)}</td>
+          <td>${renderEditableField("links", index, "url", item.url || "", "URL", true)}</td>
+          <td>${renderRowActions("links", index)}</td>
         </tr>
       `,
     )
@@ -739,6 +889,7 @@ function renderLinks() {
         </nav>
       </aside>
       <div class="reference-content">
+        ${renderTableTools("links", "Add Link Row")}
         <div class="table-wrap">
           <table class="data-table resource-table">
             <thead>
@@ -746,6 +897,7 @@ function renderLinks() {
                 <th>Resource</th>
                 <th>Description</th>
                 <th>URL</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -815,6 +967,24 @@ function bindEvents() {
   });
 
   document.addEventListener("click", (event) => {
+    const tableAdd = event.target.closest("[data-table-add]");
+    if (tableAdd) {
+      addTableRow(tableAdd.dataset.tableAdd);
+      return;
+    }
+
+    const tableSave = event.target.closest("[data-table-save]");
+    if (tableSave) {
+      saveTableRow(tableSave.dataset.tableSave, Number(tableSave.dataset.tableIndex));
+      return;
+    }
+
+    const tableDelete = event.target.closest("[data-table-delete]");
+    if (tableDelete) {
+      deleteTableRow(tableDelete.dataset.tableDelete, Number(tableDelete.dataset.tableIndex));
+      return;
+    }
+
     const dashboardAdd = event.target.closest("[data-dashboard-add]");
     if (dashboardAdd) {
       const section = dashboardAdd.dataset.dashboardAdd;

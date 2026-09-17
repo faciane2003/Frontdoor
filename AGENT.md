@@ -69,8 +69,8 @@ The site is a static SOC-style operations portal with app navigation for:
 - JQS
 - SOPs
 - Certs
-- On-Call
 - Links
+- On-Call
 
 The dashboard and tabs are powered by local JSON files under `data/`.
 
@@ -79,6 +79,7 @@ Global layout state:
 - the top header/search bar is sticky at the top of the viewport while scrolling
 - left mini nav panels stick below the header/search bar so they are not covered while scrolling
 - JQS, SOPs, Certs, and Links table headers stick to the top of their table while scrolling
+- JQS, SOPs, Certs, and Links rows can be added, edited, saved, and deleted in-browser; row edits are saved to browser `localStorage`
 
 ## Workbook Import
 
@@ -133,6 +134,7 @@ Current `Certs` tab state:
 - renders with a SOP-style left mini nav for certification categories
 - clicking an active cert category clears the filter
 - Red Team is its own certification category; PenTest+, CEH, and OSCP are grouped there
+- Cert rows can be added, edited, saved, and deleted; new rows inherit the active cert category or use `Foundations`
 
 Current `Dashboard` tab state:
 
@@ -166,6 +168,7 @@ Current `JQS` tab state:
 - clicking an area filters the JQS table and highlights the active area; clicking the active area again clears the filter
 - table omits Area and Status columns and shortens tier labels to `I`, `II`, `III`, or `Advanced`
 - table column order is ID, Tier, Task, Performance Standard
+- JQS rows can be added, edited, saved, and deleted; new rows inherit the active area filter or use `Uncategorized`
 
 Current `SOPs` tab state:
 
@@ -176,6 +179,7 @@ Current `SOPs` tab state:
 - expanded SOP bodies show a single-line `ID - Category - Title` header, Updated metadata, and an editable Notes field only
 - SOP notes auto-fill with up to five editable numbered to-do style steps from the SOP data, without section heading prefixes, unless the user has saved custom notes
 - SOP notes are saved in browser `localStorage`; this is local to the user's browser and not synced to GitHub Pages
+- SOP table rows can be added, edited, saved, and deleted; new rows inherit the active SOP category or use `General`
 - `data/sops.json` currently has 20 example SOP entries with `id`, `title`, `category`, `purpose`, `status`, and `sections`
 - current example categories include Triage, Email Security, Endpoint Response, Identity and Access, Network Security, Vulnerability Management, Threat Intelligence, Response Management, Operations, Detection Engineering, Cloud Security, Data Protection, and Case Management
 - the workbook importer maps imported SOP rows into this newer structure
@@ -189,10 +193,12 @@ Current `Links` tab state:
 - category labels such as Forensics and Documentation are not shown in the Links UI
 - current link categories include Apple Artifacts, Artifact Extraction, Browser Artifacts, File Analysis, File Recovery, Forensic Imaging, Forensic Suites, Hashing, Lab Platforms, Learning Resources, Linux References, Malware Analysis, Memory Forensics, Network Analysis, Reverse Engineering, Threat Intelligence, Utilities, Windows Artifacts, and Windows Tools
 - descriptions were researched from linked page titles/meta descriptions where available, with concise fallback descriptions for dead or blocked links
+- Links rows can be added, edited, saved, and deleted; saving a link row with a blank URL removes it from the table
 
 Current `On-Call` tab state:
 
 - navigation label and page title use `On-Call`
+- On-Call is the last item in the main sidebar nav
 - renders a mock calendar using `data/on-call.json`
 - mock assignments include date, primary, backup, and OOO names
 - mock calendar currently covers one year from September 17, 2026 through September 16, 2027
@@ -212,8 +218,8 @@ Current stopping point:
   - JQS
   - SOPs
   - Certs
-  - On-Call
   - Links
+  - On-Call
 - The main sidebar nav intentionally omits Knowledge Base.
 - `css/styles.css` now contains the dark dashboard/admin UI styling.
 - `js/main.js` loads local JSON data with `fetch()`, renders HUD panels/cards/tables, handles tab routing via hash links, and filters data with the global search box.
