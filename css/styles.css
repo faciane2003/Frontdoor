@@ -316,7 +316,6 @@ a {
   gap: 0.3rem;
 }
 
-.hud-save,
 .hud-trash {
   min-height: 1.85rem;
   border: 1px solid var(--line);
@@ -327,22 +326,11 @@ a {
   padding: 0.22rem 0.45rem;
 }
 
-.hud-save {
-  background: rgba(71, 194, 135, 0.14);
-  color: #b9f7d1;
-}
-
 .hud-trash {
   width: 1.9rem;
   background: rgba(242, 109, 109, 0.14);
   color: var(--red);
   padding: 0;
-}
-
-.hud-save:hover,
-.hud-save:focus-visible {
-  border-color: var(--green);
-  outline: none;
 }
 
 .hud-trash:hover,
@@ -431,8 +419,7 @@ a {
   gap: 0.4rem;
 }
 
-.tag,
-.status-pill {
+.tag {
   display: inline-flex;
   align-items: center;
   min-height: 26px;
@@ -443,26 +430,6 @@ a {
   font-size: 0.78rem;
   font-weight: 750;
   padding: 0.2rem 0.55rem;
-}
-
-.status-pill.complete {
-  border-color: rgba(71, 194, 135, 0.45);
-  color: var(--green);
-}
-
-.status-pill.progress {
-  border-color: rgba(240, 160, 75, 0.45);
-  color: var(--orange);
-}
-
-.status-pill.pending {
-  border-color: rgba(169, 140, 255, 0.45);
-  color: var(--purple);
-}
-
-.status-pill.critical {
-  border-color: rgba(242, 109, 109, 0.45);
-  color: var(--red);
 }
 
 .table-wrap {
@@ -518,6 +485,15 @@ a {
   overflow-wrap: anywhere;
   word-break: break-word;
   text-decoration: none;
+}
+
+button.table-link {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
 }
 
 .table-link:hover,
@@ -676,14 +652,8 @@ a {
   background: rgba(77, 163, 255, 0.08);
 }
 
-.editable-field + .editable-field,
-.editable-field + .row-open-link {
+.editable-field + .editable-field {
   margin-top: 0.2rem;
-}
-
-.row-open-link {
-  display: inline-block;
-  font-size: 0.72rem;
 }
 
 .row-actions {
@@ -693,7 +663,6 @@ a {
   gap: 0.25rem;
 }
 
-.row-save,
 .row-trash {
   min-height: 1.75rem;
   border: 1px solid var(--line);
@@ -704,22 +673,11 @@ a {
   padding: 0.18rem 0.4rem;
 }
 
-.row-save {
-  background: rgba(71, 194, 135, 0.14);
-  color: #b9f7d1;
-}
-
 .row-trash {
   width: 1.8rem;
   background: rgba(242, 109, 109, 0.14);
   color: var(--red);
   padding: 0;
-}
-
-.row-save:hover,
-.row-save:focus-visible {
-  border-color: var(--green);
-  outline: none;
 }
 
 .row-trash:hover,
@@ -893,32 +851,6 @@ a {
   outline: none;
 }
 
-.sop-notes-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.sop-notes-actions button {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel-strong);
-  color: var(--accent-strong);
-  cursor: pointer;
-  padding: 0.45rem 0.7rem;
-}
-
-.sop-notes-actions button:hover,
-.sop-notes-actions button:focus-visible {
-  border-color: var(--accent);
-  outline: none;
-}
-
-.sop-notes-actions span {
-  color: var(--green);
-  font-size: 0.82rem;
-}
-
 .oncall-calendar {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1077,34 +1009,6 @@ a {
   outline: none;
 }
 
-.oncall-inline-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.oncall-inline-actions button {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel-strong);
-  color: var(--accent-strong);
-  cursor: pointer;
-  padding: 0.35rem 0.55rem;
-}
-
-.oncall-inline-actions button:hover,
-.oncall-inline-actions button:focus-visible {
-  border-color: var(--accent);
-  outline: none;
-}
-
-.oncall-inline-actions span {
-  color: var(--green);
-  font-size: 0.78rem;
-}
-
 .oncall-notes {
   display: grid;
   gap: 0.5rem;
@@ -1201,12 +1105,6 @@ a {
 
 .resource-table th {
   font-size: 0.68rem;
-}
-
-.resource-table .status-pill {
-  min-height: 22px;
-  font-size: 0.7rem;
-  padding: 0.1rem 0.45rem;
 }
 
 .resource-table td span {

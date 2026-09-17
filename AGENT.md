@@ -65,11 +65,10 @@ GithubPages/
 
 The site is a static SOC-style operations portal with app navigation for:
 
-- Dashboard
-- JQS
 - SOPs
-- Certs
 - Links
+- Certs
+- JQS
 - On-Call
 
 The dashboard and tabs are powered by local JSON files under `data/`.
@@ -79,7 +78,7 @@ Global layout state:
 - the top header/search bar is sticky at the top of the viewport while scrolling
 - left mini nav panels stick below the header/search bar so they are not covered while scrolling
 - JQS, SOPs, Certs, and Links table headers stick to the top of their table while scrolling
-- JQS, SOPs, Certs, and Links rows can be added, edited, saved, and deleted in-browser; row edits are saved to browser `localStorage`
+- JQS, SOPs, Certs, and Links rows can be added, edited, and deleted in-browser; row edits autosave to browser `localStorage`
 - editable table cells are styled to look like regular compact table text rather than boxed form fields
 
 ## Workbook Import
@@ -135,7 +134,7 @@ Current `Certs` tab state:
 - renders with a SOP-style left mini nav for certification categories
 - clicking an active cert category clears the filter
 - Red Team is its own certification category; PenTest+, CEH, and OSCP are grouped there
-- Cert rows can be added, edited, saved, and deleted; new rows inherit the active cert category or use `Foundations`
+- Cert rows can be added, edited, and deleted; edits autosave, and new rows inherit the active cert category or use `Foundations`
 
 Current `Dashboard` tab state:
 
@@ -143,7 +142,7 @@ Current `Dashboard` tab state:
 - the Dashboard body is populated from `data/dashboard.json`
 - dashboard panels are compact and editable in-browser
 - each dashboard panel header has a blue plus button that adds an empty editable entry
-- each dashboard entry has a Save button and a red trash button; dashboard edits are saved to browser `localStorage`
+- each dashboard entry autosaves field changes and has a red trash button; dashboard edits are saved to browser `localStorage`
 - dashboard sections are:
   - Tasks
   - Project Status
@@ -169,7 +168,7 @@ Current `JQS` tab state:
 - clicking an area filters the JQS table and highlights the active area; clicking the active area again clears the filter
 - table omits Area and Status columns and shortens tier labels to `I`, `II`, `III`, or `Advanced`
 - table column order is ID, Tier, Task, Performance Standard
-- JQS rows can be added, edited, saved, and deleted; new rows inherit the active area filter or use `Uncategorized`
+- JQS rows can be added, edited, and deleted; edits autosave, and new rows inherit the active area filter or use `Uncategorized`
 
 Current `SOPs` tab state:
 
@@ -177,10 +176,10 @@ Current `SOPs` tab state:
 - includes a left-side category nav that filters the SOP table, highlights the active category, and clears the filter when the active category is clicked again
 - the table itself stays as regular SOP rows; the left category nav is the only category/filter control
 - SOP titles are clickable links that open the matching SOP body below the table
-- expanded SOP bodies show a single-line `ID - Category - Title` header, Updated metadata, and an editable Notes field only
+- expanded SOP bodies show a single-line `ID - Category - Title` header, Updated metadata, and an editable Notes field only; no status/example pill is rendered
 - SOP notes auto-fill with up to five editable numbered to-do style steps from the SOP data, without section heading prefixes, unless the user has saved custom notes
-- SOP notes are saved in browser `localStorage`; this is local to the user's browser and not synced to GitHub Pages
-- SOP table rows can be added, edited, saved, and deleted; new rows inherit the active SOP category or use `General`
+- SOP notes autosave in browser `localStorage`; this is local to the user's browser and not synced to GitHub Pages
+- SOP table rows can be added, edited, and deleted; edits autosave, and new rows inherit the active SOP category or use `General`
 - `data/sops.json` currently has 20 example SOP entries with `id`, `title`, `category`, `purpose`, `status`, and `sections`
 - current example categories include Triage, Email Security, Endpoint Response, Identity and Access, Network Security, Vulnerability Management, Threat Intelligence, Response Management, Operations, Detection Engineering, Cloud Security, Data Protection, and Case Management
 - the workbook importer maps imported SOP rows into this newer structure
@@ -194,7 +193,7 @@ Current `Links` tab state:
 - category labels such as Forensics and Documentation are not shown in the Links UI
 - current link categories include Apple Artifacts, Artifact Extraction, Browser Artifacts, File Analysis, File Recovery, Forensic Imaging, Forensic Suites, Hashing, Lab Platforms, Learning Resources, Linux References, Malware Analysis, Memory Forensics, Network Analysis, Reverse Engineering, Threat Intelligence, Utilities, Windows Artifacts, and Windows Tools
 - descriptions were researched from linked page titles/meta descriptions where available, with concise fallback descriptions for dead or blocked links
-- Links rows can be added, edited, saved, and deleted; saving a link row with a blank URL removes it from the table
+- Links rows can be added, edited, and deleted; edits autosave, and leaving a link row with a blank URL removes it from the table
 
 Current `On-Call` tab state:
 
@@ -204,7 +203,7 @@ Current `On-Call` tab state:
 - mock assignments include date, primary, backup, and OOO names
 - mock calendar currently covers one year from September 17, 2026 through September 16, 2027
 - On-Call header includes a month selector and displays one month at a time
-- clicking a calendar day turns that calendar cell into an inline editor for primary, backup, OOO, and notes; edits save in browser `localStorage`
+- clicking a calendar day turns that calendar cell into an inline editor for primary, backup, OOO, and notes; edits autosave in browser `localStorage`
 
 ## Current Checkpoint
 
@@ -221,7 +220,7 @@ Current stopping point:
   - Certs
   - Links
   - On-Call
-- The main sidebar nav intentionally omits Knowledge Base.
+- The main sidebar nav intentionally omits Dashboard and Knowledge Base.
 - `css/styles.css` now contains the dark dashboard/admin UI styling.
 - `js/main.js` loads local JSON data with `fetch()`, renders HUD panels/cards/tables, handles tab routing via hash links, and filters data with the global search box.
 - The `data/` folder has starter/sample content:

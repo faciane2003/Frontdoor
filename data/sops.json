@@ -523,23 +523,23 @@
     "sections": [
       {
         "heading": "Identify Evidence",
-        "body": "Determine what evidence is needed for the case, including logs, screenshots, event IDs, files, hashes, URLs, host details, user details, and timestamps."
+        "body": "Confirm the case number, incident owner, affected users, affected hosts, and exact time window before collecting or attaching evidence."
       },
       {
         "heading": "Capture Context",
-        "body": "Record the source system, collection time, collector, tool used, query or command, and the reason the evidence supports the investigation."
+        "body": "Collect original log entries, alert details, screenshots, file names, hashes, URLs, message headers, and query results without editing the source content."
       },
       {
         "heading": "Store Securely",
-        "body": "Save evidence only in approved locations and avoid placing sensitive artifacts in broadly visible tickets, notes, or chat channels."
+        "body": "Record where each artifact came from, who collected it, when it was collected, and what tool, query, or command was used."
       },
       {
         "heading": "Reference Clearly",
-        "body": "Reference evidence with approved links, filenames, hashes, event IDs, or case attachments so reviewers can reproduce the finding."
+        "body": "Store evidence only in the approved case location and avoid pasting sensitive data into chat, broad notes, or public-facing fields."
       },
       {
         "heading": "Review Before Closure",
-        "body": "Before closing the case, confirm the evidence supports the disposition, required artifacts are attached or referenced, and sensitive data is handled correctly."
+        "body": "Before closing the case, verify the evidence supports the final disposition and that all attachments, links, hashes, and timestamps are clearly referenced."
       }
     ]
   }

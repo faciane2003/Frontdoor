@@ -110,20 +110,6 @@ function setView(view) {
   navToggle.setAttribute("aria-expanded", "false");
 }
 
-function statusClass(status) {
-  const normalized = String(status).toLowerCase();
-  if (normalized.includes("complete") || normalized.includes("current")) {
-    return "complete";
-  }
-  if (normalized.includes("progress") || normalized.includes("review")) {
-    return "progress";
-  }
-  if (normalized.includes("critical") || normalized.includes("due")) {
-    return "critical";
-  }
-  return "pending";
-}
-
 function renderDashboard() {
   const dashboard = state.data.dashboard;
 
@@ -154,7 +140,7 @@ function renderHudPanel(key, title, entries) {
 }
 
 function renderHudItem(section, item, index) {
-  const fieldId = `${section}-${index}`;
+  const fieldId = `${section}:${index}`;
   return `
     <article class="hud-item">
       <div class="hud-fields">
@@ -167,7 +153,6 @@ function renderHudItem(section, item, index) {
         </select>
       </div>
       <div class="hud-actions">
-        <button class="hud-save" type="button" data-dashboard-save="${escapeHtml(section)}" data-dashboard-index="${index}">Save</button>
         <button class="hud-trash" type="button" data-dashboard-delete="${escapeHtml(section)}" data-dashboard-index="${index}" aria-label="Delete entry">&#128465;</button>
       </div>
     </article>
@@ -244,7 +229,6 @@ function renderEditableField(collection, index, name, value, label, multiline = 
 function renderRowActions(collection, index) {
   return `
     <span class="row-actions">
-      <button class="row-save" type="button" data-table-save="${escapeHtml(collection)}" data-table-index="${index}">Save</button>
       <button class="row-trash" type="button" data-table-delete="${escapeHtml(collection)}" data-table-index="${index}" aria-label="Delete row">&#128465;</button>
     </span>
   `;
@@ -289,7 +273,7 @@ function addTableRow(collection) {
   renderCollection(collection);
 }
 
-function saveTableRow(collection, index) {
+function syncTableRow(collection, index, shouldRender = false) {
   const item = state.data[collection]?.[index];
   if (!item) {
     return;
@@ -304,11 +288,15 @@ function saveTableRow(collection, index) {
   if (collection === "links" && !item.url) {
     state.data.links.splice(index, 1);
     saveTable(collection);
-    renderCollection(collection);
+    if (shouldRender) {
+      renderCollection(collection);
+    }
     return;
   }
   saveTable(collection);
-  renderCollection(collection);
+  if (shouldRender) {
+    renderCollection(collection);
+  }
 }
 
 function deleteTableRow(collection, index) {
@@ -329,6 +317,32 @@ function renderCollection(collection) {
     links: renderLinks,
   };
   renderers[collection]?.();
+}
+
+function syncDashboardItem(field) {
+  const [section, indexValue] = field.dataset.dashboardField.split(":");
+  const item = state.data.dashboard[section]?.[index];
+  if (!item) {
+    return;
+  }
+
+  item[field.dataset.dashboardName] = field.value.trim();
+  delete item._draft;
+  saveDashboard();
+}
+
+function syncOnCallDay(date) {
+  const fields = [...document.querySelectorAll(`[data-oncall-edit="${CSS.escape(date)}"]`)];
+  const notes = document.querySelector(`[data-oncall-notes="${CSS.escape(date)}"]`);
+  const values = fields.reduce((record, field) => {
+    record[field.dataset.oncallField] = field.value.trim();
+    return record;
+  }, {});
+  values.pto = values.pto ? values.pto.split(",").map((name) => name.trim()).filter(Boolean) : [];
+  localStorage.setItem(onCallEditKey(date), JSON.stringify(values));
+  if (notes) {
+    localStorage.setItem(onCallNotesKey(date), notes.value);
+  }
 }
 
 function renderKnowledge() {
@@ -577,8 +591,7 @@ function renderSopTocRow(item, index) {
         ${renderEditableField("sops", index, "id", item.id || item.name || "", "SOP ID")}
       </td>
       <td>
-        ${renderEditableField("sops", index, "title", item.title || item.type || item.name || "", "SOP Title", true)}
-        <a class="table-link sop-open-link row-open-link" href="#${id}" data-sop-open="${id}">Open</a>
+        <button class="table-link sop-open-link editable-field is-multiline" type="button" contenteditable="true" data-sop-open="${id}" data-table-field="sops-${index}" data-table-name="title" aria-label="SOP Title">${escapeHtml(item.title || item.type || item.name || "")}</button>
       </td>
       <td>${renderEditableField("sops", index, "category", item.category || item.type || "", "Category")}</td>
       <td>${renderEditableField("sops", index, "purpose", item.purpose || "", "Purpose", true)}</td>
@@ -605,7 +618,6 @@ function renderSopBody(item) {
         <div>
           <h3>${escapeHtml(item.id || item.name || "")} - ${escapeHtml(item.category || item.type || "General")} - ${escapeHtml(item.title || item.type || item.name || "Untitled SOP")}</h3>
         </div>
-        <span class="status-pill ${statusClass(item.status)}">${escapeHtml(item.status || "")}</span>
       </header>
       <dl class="sop-meta">
         <div>
@@ -616,10 +628,6 @@ function renderSopBody(item) {
       <section class="sop-notes">
         <label for="${id}-notes">Notes</label>
         <textarea id="${id}-notes" data-sop-notes="${id}" rows="5">${escapeHtml(notes)}</textarea>
-        <div class="sop-notes-actions">
-          <button type="button" data-sop-save="${id}">Save</button>
-          <span data-sop-save-status="${id}" aria-live="polite"></span>
-        </div>
       </section>
     </article>
   `;
@@ -707,9 +715,9 @@ function renderCertRow(item, index) {
     <tr>
       <td>${renderEditableField("certs", index, "track", item.track || "", "Track")}</td>
       <td>
+        <a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a>
         ${renderEditableField("certs", index, "name", item.name || "", "Certification")}
         ${renderEditableField("certs", index, "provider", item.provider || "", "Provider")}
-        <a class="table-link row-open-link" href="${escapeHtml(item.url || "#")}">Official Page</a>
       </td>
       <td>${renderEditableField("certs", index, "focus", item.focus || "", "Focus", true)}</td>
       <td>${renderEditableField("certs", index, "notes", item.notes || "", "Notes", true)}</td>
@@ -790,10 +798,6 @@ function renderOnCallCalendarDays(items) {
               <label>Backup<input data-oncall-field="backup" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.backup)}"></label>
               <label>OOO<input data-oncall-field="pto" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml((current.pto || []).join(", "))}"></label>
               <label>Notes<textarea data-oncall-notes="${escapeHtml(item.date)}" rows="3">${escapeHtml(notes)}</textarea></label>
-              <span class="oncall-inline-actions">
-                <span data-oncall-save-status="${escapeHtml(item.date)}" aria-live="polite"></span>
-                <button type="button" data-oncall-save="${escapeHtml(item.date)}">Save</button>
-              </span>
             `
             : `
               <p><b>Primary</b> ${escapeHtml(current.primary)}</p>
@@ -947,27 +951,74 @@ function bindEvents() {
 
   document.addEventListener("change", (event) => {
     const monthSelect = event.target.closest("[data-oncall-month]");
-    if (!monthSelect) {
+    if (monthSelect) {
+      state.onCallMonth = monthSelect.value;
+      if (state.onCallDate && !state.onCallDate.startsWith(state.onCallMonth)) {
+        state.onCallDate = "";
+      }
+      renderSchedule();
       return;
     }
 
-    state.onCallMonth = monthSelect.value;
-    if (state.onCallDate && !state.onCallDate.startsWith(state.onCallMonth)) {
-      state.onCallDate = "";
+    const dashboardField = event.target.closest("[data-dashboard-field]");
+    if (dashboardField) {
+      syncDashboardItem(dashboardField);
+      return;
     }
-    renderSchedule();
+
+    const onCallField = event.target.closest("[data-oncall-edit]");
+    if (onCallField) {
+      syncOnCallDay(onCallField.dataset.oncallEdit);
+      return;
+    }
+  });
+
+  document.addEventListener("input", (event) => {
+    const dashboardField = event.target.closest("[data-dashboard-field]");
+    if (dashboardField) {
+      syncDashboardItem(dashboardField);
+      return;
+    }
+
+    const tableField = event.target.closest("[data-table-field]");
+    if (tableField) {
+      const [collection, indexValue] = tableField.dataset.tableField.split("-");
+      syncTableRow(collection, Number(indexValue));
+      return;
+    }
+
+    const sopNotes = event.target.closest("[data-sop-notes]");
+    if (sopNotes) {
+      localStorage.setItem(sopNotesKey(sopNotes.dataset.sopNotes), sopNotes.value);
+      return;
+    }
+
+    const onCallNotes = event.target.closest("[data-oncall-notes]");
+    if (onCallNotes) {
+      localStorage.setItem(onCallNotesKey(onCallNotes.dataset.oncallNotes), onCallNotes.value);
+      return;
+    }
+
+    const onCallField = event.target.closest("[data-oncall-edit]");
+    if (onCallField) {
+      syncOnCallDay(onCallField.dataset.oncallEdit);
+    }
+  });
+
+  document.addEventListener("focusout", (event) => {
+    const tableField = event.target.closest("[data-table-field]");
+    if (!tableField) {
+      return;
+    }
+
+    const [collection, indexValue] = tableField.dataset.tableField.split("-");
+    syncTableRow(collection, Number(indexValue), true);
   });
 
   document.addEventListener("click", (event) => {
     const tableAdd = event.target.closest("[data-table-add]");
     if (tableAdd) {
       addTableRow(tableAdd.dataset.tableAdd);
-      return;
-    }
-
-    const tableSave = event.target.closest("[data-table-save]");
-    if (tableSave) {
-      saveTableRow(tableSave.dataset.tableSave, Number(tableSave.dataset.tableIndex));
       return;
     }
 
@@ -986,23 +1037,6 @@ function bindEvents() {
       return;
     }
 
-    const dashboardSave = event.target.closest("[data-dashboard-save]");
-    if (dashboardSave) {
-      const section = dashboardSave.dataset.dashboardSave;
-      const index = Number(dashboardSave.dataset.dashboardIndex);
-      const fieldId = `${section}-${index}`;
-      const fields = [...document.querySelectorAll(`[data-dashboard-field="${CSS.escape(fieldId)}"]`)];
-      if (state.data.dashboard[section]?.[index]) {
-        fields.forEach((field) => {
-          state.data.dashboard[section][index][field.dataset.dashboardName] = field.value.trim();
-        });
-        delete state.data.dashboard[section][index]._draft;
-        saveDashboard();
-        renderDashboard();
-      }
-      return;
-    }
-
     const dashboardDelete = event.target.closest("[data-dashboard-delete]");
     if (dashboardDelete) {
       const section = dashboardDelete.dataset.dashboardDelete;
@@ -1011,27 +1045,6 @@ function bindEvents() {
         state.data.dashboard[section].splice(index, 1);
         saveDashboard();
         renderDashboard();
-      }
-      return;
-    }
-
-    const onCallSave = event.target.closest("[data-oncall-save]");
-    if (onCallSave) {
-      const date = onCallSave.dataset.oncallSave;
-      const fields = [...document.querySelectorAll(`[data-oncall-edit="${CSS.escape(date)}"]`)];
-      const notes = document.querySelector(`[data-oncall-notes="${CSS.escape(date)}"]`);
-      const status = document.querySelector(`[data-oncall-save-status="${CSS.escape(date)}"]`);
-      const values = fields.reduce((record, field) => {
-        record[field.dataset.oncallField] = field.value.trim();
-        return record;
-      }, {});
-      values.pto = values.pto ? values.pto.split(",").map((name) => name.trim()).filter(Boolean) : [];
-      localStorage.setItem(onCallEditKey(date), JSON.stringify(values));
-      if (notes) {
-        localStorage.setItem(onCallNotesKey(date), notes.value);
-      }
-      if (status) {
-        status.textContent = "Saved";
       }
       return;
     }
@@ -1079,22 +1092,11 @@ function bindEvents() {
       return;
     }
 
-    const sopSave = event.target.closest("[data-sop-save]");
-    if (sopSave) {
-      const id = sopSave.dataset.sopSave;
-      const notes = document.querySelector(`[data-sop-notes="${CSS.escape(id)}"]`);
-      const status = document.querySelector(`[data-sop-save-status="${CSS.escape(id)}"]`);
-      if (notes) {
-        localStorage.setItem(sopNotesKey(id), notes.value);
-      }
-      if (status) {
-        status.textContent = "Saved";
-      }
-      return;
-    }
-
     const sopLink = event.target.closest(".sop-open-link");
     if (sopLink) {
+      if (event.target.closest("input, textarea, [data-sop-notes]")) {
+        return;
+      }
       const target = document.querySelector(`#${CSS.escape(sopLink.dataset.sopOpen)}`);
       if (target) {
         event.preventDefault();
