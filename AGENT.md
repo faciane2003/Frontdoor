@@ -80,6 +80,7 @@ Global layout state:
 - JQS, SOPs, Certs, and Links table headers stick to the top of their table while scrolling
 - JQS, SOPs, Certs, and Links rows can be added, edited, and deleted in-browser; row edits autosave to browser `localStorage`
 - editable table cells are styled to look like regular compact table text rather than boxed form fields
+- saved editable-table rows merge with source JSON on load so blank saved fields do not erase original source values such as SOP titles
 
 ## Workbook Import
 
@@ -130,7 +131,7 @@ Current `Certs` tab state:
 - populated with popular cybersecurity certifications instead of JQS workbook qualification rows
 - includes Security+, CySA+, PenTest+, SecurityX, ISC2 CC, CISSP, CCSP, CISA, CISM, GSEC, GCIH, GCIA, GCFA, CEH, OSCP, Microsoft Security Operations Analyst Associate, and AWS Certified Security - Specialty
 - the Certs table does not show price; pricing should be verified on linked official pages before purchase
-- certification names link directly to official pages; there is no separate Link column
+- certification names link directly to official pages; there is no separate Link column and the name is not duplicated below the link
 - renders with a SOP-style left mini nav for certification categories
 - clicking an active cert category clears the filter
 - Red Team is its own certification category; PenTest+, CEH, and OSCP are grouped there

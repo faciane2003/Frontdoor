@@ -1074,12 +1074,12 @@ button.table-link {
 
 .cert-table th:nth-child(2),
 .cert-table td:nth-child(2) {
-  width: 28%;
+  width: 20%;
 }
 
 .cert-table th:nth-child(3),
 .cert-table td:nth-child(3) {
-  width: 26%;
+  width: 34%;
 }
 
 .cert-table th:nth-child(4),

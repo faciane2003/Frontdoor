@@ -198,12 +198,43 @@ function applySavedTables() {
     try {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed)) {
-        state.data[collection] = parsed;
+        state.data[collection] = mergeSavedRows(collection, state.data[collection], parsed);
       }
     } catch {
       localStorage.removeItem(tableStorageKey(collection));
     }
   });
+}
+
+function mergeSavedRows(collection, sourceRows, savedRows) {
+  const sourceByKey = new Map(sourceRows.map((row) => [rowKey(collection, row), row]).filter(([key]) => key));
+  return savedRows.map((savedRow) => {
+    const sourceRow = sourceByKey.get(rowKey(collection, savedRow));
+    if (!sourceRow) {
+      return savedRow;
+    }
+
+    return Object.entries(savedRow).reduce(
+      (merged, [key, value]) => {
+        if (typeof value === "string" && !value.trim() && typeof sourceRow[key] === "string") {
+          return merged;
+        }
+        merged[key] = value;
+        return merged;
+      },
+      { ...sourceRow },
+    );
+  });
+}
+
+function rowKey(collection, row) {
+  const keys = {
+    training: "id",
+    sops: "id",
+    certs: "url",
+    links: "url",
+  };
+  return String(row?.[keys[collection]] || "").trim().toLowerCase();
 }
 
 function saveTable(collection) {
@@ -232,6 +263,10 @@ function renderRowActions(collection, index) {
       <button class="row-trash" type="button" data-table-delete="${escapeHtml(collection)}" data-table-index="${index}" aria-label="Delete row">&#128465;</button>
     </span>
   `;
+}
+
+function fieldText(field) {
+  return field.isContentEditable ? field.textContent.trim() : field.value.trim();
 }
 
 function addTableRow(collection) {
@@ -282,7 +317,7 @@ function syncTableRow(collection, index, shouldRender = false) {
   const fieldId = `${collection}-${index}`;
   const fields = [...document.querySelectorAll(`[data-table-field="${CSS.escape(fieldId)}"]`)];
   fields.forEach((field) => {
-    item[field.dataset.tableName] = (field.value ?? field.textContent).trim();
+    item[field.dataset.tableName] = fieldText(field);
   });
   delete item._draft;
   if (collection === "links" && !item.url) {
@@ -716,7 +751,6 @@ function renderCertRow(item, index) {
       <td>${renderEditableField("certs", index, "track", item.track || "", "Track")}</td>
       <td>
         <a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a>
-        ${renderEditableField("certs", index, "name", item.name || "", "Certification")}
         ${renderEditableField("certs", index, "provider", item.provider || "", "Provider")}
       </td>
       <td>${renderEditableField("certs", index, "focus", item.focus || "", "Focus", true)}</td>
