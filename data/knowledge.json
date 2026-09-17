@@ -1,32 +1,103 @@
 [
   {
-    "title": "Alert Triage Checklist",
-    "summary": "Confirm source, timestamp, affected host, user context, severity, enrichment, and escalation path before closing or escalating an alert.",
-    "tags": ["triage", "alerts", "workflow"]
+    "title": "Imported JQS Workbook",
+    "summary": "Loaded 171 tiered qualification tasks, 1 SOP entries, and 79 resource links from JQS_SOC_CSIRT2.xlsx.",
+    "tags": [
+      "workbook",
+      "jqs",
+      "overview"
+    ]
   },
   {
-    "title": "Incident Severity Guide",
-    "summary": "Classify incidents by business impact, spread, data exposure, operational disruption, and response urgency.",
-    "tags": ["incident", "severity", "escalation"]
+    "title": "Tier I Qualification Scope",
+    "summary": "101 workbook tasks imported for Tier I. Use the Training tab to review task IDs, competency areas, standards, and status.",
+    "tags": [
+      "Tier I",
+      "qualification",
+      "training"
+    ]
   },
   {
-    "title": "Evidence Handling Notes",
-    "summary": "Preserve original logs, document collection time, record tool output, avoid destructive actions, and keep chain-of-custody notes clear.",
-    "tags": ["evidence", "forensics", "documentation"]
+    "title": "Tier II Qualification Scope",
+    "summary": "41 workbook tasks imported for Tier II. Use the Training tab to review task IDs, competency areas, standards, and status.",
+    "tags": [
+      "Tier II",
+      "qualification",
+      "training"
+    ]
   },
   {
-    "title": "Shift Handoff Format",
-    "summary": "Summarize active incidents, pending tickets, watch items, blocked tasks, owner assignments, and next recommended action.",
-    "tags": ["handoff", "shift", "operations"]
+    "title": "Tier III Qualification Scope",
+    "summary": "10 workbook tasks imported for Tier III. Use the Training tab to review task IDs, competency areas, standards, and status.",
+    "tags": [
+      "Tier III",
+      "qualification",
+      "training"
+    ]
   },
   {
-    "title": "Threat Intel Intake",
-    "summary": "Capture source reliability, indicator type, confidence, expiration, related campaigns, and recommended detection updates.",
-    "tags": ["threat intel", "ioc", "detections"]
+    "title": "Advanced Qualification Scope",
+    "summary": "19 workbook tasks imported for Advanced. Use the Training tab to review task IDs, competency areas, standards, and status.",
+    "tags": [
+      "Advanced",
+      "qualification",
+      "training"
+    ]
   },
   {
-    "title": "Post-Incident Review",
-    "summary": "Record timeline, impact, root cause, detection opportunities, response blockers, control gaps, and concrete follow-up owners.",
-    "tags": ["review", "lessons learned", "incident"]
+    "title": "Splunk",
+    "summary": "48 JQS tasks are associated with Splunk. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "Splunk"
+    ]
+  },
+  {
+    "title": "Spam Analysis",
+    "summary": "19 JQS tasks are associated with Spam Analysis. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "Spam Analysis"
+    ]
+  },
+  {
+    "title": "ServiceNow",
+    "summary": "16 JQS tasks are associated with ServiceNow. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "ServiceNow"
+    ]
+  },
+  {
+    "title": "Turbine",
+    "summary": "16 JQS tasks are associated with Turbine. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "Turbine"
+    ]
+  },
+  {
+    "title": "System Asset Indentification",
+    "summary": "14 JQS tasks are associated with System Asset Indentification. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "System Asset Indentification"
+    ]
+  },
+  {
+    "title": "CrowdStrike",
+    "summary": "9 JQS tasks are associated with CrowdStrike. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "CrowdStrike"
+    ]
+  },
+  {
+    "title": "OOB Operation",
+    "summary": "9 JQS tasks are associated with OOB Operation. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "OOB Operation"
+    ]
+  },
+  {
+    "title": "FireEye",
+    "summary": "8 JQS tasks are associated with FireEye. These tasks appear across the imported tier qualification tables.",
+    "tags": [
+      "FireEye"
+    ]
   }
 ]

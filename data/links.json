@@ -1,26 +1,429 @@
 [
   {
-    "name": "GitHub Pages Docs",
-    "type": "Documentation",
-    "url": "https://docs.github.com/en/pages",
-    "description": "Official GitHub Pages reference."
+    "name": "From the Digital Forensics Workbook[1]",
+    "type": "Forensics",
+    "url": "http://www.digitalforensicsworkbook.com/",
+    "description": "Hands-on digital forensics workbook with practical labs and supporting reference material.",
+    "category": "Learning Resources"
   },
   {
-    "name": "MITRE ATT&CK",
-    "type": "Knowledge Base",
-    "url": "https://attack.mitre.org/",
-    "description": "Adversary tactics, techniques, and procedures."
+    "name": "7-Zip",
+    "type": "Forensics",
+    "url": "http://www.7-zip.org/",
+    "description": "File archiver for opening, extracting, and creating compressed evidence packages.",
+    "category": "Utilities"
   },
   {
-    "name": "CISA Known Exploited Vulnerabilities",
-    "type": "Threat Intel",
-    "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-    "description": "Catalog of actively exploited vulnerabilities."
+    "name": "Kali Linux",
+    "type": "Forensics",
+    "url": "https://www.kali.org/",
+    "description": "Security-focused Linux distribution with penetration testing, assessment, and analysis tools.",
+    "category": "Lab Platforms"
   },
   {
-    "name": "NIST Cybersecurity Framework",
-    "type": "Reference",
-    "url": "https://www.nist.gov/cyberframework",
-    "description": "Cybersecurity risk management framework."
+    "name": "Oracle VirtualBox",
+    "type": "Forensics",
+    "url": "https://www.virtualbox.org/",
+    "description": "Virtualization platform for building isolated lab and analysis virtual machines.",
+    "category": "Lab Platforms"
+  },
+  {
+    "name": "MD5 & SHA Checksum Utility 2.0",
+    "type": "Forensics",
+    "url": "https://raylin.wordpress.com/2013/06/04/md5-sha-checksum-utility-2-0/",
+    "description": "Windows utility for calculating and verifying MD5 and SHA file hashes.",
+    "category": "Hashing"
+  },
+  {
+    "name": "MD5Deep & HashDeep",
+    "type": "Forensics",
+    "url": "http://md5deep.sourceforge.net/",
+    "description": "Command-line hashing tools for recursive MD5, SHA, and hash-set verification workflows.",
+    "category": "Hashing"
+  },
+  {
+    "name": "Windows SysInternals Suite",
+    "type": "Forensics",
+    "url": "https://technet.microsoft.com/en-us/sysinternals/bb842062.aspx",
+    "description": "Microsoft troubleshooting utilities for Windows process, file, registry, network, and system analysis.",
+    "category": "Windows Tools"
+  },
+  {
+    "name": "FTK Imager",
+    "type": "Forensics",
+    "url": "http://accessdata.com/product-download",
+    "description": "Disk imaging and evidence preview tool commonly used to acquire and inspect forensic images.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "Version 3.4.2",
+    "type": "Forensics",
+    "url": "https://accessdata.com/product-download/ftk-imager-version-3-4-2",
+    "description": "Archived FTK Imager download reference for a specific legacy tool version.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "Chrysocome",
+    "type": "Forensics",
+    "url": "http://www.chrysocome.net/",
+    "description": "Home page for Chrysocome utilities, including disk and raw data handling tools.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "Download page",
+    "type": "Forensics",
+    "url": "http://www.chrysocome.net/download",
+    "description": "Download area for Chrysocome utilities and related Windows command-line tools.",
+    "category": "Utilities"
+  },
+  {
+    "name": "dd for Windows",
+    "type": "Forensics",
+    "url": "http://www.chrysocome.net/dd",
+    "description": "Windows port of dd for raw disk, partition, and file acquisition tasks.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "NetCat available with nmap",
+    "type": "Forensics",
+    "url": "https://nmap.org/ncat/",
+    "description": "Ncat networking utility for reading, writing, redirecting, and debugging network connections.",
+    "category": "Network Analysis"
+  },
+  {
+    "name": "The Sleuth Kit",
+    "type": "Forensics",
+    "url": "http://www.sleuthkit.org/",
+    "description": "Open-source command-line tools for analyzing disk images and file systems.",
+    "category": "Forensic Suites"
+  },
+  {
+    "name": "Sleuth Kit Download",
+    "type": "Forensics",
+    "url": "http://www.sleuthkit.org/sleuthkit/download.php",
+    "description": "Download page for The Sleuth Kit command-line forensic analysis tools.",
+    "category": "Forensic Suites"
+  },
+  {
+    "name": "Autopsy",
+    "type": "Forensics",
+    "url": "http://www.sleuthkit.org/autopsy/",
+    "description": "Graphical digital investigation platform built on The Sleuth Kit and related analysis modules.",
+    "category": "Forensic Suites"
+  },
+  {
+    "name": "OS Forensics (PassMark Software)",
+    "type": "Forensics",
+    "url": "http://www.osforensics.com/",
+    "description": "Commercial investigation suite for searching systems, collecting artifacts, and reviewing evidence.",
+    "category": "Forensic Suites"
+  },
+  {
+    "name": "Tools (OSFMount, OSFClone, etc)",
+    "type": "Forensics",
+    "url": "http://www.osforensics.com/tools/",
+    "description": "PassMark utility downloads including disk mounting, cloning, and related support tools.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "MiTeC Windows Registry Recovery",
+    "type": "Forensics",
+    "url": "http://www.mitec.cz/wrr.html",
+    "description": "Registry hive viewer for recovering and reviewing Windows registry data offline.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "MiTeC Windows File Analyzer",
+    "type": "Forensics",
+    "url": "http://www.mitec.cz/wfa.html",
+    "description": "Windows artifact viewer for analyzing selected file and operating system activity records.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "RegRipper",
+    "type": "Forensics",
+    "url": "https://github.com/keydet89/",
+    "description": "Registry analysis plugins and tooling from Harlan Carvey for extracting Windows registry artifacts.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "HashCalc",
+    "type": "Forensics",
+    "url": "http://www.slavasoft.com/hashcalc/",
+    "description": "Hash calculator for generating checksums across common cryptographic hash algorithms.",
+    "category": "Hashing"
+  },
+  {
+    "name": "HashMyFiles",
+    "type": "Forensics",
+    "url": "http://www.nirsoft.net/utils/hash_my_files.html",
+    "description": "NirSoft utility for calculating MD5, SHA, CRC, and other hashes for one or more files.",
+    "category": "Hashing"
+  },
+  {
+    "name": "WinHex",
+    "type": "Forensics",
+    "url": "http://www.x-ways.net/winhex/",
+    "description": "Hex, disk, RAM, and file editor used for low-level inspection and recovery workflows.",
+    "category": "Forensic Imaging"
+  },
+  {
+    "name": "NirSoft Web Browser Tools",
+    "type": "Forensics",
+    "url": "http://www.nirsoft.net/web_browser_tools.html",
+    "description": "Collection of browser artifact utilities for reviewing histories, caches, cookies, and stored data.",
+    "category": "Browser Artifacts"
+  },
+  {
+    "name": "NirSoft WinPrefetchView",
+    "type": "Forensics",
+    "url": "http://www.nirsoft.net/utils/win_prefetch_view.html",
+    "description": "Windows Prefetch viewer for reviewing application execution artifacts.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "JumpLister",
+    "type": "Forensics",
+    "url": "http://www.woanware.co.uk/forensics/jumplister.html",
+    "description": "Jump list artifact parser from Woanware for reviewing Windows user activity traces.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "AstroGrep",
+    "type": "Forensics",
+    "url": "http://astrogrep.sourceforge.net/",
+    "description": "Windows grep tool for searching file content with regular expressions and context output.",
+    "category": "Utilities"
+  },
+  {
+    "name": "Carver Recovery",
+    "type": "Forensics",
+    "url": "https://code.google.com/p/carver-recovery/",
+    "description": "Archived file-carving recovery project reference from Google Code Archive.",
+    "category": "File Recovery"
+  },
+  {
+    "name": "Bulk Extractor",
+    "type": "Forensics",
+    "url": "http://www.forensicswiki.org/wiki/bulk_extractor",
+    "description": "Artifact extraction tool for finding emails, URLs, credit cards, and other features in disk images.",
+    "category": "Artifact Extraction"
+  },
+  {
+    "name": "Memoryze (FireEye)",
+    "type": "Forensics",
+    "url": "https://www.fireeye.com/services/freeware/memoryze.html",
+    "description": "Legacy memory acquisition and analysis utility from FireEye/Mandiant resources.",
+    "category": "Memory Forensics"
+  },
+  {
+    "name": "Volatility",
+    "type": "Forensics",
+    "url": "http://www.volatilityfoundation.org/",
+    "description": "Memory forensics framework for analyzing RAM images and extracting runtime artifacts.",
+    "category": "Memory Forensics"
+  },
+  {
+    "name": "WireShark",
+    "type": "Forensics",
+    "url": "https://www.wireshark.org/",
+    "description": "Network protocol analyzer for packet capture inspection and traffic analysis.",
+    "category": "Network Analysis"
+  },
+  {
+    "name": "pList Editor Pro",
+    "type": "Forensics",
+    "url": "http://www.icopybot.com/plist-editor.htm",
+    "description": "Windows plist editor for reading and editing Apple property list files.",
+    "category": "Apple Artifacts"
+  },
+  {
+    "name": "VirusTotal",
+    "type": "Forensics",
+    "url": "https://www.virustotal.com/",
+    "description": "Online file, URL, domain, and hash reputation service using multiple security engines.",
+    "category": "Threat Intelligence"
+  },
+  {
+    "name": "Bleeping Computer Tutorials",
+    "type": "Forensics",
+    "url": "http://www.bleepingcomputer.com/tutorials/have-i-been-hacked/",
+    "description": "Tutorial on Windows compromise indicators and basic hacked-system review concepts.",
+    "category": "Learning Resources"
+  },
+  {
+    "name": "Windows God Mode",
+    "type": "Forensics",
+    "url": "http://www.bleepingcomputer.com/tutorials/enable-godmode-in-windows/",
+    "description": "Guide for enabling a Windows administrative-control shortcut folder.",
+    "category": "Windows Tools"
+  },
+  {
+    "name": "Show-hidden",
+    "type": "Forensics",
+    "url": "http://www.bleepingcomputer.com/download/show-hidden/",
+    "description": "Utility for revealing hidden files and folders on fixed and removable drives.",
+    "category": "Windows Tools"
+  },
+  {
+    "name": "RegShot (Windows Registry comparison)",
+    "type": "Forensics",
+    "url": "http://sourceforge.net/projects/regshot/",
+    "description": "Registry comparison utility for snapshotting registry changes before and after system activity.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "RegAlyzer (browse & change the registry)",
+    "type": "Forensics",
+    "url": "https://www.safer-networking.org/products/regalyzer/",
+    "description": "Windows registry browser and editor from Safer-Networking.",
+    "category": "Windows Artifacts"
+  },
+  {
+    "name": "FileAlyzer",
+    "type": "Forensics",
+    "url": "https://www.safer-networking.org/products/filealyzer/",
+    "description": "File inspection utility for viewing metadata, structure, hashes, and file properties.",
+    "category": "File Analysis"
+  },
+  {
+    "name": "Sandboxie",
+    "type": "Forensics",
+    "url": "http://www.sandboxie.com/",
+    "description": "Sandboxing tool for running applications in an isolated environment.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Learn Basic Linux Commands with This \nDownloadable Cheat Sheet",
+    "type": "Forensics",
+    "url": "http://lifehacker.com/learn-basic-linux-commands-with-this-downloadable-cheat-1552019180",
+    "description": "Linux command-line cheat sheet for common shell commands and basic terminal tasks.",
+    "category": "Linux References"
+  },
+  {
+    "name": "50 Most Frequently Used UNIX / Linux Commands \n(With Examples)",
+    "type": "Forensics",
+    "url": "http://www.thegeekstuff.com/2010/11/50-linux-commands/",
+    "description": "Practical examples for commonly used Unix and Linux command-line utilities.",
+    "category": "Linux References"
+  },
+  {
+    "name": "50 UNIX / Linux Sysadmin Tutorials",
+    "type": "Forensics",
+    "url": "http://www.thegeekstuff.com/2010/12/50-unix-linux-sysadmin-tutorials/",
+    "description": "Collection of Unix and Linux administration tutorials and command-line references.",
+    "category": "Linux References"
+  },
+  {
+    "name": "20 Linux System Monitoring Tools",
+    "type": "Forensics",
+    "url": "http://www.cyberciti.biz/tips/top-linux-monitoring-tools.html",
+    "description": "Overview of Linux monitoring commands and tools for system performance review.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Linux Shell Scripting Tutorial (LSST) v2.0",
+    "type": "Forensics",
+    "url": "http://bash.cyberciti.biz/guide/Main_Page",
+    "description": "Shell scripting tutorial covering Bash scripting concepts and examples.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Learning the Shell",
+    "type": "Forensics",
+    "url": "http://linuxcommand.org/lc3_learning_the_shell.php",
+    "description": "Introductory LinuxCommand.org guide for learning shell navigation and command usage.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Unix/Linux Command Reference",
+    "type": "Forensics",
+    "url": "http://files.fosswire.com/2007/08/fwunixref.pdf",
+    "description": "Downloadable Unix and Linux command reference PDF.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Ubuntu reference",
+    "type": "Forensics",
+    "url": "http://files.fosswire.com/2008/04/ubunturef.pdf",
+    "description": "Downloadable Ubuntu command and desktop reference PDF.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Ubuntu cheat sheet",
+    "type": "Forensics",
+    "url": "http://mhvlug.org/sites/default/files/Advanced_ubuntu_sheet.pdf",
+    "description": "Downloadable Ubuntu cheat sheet with common commands and shortcuts.",
+    "category": "Linux References"
+  },
+  {
+    "name": "Windows SysInternals Suite",
+    "type": "Forensics",
+    "url": "https://technet.microsoft.com/en-us/sysinternals/bb842062.aspx",
+    "description": "Microsoft troubleshooting utilities for Windows process, file, registry, network, and system analysis.",
+    "category": "Windows Tools"
+  },
+  {
+    "name": "Process Hacker",
+    "type": "Forensics",
+    "url": "http://processhacker.sourceforge.net/",
+    "description": "System Informer process and system monitoring tool for troubleshooting and malware review.",
+    "category": "Windows Tools"
+  },
+  {
+    "name": "Buster Sandbox Analyzer",
+    "type": "Forensics",
+    "url": "http://bsa.isoftware.nl/",
+    "description": "Sandbox analysis helper for reviewing behavior generated inside Sandboxie environments.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Cuckoo Sandbox",
+    "type": "Forensics",
+    "url": "http://www.cuckoosandbox.org/",
+    "description": "Automated malware analysis sandbox for executing and reporting on suspicious files.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Free Toolkits for Automating Malware Analysis",
+    "type": "Forensics",
+    "url": "https://zeltser.com/malware-analysis-tool-frameworks/",
+    "description": "Curated overview of free frameworks and environments for building malware analysis capability.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Free automated malware analysis services",
+    "type": "Forensics",
+    "url": "https://zeltser.com/automated-malware-analysis/",
+    "description": "List of hosted malware sandboxes and services for submitting suspicious files and URLs.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Awesome Malware Analysis (list)",
+    "type": "Forensics",
+    "url": "https://github.com/rshipp/awesome-malware-analysis",
+    "description": "Curated GitHub list of malware analysis tools, references, datasets, and learning resources.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Contagio, Malware Analysis and Forensics tools links",
+    "type": "Forensics",
+    "url": "http://contagiodump.blogspot.com/2010/06/malware-analysis-and-forensics-tools.html",
+    "description": "Blog reference collecting malware analysis and investigation tools and learning links.",
+    "category": "Malware Analysis"
+  },
+  {
+    "name": "Book",
+    "type": "Forensics",
+    "url": "http://beginners.re/",
+    "description": "Reverse Engineering for Beginners book site with learning material for software reversing.",
+    "category": "Reverse Engineering"
+  },
+  {
+    "name": "Challenges",
+    "type": "Forensics",
+    "url": "http://challenges.re/",
+    "description": "Reverse engineering challenge site for practicing binary analysis skills.",
+    "category": "Reverse Engineering"
   }
 ]

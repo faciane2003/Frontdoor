@@ -53,8 +53,11 @@ GithubPages/
     training.json
     sops.json
     certs.json
+    dashboard.json
     on-call.json
     links.json
+  scripts/
+    extract_workbook_data.py
   assets/
 ```
 
@@ -63,17 +66,138 @@ GithubPages/
 The site is a static SOC-style operations portal with app navigation for:
 
 - Dashboard
-- Knowledge Base
-- Training
+- JQS
 - SOPs
 - Certs
-- On-Call Schedule
+- On-Call
 - Links
-- Terminal
 
 The dashboard and tabs are powered by local JSON files under `data/`.
 
-The Terminal tab is a simulated browser console only. GitHub Pages cannot run real shell commands or backend actions.
+Global layout state:
+
+- the top header/search bar is sticky at the top of the viewport while scrolling
+- left mini nav panels stick below the header/search bar so they are not covered while scrolling
+- JQS, SOPs, Certs, and Links table headers stick to the top of their table while scrolling
+
+## Workbook Import
+
+The web project can import static data from:
+
+`C:\Users\Ames\Desktop\Projects\GithubPages\assets\JQS_SOC_CSIRT2.xlsx`
+
+This workbook is the updated version of the Tier 3 workbook:
+
+`C:\Users\Ames\Desktop\Projects\Tier 3\JQS_SOC_CSIRT2.xlsx`
+
+The related workbook project and generator live at:
+
+`C:\Users\Ames\Desktop\Projects\Tier 3`
+
+Import script:
+
+`scripts\extract_workbook_data.py`
+
+Run from the web project root:
+
+```powershell
+python scripts\extract_workbook_data.py
+```
+
+Current import mapping:
+
+- `Tier I`, `Tier II`, `Tier III`, and `Advanced` task tables -> `data/training.json`
+- `SOPs` table -> `data/sops.json`
+- `Links` sheet and `Forensics` sheet -> `data/links.json`
+- workbook task/category summaries -> `data/knowledge.json`
+- no workbook schedule source exists yet -> `data/on-call.json` is generated with mock on-call assignments
+
+`data/certs.json` is not imported from the JQS workbook. It is maintained separately as a cybersecurity certification catalog with provider, level, focus, estimated cost, notes, and official links.
+
+The importer intentionally treats internal-looking URLs as blank. Public forensics URLs are preserved.
+
+Latest workbook import baseline:
+
+- 171 JQS training tasks
+- 1 SOP entry from the workbook, later replaced locally with 20 example SOP entries
+- 61 link/resource entries with public URLs after filtering out rows without links
+- 13 knowledge summaries
+- 365 mock on-call schedule records
+
+Current `Certs` tab state:
+
+- populated with popular cybersecurity certifications instead of JQS workbook qualification rows
+- includes Security+, CySA+, PenTest+, SecurityX, ISC2 CC, CISSP, CCSP, CISA, CISM, GSEC, GCIH, GCIA, GCFA, CEH, OSCP, Microsoft Security Operations Analyst Associate, and AWS Certified Security - Specialty
+- the Certs table does not show price; pricing should be verified on linked official pages before purchase
+- certification names link directly to official pages; there is no separate Link column
+- renders with a SOP-style left mini nav for certification categories
+- clicking an active cert category clears the filter
+- Red Team is its own certification category; PenTest+, CEH, and OSCP are grouped there
+
+Current `Dashboard` tab state:
+
+- the visible top header uses `SOC HUD`
+- the Dashboard body is populated from `data/dashboard.json`
+- dashboard panels are compact and editable in-browser
+- each dashboard panel header has a blue plus button that adds an empty editable entry
+- each dashboard entry has a Save button and a red trash button; dashboard edits are saved to browser `localStorage`
+- dashboard sections are:
+  - Tasks
+  - Project Status
+  - Personnel
+  - Alerts
+  - Webpage Updates
+- old summary widgets for Knowledge Articles, Training Items, SOPs, Links, Priority Training, Quick Knowledge, and On-Call Today were removed
+
+Current `Knowledge Base` tab state:
+
+- renders as a compact hierarchical list without a left mini nav
+- each row combines hierarchy and title on one line, such as `01 Overview / Workbook Import - Imported JQS Workbook`
+- each row places the generated summary text on the right side; old tag pills such as `workbook`, `jqs`, and `overview` are not rendered
+- current hierarchy groups are:
+  - `01 Overview / Workbook Import`
+  - `02 Qualification Scope / Tier Path`
+  - `03 Skill Areas / Tools and Workflows`
+- `competency` is not used as a visible tag/category; skill rows use the actual area name
+
+Current `JQS` tab state:
+
+- renders with a left-side area nav and dense table, matching the SOP navigation/table pattern
+- clicking an area filters the JQS table and highlights the active area; clicking the active area again clears the filter
+- table omits Area and Status columns and shortens tier labels to `I`, `II`, `III`, or `Advanced`
+- table column order is ID, Tier, Task, Performance Standard
+
+Current `SOPs` tab state:
+
+- renders as a categorized table-of-contents style table
+- includes a left-side category nav that filters the SOP table, highlights the active category, and clears the filter when the active category is clicked again
+- the table itself stays as regular SOP rows; the left category nav is the only category/filter control
+- SOP titles are clickable links that open the matching SOP body below the table
+- expanded SOP bodies show a single-line `ID - Category - Title` header, Updated metadata, and an editable Notes field only
+- SOP notes auto-fill with up to five editable numbered to-do style steps from the SOP data, without section heading prefixes, unless the user has saved custom notes
+- SOP notes are saved in browser `localStorage`; this is local to the user's browser and not synced to GitHub Pages
+- `data/sops.json` currently has 20 example SOP entries with `id`, `title`, `category`, `purpose`, `status`, and `sections`
+- current example categories include Triage, Email Security, Endpoint Response, Identity and Access, Network Security, Vulnerability Management, Threat Intelligence, Response Management, Operations, Detection Engineering, Cloud Security, Data Protection, and Case Management
+- the workbook importer maps imported SOP rows into this newer structure
+
+Current `Links` tab state:
+
+- renders as a compact table: Resource, Description, and URL
+- includes a SOP-style left mini nav for practical resource categories
+- clicking an active link category clears the filter
+- rows without a public URL are excluded
+- category labels such as Forensics and Documentation are not shown in the Links UI
+- current link categories include Apple Artifacts, Artifact Extraction, Browser Artifacts, File Analysis, File Recovery, Forensic Imaging, Forensic Suites, Hashing, Lab Platforms, Learning Resources, Linux References, Malware Analysis, Memory Forensics, Network Analysis, Reverse Engineering, Threat Intelligence, Utilities, Windows Artifacts, and Windows Tools
+- descriptions were researched from linked page titles/meta descriptions where available, with concise fallback descriptions for dead or blocked links
+
+Current `On-Call` tab state:
+
+- navigation label and page title use `On-Call`
+- renders a mock calendar using `data/on-call.json`
+- mock assignments include date, primary, backup, and OOO names
+- mock calendar currently covers one year from September 17, 2026 through September 16, 2027
+- On-Call header includes a month selector and displays one month at a time
+- clicking a calendar day turns that calendar cell into an inline editor for primary, backup, OOO, and notes; edits save in browser `localStorage`
 
 ## Current Checkpoint
 
@@ -85,28 +209,22 @@ Current stopping point:
 - The following tabs/views exist in `index.html` and are controlled by `js/main.js`:
   - Dashboard
   - Knowledge Base
-  - Training
+  - JQS
   - SOPs
   - Certs
-  - On-Call Schedule
+  - On-Call
   - Links
-  - Terminal
+- The main sidebar nav intentionally omits Knowledge Base.
 - `css/styles.css` now contains the dark dashboard/admin UI styling.
-- `js/main.js` loads local JSON data with `fetch()`, renders dashboard metrics/cards/tables, handles tab routing via hash links, filters data with the global search box, and supports the simulated terminal.
+- `js/main.js` loads local JSON data with `fetch()`, renders HUD panels/cards/tables, handles tab routing via hash links, and filters data with the global search box.
 - The `data/` folder has starter/sample content:
   - `knowledge.json`
   - `training.json`
   - `sops.json`
   - `certs.json`
+  - `dashboard.json`
   - `on-call.json`
   - `links.json`
-- The terminal supports these simulated commands:
-  - `help`
-  - `status`
-  - `sections`
-  - `search <term>`
-  - `clear`
-
 Verification completed before this checkpoint:
 
 - JSON syntax was checked with `python -m json.tool`.
@@ -117,6 +235,12 @@ Verification completed before this checkpoint:
   - `/css/styles.css`
   - `/js/main.js`
   - `/data/knowledge.json`
+  - `/#knowledge`
+  - `/#training`
+  - `/#sops`
+  - `/#certs`
+  - `/#schedule`
+  - `/#links`
 
 Important local testing note:
 
@@ -139,15 +263,15 @@ When work resumes, start here:
 2. Check the desktop layout and mobile/collapsed navigation.
 3. Test every nav tab.
 4. Test global search against terms like `triage`, `incident`, `training`, and `MITRE`.
-5. Test Terminal commands: `help`, `status`, `sections`, `search triage`, and `clear`.
-6. Replace starter/sample JSON entries with real sanitized content.
-7. Decide whether the Knowledge Base should stay as JSON cards or move to Markdown-like article files later.
+5. Replace starter/sample JSON entries with real sanitized content.
+6. Review the imported workbook data in the web UI and decide whether the workbook field names should be renamed for the site audience.
+7. Decide whether the Knowledge Base should stay as a generated hierarchical list or move to Markdown-like article files later.
 8. Decide whether the dashboard should add richer widgets such as:
    - training completion counts by tier
    - SOP review status
    - expiring cert count
-   - current/next on-call shift
-9. Decide whether the Terminal tab should remain simulated or become a command-reference/search interface.
+   - current/next on-call assignment
+9. Replace the mock on-call calendar data with a real schedule source if needed.
 10. Only publish with GitHub Pages after confirming the content is safe for public exposure or confirming private Pages support.
 
 ## Collaboration Rule

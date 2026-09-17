@@ -1,37 +1,546 @@
 [
   {
-    "name": "Phishing Triage SOP",
-    "type": "Playbook",
-    "status": "Current",
-    "owner": "SOC",
-    "updated": "2026-08-18"
-  },
-  {
-    "name": "Malware Containment SOP",
-    "type": "Procedure",
-    "status": "Under Review",
-    "owner": "CSIRT",
-    "updated": "2026-08-29"
-  },
-  {
-    "name": "Credential Exposure SOP",
-    "type": "Playbook",
-    "status": "Current",
-    "owner": "Identity",
-    "updated": "2026-07-21"
-  },
-  {
-    "name": "Major Incident Bridge SOP",
-    "type": "Procedure",
+    "id": "SOP-001",
+    "title": "Alert Intake and Ticket Creation",
+    "category": "Triage",
     "status": "Draft",
-    "owner": "Incident Command",
-    "updated": "2026-09-05"
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define how alerts, user reports, third-party notices, and automated detections become trackable cases.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Create a consistent intake process so every actionable alert becomes a documented case with enough context for triage."
+      },
+      {
+        "heading": "Scope",
+        "body": "Applies to SIEM alerts, EDR alerts, email reports, vulnerability notifications, abuse reports, and partner notifications."
+      },
+      {
+        "heading": "Procedure",
+        "body": "Record the source, timestamp, affected user or asset, alert name, severity, initial evidence, and any automated enrichment. Assign the ticket to the active queue and set the initial status to New."
+      },
+      {
+        "heading": "Required Evidence",
+        "body": "Include alert screenshots or event IDs, source logs, affected hostnames, usernames, IP addresses, URLs, file hashes, and the reason the event requires analyst review."
+      }
+    ]
   },
   {
-    "name": "Evidence Preservation SOP",
-    "type": "Reference",
-    "status": "Current",
-    "owner": "Forensics",
-    "updated": "2026-06-13"
+    "id": "SOP-002",
+    "title": "Phishing Triage",
+    "category": "Email Security",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Provide a repeatable workflow for reviewing suspicious email reports and determining user or environment impact.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Standardize phishing review so analysts capture the same evidence and reach consistent disposition decisions."
+      },
+      {
+        "heading": "Initial Review",
+        "body": "Inspect sender, recipient, subject, headers, attachments, links, authentication results, and user interaction indicators."
+      },
+      {
+        "heading": "Analysis Steps",
+        "body": "Review URL reputation, attachment metadata, sandbox results, email gateway verdicts, and any matching messages delivered to other users."
+      },
+      {
+        "heading": "Closure Criteria",
+        "body": "Document the final verdict, impacted recipients, containment actions, user notifications, and any recommended blocklist or detection updates."
+      }
+    ]
+  },
+  {
+    "id": "SOP-003",
+    "title": "Endpoint Malware Investigation",
+    "category": "Endpoint Response",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Guide analysts through endpoint malware validation, scoping, containment, and evidence capture.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Ensure endpoint malware alerts are reviewed with enough context to determine whether containment or escalation is required."
+      },
+      {
+        "heading": "Validation",
+        "body": "Review process tree, command line, parent process, file path, signature status, hash reputation, detection name, and endpoint timeline."
+      },
+      {
+        "heading": "Containment",
+        "body": "If malicious activity is likely, isolate the endpoint according to local authority, preserve evidence, and notify the response lead."
+      },
+      {
+        "heading": "Documentation",
+        "body": "Record detection details, artifacts collected, containment actions, affected users, related hosts, and recommended follow-up."
+      }
+    ]
+  },
+  {
+    "id": "SOP-004",
+    "title": "Incident Escalation",
+    "category": "Response Management",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define when and how an investigation should be escalated from queue work to incident response coordination.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Make escalation decisions consistent and fast when an event meets impact, severity, or uncertainty thresholds."
+      },
+      {
+        "heading": "Escalation Triggers",
+        "body": "Escalate confirmed compromise, active attacker behavior, sensitive data exposure, privileged account abuse, lateral movement, or unclear high-severity alerts."
+      },
+      {
+        "heading": "Notification",
+        "body": "Notify the response lead, provide the ticket link, summarize evidence, list affected assets, and identify decisions or approvals needed."
+      },
+      {
+        "heading": "Handoff",
+        "body": "Include timeline, current status, completed containment, pending actions, known gaps, and recommended next steps."
+      }
+    ]
+  },
+  {
+    "id": "SOP-005",
+    "title": "SIEM Alert Triage",
+    "category": "Triage",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Standardize initial review, enrichment, and disposition of SIEM-generated alerts.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Ensure SIEM alerts are reviewed consistently before closure, escalation, or conversion into an incident."
+      },
+      {
+        "heading": "Review Steps",
+        "body": "Validate the rule name, severity, entities, timestamps, source indexes, notable fields, and whether the activity matches expected behavior."
+      },
+      {
+        "heading": "Enrichment",
+        "body": "Add user, host, asset criticality, recent authentication, EDR, vulnerability, and threat intelligence context where available."
+      },
+      {
+        "heading": "Disposition",
+        "body": "Close benign alerts with rationale, tune noisy detections when appropriate, or escalate alerts with confirmed suspicious activity."
+      }
+    ]
+  },
+  {
+    "id": "SOP-006",
+    "title": "Account Compromise Review",
+    "category": "Identity and Access",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Guide investigation of suspected user account compromise or abnormal authentication activity.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Confirm whether suspicious authentication or account behavior indicates unauthorized access."
+      },
+      {
+        "heading": "Evidence Sources",
+        "body": "Review identity provider logs, MFA events, mailbox audit logs, VPN sessions, endpoint telemetry, conditional access results, and impossible travel indicators."
+      },
+      {
+        "heading": "Containment",
+        "body": "If compromise is likely, disable or reset the account according to local process, revoke sessions, preserve evidence, and notify the response lead."
+      },
+      {
+        "heading": "Closure",
+        "body": "Document affected services, suspicious IPs, timeline, containment actions, and whether additional user or mailbox review is required."
+      }
+    ]
+  },
+  {
+    "id": "SOP-007",
+    "title": "Privileged Account Alert",
+    "category": "Identity and Access",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define triage steps for suspicious or high-risk privileged account activity.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Prioritize review of administrative account activity because misuse can create broad operational impact."
+      },
+      {
+        "heading": "Validation",
+        "body": "Confirm the account role, source system, change performed, business justification, and whether activity aligns to an approved maintenance window."
+      },
+      {
+        "heading": "Escalation",
+        "body": "Escalate unexpected privilege changes, suspicious administrative logons, unusual source locations, or disabled audit controls."
+      },
+      {
+        "heading": "Documentation",
+        "body": "Record the administrative action, affected object, requester or operator, evidence, and final approval or escalation path."
+      }
+    ]
+  },
+  {
+    "id": "SOP-008",
+    "title": "Suspicious Network Connection",
+    "category": "Network Security",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Provide a workflow for investigating suspicious outbound or inbound network activity.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Determine whether a network connection is expected business traffic, misconfiguration, scanning, command and control, or attempted intrusion."
+      },
+      {
+        "heading": "Initial Review",
+        "body": "Review source and destination IPs, ports, protocol, DNS, JA3 or TLS details, proxy logs, firewall action, volume, and frequency."
+      },
+      {
+        "heading": "Context",
+        "body": "Identify asset owner, asset criticality, running process, related endpoint alerts, domain age, reputation, and any similar traffic from other hosts."
+      },
+      {
+        "heading": "Action",
+        "body": "Block or escalate suspicious destinations according to authority, and document scope, evidence, and recommended detection updates."
+      }
+    ]
+  },
+  {
+    "id": "SOP-009",
+    "title": "Vulnerability Notification Review",
+    "category": "Vulnerability Management",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Normalize review of vulnerability notifications that require security operations tracking.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Ensure vulnerability notifications are assessed for exposure, severity, ownership, and required follow-up."
+      },
+      {
+        "heading": "Triage",
+        "body": "Capture CVE or advisory ID, affected product, impacted assets, exploitability, internet exposure, available patch, and known active exploitation."
+      },
+      {
+        "heading": "Routing",
+        "body": "Assign remediation to the owning team and track due dates according to severity and organizational policy."
+      },
+      {
+        "heading": "Closure",
+        "body": "Close only after remediation evidence, accepted risk, false positive validation, or compensating control approval is documented."
+      }
+    ]
+  },
+  {
+    "id": "SOP-010",
+    "title": "Threat Intelligence Indicator Handling",
+    "category": "Threat Intelligence",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define how threat indicators are reviewed, enriched, searched, and converted into detection or blocking actions.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Prevent raw indicators from being used without validation, context, and expiration criteria."
+      },
+      {
+        "heading": "Validation",
+        "body": "Check source reliability, indicator type, age, confidence, relationship to active campaigns, and false-positive risk."
+      },
+      {
+        "heading": "Hunting",
+        "body": "Search SIEM, EDR, proxy, DNS, email, and firewall data for matches within the relevant lookback period."
+      },
+      {
+        "heading": "Action",
+        "body": "Document findings, add detections or blocks where appropriate, set review dates, and avoid permanent blocks for low-confidence indicators."
+      }
+    ]
+  },
+  {
+    "id": "SOP-011",
+    "title": "Incident Communications",
+    "category": "Response Management",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Establish consistent communication expectations during escalated incidents.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Keep responders, leadership, and stakeholders aligned without spreading unverified details."
+      },
+      {
+        "heading": "Cadence",
+        "body": "Set an update cadence based on severity, active impact, and response tempo. Use concise situation updates with known facts and next actions."
+      },
+      {
+        "heading": "Content",
+        "body": "Include summary, impact, timeline, current actions, blockers, decisions needed, and next update time."
+      },
+      {
+        "heading": "Restrictions",
+        "body": "Do not include sensitive evidence, personal data, or attribution claims unless approved for the audience."
+      }
+    ]
+  },
+  {
+    "id": "SOP-012",
+    "title": "Case Closure and Lessons Learned",
+    "category": "Response Management",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define the minimum requirements for closing cases and capturing improvement opportunities.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Ensure cases are closed with enough detail to support review, reporting, and future detection improvement."
+      },
+      {
+        "heading": "Closure Checklist",
+        "body": "Confirm final disposition, evidence, timeline, affected assets, containment actions, recovery status, and owner signoff where required."
+      },
+      {
+        "heading": "Lessons Learned",
+        "body": "Capture detection gaps, process issues, tooling gaps, training needs, and recommended preventive actions."
+      },
+      {
+        "heading": "Follow-Up",
+        "body": "Create tracked tasks for tuning, documentation updates, control improvements, or additional training."
+      }
+    ]
+  },
+  {
+    "id": "SOP-013",
+    "title": "Daily SOC Shift Handoff",
+    "category": "Operations",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define what analysts should review, document, and transfer between SOC shifts.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Keep incoming analysts aware of active cases, monitoring gaps, urgent requests, and pending follow-up."
+      },
+      {
+        "heading": "Pre-Handoff Review",
+        "body": "Review open critical and high cases, escalations, pending approvals, active incidents, detection outages, and watch items."
+      },
+      {
+        "heading": "Handoff Notes",
+        "body": "Document case IDs, current status, next action, owner, blockers, due times, and any stakeholder expectations."
+      },
+      {
+        "heading": "Completion",
+        "body": "Confirm the incoming shift acknowledges the handoff and understands immediate priorities."
+      }
+    ]
+  },
+  {
+    "id": "SOP-014",
+    "title": "Detection Rule Tuning Request",
+    "category": "Detection Engineering",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Standardize requests to tune noisy, stale, or inaccurate detection logic.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Ensure detection changes are evidence-based and do not weaken useful alert coverage."
+      },
+      {
+        "heading": "Required Details",
+        "body": "Capture rule name, alert volume, false-positive pattern, affected entities, sample events, recommended condition change, and expected risk."
+      },
+      {
+        "heading": "Review",
+        "body": "Validate whether tuning should suppress, enrich, threshold, split, or retire the detection."
+      },
+      {
+        "heading": "Post-Change Check",
+        "body": "Monitor the adjusted rule for volume reduction, missed coverage, and new false-positive patterns."
+      }
+    ]
+  },
+  {
+    "id": "SOP-015",
+    "title": "Log Source Health Review",
+    "category": "Detection Engineering",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Guide review of missing, delayed, or malformed security telemetry.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Identify telemetry gaps that may affect alerting, investigations, reporting, or compliance."
+      },
+      {
+        "heading": "Checks",
+        "body": "Review ingestion status, last event time, parsing errors, sourcetype changes, field extraction issues, and unexpected volume drops."
+      },
+      {
+        "heading": "Impact",
+        "body": "Determine which detections, dashboards, investigations, or reports depend on the affected source."
+      },
+      {
+        "heading": "Escalation",
+        "body": "Notify the platform owner with evidence, impact summary, affected source, and urgency."
+      }
+    ]
+  },
+  {
+    "id": "SOP-016",
+    "title": "Cloud Security Alert Review",
+    "category": "Cloud Security",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Provide initial triage steps for cloud control plane and workload security alerts.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Review cloud alerts with account, identity, resource, and region context before disposition."
+      },
+      {
+        "heading": "Context",
+        "body": "Capture cloud account, subscription or project, region, principal, resource ID, API action, source IP, and service involved."
+      },
+      {
+        "heading": "Validation",
+        "body": "Compare the activity to change records, automation roles, deployment pipelines, baseline behavior, and known service accounts."
+      },
+      {
+        "heading": "Escalation",
+        "body": "Escalate unusual privilege use, public exposure, key creation, logging changes, or destructive actions."
+      }
+    ]
+  },
+  {
+    "id": "SOP-017",
+    "title": "Sensitive Data Exposure Review",
+    "category": "Data Protection",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define triage for alerts or reports involving possible sensitive data exposure.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Assess suspected exposure while limiting unnecessary access to sensitive content."
+      },
+      {
+        "heading": "Initial Handling",
+        "body": "Record source, location, data type, suspected audience, exposure duration, owner, and any containment already performed."
+      },
+      {
+        "heading": "Minimization",
+        "body": "Avoid copying sensitive data into tickets. Use metadata, approved evidence handling, and restricted-access references."
+      },
+      {
+        "heading": "Escalation",
+        "body": "Escalate confirmed or likely exposure to the appropriate privacy, legal, security, or business owner according to policy."
+      }
+    ]
+  },
+  {
+    "id": "SOP-018",
+    "title": "Ransomware Indicator Review",
+    "category": "Endpoint Response",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Guide high-priority review of activity that may indicate ransomware preparation or execution.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Accelerate review of destructive or encryption-related activity to support rapid containment."
+      },
+      {
+        "heading": "Indicators",
+        "body": "Review mass file modification, suspicious archiving, shadow copy deletion, backup tampering, lateral movement, privilege escalation, and unusual remote execution."
+      },
+      {
+        "heading": "Immediate Actions",
+        "body": "Escalate immediately if multiple indicators align. Preserve evidence and follow approved containment authority."
+      },
+      {
+        "heading": "Documentation",
+        "body": "Record timeline, affected hosts, suspicious commands, user context, observed indicators, and containment actions."
+      }
+    ]
+  },
+  {
+    "id": "SOP-019",
+    "title": "Service Outage Security Review",
+    "category": "Operations",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Define security review steps when a service outage could affect monitoring or incident response.",
+    "sections": [
+      {
+        "heading": "Purpose",
+        "body": "Understand whether an outage creates security blind spots, response delays, or suspicious operational impact."
+      },
+      {
+        "heading": "Assessment",
+        "body": "Identify affected services, monitoring impact, user impact, start time, known cause, current owner, and expected restoration."
+      },
+      {
+        "heading": "Compensating Monitoring",
+        "body": "Identify alternate telemetry, manual checks, vendor portals, or temporary watch items until service is restored."
+      },
+      {
+        "heading": "Closeout",
+        "body": "Document outage duration, missed alerts if known, follow-up tasks, and any required after-action review."
+      }
+    ]
+  },
+  {
+    "id": "SOP-020",
+    "title": "Evidence Handling",
+    "category": "Case Management",
+    "status": "Example",
+    "owner": "SOC-CSIRT",
+    "updated": "2026-09-16",
+    "purpose": "Set expectations for collecting, storing, and referencing investigation evidence.",
+    "sections": [
+      {
+        "heading": "Identify Evidence",
+        "body": "Determine what evidence is needed for the case, including logs, screenshots, event IDs, files, hashes, URLs, host details, user details, and timestamps."
+      },
+      {
+        "heading": "Capture Context",
+        "body": "Record the source system, collection time, collector, tool used, query or command, and the reason the evidence supports the investigation."
+      },
+      {
+        "heading": "Store Securely",
+        "body": "Save evidence only in approved locations and avoid placing sensitive artifacts in broadly visible tickets, notes, or chat channels."
+      },
+      {
+        "heading": "Reference Clearly",
+        "body": "Reference evidence with approved links, filenames, hashes, event IDs, or case attachments so reviewers can reproduce the finding."
+      },
+      {
+        "heading": "Review Before Closure",
+        "body": "Before closing the case, confirm the evidence supports the disposition, required artifacts are attached or referenced, and sensitive data is handled correctly."
+      }
+    ]
   }
 ]

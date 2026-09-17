@@ -1,30 +1,189 @@
 [
   {
-    "name": "Security+",
+    "name": "Certified in Cybersecurity",
+    "provider": "ISC2",
     "level": "Foundational",
-    "status": "Current",
-    "expires": "2027-05-01",
-    "notes": "Baseline security knowledge."
+    "focus": "Security principles, business continuity, access controls, network security, and security operations.",
+    "cost": "TBD",
+    "url": "https://www.isc2.org/certifications/cc",
+    "notes": "Entry-level ISC2 credential for people starting a cybersecurity path.",
+    "phase": "1. Foundations",
+    "track": "Entry Foundation"
   },
   {
-    "name": "GCIA",
+    "name": "Security+",
+    "provider": "CompTIA",
+    "level": "Foundational",
+    "focus": "Core cybersecurity, risk, architecture, operations, and governance.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/security",
+    "notes": "Good baseline certification for SOC and entry-level security roles. Verify current regional voucher pricing before purchase.",
+    "phase": "1. Foundations",
+    "track": "Entry Foundation"
+  },
+  {
+    "name": "GSEC",
+    "provider": "GIAC",
+    "level": "Foundational",
+    "focus": "Practical security fundamentals, defense, networking, cryptography, Linux, Windows, and incident handling basics.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/security-essentials-gsec/",
+    "notes": "Hands-on security fundamentals credential aligned with SANS training.",
+    "phase": "1. Foundations",
+    "track": "Hands-On Foundation"
+  },
+  {
+    "name": "Microsoft Security Operations Analyst Associate",
+    "provider": "Microsoft",
     "level": "Intermediate",
-    "status": "Planned",
-    "expires": "N/A",
-    "notes": "Network traffic analysis focus."
+    "focus": "Microsoft Sentinel, Defender XDR, Defender for Cloud, KQL, threat detection, and response.",
+    "cost": "",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/",
+    "notes": "Best fit for SOCs using Microsoft Sentinel and Defender.",
+    "phase": "2. SOC Analyst",
+    "track": "Microsoft SOC"
+  },
+  {
+    "name": "CySA+",
+    "provider": "CompTIA",
+    "level": "Intermediate",
+    "focus": "Security analytics, detection, vulnerability management, incident response, and reporting.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/cybersecurity-analyst",
+    "notes": "Strong fit for blue-team analysts and SOC progression after Security+.",
+    "phase": "2. SOC Analyst",
+    "track": "Blue Team Analytics"
   },
   {
     "name": "GCIH",
+    "provider": "GIAC",
     "level": "Intermediate",
-    "status": "In Progress",
-    "expires": "N/A",
-    "notes": "Incident handling focus."
+    "focus": "Incident handling, attacker techniques, detection, response, containment, and remediation.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/certified-incident-handler-gcih/",
+    "notes": "Strong incident response credential for SOC/CSIRT analysts.",
+    "phase": "2. SOC Analyst",
+    "track": "Incident Response"
+  },
+  {
+    "name": "GCIA",
+    "provider": "GIAC",
+    "level": "Intermediate",
+    "focus": "Network traffic analysis, intrusion detection, packet interpretation, and traffic-based threat hunting.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/certified-intrusion-analyst-gcia/",
+    "notes": "Good fit for network detection and packet-analysis-heavy SOC roles.",
+    "phase": "2. SOC Analyst",
+    "track": "Network Detection"
+  },
+  {
+    "name": "AWS Certified Security - Specialty",
+    "provider": "AWS",
+    "level": "Advanced",
+    "focus": "AWS identity, logging, monitoring, infrastructure security, data protection, and incident response.",
+    "cost": "",
+    "url": "https://aws.amazon.com/certification/certified-security-specialty/",
+    "notes": "Best fit for cloud security roles in AWS-heavy environments.",
+    "phase": "4. Cloud Security",
+    "track": "AWS Cloud Security"
+  },
+  {
+    "name": "CCSP",
+    "provider": "ISC2",
+    "level": "Advanced",
+    "focus": "Cloud architecture, cloud data security, platform security, application security, operations, and legal risk.",
+    "cost": "TBD",
+    "url": "https://www.isc2.org/certifications/ccsp",
+    "notes": "Good fit for cloud security engineers and security architects.",
+    "phase": "4. Cloud Security",
+    "track": "Cloud Architecture"
+  },
+  {
+    "name": "CISA",
+    "provider": "ISACA",
+    "level": "Intermediate",
+    "focus": "IT audit, governance, systems acquisition, operations, resilience, and protection of information assets.",
+    "cost": " member /  non-member",
+    "url": "https://www.isaca.org/credentialing/cisa",
+    "notes": "Best fit for audit, compliance, assurance, and risk roles.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Audit and Assurance"
+  },
+  {
+    "name": "CISM",
+    "provider": "ISACA",
+    "level": "Advanced",
+    "focus": "Information security governance, risk management, program development, incident management, and leadership.",
+    "cost": " member /  non-member",
+    "url": "https://www.isaca.org/credentialing/cism",
+    "notes": "Good management-track certification for security leaders and program owners.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Security Management"
   },
   {
     "name": "CISSP",
+    "provider": "ISC2",
     "level": "Advanced",
-    "status": "Optional",
-    "expires": "N/A",
-    "notes": "Leadership and governance path."
+    "focus": "Security and risk management, asset security, architecture, operations, IAM, testing, and software security.",
+    "cost": "",
+    "url": "https://www.isc2.org/certifications/cissp",
+    "notes": "Widely recognized senior cybersecurity certification. Requires experience endorsement after passing.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Senior Security Leadership"
+  },
+  {
+    "name": "GCFA",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Digital forensics, incident response, endpoint artifacts, timeline analysis, and threat hunting.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/certified-forensic-analyst-gcfa/",
+    "notes": "Strong forensics and DFIR credential for advanced responders.",
+    "phase": "6. Advanced Specialist",
+    "track": "DFIR and Threat Hunting"
+  },
+  {
+    "name": "PenTest+",
+    "provider": "CompTIA",
+    "level": "Intermediate",
+    "focus": "Penetration testing, vulnerability discovery, exploitation, reporting, and remediation guidance.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/pentest",
+    "notes": "Useful for analysts moving toward offensive security or validation testing.",
+    "phase": "3. Red Team",
+    "track": "Offensive Security"
+  },
+  {
+    "name": "CEH",
+    "provider": "EC-Council",
+    "level": "Intermediate",
+    "focus": "Ethical hacking methodology, reconnaissance, scanning, exploitation concepts, and security testing.",
+    "cost": "-,199",
+    "url": "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+    "notes": "Well-known HR-filter certification. Compare against hands-on options if the role is technical.",
+    "phase": "3. Red Team",
+    "track": "Offensive Security"
+  },
+  {
+    "name": "OSCP",
+    "provider": "OffSec",
+    "level": "Advanced",
+    "focus": "Hands-on penetration testing, exploitation, privilege escalation, Active Directory attacks, and reporting.",
+    "cost": ",749/year",
+    "url": "https://www.offsec.com/courses/pen-200/",
+    "notes": "Practical offensive-security certification with a strong hands-on reputation.",
+    "phase": "3. Red Team",
+    "track": "Hands-On Offensive Security"
+  },
+  {
+    "name": "SecurityX",
+    "provider": "CompTIA",
+    "level": "Advanced",
+    "focus": "Enterprise security architecture, engineering, governance, risk, and advanced operations.",
+    "cost": "-",
+    "url": "https://www.comptia.org/certifications/securityx",
+    "notes": "Previously CASP+. Better aligned to senior technical security roles than entry-level SOC work.",
+    "phase": "6. Advanced Specialist",
+    "track": "Advanced Enterprise Security"
   }
 ]

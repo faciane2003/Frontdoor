@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A static GitHub Pages operations portal with knowledge base, training, SOPs, certs, schedule, links, and terminal tabs."
+      content="A static GitHub Pages operations portal with knowledge base, JQS, SOPs, certs, schedule, and links."
     >
     <title>SOC Knowledge Portal</title>
     <link rel="stylesheet" href="css/styles.css">
@@ -14,11 +14,7 @@
     <div class="app-shell">
       <aside class="sidebar" aria-label="Primary">
         <a class="brand" href="#dashboard" data-route="dashboard" aria-label="SOC Knowledge Portal">
-          <span class="brand-mark">SOC</span>
-          <span>
-            <strong>Knowledge Portal</strong>
-            <small>Static GitHub Pages</small>
-          </span>
+          <span class="brand-mark">HUD</span>
         </a>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="app-nav">
@@ -30,137 +26,61 @@
 
         <nav id="app-nav" class="app-nav">
           <button class="nav-item is-active" type="button" data-view="dashboard">Dashboard</button>
-          <button class="nav-item" type="button" data-view="knowledge">Knowledge Base</button>
-          <button class="nav-item" type="button" data-view="training">Training</button>
+          <button class="nav-item" type="button" data-view="training">JQS</button>
           <button class="nav-item" type="button" data-view="sops">SOPs</button>
           <button class="nav-item" type="button" data-view="certs">Certs</button>
-          <button class="nav-item" type="button" data-view="schedule">On-Call Schedule</button>
+          <button class="nav-item" type="button" data-view="schedule">On-Call</button>
           <button class="nav-item" type="button" data-view="links">Links</button>
-          <button class="nav-item" type="button" data-view="terminal">Terminal</button>
         </nav>
 
-        <div class="sidebar-footer">
-          <span class="status-dot"></span>
-          <span>Local static mode</span>
-        </div>
       </aside>
 
       <main class="workspace">
         <header class="topbar">
-          <div>
-            <p class="eyebrow">Operational Reference</p>
-            <h1 id="view-title">Dashboard</h1>
+          <div class="topbar-content">
+            <p id="view-title" class="eyebrow">SOC HUD</p>
+            <label class="global-search">
+              <span class="sr-only">Search portal</span>
+              <input id="global-search" type="search" placeholder="Search">
+            </label>
           </div>
-          <label class="global-search">
-            <span class="sr-only">Search portal</span>
-            <input id="global-search" type="search" placeholder="Search knowledge, SOPs, training, certs, links">
-          </label>
         </header>
 
         <section id="dashboard" class="view is-active" aria-labelledby="dashboard-heading">
-          <div class="hero-panel">
-            <div>
-              <p class="eyebrow">Team Hub</p>
-              <h2 id="dashboard-heading">One place for shift-ready references.</h2>
-              <p>
-                Use the left navigation to move between wiki articles, qualification training,
-                procedures, certifications, schedule details, curated links, and a simulated
-                terminal for quick commands.
-              </p>
-            </div>
-            <div class="hero-visual" aria-hidden="true"></div>
-          </div>
-
-          <div id="metric-grid" class="metric-grid" aria-label="Portal summary"></div>
-
-          <div class="dashboard-grid">
-            <section class="panel">
-              <div class="panel-header">
-                <h3>Priority Training</h3>
-                <button class="text-button" type="button" data-jump="training">Open</button>
-              </div>
-              <div id="dashboard-training" class="stack-list"></div>
-            </section>
-
-            <section class="panel">
-              <div class="panel-header">
-                <h3>On-Call Today</h3>
-                <button class="text-button" type="button" data-jump="schedule">Schedule</button>
-              </div>
-              <div id="dashboard-schedule" class="stack-list"></div>
-            </section>
-
-            <section class="panel wide">
-              <div class="panel-header">
-                <h3>Quick Knowledge</h3>
-                <button class="text-button" type="button" data-jump="knowledge">Browse</button>
-              </div>
-              <div id="dashboard-knowledge" class="article-grid"></div>
-            </section>
-          </div>
+          <h2 id="dashboard-heading" class="sr-only">Dashboard</h2>
+          <div id="dashboard-grid" class="hud-grid"></div>
         </section>
 
         <section id="knowledge" class="view" aria-labelledby="knowledge-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Wiki</p>
-            <h2 id="knowledge-heading">Knowledge Base</h2>
-          </div>
-          <div id="knowledge-list" class="article-grid"></div>
+          <h2 id="knowledge-heading" class="sr-only">Knowledge Base</h2>
+          <div id="knowledge-list" class="knowledge-list"></div>
         </section>
 
         <section id="training" class="view" aria-labelledby="training-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Qualification</p>
-            <h2 id="training-heading">Training</h2>
-          </div>
-          <div id="training-list" class="table-wrap"></div>
+          <h2 id="training-heading" class="sr-only">JQS</h2>
+          <div id="training-list"></div>
         </section>
 
         <section id="sops" class="view" aria-labelledby="sops-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Procedures</p>
-            <h2 id="sops-heading">SOPs</h2>
-          </div>
-          <div id="sops-list" class="table-wrap"></div>
+          <h2 id="sops-heading" class="sr-only">SOPs</h2>
+          <div id="sops-list"></div>
         </section>
 
         <section id="certs" class="view" aria-labelledby="certs-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Readiness</p>
-            <h2 id="certs-heading">Certs</h2>
-          </div>
-          <div id="certs-list" class="table-wrap"></div>
+          <h2 id="certs-heading" class="sr-only">Certs</h2>
+          <div id="certs-list"></div>
         </section>
 
         <section id="schedule" class="view" aria-labelledby="schedule-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Coverage</p>
-            <h2 id="schedule-heading">On-Call Schedule</h2>
-          </div>
-          <div id="schedule-list" class="schedule-grid"></div>
+          <h2 id="schedule-heading" class="sr-only">On-Call</h2>
+          <div id="schedule-list"></div>
         </section>
 
         <section id="links" class="view" aria-labelledby="links-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Resources</p>
-            <h2 id="links-heading">Links</h2>
-          </div>
-          <div id="links-list" class="link-grid"></div>
+          <h2 id="links-heading" class="sr-only">Links</h2>
+          <div id="links-list"></div>
         </section>
 
-        <section id="terminal" class="view" aria-labelledby="terminal-heading">
-          <div class="view-heading">
-            <p class="eyebrow">Simulated Console</p>
-            <h2 id="terminal-heading">Terminal</h2>
-          </div>
-          <div class="terminal-panel">
-            <div id="terminal-output" class="terminal-output" aria-live="polite"></div>
-            <form id="terminal-form" class="terminal-form">
-              <span aria-hidden="true">portal&gt;</span>
-              <input id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type help">
-            </form>
-          </div>
-        </section>
       </main>
     </div>
 

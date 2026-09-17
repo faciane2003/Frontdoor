@@ -1,30 +1,2766 @@
 [
   {
-    "date": "2026-09-16",
-    "shift": "Day",
-    "primary": "Analyst A",
-    "backup": "Analyst B",
-    "notes": "Monitor escalations and phishing queue."
-  },
-  {
-    "date": "2026-09-16",
-    "shift": "Night",
-    "primary": "Analyst C",
-    "backup": "Analyst D",
-    "notes": "Review endpoint isolation requests."
-  },
-  {
     "date": "2026-09-17",
-    "shift": "Day",
-    "primary": "Analyst B",
-    "backup": "Analyst E",
-    "notes": "Patch Tuesday follow-up watch."
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
   },
   {
-    "date": "2026-09-17",
-    "shift": "Night",
-    "primary": "Analyst D",
-    "backup": "Analyst A",
-    "notes": "After-hours escalation coverage."
+    "date": "2026-09-18",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-09-19",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-09-20",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-09-21",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-09-22",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-09-23",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-09-24",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-09-25",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-09-26",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-09-27",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-09-29",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-09-30",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-10-01",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-10-02",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-10-03",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-10-04",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-10-05",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-10-07",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-10-08",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-10-09",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-10-10",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-10-11",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-10-12",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-10-13",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-10-14",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-10-16",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-10-17",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-10-18",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-10-19",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-10-20",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-10-21",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-10-22",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-10-23",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-10-24",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-10-25",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-10-26",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-10-27",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-10-28",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-10-29",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-10-30",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-10-31",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-11-01",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-11-02",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-11-03",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-11-04",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-11-05",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-11-06",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-11-07",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-11-08",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-11-09",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-11-10",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-11-11",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-11-12",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-11-13",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-11-14",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-11-15",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-11-16",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-11-17",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-11-18",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-11-19",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-11-20",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-11-21",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-11-22",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-11-23",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-11-24",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-11-25",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-11-26",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-11-27",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-11-28",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-11-29",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-11-30",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-12-01",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-12-02",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-12-03",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-12-04",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-12-05",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-12-06",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-12-07",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-12-08",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2026-12-09",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-12-10",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-12-11",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-12-12",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-12-13",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-12-14",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-12-15",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2026-12-16",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-12-17",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-12-18",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-12-19",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-12-20",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-12-21",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-12-22",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2026-12-23",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-12-24",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2026-12-25",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2026-12-26",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2026-12-27",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2026-12-28",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2026-12-29",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2026-12-30",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2026-12-31",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-01-01",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-01-02",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-01-03",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-01-04",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-01-05",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-01-06",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-01-07",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-01-08",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-01-09",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-01-10",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-01-11",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-01-12",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-01-13",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-01-14",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-01-15",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-01-16",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-01-17",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-01-18",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-01-19",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-01-20",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-01-21",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-01-22",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-01-23",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-01-24",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-01-25",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-01-26",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-01-27",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-01-28",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-01-29",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-01-30",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-01-31",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-02-01",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-02-02",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-02-03",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-02-04",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-02-05",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-02-06",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-02-07",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-02-08",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-02-09",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-02-10",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-02-11",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-02-12",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-02-13",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-02-14",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-02-15",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-02-16",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-02-17",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-02-18",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-02-19",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-02-20",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-02-21",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-02-22",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-02-23",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-02-24",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-02-25",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-02-26",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-02-27",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-02-28",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-03-01",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-03-02",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-03-03",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-03-04",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-03-05",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-03-06",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-03-07",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-03-08",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-03-09",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-03-10",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-03-11",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-03-12",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-03-13",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-03-14",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-03-15",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-03-16",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-03-17",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-03-18",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-03-19",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-03-20",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-03-21",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-03-22",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-03-23",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-03-24",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-03-25",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-03-26",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-03-27",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-03-28",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-03-29",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-03-30",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-03-31",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-04-01",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-04-02",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-04-03",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-04-04",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-04-05",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-04-06",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-04-07",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-04-08",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-04-09",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-04-10",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-04-11",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-04-12",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-04-13",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-04-14",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-04-15",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-04-16",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-04-17",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-04-18",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-04-19",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-04-20",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-04-21",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-04-22",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-04-23",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-04-24",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-04-25",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-04-26",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-04-27",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-04-28",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-04-29",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-04-30",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-05-01",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-05-02",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-05-03",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-05-04",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-05-05",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-05-06",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-05-07",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-05-08",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-05-09",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-05-10",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-05-11",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-05-12",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-05-13",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-05-14",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-05-15",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-05-16",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-05-17",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-05-18",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-05-19",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-05-20",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-05-21",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-05-22",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-05-23",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-05-24",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-05-25",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-05-26",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-05-27",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-05-28",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-05-29",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-05-30",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-05-31",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-06-01",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-06-02",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-06-03",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-06-04",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-06-05",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-06-06",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-06-07",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-06-08",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-06-09",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-06-10",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-06-11",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-06-12",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-06-13",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-06-14",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-06-15",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-06-16",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-06-17",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-06-18",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-06-19",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-06-20",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-06-21",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-06-22",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-06-23",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-06-24",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-06-25",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-06-26",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-06-27",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-06-28",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-06-29",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-06-30",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-07-01",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-07-02",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-07-03",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-07-04",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-07-05",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-07-06",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-07-07",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-07-08",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-07-09",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-07-10",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-07-11",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-07-12",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-07-13",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-07-14",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-07-15",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-07-16",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-07-17",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-07-18",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-07-19",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-07-20",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-07-21",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-07-22",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-07-23",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-07-24",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-07-25",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-07-26",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-07-27",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-07-28",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-07-29",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-07-30",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-07-31",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-08-01",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-08-02",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-08-03",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-08-04",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-08-05",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-08-06",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-08-07",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-08-08",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-08-09",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-08-10",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-08-11",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-08-12",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-08-13",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-08-14",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-08-15",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-08-16",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-08-17",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-08-18",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-08-19",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-08-20",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-08-21",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-08-22",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-08-23",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-08-24",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": []
+  },
+  {
+    "date": "2027-08-25",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-08-26",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-08-27",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-08-28",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-08-29",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-08-30",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-08-31",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": []
+  },
+  {
+    "date": "2027-09-01",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-09-02",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-09-03",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-09-04",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-09-05",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-09-06",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-09-07",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": []
+  },
+  {
+    "date": "2027-09-08",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-09-09",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": [
+      "Sam Rivera"
+    ]
+  },
+  {
+    "date": "2027-09-10",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Taylor Morgan",
+      "Chris Lee"
+    ]
+  },
+  {
+    "date": "2027-09-11",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": []
+  },
+  {
+    "date": "2027-09-12",
+    "primary": "Maya Chen",
+    "backup": "Andre Patel",
+    "pto": [
+      "Avery Scott"
+    ]
+  },
+  {
+    "date": "2027-09-13",
+    "primary": "Andre Patel",
+    "backup": "Nina Brooks",
+    "pto": [
+      "Morgan Blake"
+    ]
+  },
+  {
+    "date": "2027-09-14",
+    "primary": "Nina Brooks",
+    "backup": "Luis Romero",
+    "pto": []
+  },
+  {
+    "date": "2027-09-15",
+    "primary": "Luis Romero",
+    "backup": "Jordan Ellis",
+    "pto": [
+      "Riley Park"
+    ]
+  },
+  {
+    "date": "2027-09-16",
+    "primary": "Jordan Ellis",
+    "backup": "Maya Chen",
+    "pto": [
+      "Sam Rivera"
+    ]
   }
 ]

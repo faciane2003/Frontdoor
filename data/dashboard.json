@@ -1,0 +1,82 @@
+{
+  "tasks": [
+    {
+      "title": "Review imported JQS tasks",
+      "detail": "Validate Tier I, Tier II, Tier III, and Advanced task data in the Training tab.",
+      "status": "In Progress"
+    },
+    {
+      "title": "Clean resource links",
+      "detail": "Organize imported workbook links into better categories and remove stale entries.",
+      "status": "In Progress"
+    },
+    {
+      "title": "Build on-call source",
+      "detail": "Add a real data source for the On-Call Schedule tab.",
+      "status": "Pending"
+    }
+  ],
+  "projectStatus": [
+    {
+      "title": "Static portal shell",
+      "detail": "Navigation, search, data loading, and dark dashboard layout are in place.",
+      "status": "Complete"
+    },
+    {
+      "title": "Workbook import",
+      "detail": "JQS workbook data imports into Training, SOPs, Links, and Knowledge summaries.",
+      "status": "Complete"
+    },
+    {
+      "title": "Certification catalog",
+      "detail": "Certs tab is maintained separately from workbook data.",
+      "status": "Complete"
+    }
+  ],
+  "personnel": [
+    {
+      "title": "Analyst",
+      "detail": "Primary owner for task completion and evidence notes.",
+      "status": "Pending"
+    },
+    {
+      "title": "Trainer",
+      "detail": "Reviews qualification evidence and validates signoff readiness.",
+      "status": "Pending"
+    },
+    {
+      "title": "Team Lead",
+      "detail": "Monitors qualification progress and resolves blockers.",
+      "status": "Pending"
+    }
+  ],
+  "alerts": [
+    {
+      "title": "No live alert feed",
+      "detail": "GitHub Pages is static; this panel is manually maintained until a data source is added.",
+      "status": "Pending"
+    },
+    {
+      "title": "Public Pages warning",
+      "detail": "Do not publish sensitive SOC, trainee, or internal system data without private hosting controls.",
+      "status": "Critical"
+    }
+  ],
+  "updates": [
+    {
+      "title": "Dashboard simplified",
+      "detail": "Removed placeholder widgets and added operational HUD sections.",
+      "status": "Complete"
+    },
+    {
+      "title": "Certs reorganized",
+      "detail": "Certification categories are collapsed by default and ordered by recommended path.",
+      "status": "Complete"
+    },
+    {
+      "title": "Links table revised",
+      "detail": "Links now render as a table with wrapping URL text.",
+      "status": "Complete"
+    }
+  ]
+}
