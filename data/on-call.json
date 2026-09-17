@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-09-16",
+    "shift": "Day",
+    "primary": "Analyst A",
+    "backup": "Analyst B",
+    "notes": "Monitor escalations and phishing queue."
+  },
+  {
+    "date": "2026-09-16",
+    "shift": "Night",
+    "primary": "Analyst C",
+    "backup": "Analyst D",
+    "notes": "Review endpoint isolation requests."
+  },
+  {
+    "date": "2026-09-17",
+    "shift": "Day",
+    "primary": "Analyst B",
+    "backup": "Analyst E",
+    "notes": "Patch Tuesday follow-up watch."
+  },
+  {
+    "date": "2026-09-17",
+    "shift": "Night",
+    "primary": "Analyst D",
+    "backup": "Analyst A",
+    "notes": "After-hours escalation coverage."
+  }
+]

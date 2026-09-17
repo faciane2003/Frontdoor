@@ -5,133 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A static GitHub Pages website built with HTML, CSS, and JavaScript."
+      content="A static GitHub Pages operations portal with knowledge base, training, SOPs, certs, schedule, links, and terminal tabs."
     >
-    <title>GitHub Pages Starter</title>
+    <title>SOC Knowledge Portal</title>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="GitHub Pages Starter home">
-        <span class="brand-mark">GP</span>
-        <span>GitHub Pages Starter</span>
-      </a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <a class="brand" href="#dashboard" data-route="dashboard" aria-label="SOC Knowledge Portal">
+          <span class="brand-mark">SOC</span>
+          <span>
+            <strong>Knowledge Portal</strong>
+            <small>Static GitHub Pages</small>
+          </span>
+        </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">Toggle navigation</span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="app-nav">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
 
-      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#overview">Overview</a>
-        <a href="#features">Features</a>
-        <a href="#deploy">Deploy</a>
-      </nav>
-    </header>
+        <nav id="app-nav" class="app-nav">
+          <button class="nav-item is-active" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view="knowledge">Knowledge Base</button>
+          <button class="nav-item" type="button" data-view="training">Training</button>
+          <button class="nav-item" type="button" data-view="sops">SOPs</button>
+          <button class="nav-item" type="button" data-view="certs">Certs</button>
+          <button class="nav-item" type="button" data-view="schedule">On-Call Schedule</button>
+          <button class="nav-item" type="button" data-view="links">Links</button>
+          <button class="nav-item" type="button" data-view="terminal">Terminal</button>
+        </nav>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-content">
-          <p class="eyebrow">Static site ready for GitHub Pages</p>
-          <h1 id="hero-title">A clean starting point for your website.</h1>
-          <p class="hero-copy">
-            This project uses plain HTML, CSS, and JavaScript so the site is easy to edit,
-            publish, and troubleshoot.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#deploy">Deployment Steps</a>
-            <a class="button secondary" href="#features">View Features</a>
-          </div>
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span>Local static mode</span>
         </div>
-      </section>
+      </aside>
 
-      <section id="overview" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Overview</p>
-          <h2>Built for simple publishing</h2>
-        </div>
-        <div class="split-layout">
+      <main class="workspace">
+        <header class="topbar">
           <div>
-            <p>
-              GitHub Pages works best when the website is made of static files. This starter
-              keeps everything direct: one HTML entry page, one stylesheet, one script file,
-              and an assets folder for images or downloads.
-            </p>
-            <p>
-              The site uses relative paths, so it can run locally and also work from a project
-              Pages URL such as <code>https://username.github.io/repository/</code>.
-            </p>
+            <p class="eyebrow">Operational Reference</p>
+            <h1 id="view-title">Dashboard</h1>
           </div>
-          <div class="status-panel" aria-label="Project status">
+          <label class="global-search">
+            <span class="sr-only">Search portal</span>
+            <input id="global-search" type="search" placeholder="Search knowledge, SOPs, training, certs, links">
+          </label>
+        </header>
+
+        <section id="dashboard" class="view is-active" aria-labelledby="dashboard-heading">
+          <div class="hero-panel">
             <div>
-              <span class="status-label">Stack</span>
-              <strong>HTML, CSS, JavaScript</strong>
+              <p class="eyebrow">Team Hub</p>
+              <h2 id="dashboard-heading">One place for shift-ready references.</h2>
+              <p>
+                Use the left navigation to move between wiki articles, qualification training,
+                procedures, certifications, schedule details, curated links, and a simulated
+                terminal for quick commands.
+              </p>
             </div>
-            <div>
-              <span class="status-label">Hosting</span>
-              <strong>GitHub Pages</strong>
-            </div>
-            <div>
-              <span class="status-label">Build Tool</span>
-              <strong>None</strong>
-            </div>
+            <div class="hero-visual" aria-hidden="true"></div>
           </div>
-        </div>
-      </section>
 
-      <section id="features" class="section contrast">
-        <div class="section-heading">
-          <p class="eyebrow">Features</p>
-          <h2>Useful defaults without extra tooling</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Responsive Layout</h3>
-            <p>The page adapts to phones, tablets, and desktop screens.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Accessible Navigation</h3>
-            <p>The menu uses semantic links, keyboard-friendly controls, and clear labels.</p>
-          </article>
-          <article class="feature-card">
-            <h3>No Jekyll Processing</h3>
-            <p>The <code>.nojekyll</code> file tells GitHub Pages to serve files as-is.</p>
-          </article>
-        </div>
-      </section>
+          <div id="metric-grid" class="metric-grid" aria-label="Portal summary"></div>
 
-      <section id="deploy" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Deploy</p>
-          <h2>Publish from the repository root</h2>
-        </div>
-        <ol class="timeline">
-          <li>
-            <strong>Create a GitHub repository.</strong>
-            Use a public repository for free GitHub Pages hosting.
-          </li>
-          <li>
-            <strong>Push this folder to GitHub.</strong>
-            Keep <code>index.html</code> in the repository root.
-          </li>
-          <li>
-            <strong>Enable Pages.</strong>
-            In GitHub, open Settings, then Pages, then choose Deploy from a branch.
-          </li>
-          <li>
-            <strong>Select the source.</strong>
-            Choose branch <code>main</code> and folder <code>/ root</code>.
-          </li>
-        </ol>
-      </section>
-    </main>
+          <div class="dashboard-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Priority Training</h3>
+                <button class="text-button" type="button" data-jump="training">Open</button>
+              </div>
+              <div id="dashboard-training" class="stack-list"></div>
+            </section>
 
-    <footer class="site-footer">
-      <p>Static GitHub Pages starter. No backend, no secrets, no build step.</p>
-      <button class="back-to-top" type="button">Back to top</button>
-    </footer>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>On-Call Today</h3>
+                <button class="text-button" type="button" data-jump="schedule">Schedule</button>
+              </div>
+              <div id="dashboard-schedule" class="stack-list"></div>
+            </section>
+
+            <section class="panel wide">
+              <div class="panel-header">
+                <h3>Quick Knowledge</h3>
+                <button class="text-button" type="button" data-jump="knowledge">Browse</button>
+              </div>
+              <div id="dashboard-knowledge" class="article-grid"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="knowledge" class="view" aria-labelledby="knowledge-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Wiki</p>
+            <h2 id="knowledge-heading">Knowledge Base</h2>
+          </div>
+          <div id="knowledge-list" class="article-grid"></div>
+        </section>
+
+        <section id="training" class="view" aria-labelledby="training-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Qualification</p>
+            <h2 id="training-heading">Training</h2>
+          </div>
+          <div id="training-list" class="table-wrap"></div>
+        </section>
+
+        <section id="sops" class="view" aria-labelledby="sops-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Procedures</p>
+            <h2 id="sops-heading">SOPs</h2>
+          </div>
+          <div id="sops-list" class="table-wrap"></div>
+        </section>
+
+        <section id="certs" class="view" aria-labelledby="certs-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Readiness</p>
+            <h2 id="certs-heading">Certs</h2>
+          </div>
+          <div id="certs-list" class="table-wrap"></div>
+        </section>
+
+        <section id="schedule" class="view" aria-labelledby="schedule-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Coverage</p>
+            <h2 id="schedule-heading">On-Call Schedule</h2>
+          </div>
+          <div id="schedule-list" class="schedule-grid"></div>
+        </section>
+
+        <section id="links" class="view" aria-labelledby="links-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Resources</p>
+            <h2 id="links-heading">Links</h2>
+          </div>
+          <div id="links-list" class="link-grid"></div>
+        </section>
+
+        <section id="terminal" class="view" aria-labelledby="terminal-heading">
+          <div class="view-heading">
+            <p class="eyebrow">Simulated Console</p>
+            <h2 id="terminal-heading">Terminal</h2>
+          </div>
+          <div class="terminal-panel">
+            <div id="terminal-output" class="terminal-output" aria-live="polite"></div>
+            <form id="terminal-form" class="terminal-form">
+              <span aria-hidden="true">portal&gt;</span>
+              <input id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type help">
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <script src="js/main.js"></script>
   </body>

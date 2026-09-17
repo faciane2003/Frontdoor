@@ -1,0 +1,44 @@
+[
+  {
+    "title": "SOC Tool Orientation",
+    "tier": "Tier I",
+    "status": "In Progress",
+    "owner": "Analyst",
+    "due": "2026-09-30"
+  },
+  {
+    "title": "Initial Alert Triage",
+    "tier": "Tier I",
+    "status": "Pending Review",
+    "owner": "Trainer",
+    "due": "2026-10-04"
+  },
+  {
+    "title": "Incident Escalation Workflow",
+    "tier": "Tier II",
+    "status": "Not Started",
+    "owner": "Analyst",
+    "due": "2026-10-15"
+  },
+  {
+    "title": "Containment Coordination",
+    "tier": "Tier II",
+    "status": "In Progress",
+    "owner": "Incident Lead",
+    "due": "2026-10-20"
+  },
+  {
+    "title": "Major Incident Leadership",
+    "tier": "Tier III",
+    "status": "Not Started",
+    "owner": "Senior Analyst",
+    "due": "2026-11-01"
+  },
+  {
+    "title": "Detection Engineering Review",
+    "tier": "Advanced",
+    "status": "Complete",
+    "owner": "Detection Lead",
+    "due": "2026-09-12"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Phishing Triage SOP",
+    "type": "Playbook",
+    "status": "Current",
+    "owner": "SOC",
+    "updated": "2026-08-18"
+  },
+  {
+    "name": "Malware Containment SOP",
+    "type": "Procedure",
+    "status": "Under Review",
+    "owner": "CSIRT",
+    "updated": "2026-08-29"
+  },
+  {
+    "name": "Credential Exposure SOP",
+    "type": "Playbook",
+    "status": "Current",
+    "owner": "Identity",
+    "updated": "2026-07-21"
+  },
+  {
+    "name": "Major Incident Bridge SOP",
+    "type": "Procedure",
+    "status": "Draft",
+    "owner": "Incident Command",
+    "updated": "2026-09-05"
+  },
+  {
+    "name": "Evidence Preservation SOP",
+    "type": "Reference",
+    "status": "Current",
+    "owner": "Forensics",
+    "updated": "2026-06-13"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Security+",
+    "level": "Foundational",
+    "status": "Current",
+    "expires": "2027-05-01",
+    "notes": "Baseline security knowledge."
+  },
+  {
+    "name": "GCIA",
+    "level": "Intermediate",
+    "status": "Planned",
+    "expires": "N/A",
+    "notes": "Network traffic analysis focus."
+  },
+  {
+    "name": "GCIH",
+    "level": "Intermediate",
+    "status": "In Progress",
+    "expires": "N/A",
+    "notes": "Incident handling focus."
+  },
+  {
+    "name": "CISSP",
+    "level": "Advanced",
+    "status": "Optional",
+    "expires": "N/A",
+    "notes": "Leadership and governance path."
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "GitHub Pages Docs",
+    "type": "Documentation",
+    "url": "https://docs.github.com/en/pages",
+    "description": "Official GitHub Pages reference."
+  },
+  {
+    "name": "MITRE ATT&CK",
+    "type": "Knowledge Base",
+    "url": "https://attack.mitre.org/",
+    "description": "Adversary tactics, techniques, and procedures."
+  },
+  {
+    "name": "CISA Known Exploited Vulnerabilities",
+    "type": "Threat Intel",
+    "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+    "description": "Catalog of actively exploited vulnerabilities."
+  },
+  {
+    "name": "NIST Cybersecurity Framework",
+    "type": "Reference",
+    "url": "https://www.nist.gov/cyberframework",
+    "description": "Cybersecurity risk management framework."
+  }
+]

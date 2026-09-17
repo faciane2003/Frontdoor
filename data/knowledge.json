@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Alert Triage Checklist",
+    "summary": "Confirm source, timestamp, affected host, user context, severity, enrichment, and escalation path before closing or escalating an alert.",
+    "tags": ["triage", "alerts", "workflow"]
+  },
+  {
+    "title": "Incident Severity Guide",
+    "summary": "Classify incidents by business impact, spread, data exposure, operational disruption, and response urgency.",
+    "tags": ["incident", "severity", "escalation"]
+  },
+  {
+    "title": "Evidence Handling Notes",
+    "summary": "Preserve original logs, document collection time, record tool output, avoid destructive actions, and keep chain-of-custody notes clear.",
+    "tags": ["evidence", "forensics", "documentation"]
+  },
+  {
+    "title": "Shift Handoff Format",
+    "summary": "Summarize active incidents, pending tickets, watch items, blocked tasks, owner assignments, and next recommended action.",
+    "tags": ["handoff", "shift", "operations"]
+  },
+  {
+    "title": "Threat Intel Intake",
+    "summary": "Capture source reliability, indicator type, confidence, expiration, related campaigns, and recommended detection updates.",
+    "tags": ["threat intel", "ioc", "detections"]
+  },
+  {
+    "title": "Post-Incident Review",
+    "summary": "Record timeline, impact, root cause, detection opportunities, response blockers, control gaps, and concrete follow-up owners.",
+    "tags": ["review", "lessons learned", "incident"]
+  }
+]
