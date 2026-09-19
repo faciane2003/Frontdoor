@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A static GitHub Pages operations portal with knowledge base, JQS, SOPs, certs, schedule, and links."
+      content="A static GitHub Pages explorer for the Kevin project file and folder structure."
     >
-    <title>SOC Knowledge Portal</title>
+    <title>Kevin Repo Map</title>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Primary">
-        <a class="brand" href="#dashboard" data-route="dashboard" aria-label="SOC Knowledge Portal">
-          <span class="brand-mark">HUD</span>
+      <aside class="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="#overview" data-route="overview" aria-label="Kevin Repo Map">
+          <span class="brand-mark">KM</span>
+          <span class="brand-text">Kevin Map</span>
         </a>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="app-nav">
@@ -25,61 +26,55 @@
         </button>
 
         <nav id="app-nav" class="app-nav">
-          <button class="nav-item" type="button" data-view="sops">SOPs</button>
-          <button class="nav-item" type="button" data-view="links">Links</button>
-          <button class="nav-item" type="button" data-view="certs">Certs</button>
-          <button class="nav-item" type="button" data-view="training">JQS</button>
-          <button class="nav-item" type="button" data-view="schedule">On-Call</button>
+          <button class="nav-item is-active" type="button" data-view="overview">Overview</button>
+          <button class="nav-item" type="button" data-view="explorer">Explorer</button>
+          <button class="nav-item" type="button" data-view="worlds">Worlds</button>
+          <button class="nav-item" type="button" data-view="assets">Assets</button>
+          <button class="nav-item" type="button" data-view="code">Code</button>
+          <button class="nav-item" type="button" data-view="docs">Docs</button>
         </nav>
-
       </aside>
 
       <main class="workspace">
         <header class="topbar">
           <div class="topbar-content">
-            <p id="view-title" class="eyebrow">SOC HUD</p>
+            <p id="view-title" class="eyebrow">Overview</p>
             <label class="global-search">
-              <span class="sr-only">Search portal</span>
-              <input id="global-search" type="search" placeholder="Search">
+              <span class="sr-only">Search paths</span>
+              <input id="global-search" type="search" placeholder="Search files and folders">
             </label>
           </div>
         </header>
 
-        <section id="dashboard" class="view is-active" aria-labelledby="dashboard-heading">
-          <h2 id="dashboard-heading" class="sr-only">Dashboard</h2>
-          <div id="dashboard-grid" class="hud-grid"></div>
+        <section id="overview" class="view is-active" aria-labelledby="overview-heading">
+          <h1 id="overview-heading" class="sr-only">Overview</h1>
+          <div id="overview-content"></div>
         </section>
 
-        <section id="knowledge" class="view" aria-labelledby="knowledge-heading">
-          <h2 id="knowledge-heading" class="sr-only">Knowledge Base</h2>
-          <div id="knowledge-list" class="knowledge-list"></div>
+        <section id="explorer" class="view" aria-labelledby="explorer-heading">
+          <h1 id="explorer-heading" class="sr-only">Explorer</h1>
+          <div id="explorer-content"></div>
         </section>
 
-        <section id="training" class="view" aria-labelledby="training-heading">
-          <h2 id="training-heading" class="sr-only">JQS</h2>
-          <div id="training-list"></div>
+        <section id="worlds" class="view" aria-labelledby="worlds-heading">
+          <h1 id="worlds-heading" class="sr-only">Worlds</h1>
+          <div id="worlds-content"></div>
         </section>
 
-        <section id="sops" class="view" aria-labelledby="sops-heading">
-          <h2 id="sops-heading" class="sr-only">SOPs</h2>
-          <div id="sops-list"></div>
+        <section id="assets" class="view" aria-labelledby="assets-heading">
+          <h1 id="assets-heading" class="sr-only">Assets</h1>
+          <div id="assets-content"></div>
         </section>
 
-        <section id="certs" class="view" aria-labelledby="certs-heading">
-          <h2 id="certs-heading" class="sr-only">Certs</h2>
-          <div id="certs-list"></div>
+        <section id="code" class="view" aria-labelledby="code-heading">
+          <h1 id="code-heading" class="sr-only">Code</h1>
+          <div id="code-content"></div>
         </section>
 
-        <section id="schedule" class="view" aria-labelledby="schedule-heading">
-          <h2 id="schedule-heading" class="sr-only">On-Call</h2>
-          <div id="schedule-list"></div>
+        <section id="docs" class="view" aria-labelledby="docs-heading">
+          <h1 id="docs-heading" class="sr-only">Docs</h1>
+          <div id="docs-content"></div>
         </section>
-
-        <section id="links" class="view" aria-labelledby="links-heading">
-          <h2 id="links-heading" class="sr-only">Links</h2>
-          <div id="links-list"></div>
-        </section>
-
       </main>
     </div>
 
