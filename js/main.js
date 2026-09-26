@@ -26,6 +26,7 @@ const state = {
   certPhase: "",
   linkCategory: "",
   onCallMonth: "",
+  githubSection: "Overview",
 };
 
 const viewTitles = {
@@ -36,6 +37,7 @@ const viewTitles = {
   certs: "Certs",
   schedule: "On-Call",
   links: "Links",
+  github: "GitHub",
 };
 
 const navToggle = document.querySelector(".nav-toggle");
@@ -43,6 +45,9 @@ const appNav = document.querySelector("#app-nav");
 const navItems = [...document.querySelectorAll(".nav-item")];
 const viewTitle = document.querySelector("#view-title");
 const globalSearch = document.querySelector("#global-search");
+const tableRowDialog = document.querySelector("#table-row-dialog");
+const tableRowForm = document.querySelector("#table-row-form");
+const tableRowFields = document.querySelector("#table-row-fields");
 
 const DASHBOARD_STORAGE_KEY = "dashboard-items";
 const DASHBOARD_SECTIONS = [
@@ -54,6 +59,100 @@ const DASHBOARD_SECTIONS = [
 ];
 const TABLE_STORAGE_PREFIX = "editable-table";
 const EDITABLE_TABLES = ["training", "sops", "certs", "links"];
+const TABLE_FORM_SCHEMAS = {
+  training: [["id", "ID", "text", true], ["tier", "Tier", "text", true], ["title", "Task", "text", true], ["area", "Area", "text", true], ["standard", "Performance Standard", "textarea", true]],
+  sops: [["id", "ID", "text", true], ["title", "Title", "text", true], ["category", "Category", "text", true], ["purpose", "Purpose", "textarea", true]],
+  certs: [["track", "Track", "text", true], ["name", "Certification", "text", true], ["provider", "Provider", "text", false], ["phase", "Category", "text", true], ["focus", "Focus", "textarea", true], ["notes", "Notes", "textarea", false], ["url", "Official URL", "url", true]],
+  links: [["name", "Resource", "text", true], ["category", "Category", "text", true], ["description", "Description", "textarea", true], ["url", "URL", "url", true]],
+};
+const ON_CALL_PEOPLE = ["Maya Chen", "Andre Patel", "Nina Brooks", "Luis Romero", "Jordan Ellis"];
+const ON_CALL_PTO_ROTATION = [["Sam Rivera"], ["Taylor Morgan", "Chris Lee"], [], ["Avery Scott"], ["Morgan Blake"], [], ["Riley Park"]];
+const ON_CALL_ROTATION_ANCHOR = "2026-09-17";
+const ON_CALL_OFFICE_NOTES = [
+  "Morning handoff is scheduled for 8:30 AM. Review overnight tickets and update the shared tracker before the daily stand-up.",
+  "Team stand-up begins at 9:00 AM. Confirm open action items, assign follow-ups, and document any staffing concerns.",
+  "Complete the weekly access review and send outstanding approval reminders. File completed records in the team folder.",
+  "Reserved time for documentation cleanup. Review outdated procedures, correct broken links, and note items requiring owner approval.",
+  "Coordinate the afternoon operations handoff. Summarize unresolved issues, current priorities, and expected follow-up times.",
+  "Scheduled maintenance window begins this evening. Verify the contact roster and confirm that escalation details are current.",
+  "Review the team inbox at the start and end of the shift. Route new requests and flag anything that needs manager attention.",
+  "Monthly reporting work is in progress. Validate tracker entries and collect missing updates before the reporting deadline.",
+  "Training block is reserved for the afternoon. Finish assigned modules and add completion notes to the qualification tracker.",
+  "Check the office calendar for visitor appointments and planned absences. Share coverage changes during the morning meeting.",
+  "Inventory review is due today. Record equipment changes and submit replacement requests for missing or damaged items.",
+  "End-of-day reminder: close completed tasks, update pending work, and leave a clear handoff note for the next shift.",
+];
+const GITHUB_SECTION_ITEMS = {
+  Overview: [],
+  Repo: [
+    "Corelight",
+    "threatco",
+    "ATH",
+    "turbine-monorepo",
+    "CSIRT",
+    "SADAM",
+    "Training",
+    "AcctMgmt",
+    "IO",
+    "WraithWatch",
+    "thelp",
+    "sysmon",
+    "SADOM-cert-ops",
+    "SADOM-IAM",
+    "SADOM-ECS",
+    "sadom-example-service",
+    "querybot",
+    "SADOM-Node-Images",
+    "BOD-26-04",
+    "SOC_Copilot_Initiative_Repo",
+    "sadom-testing-image",
+    "birminghamtest",
+    "orca",
+    "Support",
+    "gitcrawler",
+    "t_swimlane_support_document_manager",
+    "t_phx_email_parser",
+    "t_phxcyber_cribl_put",
+    "t_swimlane_turbine23",
+    "t_teramind",
+  ],
+  Projects: [],
+  Teams: [],
+  People: [],
+  Security: [],
+};
+const GITHUB_REPO_DESCRIPTIONS = {
+  AcctMgmt: "Account-management service for access requests, approvals, and account lifecycle tasks.",
+  ATH: "Automation repository for shared technical utilities and operational helper scripts.",
+  "BOD-26-04": "Compliance project for tracking BOD 26-04 requirements, evidence, and remediation work.",
+  birminghamtest: "Sandbox repository used to validate workflows and deployment changes in a test environment.",
+  Corelight: "Integration repository for Corelight network telemetry, sensors, and detection content.",
+  CSIRT: "Incident-response repository containing CSIRT procedures, playbooks, and case resources.",
+  gitcrawler: "Utility that inventories Git repositories and collects approved project metadata.",
+  IO: "Repository for input-output services, data exchanges, and supporting integration components.",
+  orca: "Cloud-security integration for findings, asset context, and remediation tracking.",
+  querybot: "Chat-based assistant that runs approved queries and returns formatted operational results.",
+  SADAM: "Central repository for SADAM application code, documentation, and deployment resources.",
+  "SADOM-cert-ops": "Certificate-operations service for issuance, renewal, inventory, and expiration tracking.",
+  "SADOM-ECS": "Repository for SADOM container services and ECS deployment configuration.",
+  "sadom-example-service": "Reference service demonstrating standard SADOM application and deployment patterns.",
+  "SADOM-IAM": "Identity and access management repository for roles, policies, and authorization workflows.",
+  "SADOM-Node-Images": "Repository for maintaining approved Node.js build and runtime container images.",
+  "sadom-testing-image": "Container image used for SADOM integration and pipeline testing.",
+  "SOC_Copilot_Initiative_Repo": "SOC Copilot initiative workspace for prototypes, requirements, and evaluation notes.",
+  Support: "Support repository for troubleshooting guides, common requests, and escalation procedures.",
+  sysmon: "Repository for Sysmon configuration, event collection, and detection-focused tuning.",
+  "t_phx_email_parser": "Automation for parsing PHX mailbox messages into structured workflow data.",
+  "t_phxcyber_cribl_put": "Integration that sends PHX Cyber data through an approved Cribl ingestion path.",
+  "t_swimlane_support_document_manager": "Workflow for organizing and maintaining support documents in Swimlane.",
+  "t_swimlane_turbine23": "Swimlane automation package supporting Turbine 23 operational workflows.",
+  "t_teramind": "Integration for processing approved Teramind events and investigation context.",
+  thelp: "Command-line helper containing common troubleshooting and support functions.",
+  threatco: "Threat-intelligence repository for indicators, enrichment logic, and analysis workflows.",
+  Training: "Training repository containing exercises, reference material, and qualification resources.",
+  "turbine-monorepo": "Monorepo for Turbine applications, shared packages, and deployment tooling.",
+  WraithWatch: "Monitoring project for detecting suspicious activity and coordinating follow-up reviews.",
+};
 
 function escapeHtml(value) {
   return String(value)
@@ -304,8 +403,24 @@ function addTableRow(collection) {
     },
   };
 
-  state.data[collection].push({ ...defaults[collection], _draft: true });
-  renderCollection(collection);
+  const schema = TABLE_FORM_SCHEMAS[collection];
+  if (!schema) {
+    return;
+  }
+
+  tableRowForm.dataset.collection = collection;
+  document.querySelector("#entry-dialog-title").textContent = `Add ${viewTitles[collection] || "Row"}`;
+  tableRowFields.innerHTML = schema
+    .map(([name, label, type, required]) => {
+      const value = defaults[collection][name] || "";
+      const control = type === "textarea"
+        ? `<textarea id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" rows="3" ${required ? "required" : ""}>${escapeHtml(value)}</textarea>`
+        : `<input id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" type="${escapeHtml(type)}" value="${escapeHtml(value)}" ${required ? "required" : ""}>`;
+      return `<label for="entry-${escapeHtml(name)}"><span>${escapeHtml(label)}</span>${control}</label>`;
+    })
+    .join("");
+  tableRowDialog.showModal();
+  tableRowFields.querySelector("input, textarea")?.focus();
 }
 
 function syncTableRow(collection, index, shouldRender = false) {
@@ -471,28 +586,29 @@ function renderTraining() {
     : allItems;
   const rows = items
     .map((item) => ({ item, index: state.data.training.indexOf(item) }))
-    .sort((a, b) => (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
+    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
     .map(({ item, index }) => renderTrainingRow(item, index))
     .join("");
 
   target.innerHTML = `
-    <div class="reference-layout training-layout">
-      <aside class="reference-nav" aria-label="JQS areas">
-        <h3>Areas</h3>
-        <nav>
-          ${groups
-            .map(
-              ([area]) => `
-                <button class="${state.trainingArea === area ? "is-active" : ""}" type="button" data-training-area="${escapeHtml(area)}">
-                  ${escapeHtml(area)}
-                </button>
-              `,
-            )
-            .join("")}
-        </nav>
-      </aside>
-      <div class="reference-content">
+    <div class="training-layout">
+      <div class="section-controls">
+        <div class="section-filter-toolbar">
+          <label for="training-area-select">Area</label>
+          <select id="training-area-select" data-training-area-select>
+            <option value="">All areas</option>
+            ${groups
+              .map(
+                ([area]) => `
+                  <option value="${escapeHtml(area)}" ${state.trainingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>
+                `,
+              )
+              .join("")}
+          </select>
+        </div>
         ${renderTableTools("training", "Add JQS Row")}
+      </div>
+      <div>
         <div class="table-wrap">
           <table class="data-table training-table">
             <thead>
@@ -564,23 +680,24 @@ function renderSops() {
     : allItems;
 
   target.innerHTML = `
-    <div class="reference-layout sop-layout">
-      <aside class="reference-nav sop-nav" aria-label="SOP categories">
-        <h3>Categories</h3>
-        <nav>
-          ${groups
-            .map(
-              ([category]) => `
-                <button class="${state.sopCategory === category ? "is-active" : ""}" type="button" data-sop-category="${escapeHtml(category)}">
-                  ${escapeHtml(category)}
-                </button>
-              `,
-            )
-            .join("")}
-        </nav>
-      </aside>
-      <div class="reference-content sop-content">
+    <div class="sop-layout">
+      <div class="section-controls">
+        <div class="section-filter-toolbar">
+          <label for="sop-category-select">Category</label>
+          <select id="sop-category-select" data-sop-category-select>
+            <option value="">All categories</option>
+            ${groups
+              .map(
+                ([category]) => `
+                  <option value="${escapeHtml(category)}" ${state.sopCategory === category ? "selected" : ""}>${escapeHtml(category)}</option>
+                `,
+              )
+              .join("")}
+          </select>
+        </div>
         ${renderTableTools("sops", "Add SOP Row")}
+      </div>
+      <div class="sop-content">
         <div class="table-wrap">
           <table class="data-table sop-toc-table">
             <thead>
@@ -607,6 +724,10 @@ function groupByCategory(items) {
   return items
     .slice()
     .sort((a, b) => {
+      const addedSort = (b._addedAt || 0) - (a._addedAt || 0);
+      if (addedSort) {
+        return addedSort;
+      }
       const categorySort = (a.category || a.type || "General").localeCompare(b.category || b.type || "General");
       return categorySort || (a.id || a.name || "").localeCompare(b.id || b.name || "");
     })
@@ -704,28 +825,29 @@ function renderCerts() {
     : allItems;
   const rows = items
     .map((item) => ({ item, index: state.data.certs.indexOf(item) }))
-    .sort((a, b) => (a.item.phase || "").localeCompare(b.item.phase || "") || (a.item.track || "").localeCompare(b.item.track || "") || (a.item.name || "").localeCompare(b.item.name || ""))
+    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.phase || "").localeCompare(b.item.phase || "") || (a.item.track || "").localeCompare(b.item.track || "") || (a.item.name || "").localeCompare(b.item.name || ""))
     .map(({ item, index }) => renderCertRow(item, index))
     .join("");
 
   target.innerHTML = `
-    <div class="reference-layout cert-layout">
-      <aside class="reference-nav" aria-label="Certification categories">
-        <h3>Categories</h3>
-        <nav>
-          ${groups
-            .map(
-              ([phase]) => `
-                <button class="${state.certPhase === phase ? "is-active" : ""}" type="button" data-cert-phase="${escapeHtml(phase)}">
-                  ${escapeHtml(phase)}
-                </button>
-              `,
-            )
-            .join("")}
-        </nav>
-      </aside>
-      <div class="reference-content">
+    <div class="cert-layout">
+      <div class="section-controls">
+        <div class="section-filter-toolbar">
+          <label for="cert-phase-select">Category</label>
+          <select id="cert-phase-select" data-cert-phase-select>
+            <option value="">All categories</option>
+            ${groups
+              .map(
+                ([phase]) => `
+                  <option value="${escapeHtml(phase)}" ${state.certPhase === phase ? "selected" : ""}>${escapeHtml(phase)}</option>
+                `,
+              )
+              .join("")}
+          </select>
+        </div>
         ${renderTableTools("certs", "Add Cert Row")}
+      </div>
+      <div>
         <div class="table-wrap">
           <table class="data-table cert-table">
             <thead>
@@ -760,48 +882,163 @@ function renderCertRow(item, index) {
   `;
 }
 
-function renderSchedule() {
-  const items = filtered("schedule");
+function renderSchedule(preservedScrollTop = null) {
   const target = document.querySelector("#schedule-list");
+  const availableMonths = onCallMonths(state.data.schedule);
 
-  if (!items.length) {
+  if (!availableMonths.length) {
     target.innerHTML = renderEmpty("No on-call entries match.");
     return;
   }
 
-  const sorted = items.slice().sort((a, b) => a.date.localeCompare(b.date));
-  const months = onCallMonths(sorted);
-  if (!state.onCallMonth || !months.some((month) => month.value === state.onCallMonth)) {
-    state.onCallMonth = months[0].value;
+  if (!state.onCallMonth) {
+    const currentMonth = new Date().toISOString().slice(0, 7);
+    state.onCallMonth = availableMonths.some((month) => month.value === currentMonth) ? currentMonth : availableMonths[0].value;
   }
-  const visibleItems = sorted.filter((item) => item.date.startsWith(state.onCallMonth));
+
+  const windowMonths = [shiftOnCallMonth(state.onCallMonth, -1), state.onCallMonth, shiftOnCallMonth(state.onCallMonth, 1)];
+  windowMonths.forEach(ensureOnCallMonth);
+
+  const items = filtered("schedule");
+  const sorted = items.slice().sort((a, b) => a.date.localeCompare(b.date));
+  const dropdownMonths = onCallMonths(state.data.schedule);
+  const monthLabels = new Map(dropdownMonths.map((month) => [month.value, month.label]));
 
   target.innerHTML = `
-    <section class="oncall-calendar" aria-label="On-call calendar">
+    <div class="oncall-month-picker">
+      <select id="oncall-month" data-oncall-month aria-label="Select month">
+        ${dropdownMonths
+          .map((month) => `<option value="${escapeHtml(month.value)}" ${month.value === state.onCallMonth ? "selected" : ""}>${escapeHtml(month.label)}</option>`)
+          .join("")}
+      </select>
+    </div>
+    <section class="oncall-calendar-window" aria-label="Scrollable on-call calendar" data-oncall-window>
+      ${windowMonths
+        .map((monthValue) => {
+          const monthItems = sorted.filter((item) => item.date.startsWith(monthValue));
+          return renderOnCallMonth(monthValue, monthLabels.get(monthValue), monthItems);
+        })
+        .join("")}
+    </section>
+  `;
+
+  target.querySelectorAll("[data-oncall-notes]").forEach((field) => {
+    field.style.height = "auto";
+    field.style.height = `${field.scrollHeight}px`;
+  });
+
+  const calendarWindow = target.querySelector("[data-oncall-window]");
+  const selectedCalendar = target.querySelector(`[data-oncall-calendar-month="${CSS.escape(state.onCallMonth)}"]`);
+  calendarWindow.dataset.shifting = "true";
+  requestAnimationFrame(() => {
+    calendarWindow.scrollTop = preservedScrollTop ?? selectedCalendar.offsetTop - calendarWindow.offsetTop;
+    requestAnimationFrame(() => {
+      calendarWindow.dataset.shifting = "false";
+    });
+  });
+  calendarWindow.addEventListener("scroll", () => {
+    if (calendarWindow.dataset.shifting === "true") {
+      return;
+    }
+    const calendars = [...calendarWindow.querySelectorAll("[data-oncall-calendar-month]")];
+    const position = calendarWindow.scrollTop + 80;
+    const visibleCalendar = calendars.find((calendar) => calendar.offsetTop - calendarWindow.offsetTop + calendar.offsetHeight > position);
+    if (visibleCalendar) {
+      state.onCallMonth = visibleCalendar.dataset.oncallCalendarMonth;
+      const monthSelect = target.querySelector("[data-oncall-month]");
+      if ([...monthSelect.options].some((option) => option.value === state.onCallMonth)) {
+        monthSelect.value = state.onCallMonth;
+      }
+    }
+
+    if (calendarWindow.scrollTop < 120) {
+      extendOnCallWindow(calendarWindow, -1);
+    } else if (calendarWindow.scrollTop + calendarWindow.clientHeight > calendarWindow.scrollHeight - 120) {
+      extendOnCallWindow(calendarWindow, 1);
+    }
+  });
+}
+
+function renderOnCallMonth(monthValue, label, items) {
+  return `
+    <section class="oncall-calendar" data-oncall-calendar-month="${escapeHtml(monthValue)}" aria-labelledby="oncall-month-${escapeHtml(monthValue)}">
       <header class="oncall-calendar-header">
-        <label>
-          <span>Month</span>
-          <select id="oncall-month" data-oncall-month>
-            ${months
-              .map(
-                (month) => `
-                  <option value="${escapeHtml(month.value)}" ${month.value === state.onCallMonth ? "selected" : ""}>
-                    ${escapeHtml(month.label)}
-                  </option>
-                `,
-              )
-              .join("")}
-          </select>
-        </label>
+        <h3 id="oncall-month-${escapeHtml(monthValue)}">${escapeHtml(label)}</h3>
       </header>
       <div class="oncall-weekdays" aria-hidden="true">
         ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => `<span>${day}</span>`).join("")}
       </div>
       <div class="oncall-calendar-grid">
-        ${renderOnCallCalendarDays(visibleItems)}
+        ${renderOnCallCalendarDays(items, monthValue)}
       </div>
     </section>
   `;
+}
+
+function extendOnCallWindow(calendarWindow, direction) {
+  if (calendarWindow.dataset.loading === "true") {
+    return;
+  }
+  calendarWindow.dataset.loading = "true";
+
+  const calendars = [...calendarWindow.querySelectorAll("[data-oncall-calendar-month]")];
+  const edgeCalendar = direction < 0 ? calendars[0] : calendars[calendars.length - 1];
+  const monthValue = shiftOnCallMonth(edgeCalendar.dataset.oncallCalendarMonth, direction);
+  ensureOnCallMonth(monthValue);
+  const monthItems = filtered("schedule")
+    .filter((item) => item.date.startsWith(monthValue))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const label = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(new Date(`${monthValue}-01T12:00:00`));
+  const previousHeight = calendarWindow.scrollHeight;
+
+  edgeCalendar.insertAdjacentHTML(direction < 0 ? "beforebegin" : "afterend", renderOnCallMonth(monthValue, label, monthItems));
+  if (direction < 0) {
+    calendarWindow.scrollTop += calendarWindow.scrollHeight - previousHeight;
+  }
+
+  const monthSelect = document.querySelector("[data-oncall-month]");
+  if (![...monthSelect.options].some((option) => option.value === monthValue)) {
+    const option = new Option(label, monthValue);
+    if (direction < 0) {
+      monthSelect.prepend(option);
+    } else {
+      monthSelect.append(option);
+    }
+  }
+
+  requestAnimationFrame(() => {
+    calendarWindow.dataset.loading = "false";
+  });
+}
+
+function shiftOnCallMonth(monthValue, amount) {
+  const [year, month] = monthValue.split("-").map(Number);
+  const shifted = new Date(Date.UTC(year, month - 1 + amount, 1));
+  return shifted.toISOString().slice(0, 7);
+}
+
+function ensureOnCallMonth(monthValue) {
+  const existingDates = new Set(state.data.schedule.map((item) => item.date));
+  const [year, month] = monthValue.split("-").map(Number);
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const anchorDate = new Date(`${ON_CALL_ROTATION_ANCHOR}T12:00:00Z`);
+
+  for (let dayNumber = 1; dayNumber <= daysInMonth; dayNumber += 1) {
+    const day = new Date(Date.UTC(year, month - 1, dayNumber, 12));
+    const dateValue = day.toISOString().slice(0, 10);
+    if (existingDates.has(dateValue)) {
+      continue;
+    }
+    const rotationOffset = Math.round((day - anchorDate) / 86400000);
+    const personIndex = ((rotationOffset % ON_CALL_PEOPLE.length) + ON_CALL_PEOPLE.length) % ON_CALL_PEOPLE.length;
+    const ptoIndex = ((rotationOffset % ON_CALL_PTO_ROTATION.length) + ON_CALL_PTO_ROTATION.length) % ON_CALL_PTO_ROTATION.length;
+    state.data.schedule.push({
+      date: dateValue,
+      primary: ON_CALL_PEOPLE[personIndex],
+      backup: ON_CALL_PEOPLE[(personIndex + 1) % ON_CALL_PEOPLE.length],
+      pto: ON_CALL_PTO_ROTATION[ptoIndex],
+    });
+  }
 }
 
 function onCallMonths(items) {
@@ -812,32 +1049,41 @@ function onCallMonths(items) {
   }));
 }
 
-function renderOnCallCalendarDays(items) {
-  const firstDate = new Date(`${items[0].date}T12:00:00`);
+function renderOnCallCalendarDays(items, monthValue) {
+  const firstDate = new Date(`${monthValue}-01T12:00:00`);
   const offset = firstDate.getDay();
   const blanks = Array.from({ length: offset }, () => `<div class="oncall-day is-empty" aria-hidden="true"></div>`);
   const days = items.map((item) => {
     const date = new Date(`${item.date}T12:00:00`);
     const isActive = state.onCallDate === item.date;
+    const fullDateLabel = new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(date);
     const current = onCallDisplayItem(item);
-    const notes = localStorage.getItem(onCallNotesKey(item.date)) || "";
-    const hasNotes = notes.trim().length > 0;
+    const savedNotes = localStorage.getItem(onCallNotesKey(item.date));
+    const notes = savedNotes ?? defaultOnCallNotes(item);
+    const preview = onCallNotePreview(notes);
     return `
       <article class="oncall-day ${isActive ? "is-active" : ""}" tabindex="0" role="button" data-oncall-date="${escapeHtml(item.date)}">
         <span class="oncall-date">${date.getDate()}</span>
+        ${isActive ? `<span class="oncall-date-label">${escapeHtml(fullDateLabel)}</span>` : ""}
         ${
           isActive
             ? `
-              <label>Primary<input data-oncall-field="primary" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.primary)}"></label>
-              <label>Backup<input data-oncall-field="backup" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.backup)}"></label>
-              <label>OOO<input data-oncall-field="pto" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml((current.pto || []).join(", "))}"></label>
-              <label>Notes<textarea data-oncall-notes="${escapeHtml(item.date)}" rows="3">${escapeHtml(notes)}</textarea></label>
+              <label>IRM<input data-oncall-field="primary" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.primary)}"></label>
+              <label>BIRM<input data-oncall-field="backup" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.backup)}"></label>
+              <label>Out of Office<input data-oncall-field="pto" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml((current.pto || []).join(", "))}"></label>
+              <label>Notes<textarea data-oncall-notes="${escapeHtml(item.date)}" rows="6">${escapeHtml(notes)}</textarea></label>
             `
             : `
-              <p><b>Primary</b> ${escapeHtml(current.primary)}</p>
-              <p><b>Backup</b> ${escapeHtml(current.backup)}</p>
-              <p><b>OOO</b> ${escapeHtml((current.pto || []).join(", ") || "None")}</p>
-              ${hasNotes ? `<p class="oncall-note-preview"><b>Notes</b> ${escapeHtml(notes)}</p>` : ""}
+              <p class="oncall-role"><b>IRM:</b> ${escapeHtml(current.primary)}</p>
+              <p class="oncall-role"><b>BIRM:</b> ${escapeHtml(current.backup)}</p>
+              <button class="oncall-note-trigger" type="button" data-oncall-open>
+                ${escapeHtml(preview)}${preview ? "…" : "No notes…"}
+              </button>
             `
         }
       </article>
@@ -845,6 +1091,22 @@ function renderOnCallCalendarDays(items) {
   });
 
   return [...blanks, ...days].join("");
+}
+
+function onCallNotePreview(notes) {
+  const normalized = notes.replace(/\s+/g, " ").trim();
+  if (!normalized) {
+    return "";
+  }
+  const firstSentence = normalized.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() || normalized;
+  return firstSentence.replace(/\.{3}$/, "").slice(0, 110);
+}
+
+function defaultOnCallNotes(item) {
+  const dayNumber = Math.floor(new Date(`${item.date}T12:00:00Z`).getTime() / 86400000);
+  const firstNote = ON_CALL_OFFICE_NOTES[((dayNumber % ON_CALL_OFFICE_NOTES.length) + ON_CALL_OFFICE_NOTES.length) % ON_CALL_OFFICE_NOTES.length];
+  const secondNote = ON_CALL_OFFICE_NOTES[((dayNumber + 5) % ON_CALL_OFFICE_NOTES.length + ON_CALL_OFFICE_NOTES.length) % ON_CALL_OFFICE_NOTES.length];
+  return `${firstNote}\n\n${secondNote}`;
 }
 
 function onCallNotesKey(date) {
@@ -887,7 +1149,7 @@ function renderLinks() {
     : allItems;
   const rows = items
     .map((item) => ({ item, index: state.data.links.indexOf(item) }))
-    .sort((a, b) => (a.item.category || "").localeCompare(b.item.category || "") || (a.item.name || "").localeCompare(b.item.name || ""))
+    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.category || "").localeCompare(b.item.category || "") || (a.item.name || "").localeCompare(b.item.name || ""))
     .map(
       ({ item, index }) => `
         <tr>
@@ -903,23 +1165,24 @@ function renderLinks() {
     .join("");
 
   target.innerHTML = `
-    <div class="reference-layout links-layout">
-      <aside class="reference-nav" aria-label="Link categories">
-        <h3>Categories</h3>
-        <nav>
-          ${groups
-            .map(
-              ([category]) => `
-                <button class="${state.linkCategory === category ? "is-active" : ""}" type="button" data-link-category="${escapeHtml(category)}">
-                  ${escapeHtml(category)}
-                </button>
-              `,
-            )
-            .join("")}
-        </nav>
-      </aside>
-      <div class="reference-content">
+    <div class="links-layout">
+      <div class="section-controls">
+        <div class="section-filter-toolbar">
+          <label for="link-category-select">Category</label>
+          <select id="link-category-select" data-link-category-select>
+            <option value="">All categories</option>
+            ${groups
+              .map(
+                ([category]) => `
+                  <option value="${escapeHtml(category)}" ${state.linkCategory === category ? "selected" : ""}>${escapeHtml(category)}</option>
+                `,
+              )
+              .join("")}
+          </select>
+        </div>
         ${renderTableTools("links", "Add Link Row")}
+      </div>
+      <div>
         <div class="table-wrap">
           <table class="data-table resource-table">
             <thead>
@@ -950,6 +1213,102 @@ function groupByResourceCategory(items) {
     }, {});
 }
 
+function renderGithub() {
+  const sections = ["Overview", "Repo", "Projects", "Teams", "People", "Security"];
+  const overviewItems = [
+    ["Repo", "A repository stores a project's files, code, documentation, and change history so people can work together and track updates."],
+    ["Projects", "Projects organize work into boards, roadmaps, and task lists so teams can plan assignments, monitor progress, and manage deadlines."],
+    ["Teams", "Teams group organization members so repository access, responsibilities, reviews, and notifications can be managed collectively."],
+    ["People", "People are the organization members and collaborators who create content, review changes, manage repositories, and support projects."],
+    ["Security", "Security tools identify vulnerable dependencies, exposed secrets, risky code, and access concerns so teams can investigate and correct them."],
+  ];
+  const descriptions = {
+    Overview: "Summary and activity for the GitHub workspace.",
+    Repo: "Repository folders, files, branches, and documentation.",
+    Projects: "Project boards, milestones, and tracked work.",
+    Teams: "Team structure, responsibilities, and collaboration resources.",
+    People: "Repository contributors, owners, and contacts.",
+    Security: "Security guidance, reviews, alerts, and repository controls.",
+  };
+  const target = document.querySelector("#github-list");
+  const githubSearch = state.searchTerm.toLowerCase();
+  const visibleOverviewItems = overviewItems.filter(([name, description]) =>
+    `${name} ${description}`.toLowerCase().includes(githubSearch),
+  );
+  const items = (GITHUB_SECTION_ITEMS[state.githubSection] || [])
+    .filter((item) => `${item} ${GITHUB_REPO_DESCRIPTIONS[item] || ""}`.toLowerCase().includes(githubSearch))
+    .slice()
+    .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+  const rows = items
+    .map(
+      (item) => `
+        <tr>
+          <td>
+            <a class="table-link" href="https://www.google.com/" target="_blank" rel="noopener noreferrer">${escapeHtml(item)}</a>
+          </td>
+          <td class="github-description">${escapeHtml(GITHUB_REPO_DESCRIPTIONS[item] || `Repository for ${item} project files, documentation, and team workflows.`)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+
+  target.innerHTML = `
+    <div class="github-layout">
+      <div class="section-filter-toolbar">
+        <label for="github-section-select">Section</label>
+        <select id="github-section-select" data-github-section-select>
+          ${sections
+            .map(
+              (section) => `
+                <option value="${escapeHtml(section)}" ${state.githubSection === section ? "selected" : ""}>${escapeHtml(section)}</option>
+              `,
+            )
+            .join("")}
+        </select>
+      </div>
+      <div>
+        <section class="github-section" aria-labelledby="github-section-heading">
+          <h3 id="github-section-heading">${escapeHtml(state.githubSection)}</h3>
+          <p>${escapeHtml(descriptions[state.githubSection])}</p>
+          ${
+            state.githubSection === "Overview"
+              ? `
+                ${
+                  visibleOverviewItems.length
+                    ? `<div class="github-overview-cards">
+                        ${visibleOverviewItems
+                          .map(
+                            ([name, description]) => `
+                              <button class="github-overview-card" type="button" data-github-section="${escapeHtml(name)}">
+                                <strong>${escapeHtml(name)}</strong>
+                                <span>${escapeHtml(description)}</span>
+                              </button>
+                            `,
+                          )
+                          .join("")}
+                      </div>`
+                    : renderEmpty("No GitHub overview sections match.")
+                }
+              `
+              : items.length
+              ? `
+                <div class="table-wrap">
+                  <table class="data-table github-table">
+                    <thead>
+                      <tr><th>Name</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                  </table>
+                </div>
+              `
+              : `<div class="empty-state">No ${escapeHtml(state.githubSection.toLowerCase())} entries yet.</div>`
+          }
+        </section>
+      </div>
+    </div>
+  `;
+}
+
 function renderEmpty(message) {
   return `<div class="empty-state">${escapeHtml(message)}</div>`;
 }
@@ -962,9 +1321,34 @@ function renderAll() {
   renderCerts();
   renderSchedule();
   renderLinks();
+  renderGithub();
 }
 
 function bindEvents() {
+  tableRowForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const collection = tableRowForm.dataset.collection;
+    if (!TABLE_FORM_SCHEMAS[collection]) {
+      return;
+    }
+
+    const item = Object.fromEntries(new FormData(tableRowForm).entries());
+    if (collection === "sops") {
+      Object.assign(item, { status: "Pending", updated: new Date().toISOString().slice(0, 10), sections: [] });
+    }
+    item._addedAt = Date.now();
+    state.data[collection].unshift(item);
+    saveTable(collection);
+    tableRowDialog.close();
+    tableRowForm.reset();
+    renderCollection(collection);
+  });
+
+  document.querySelector("[data-entry-cancel]").addEventListener("click", () => {
+    tableRowDialog.close();
+    tableRowForm.reset();
+  });
+
   navItems.forEach((item) => {
     item.addEventListener("click", () => setView(item.dataset.view));
   });
@@ -984,6 +1368,41 @@ function bindEvents() {
   });
 
   document.addEventListener("change", (event) => {
+    const trainingAreaSelect = event.target.closest("[data-training-area-select]");
+    if (trainingAreaSelect) {
+      state.trainingArea = trainingAreaSelect.value;
+      renderTraining();
+      return;
+    }
+
+    const sopCategorySelect = event.target.closest("[data-sop-category-select]");
+    if (sopCategorySelect) {
+      state.sopCategory = sopCategorySelect.value;
+      renderSops();
+      return;
+    }
+
+    const certPhaseSelect = event.target.closest("[data-cert-phase-select]");
+    if (certPhaseSelect) {
+      state.certPhase = certPhaseSelect.value;
+      renderCerts();
+      return;
+    }
+
+    const linkCategorySelect = event.target.closest("[data-link-category-select]");
+    if (linkCategorySelect) {
+      state.linkCategory = linkCategorySelect.value;
+      renderLinks();
+      return;
+    }
+
+    const githubSectionSelect = event.target.closest("[data-github-section-select]");
+    if (githubSectionSelect) {
+      state.githubSection = githubSectionSelect.value;
+      renderGithub();
+      return;
+    }
+
     const monthSelect = event.target.closest("[data-oncall-month]");
     if (monthSelect) {
       state.onCallMonth = monthSelect.value;
@@ -1030,6 +1449,8 @@ function bindEvents() {
     const onCallNotes = event.target.closest("[data-oncall-notes]");
     if (onCallNotes) {
       localStorage.setItem(onCallNotesKey(onCallNotes.dataset.oncallNotes), onCallNotes.value);
+      onCallNotes.style.height = "auto";
+      onCallNotes.style.height = `${onCallNotes.scrollHeight}px`;
       return;
     }
 
@@ -1089,40 +1510,17 @@ function bindEvents() {
         return;
       }
       const date = onCallDay.dataset.oncallDate;
+      const calendarWindow = document.querySelector("[data-oncall-window]");
+      const scrollTop = calendarWindow?.scrollTop ?? null;
       state.onCallDate = state.onCallDate === date ? "" : date;
-      renderSchedule();
+      renderSchedule(scrollTop);
       return;
     }
 
-    const certPhase = event.target.closest("[data-cert-phase]");
-    if (certPhase) {
-      const phase = certPhase.dataset.certPhase;
-      state.certPhase = state.certPhase === phase ? "" : phase;
-      renderCerts();
-      return;
-    }
-
-    const linkCategory = event.target.closest("[data-link-category]");
-    if (linkCategory) {
-      const category = linkCategory.dataset.linkCategory;
-      state.linkCategory = state.linkCategory === category ? "" : category;
-      renderLinks();
-      return;
-    }
-
-    const sopCategory = event.target.closest("[data-sop-category]");
-    if (sopCategory) {
-      const category = sopCategory.dataset.sopCategory;
-      state.sopCategory = state.sopCategory === category ? "" : category;
-      renderSops();
-      return;
-    }
-
-    const trainingArea = event.target.closest("[data-training-area]");
-    if (trainingArea) {
-      const area = trainingArea.dataset.trainingArea;
-      state.trainingArea = state.trainingArea === area ? "" : area;
-      renderTraining();
+    const githubSection = event.target.closest("[data-github-section]");
+    if (githubSection) {
+      state.githubSection = githubSection.dataset.githubSection;
+      renderGithub();
       return;
     }
 

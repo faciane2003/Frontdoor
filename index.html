@@ -13,10 +13,6 @@
   <body>
     <div class="app-shell">
       <aside class="sidebar" aria-label="Primary">
-        <a class="brand" href="#dashboard" data-route="dashboard" aria-label="SOC Knowledge Portal">
-          <span class="brand-mark">HUD</span>
-        </a>
-
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="app-nav">
           <span class="nav-toggle-line"></span>
           <span class="nav-toggle-line"></span>
@@ -25,11 +21,13 @@
         </button>
 
         <nav id="app-nav" class="app-nav">
+          <button class="nav-item" type="button" data-view="dashboard">Dashboard</button>
           <button class="nav-item" type="button" data-view="sops">SOPs</button>
           <button class="nav-item" type="button" data-view="links">Links</button>
           <button class="nav-item" type="button" data-view="certs">Certs</button>
           <button class="nav-item" type="button" data-view="training">JQS</button>
           <button class="nav-item" type="button" data-view="schedule">On-Call</button>
+          <button class="nav-item" type="button" data-view="github">GitHub</button>
         </nav>
 
       </aside>
@@ -80,8 +78,26 @@
           <div id="links-list"></div>
         </section>
 
+        <section id="github" class="view" aria-labelledby="github-heading">
+          <h2 id="github-heading" class="sr-only">GitHub</h2>
+          <div id="github-list"></div>
+        </section>
+
       </main>
     </div>
+
+    <dialog id="table-row-dialog" class="entry-dialog" aria-labelledby="entry-dialog-title">
+      <form id="table-row-form">
+        <div class="entry-dialog-header">
+          <h2 id="entry-dialog-title">Add Row</h2>
+        </div>
+        <div id="table-row-fields" class="entry-form-fields"></div>
+        <div class="entry-dialog-actions">
+          <button type="button" class="entry-cancel" data-entry-cancel>Cancel</button>
+          <button type="submit" class="entry-save">Save</button>
+        </div>
+      </form>
+    </dialog>
 
     <script src="js/main.js"></script>
   </body>
