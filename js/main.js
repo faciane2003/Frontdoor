@@ -38,6 +38,7 @@ const viewTitles = {
   schedule: "On-Call",
   links: "Links",
   github: "GitHub",
+  soc: "SOC",
 };
 
 const navToggle = document.querySelector(".nav-toggle");

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Previous Interview - CSIRT / SOC Prep</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121922;
+      --panel-2: #17212c;
+      --text: #eef4f8;
+      --muted: #a9b7c4;
+      --line: #2a3847;
+      --blue: #7cb7ff;
+      --green: #73d69b;
+      --amber: #ffc36f;
+      --red: #ff8585;
+      --violet: #c9a7ff;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    header,
+    section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    header {
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    section {
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.08;
+    }
+
+    h2 {
+      font-size: 23px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    h4 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    h5 {
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(124, 183, 255, 0.14);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.green {
+      background: rgba(115, 214, 155, 0.14);
+      color: var(--green);
+    }
+
+    .tag.amber {
+      background: rgba(255, 195, 111, 0.14);
+      color: var(--amber);
+    }
+
+    .tag.red {
+      background: rgba(255, 133, 133, 0.14);
+      color: var(--red);
+    }
+
+    .tag.violet {
+      background: rgba(201, 167, 255, 0.14);
+      color: var(--violet);
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .practice-list,
+    .podcast-list,
+    .episode-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 13px 15px;
+      font-weight: 800;
+    }
+
+    .section-toggle {
+      padding: 0;
+      list-style: none;
+    }
+
+    .section-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-toggle .section-head {
+      margin: 0;
+      padding: 0 0 12px;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid var(--line);
+    }
+
+    details > div {
+      padding: 14px 15px 15px;
+    }
+
+    .answer {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-left: 3px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      background: rgba(115, 214, 155, 0.08);
+    }
+
+    .episode {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(11, 17, 24, 0.56);
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    code {
+      color: var(--green);
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 10px 0 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #071019;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .ladder {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .ladder-step {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(11, 17, 24, 0.56);
+    }
+
+    .ladder-step strong {
+      color: var(--blue);
+    }
+
+    @media (max-width: 640px) {
+      .ladder-step {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        width: min(100% - 24px, 1180px);
+        padding-top: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Gold Standard Incident Process</h2>
+        <span>NIST-style CSIRT/SOC workflow</span>
+      </div>
+        </summary>
+      <div class="practice-list">
+        <details open>
+          <summary>1. Preparation</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> be ready before the incident happens.</p>
+            <ul>
+              <li>Define severity levels, escalation paths, communication rules, and response playbooks.</li>
+              <li>Confirm logging is enabled for identity, endpoint, firewall, DNS, proxy, email, VPN, cloud, and critical applications.</li>
+              <li>Know who owns containment actions: endpoint isolation, account disablement, firewall blocks, email purge, server shutdown, or legal/compliance notification.</li>
+              <li><strong>Applications:</strong> ServiceNow, Splunk, Microsoft Sentinel, Defender, CrowdStrike, Tenable/Nessus, asset inventory, CMDB, email-security tools, firewall consoles.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>2. Detection And Initial Analysis</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> decide whether the alert is real and what it means.</p>
+            <ul>
+              <li>Start at the source of the alert: Splunk/Sentinel for SIEM alerts, EDR for endpoint alerts, email console for phishing reports, firewall/proxy for network alerts.</li>
+              <li>Record the alert source, time, user, host, IPs, process, domain, file hash, severity, and detection rule.</li>
+              <li>Determine whether activity was attempted or successful, allowed or blocked, expected admin work or suspicious behavior.</li>
+              <li><strong>Applications:</strong> Splunk, Sentinel, Elastic/Kibana, CrowdStrike, Defender, Windows Event Viewer, PowerShell logs, DNS/proxy/firewall logs.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>3. Triage And Prioritization</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> decide how serious it is and how fast to act.</p>
+            <ul>
+              <li>Ask: is the asset critical, internet-facing, privileged, regulated, or tied to sensitive data?</li>
+              <li>Look for high-risk signs: malware execution, credential theft, ransomware behavior, lateral movement, exfiltration, persistence, or privileged-account abuse.</li>
+              <li>Set severity based on impact, confidence, scope, and active risk.</li>
+              <li><strong>Applications:</strong> ServiceNow severity fields, CMDB/asset inventory, EDR severity, SIEM notable events, vulnerability scanner context, threat intel platforms.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>4. Scoping</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> determine blast radius before overreacting or underreacting.</p>
+            <ul>
+              <li>Pivot by host, user, source IP, destination IP, domain, file hash, process name, parent process, command line, mailbox, and time window.</li>
+              <li>Search for the same IOC or behavior across the environment.</li>
+              <li>Separate one affected system from a campaign affecting many users or hosts.</li>
+              <li><strong>Applications:</strong> Splunk/Sentinel/Elastic for broad search, EDR for host spread, email-security console for recipient scope, firewall/proxy/DNS for network scope.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>5. Containment</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> stop damage or spread while preserving enough evidence to understand what happened.</p>
+            <ul>
+              <li>Short-term containment: isolate host, disable account, revoke sessions, block IP/domain/hash, quarantine email, stop malicious process, restrict network segment.</li>
+              <li>Long-term containment: temporary firewall rules, password resets, conditional access changes, patch or config change, remove exposed service.</li>
+              <li>Contain immediately for ransomware, active malware, lateral movement, privileged compromise, data exfiltration, or business-critical risk.</li>
+              <li><strong>Applications:</strong> CrowdStrike/Defender host isolation, Active Directory/Entra ID, firewall/proxy consoles, email-security tools, ServiceNow change/incident records.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>6. Eradication / Remediation</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> remove attacker access and fix the weakness that allowed it.</p>
+            <ul>
+              <li>Remove malware, persistence, suspicious scheduled tasks, rogue services, malicious mailbox rules, bad OAuth grants, exposed credentials, or unauthorized accounts.</li>
+              <li>Patch vulnerable systems, fix misconfigurations, rotate secrets, harden access, and close abused ports or services.</li>
+              <li>Verify that the original access path is closed, not just the visible symptom.</li>
+              <li><strong>Applications:</strong> EDR cleanup actions, patch management, Tenable/Nessus validation, AD/Entra ID, ServiceNow remediation tasks, vulnerability management tooling.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>7. Recovery</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> restore normal operations safely.</p>
+            <ul>
+              <li>Restore from clean backups if needed, re-enable accounts only after reset/session revocation, reconnect hosts only after validation.</li>
+              <li>Monitor closely for repeat indicators, callbacks, suspicious logons, or re-created persistence.</li>
+              <li>Confirm business owner acceptance before declaring recovery complete.</li>
+              <li><strong>Applications:</strong> backup platforms, EDR monitoring, SIEM dashboards, ServiceNow task closure, vulnerability rescans, asset owner sign-off.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>8. Reporting And Lessons Learned</summary>
+          <div class="answer">
+            <p><strong>Goal:</strong> make the organization better after the incident.</p>
+            <ul>
+              <li>Write timeline, root cause, impact, affected assets, containment actions, remediation, evidence, communications, and open follow-up items.</li>
+              <li>Identify control gaps: missing logs, weak detection, poor MFA, exposed service, patch delay, unclear escalation path, or user-training gap.</li>
+              <li>Create follow-up tickets for detection tuning, playbook updates, patching, hardening, training, or architecture changes.</li>
+              <li><strong>Applications:</strong> ServiceNow incident report, Confluence/SharePoint knowledge base, SIEM detection backlog, Jira/Azure DevOps tasks, executive summary documents.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Keywords And Lingo</h2>
+        <span></span>
+      </div>
+        </summary>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Incident Terms</span>
+          <ul>
+            <li><strong>Event:</strong> any observable activity in a system or network.</li>
+            <li><strong>Alert:</strong> a tool-generated signal that something may need review.</li>
+            <li><strong>Incident:</strong> confirmed or suspected activity with negative security impact.</li>
+            <li><strong>Case / Ticket:</strong> the tracked record of investigation, evidence, actions, and ownership.</li>
+            <li><strong>Severity:</strong> priority based on impact, scope, asset criticality, and confidence.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Triage Language</span>
+          <ul>
+            <li><strong>Validate:</strong> prove whether the alert is real or noise.</li>
+            <li><strong>Scope:</strong> determine how many users, hosts, systems, or accounts are affected.</li>
+            <li><strong>Pivot:</strong> use one artifact to search for related evidence.</li>
+            <li><strong>Enrich:</strong> add context like asset value, user role, IP reputation, geolocation, or vulnerability status.</li>
+            <li><strong>Correlate:</strong> connect evidence from multiple tools into one story.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Evidence Terms</span>
+          <ul>
+            <li><strong>IOC:</strong> indicator of compromise, such as IP, domain, hash, URL, file path, registry key.</li>
+            <li><strong>TTP:</strong> tactic, technique, and procedure; how the attacker behaves.</li>
+            <li><strong>Process tree:</strong> parent-child execution chain on an endpoint.</li>
+            <li><strong>Hash:</strong> file fingerprint used for reputation and matching.</li>
+            <li><strong>Telemetry:</strong> data produced by systems, tools, logs, agents, and sensors.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Containment Terms</span>
+          <ul>
+            <li><strong>Isolate host:</strong> cut endpoint network access while keeping EDR control.</li>
+            <li><strong>Disable account:</strong> stop identity-based access during suspected compromise.</li>
+            <li><strong>Revoke sessions:</strong> invalidate active tokens/logins after credential risk.</li>
+            <li><strong>Block IOC:</strong> prevent known bad IP/domain/hash/URL from communicating or executing.</li>
+            <li><strong>Quarantine:</strong> remove or restrict malicious email/file from user access.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Tool Names</span>
+          <ul>
+            <li><strong>SIEM:</strong> Splunk, Microsoft Sentinel, Elastic/Kibana; broad log search and correlation.</li>
+            <li><strong>EDR/XDR:</strong> Defender, CrowdStrike; endpoint process, file, and isolation evidence.</li>
+            <li><strong>ITSM:</strong> ServiceNow; incident tickets, ownership, approvals, status, reporting.</li>
+            <li><strong>Vulnerability scanner:</strong> Tenable/Nessus; exposed weakness and remediation validation.</li>
+            <li><strong>Threat intel:</strong> VirusTotal, MISP, vendor intel, ISAC feeds; reputation and context.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Outcome Terms</span>
+          <ul>
+            <li><strong>False positive:</strong> alert fired on benign activity.</li>
+            <li><strong>True positive:</strong> alert correctly identified malicious or policy-relevant activity.</li>
+            <li><strong>False negative:</strong> malicious activity occurred but no alert fired.</li>
+            <li><strong>Root cause:</strong> original weakness or access path that enabled the incident.</li>
+            <li><strong>Lessons learned:</strong> post-incident improvements to tools, process, people, and controls.</li>
+          </ul>
+        </div>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Hashing, Algorithms, And Syntax</h2>
+        <span>File reputation and evidence checks</span>
+      </div>
+        </summary>
+      <div class="practice-list">
+        <details open>
+          <summary>PowerShell: check a file hash</summary>
+          <div class="answer">
+            <p>Use <code>Get-FileHash</code> to fingerprint a suspicious file before searching EDR, SIEM, VirusTotal, tria.ge, or internal threat intel.</p>
+<pre>Get-FileHash -Path "C:\Users\Ames\Downloads\suspicious.exe" -Algorithm SHA256
+Get-FileHash -Path "C:\Users\Ames\Downloads\suspicious.exe" -Algorithm MD5
+Get-FileHash -Path "C:\Users\Ames\Downloads\suspicious.exe" -Algorithm SHA1
+
+# Hash every executable in a folder
+Get-ChildItem "C:\Temp" -File -Recurse |
+  Where-Object { $_.Extension -in ".exe",".dll",".ps1",".js",".vbs",".bat" } |
+  Get-FileHash -Algorithm SHA256</pre>
+          </div>
+        </details>
+        <details>
+          <summary>Common hash algorithms</summary>
+          <div class="answer">
+            <ul>
+              <li><strong>MD5:</strong> old 128-bit hash. Fast and common in older tools, but collision-broken. Use for legacy lookup only, not trust decisions.</li>
+              <li><strong>SHA1:</strong> old 160-bit hash. Also collision-weakened. Still seen in logs and older reputation sources.</li>
+              <li><strong>SHA256:</strong> modern standard for file reputation, malware matching, and evidence notes. Use this by default in SOC work.</li>
+              <li><strong>SHA512:</strong> stronger/larger SHA-2 hash. Less common in day-to-day SOC triage than SHA256.</li>
+              <li><strong>Imphash:</strong> import hash for Windows PE files. Useful for clustering malware families with similar imported functions.</li>
+              <li><strong>SSDeep / fuzzy hash:</strong> similarity hash. Useful when files are not identical but are related variants.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>PowerShell: quick process, network, and event checks</summary>
+          <div class="answer">
+<pre># Running processes with path and command line
+Get-CimInstance Win32_Process |
+  Select-Object ProcessId,ParentProcessId,Name,ExecutablePath,CommandLine
+
+# Network connections with owning process ID
+Get-NetTCPConnection |
+  Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State,OwningProcess
+
+# Recent failed logons
+Get-WinEvent -FilterHashtable @{LogName="Security"; Id=4625; StartTime=(Get-Date).AddHours(-24)}
+
+# Recent successful logons
+Get-WinEvent -FilterHashtable @{LogName="Security"; Id=4624; StartTime=(Get-Date).AddHours(-24)}
+
+# PowerShell script block logs
+Get-WinEvent -FilterHashtable @{LogName="Microsoft-Windows-PowerShell/Operational"; Id=4104}</pre>
+          </div>
+        </details>
+        <details>
+          <summary>Windows persistence checks</summary>
+          <div class="answer">
+<pre># Scheduled tasks
+Get-ScheduledTask | Where-Object State -ne "Disabled"
+
+# Services
+Get-CimInstance Win32_Service |
+  Select-Object Name,State,StartMode,PathName
+
+# Common run keys
+Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run"
+
+# Startup folders
+Get-ChildItem "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+Get-ChildItem "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"</pre>
+          </div>
+        </details>
+        <details>
+          <summary>Useful command-line tools</summary>
+          <div class="answer">
+<pre># DNS lookup
+nslookup suspicious-domain.example
+Resolve-DnsName suspicious-domain.example
+
+# Show local network connections
+netstat -ano
+
+# Basic reachability
+Test-NetConnection example.com -Port 443
+
+# Windows user/session checks
+whoami /all
+quser
+net user username /domain
+
+# Linux quick checks
+ps aux
+ss -tulpn
+journalctl -xe
+last
+grep -R "suspicious" /var/log</pre>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Email Phishing Scenarios</h2>
+        <span>Step-by-step response practice</span>
+      </div>
+        </summary>
+      <div class="practice-list">
+        <details open>
+          <summary>User reports a suspicious email but did not click.</summary>
+          <div class="answer">
+            <ul>
+              <li>Open or create the incident ticket and preserve the original email if available.</li>
+              <li>Check sender, reply-to, return-path, SPF, DKIM, DMARC, subject, links, attachments, and message headers.</li>
+              <li>Check URL/domain reputation in approved tools. Do not browse links directly from your workstation.</li>
+              <li>Search mail gateway for other recipients and quarantine/purge if malicious.</li>
+              <li>Document as attempted phishing, include evidence, scope, user action, and whether containment was needed.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>User clicked the link but did not enter credentials.</summary>
+          <div class="answer">
+            <ul>
+              <li>Confirm exact user action and time clicked.</li>
+              <li>Review proxy/DNS/browser logs for the URL and any redirects or file downloads.</li>
+              <li>Check endpoint telemetry for new processes, downloads, scripts, browser extensions, or payload execution.</li>
+              <li>Scope other recipients and clicks across email/security logs.</li>
+              <li>Contain only if there is execution, download, suspicious redirect, or follow-on activity.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>User entered credentials on a phishing page.</summary>
+          <div class="answer">
+            <ul>
+              <li>Treat as credential compromise even if no obvious damage is visible yet.</li>
+              <li>Reset password, revoke active sessions/tokens, verify MFA methods, and check for MFA fatigue or device registration changes.</li>
+              <li>Review sign-in logs before and after the click: IP, geo, user agent, impossible travel, risky sign-ins.</li>
+              <li>Check mailbox rules, forwarding, OAuth grants, recent file/cloud access, VPN logons, and privileged activity.</li>
+              <li>Search for other users who received/clicked the same email and document containment actions.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>User opened a malicious attachment.</summary>
+          <div class="answer">
+            <ul>
+              <li>Collect filename, hash, sender, recipient, time opened, and attachment type.</li>
+              <li>Check EDR for process tree: Office/PDF/archive spawning PowerShell, cmd, wscript, mshta, rundll32, regsvr32, or downloads.</li>
+              <li>Hash the attachment with SHA256 and check approved reputation/sandbox tools.</li>
+              <li>If payload executed, isolate the host and scope by hash, command line, destination IP/domain, and related email recipients.</li>
+              <li>Remediate persistence and document whether this was blocked, attempted, or successful execution.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Business email compromise / fake invoice request.</summary>
+          <div class="answer">
+            <ul>
+              <li>Preserve the email and verify whether this is spoofing, lookalike domain abuse, or a compromised internal/vendor account.</li>
+              <li>Check financial action taken: payment sent, banking info changed, invoice approved, or only attempted.</li>
+              <li>Review mailbox login activity, forwarding rules, OAuth grants, and vendor communication history.</li>
+              <li>Escalate quickly to finance/legal/management if payment or sensitive business data is involved.</li>
+              <li>Document loss exposure, affected parties, containment, and recommended controls.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Real-World Attacker Scenarios</h2>
+        <span>How to identify and respond</span>
+      </div>
+        </summary>
+      <div class="practice-list">
+        <details open>
+          <summary>Initial access through VPN account compromise.</summary>
+          <div class="answer">
+            <ul>
+              <li>Check failed/successful logons, source IP, geo, MFA, device, user agent, and normal user pattern.</li>
+              <li>Review what internal systems were accessed after VPN connection.</li>
+              <li>Contain by disabling the account, revoking sessions, forcing password reset, and reviewing MFA methods.</li>
+              <li>Scope for lateral movement, privilege escalation, file access, and additional compromised accounts.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Drive-by download or malicious browser redirect.</summary>
+          <div class="answer">
+            <ul>
+              <li>Start with proxy/DNS/browser history and identify the redirect chain.</li>
+              <li>Check endpoint downloads, process execution, browser extension changes, and EDR detections.</li>
+              <li>Hash downloaded files and search for same hash/path across environment.</li>
+              <li>Block malicious domains/URLs and isolate endpoint if execution occurred.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Living-off-the-land activity using PowerShell or cmd.exe.</summary>
+          <div class="answer">
+            <ul>
+              <li>Do not trust a process just because it is a Windows binary.</li>
+              <li>Inspect parent process, command line, encoded content, child processes, user context, and network connections.</li>
+              <li>Check Event IDs 4103/4104, process creation logs, scheduled tasks, services, and registry run keys.</li>
+              <li>Contain if behavior shows payload download, credential access, persistence, lateral movement, or exfiltration.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Web application attack: SQL injection or XSS.</summary>
+          <div class="answer">
+            <ul>
+              <li>Review WAF, reverse proxy, web server, application, and database logs.</li>
+              <li>Determine whether payloads were blocked, caused errors, or successfully accessed/changed data.</li>
+              <li>Identify vulnerable endpoint, source IPs, user accounts, session IDs, and affected records.</li>
+              <li>Escalate to app owners for fix, add temporary WAF rules if appropriate, and document evidence.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Insider threat or unusual data access.</summary>
+          <div class="answer">
+            <ul>
+              <li>Validate access pattern against job role, manager approval, historical behavior, and business context.</li>
+              <li>Review file access, cloud downloads, USB events, email forwarding, printing, and external sharing.</li>
+              <li>Keep language factual and avoid accusation. Escalate through proper HR/legal/security channels.</li>
+              <li>Document exactly what happened, where data moved, and who authorized next steps.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Exposed vulnerable internet-facing service.</summary>
+          <div class="answer">
+            <ul>
+              <li>Confirm exposure, asset owner, business criticality, vulnerability details, and exploitability.</li>
+              <li>Check logs for exploitation attempts or successful compromise.</li>
+              <li>Coordinate patching, temporary firewall restriction, service removal, or compensating controls.</li>
+              <li>Rescan with Nessus/Tenable and document remediation validation.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>What Would You Do?</h2>
+        <span>About a dozen practical CSIRT/SOC interview examples</span>
+      </div>
+        </summary>
+      <div class="practice-list">
+        <details open>
+          <summary>1. Splunk fires an alert for a suspicious login.</summary>
+          <div class="answer">
+            <p>I would start in Splunk because that is where the alert came from. I would confirm the search logic, time range, user, source IP, destination, and whether the login succeeded. Then I would pivot to identity logs, VPN logs, endpoint data, and geo/impossible-travel context. If the account looks compromised, I would escalate to disable/reset the account, revoke sessions, and document the timeline.</p>
+          </div>
+        </details>
+        <details>
+          <summary>2. EDR alerts on encoded PowerShell.</summary>
+          <div class="answer">
+            <p>I would start in EDR because process evidence is the center of the alert. I would review parent process, child processes, command line, user context, hash, network connections, and whether the command was blocked or executed. Then I would check PowerShell logs, scheduled tasks, run keys, and SIEM for similar activity. I would contain if there is malicious execution, persistence, credential access, or lateral movement.</p>
+          </div>
+        </details>
+        <details>
+          <summary>3. A user reports clicking a phishing link.</summary>
+          <div class="answer">
+            <p>I would start with the user report and email evidence. I would ask what action occurred: opened only, clicked, entered credentials, downloaded a file, or approved MFA. Then I would review email headers, URL reputation, attachment/hash reputation, proxy logs, browser/download evidence, sign-in logs, and mailbox rules. If credentials were entered, I would reset the password, revoke sessions, check MFA, and search for other recipients.</p>
+          </div>
+        </details>
+        <details>
+          <summary>4. Firewall shows connection to a known malicious IP.</summary>
+          <div class="answer">
+            <p>I would first determine whether the traffic was allowed or blocked, inbound or outbound, and whether a session completed. Then I would identify the internal host, user, process if available, destination reputation, DNS history, and any related EDR/SIEM alerts. If the connection was allowed and tied to suspicious process behavior, I would isolate the host or block the indicator while scoping for related activity.</p>
+          </div>
+        </details>
+        <details>
+          <summary>5. Repeated login failures followed by a successful login.</summary>
+          <div class="answer">
+            <p>I would compare the failed and successful attempts by source IP, user, device, geography, time, MFA status, and normal user behavior. If it is a privileged account, unusual source, impossible travel, or followed by suspicious activity, I would treat it as high severity. Next actions may include disabling the account, password reset, session revocation, and checking what the account accessed after login.</p>
+          </div>
+        </details>
+        <details>
+          <summary>6. Ransomware indicators appear on one endpoint.</summary>
+          <div class="answer">
+            <p>I would treat this as critical if I see mass file renames, encryption behavior, ransom note creation, shadow copy deletion, backup tampering, or lateral movement. I would isolate the host immediately, preserve evidence where possible, identify affected shares, check for spread, and escalate to incident response leadership. I would document impact and containment actions quickly because business decisions may be time-sensitive.</p>
+          </div>
+        </details>
+        <details>
+          <summary>7. Malware hash appears in VirusTotal but no EDR alert fired.</summary>
+          <div class="answer">
+            <p>I would not assume compromise from reputation alone. I would verify whether the file exists internally, where it is located, whether it executed, who downloaded it, and whether the hash appears on any other systems. I would use EDR, SIEM, file path data, proxy/download logs, and sandbox/reputation context. If the file executed or appears widespread, I would escalate containment and hunting.</p>
+          </div>
+        </details>
+        <details>
+          <summary>8. You find a suspicious scheduled task.</summary>
+          <div class="answer">
+            <p>I would inspect the task name, author, command, trigger, run context, creation time, and related parent process. Then I would check whether that timestamp lines up with suspicious logons, PowerShell, file drops, or network activity. If it appears malicious, I would preserve evidence, disable/remove the persistence mechanism through approved response procedures, and hunt for the same task across other endpoints.</p>
+          </div>
+        </details>
+        <details>
+          <summary>9. A ServiceNow ticket says “possible data exfiltration.”</summary>
+          <div class="answer">
+            <p>I would clarify the evidence behind the claim first. Then I would identify affected user/host/data, time window, destination, volume, protocol, and whether transfer was allowed or blocked. I would review proxy, firewall, DNS, DLP, cloud storage, VPN, and endpoint evidence. If sensitive data likely left the environment, I would escalate immediately and keep the ticket updated with facts, uncertainty, and next actions.</p>
+          </div>
+        </details>
+        <details>
+          <summary>10. A vulnerability scan shows critical findings on an internet-facing host.</summary>
+          <div class="answer">
+            <p>I would validate asset exposure, criticality, exploitability, patch status, and whether there are signs of exploitation. Then I would coordinate remediation priority with the system owner, check compensating controls, and ask whether temporary mitigation is needed. If exploit activity is seen in logs or EDR, it becomes an incident investigation, not just vulnerability management.</p>
+          </div>
+        </details>
+        <details>
+          <summary>11. An executive asks for a non-technical incident update.</summary>
+          <div class="answer">
+            <p>I would summarize what happened, what systems/users are affected, known business impact, what has been contained, what is still being investigated, and the next update time. I would avoid unnecessary jargon and clearly separate confirmed facts from assumptions. The goal is to support decision-making without hiding uncertainty.</p>
+          </div>
+        </details>
+        <details>
+          <summary>12. You are not sure whether to contain or keep investigating.</summary>
+          <div class="answer">
+            <p>I would base the decision on active risk. If there is active malware, lateral movement, privileged account compromise, exfiltration, ransomware behavior, or business-critical impact, I would contain quickly and preserve evidence as much as possible. If the signal is weak or blocked with no follow-on activity, I would continue validating and scoping before disruptive action.</p>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+    <section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Security Podcasts</h2>
+        <span>Collapsible notes</span>
+      </div>
+        </summary>
+      <div class="podcast-list">
+        <details>
+          <summary>Darknet Diaries</summary>
+          <div class="card">
+            <p>Story-driven cybercrime and hacker case studies. Good for attacker behavior, motives, investigation timelines, and operational security mistakes.</p>
+            <div class="episode-list">
+              <div class="episode"><h5>EP 177: National Public Data</h5><p>Useful for breach impact and identity-data exposure.</p></div>
+              <div class="episode"><h5>EP 176: NSL</h5><p>Useful for legal process, privacy, and provider obligations.</p></div>
+              <div class="episode"><h5>EP 175: Bayrob</h5><p>Useful for fraud, malware-backed scams, and investigation flow.</p></div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Malicious Life</summary>
+          <div class="card">
+            <p>Cybersecurity history and context. Good for explaining how laws, culture, and threat actors evolve.</p>
+          </div>
+        </details>
+        <details>
+          <summary>CyberWire Daily</summary>
+          <div class="card">
+            <p>Daily cyber news. Good for active exploitation, ransomware, patching, and threat trends.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Risky Business</summary>
+          <div class="card">
+            <p>Security news and analysis with threat-intelligence and policy context.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Microsoft Threat Intelligence Podcast</summary>
+          <div class="card">
+            <p>Microsoft threat-intel conversations about APTs, cybercrime, vulnerabilities, and defender lessons.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Security Now</summary>
+          <div class="card">
+            <p>Weekly deep technical security analysis covering vulnerabilities, authentication, browsers, privacy, IoT, and patch trends.</p>
+          </div>
+        </details>
+      </div>
+      </details>
+    </section>
+
+<section>
+      <details>
+        <summary class="section-toggle">
+      <div class="section-head">
+        <h2>Gallup System</h2>
+        <span></span>
+      </div>
+        </summary>
+      <div class="card">
+            <span class="tag violet">Role Fit / Strengths</span>
+            <h3>Gallup System</h3>
+            <p>Likely reference: Gallup's CliftonStrengths and/or Q12 engagement system. CliftonStrengths identifies a person's strongest talent patterns so managers can align work with what someone naturally does well. Q12 measures whether employee needs are being met so teams can improve engagement, retention, and performance.</p>
+            <ul>
+              <li><strong>CliftonStrengths domains:</strong> Executing, Influencing, Relationship Building, Strategic Thinking.</li>
+              <li><strong>Q12 engagement levels:</strong> Basic Needs, Individual Contribution, Teamwork, Growth.</li>
+            </ul>
+            <div class="ladder" aria-label="Gallup Q12 engagement ladder">
+              <div class="ladder-step"><strong>4. Growth</strong><span>Do I have chances to learn, improve, and build a future here?</span></div>
+              <div class="ladder-step"><strong>3. Teamwork</strong><span>Do I belong to a team that communicates, supports each other, and cares about quality?</span></div>
+              <div class="ladder-step"><strong>2. Individual Contribution</strong><span>Is my work valued, and do I get to use my strengths?</span></div>
+              <div class="ladder-step"><strong>1. Basic Needs</strong><span>Do I know what is expected, and do I have the tools and support to do the job?</span></div>
+            </div>
+      </div>
+      </details>
+    </section>
+</main>
+</body>
+</html>

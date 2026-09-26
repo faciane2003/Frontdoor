@@ -316,3 +316,9 @@ The user requested local-only work by default:
 - On-Call uses a scrollable month calendar with editable day details and locally persistent notes.
 - Opening a primary navigation view resets the page and that view's internal table or calendar to the top.
 - Shared cross-user persistence is not implemented; browser edits remain local to each user's browser.
+
+## 2026-09-26 SOC Migration
+
+- Added SOC as a primary navigation tab backed by `SOC/index.html` in an embedded workspace.
+- Migrated the current SOC cybersecurity page, its previous interview prep page, and all local page assets from the sibling Kevin project.
+- Converted SOC asset and document links to relative paths so they work under the GitHub Pages project subpath.
