@@ -322,3 +322,48 @@ The user requested local-only work by default:
 - Added SOC as a primary navigation tab backed by `SOC/index.html` in an embedded workspace.
 - Migrated the current SOC cybersecurity page, its previous interview prep page, and all local page assets from the sibling Kevin project.
 - Converted SOC asset and document links to relative paths so they work under the GitHub Pages project subpath.
+
+## 2026-09-26 SOC Portal Theme Integration
+
+- Restyled the complete SOC workspace to use the portal color system, compact spacing, panels, cards, tables, controls, and typography.
+- Replaced the SOC page's separate nested sidebar with a Category dropdown while preserving every SOC topic and content section.
+- Connected the portal Search field to the embedded SOC search so matches open the appropriate SOC topic and section.
+- Kept SOC tables sticky, cards responsive, and the category control usable without horizontal overflow on mobile.
+- Converted the SOC Table of Contents from multicolor cards into compact blue gray chapter and topic rows with aligned descriptions.
+- Added a collapsible hierarchy to the SOC Table of Contents: category rows reveal topic rows, topic rows reveal section rows, and clicking an open row collapses it.
+- Reduced the shared top header and Search field to a single compact row across every primary navigation view.
+- Replaced the editable Dashboard panels with a GitHub Overview style landing page containing navigation cards for SOPs, Links, Certs, JQS, On Call, GitHub, and SOC.
+- Updated the Links Add Row form to use Title instead of Resource, provide an existing category dropdown, place URL before Description, and render URL and Description at equal full width.
+- Removed the repeated view title from the shared header, aligned the compact Search field to the top left, removed the Dashboard instruction sentence, and changed the active primary navigation label to gold.
+- Made the SOC Table of Contents the single compact SOC workspace: removed the extra SOC category toolbar, removed hierarchy arrows, and changed section rows to expand their full content inline instead of switching panels.
+- Flattened colored pill and circle styling inside inline SOC content so expanded material remains visually consistent with the surrounding table rows.
+- Explicitly removed all remaining arrow and caret indicators from SOC Table of Contents category, topic, and section rows.
+- Replaced plus style add controls with a consistent solid blue `Add Item` button on JQS, SOPs, Certs, and Links; each button opens the section specific form.
+- Compacted expanded SOC Table of Contents content into normal-height table rows, including the OSI layer hierarchy, without changing the standalone SOC layouts.
+- Converted expanded SOC rail-card groups, such as Windows Registry Navigation, into compact label-and-description table rows.
+- Standardized all common expanded SOC Table of Contents grids, cards, steps, comparisons, and lists as dense table-style rows.
+- Flattened nested SOC accordion headers into the same compact title-and-description row height and removed their plus/close indicators.
+- Normalized SOC code-example cards into single-line language, title, and code-preview rows and removed partial inherited title backgrounds from compact content.
+- Removed visual arrow connectors, carets, and arrow-based process notation throughout the portal and embedded SOC content at every viewport size.
+- Widened word-based label columns in compact SOC rows to prevent labels such as Registry and Services from overlapping adjacent titles.
+- Rendered Links-table URLs as validated HTTP or HTTPS anchors that reliably open in a new browser tab; new URLs continue to be entered through the Add Item form and persist locally.
+- Rebalanced JQS columns to narrow ID, Tier, and Task while expanding Performance Standard to the majority of the table width.
+- Grouped JQS records into ordered, independently expandable Tier I, Tier II, Tier III, Advanced, and fallback tier hierarchy rows; search expands matching groups automatically.
+- Normalized abbreviated JQS tier values (`I`, `II`, and `III`) into their corresponding Tier I, Tier II, and Tier III hierarchy parents.
+- Prevented JQS child-row ID and Tier values from wrapping, replacing space-consuming indentation with a slim inset hierarchy marker.
+- Replaced clipped inline On-Call day expansion with a centered, viewport-bounded modal containing the full date, editable IRM/BIRM/Out of Office fields, notes, and a visible Close button.
+- Removed the redundant explanatory subtitle beneath every GitHub section heading while retaining Overview card descriptions and repository table descriptions.
+- Reduced the shared Search control to a 300px maximum width and 28px minimum height with tighter topbar spacing across all views.
+- Removed the repeated selected-section heading from every GitHub body because the Section dropdown already communicates the active context.
+- Reset the GitHub Section dropdown and body to Overview whenever the primary GitHub navigation tab is opened.
+- Guarded the GitHub Section state against invalid or browser-restored values so anything outside the six supported sections is normalized to Overview.
+- Grouped the SOP table into alphabetized, independently expandable Category hierarchy rows with task counts; search and a selected category expand matching groups automatically.
+- SOP category groups are expanded by default on initial load and can still be collapsed individually.
+- SOP child rows indent their ID cells beneath category headers to make the table hierarchy clearer.
+- Shortened the Security+ certification note and limited Certs Notes cells to two lines when not being edited so long notes do not create oversized rows.
+- Kept the JQS tier hierarchy collapsed by default with independent click-to-expand behavior.
+- Replaced the GitHub Section dropdown with a compact mini-navigation for Overview, Repo, Projects, Teams, People, and Security, including an active-state highlight.
+- Changed the GitHub mini-navigation to a vertical left-side menu with subsection content displayed in the adjacent right column.
+- Grouped Links into independently expandable Category hierarchy rows with counts and SOP-style inset indentation; search and category filtering expand matching groups automatically.
+- Consolidated 19 narrow Links categories into six broader operational groups while normalizing legacy and locally saved category values at render time.
+- Grouped Certs into independently expandable Category hierarchy rows with certification counts and Links-style indented children; search and category filtering expand matches automatically.

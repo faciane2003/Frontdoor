@@ -2151,29 +2151,1159 @@
         line-height: 1.58;
       }
     }
+    /* Portal integration theme */
+    :root {
+      --bg: #0b1117;
+      --panel: #151f2a;
+      --panel-2: #1c2a38;
+      --line: #2a3a4b;
+      --text: #eef5fb;
+      --muted: #9eacba;
+      --soc: #4da3ff;
+      --network: #8dccff;
+      --lab: #d6a323;
+      --incident: #f26d6d;
+      --script: #a98cff;
+      --battle: #47c287;
+      --qa: #f0a04b;
+      --research: #d6a323;
+      --shadow: none;
+      --radius: 8px;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    body::before,
+    .doc-back-link,
+    .sidebar-head,
+    .tab-list,
+    .sidebar-backdrop {
+      display: none !important;
+    }
+
+    .app {
+      display: block;
+      width: 100%;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      inset: 0 auto auto 0;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: minmax(200px, 300px);
+      align-items: end;
+      gap: 0.65rem;
+      width: 100%;
+      height: auto;
+      padding: 0.45rem;
+      overflow: visible;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(21, 31, 42, 0.97);
+      box-shadow: none;
+      backdrop-filter: blur(12px);
+    }
+
+    .sidebar {
+      display: none !important;
+    }
+
+    .soc-section-control {
+      display: grid;
+      gap: 0.3rem;
+      min-width: 0;
+    }
+
+    .soc-section-control span {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .soc-section-select,
+    .search-input {
+      width: 100%;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #091018;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      padding: 0.4rem 0.6rem;
+    }
+
+    .soc-section-select:focus,
+    .search-input:focus {
+      border-color: var(--soc);
+      box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+      background: #091018;
+    }
+
+    .search-wrap {
+      display: none;
+    }
+
+    .search-row {
+      gap: 0.4rem;
+    }
+
+    .search-button {
+      min-width: 40px;
+      border-color: var(--line);
+      border-radius: 8px;
+      background: #101820;
+      color: #8dccff;
+    }
+
+    .search-meta {
+      min-height: 1em;
+      font-size: 0.72rem;
+    }
+
+    .content-pane {
+      margin: 0;
+      padding: 0 0 2rem;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .tab-panel.active {
+      gap: 0.65rem;
+    }
+
+    .hero,
+    .section-card,
+    .detail-card,
+    .flow-box,
+    .info-card,
+    .accordion-item,
+    .trace-board,
+    .qa-card,
+    .site-card,
+    .toc-card,
+    .pipeline-step,
+    .lane-card,
+    .host-node,
+    .direction-node,
+    .rail-card,
+    .packet-part,
+    .tx-step,
+    .attack-card,
+    .docker-card,
+    .compare-card,
+    .callout,
+    pre {
+      border-color: var(--line);
+      border-radius: 6px;
+      background: rgba(21, 31, 42, 0.9);
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .section-card,
+    .hero,
+    .trace-board {
+      padding: 0.75rem;
+    }
+
+    .info-card,
+    .qa-card,
+    .site-card,
+    .flow-box,
+    .detail-card,
+    .pipeline-step,
+    .lane-card,
+    .host-node,
+    .direction-node,
+    .rail-card,
+    .packet-part,
+    .tx-step,
+    .attack-card,
+    .docker-card,
+    .compare-card {
+      min-height: 0;
+      padding: 0.65rem;
+    }
+
+    .section-title {
+      margin-bottom: 0.55rem;
+      padding: 0;
+    }
+
+    .section-title h3 {
+      font-size: 0.9rem;
+    }
+
+    .section-title > span:not(.section-caret),
+    .eyebrow,
+    .phase,
+    .band-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      line-height: 1.25;
+    }
+
+    h4 {
+      font-size: 0.88rem;
+    }
+
+    p,
+    li,
+    td,
+    th {
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .tool-grid,
+    .site-grid,
+    .qa-grid,
+    .card-grid,
+    .toc-list {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.55rem;
+    }
+
+    #toc .toc-list {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+
+    #toc .toc-card,
+    #toc .toc-card.theme-soc,
+    #toc .toc-card.theme-network,
+    #toc .toc-card.theme-lab,
+    #toc .toc-card.theme-script,
+    #toc .toc-card.theme-incident,
+    #toc .toc-card.theme-research {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+    }
+
+    #toc .toc-card h4,
+    #toc .toc-card.theme-soc h4,
+    #toc .toc-card.theme-network h4,
+    #toc .toc-card.theme-lab h4,
+    #toc .toc-card.theme-script h4,
+    #toc .toc-card.theme-incident h4,
+    #toc .toc-card.theme-research h4 {
+      margin: 0;
+      padding: 0.6rem 0.7rem;
+      border-right: 0;
+      background: var(--panel-strong, #1c2a38);
+      color: #8dccff;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    #toc .toc-card h4:hover,
+    #toc .toc-card h4:focus-visible {
+      background: #243547;
+      outline: none;
+    }
+
+    #toc .toc-card h4::after,
+    #toc .toc-link::after,
+    #toc .toc-section-row::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .nav-caret,
+    .section-caret,
+    .band-arrow {
+      display: none !important;
+    }
+
+    .flow-box::after,
+    .trace-node::after,
+    .pipeline-step::after,
+    .host-node::after,
+    .direction-node::after,
+    .packet-part::after,
+    .tx-step::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    #toc .toc-sublist {
+      gap: 0;
+    }
+
+    #toc .toc-sublist[hidden] {
+      display: none;
+    }
+
+    #toc .toc-link,
+    #toc .toc-card.theme-soc .toc-link,
+    #toc .toc-card.theme-network .toc-link,
+    #toc .toc-card.theme-lab .toc-link,
+    #toc .toc-card.theme-script .toc-link,
+    #toc .toc-card.theme-incident .toc-link,
+    #toc .toc-card.theme-research .toc-link {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.65fr) minmax(0, 1.35fr);
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 38px;
+      padding: 0.45rem 0.65rem;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+
+    #toc .toc-link:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-topic {
+      border-bottom: 1px solid var(--line);
+    }
+
+    #toc .toc-topic:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-topic > .toc-link {
+      width: 100%;
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-list {
+      display: grid;
+      border-top: 1px solid var(--line);
+      background: #101820;
+    }
+
+    #toc .toc-section-list[hidden] {
+      display: none;
+    }
+
+    #toc .toc-section-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.65fr) minmax(0, 1.35fr);
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      min-height: 36px;
+      padding: 0.4rem 0.65rem 0.4rem 1.4rem;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+    }
+
+    #toc .toc-section-row:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-row:hover,
+    #toc .toc-section-row:focus-visible {
+      background: #1b2a38;
+      color: var(--text);
+      outline: none;
+    }
+
+    #toc .toc-section-row small {
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    #toc .toc-section-entry {
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+    }
+
+    #toc .toc-section-entry:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-entry > .toc-section-row {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content {
+      padding: 0.45rem 0.65rem 0.65rem 1.4rem;
+      border-top: 1px solid rgba(42, 58, 75, 0.72);
+      background: #0d151d;
+    }
+
+    #toc .toc-section-content[hidden] {
+      display: none;
+    }
+
+    #toc .toc-section-content .section-body {
+      margin-top: 0;
+    }
+
+    #toc .toc-section-content .section-card {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #toc .toc-section-content .section-card + .section-card {
+      margin-top: 0.4rem;
+    }
+
+    #toc .toc-section-content .osi-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content .osi-grid .info-card {
+      display: grid;
+      grid-template-columns: 2rem minmax(7rem, 10rem) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 0;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .osi-grid .info-card:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .osi-grid .info-card h4,
+    #toc .toc-section-content .osi-grid .info-card p {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .osi-grid .info-card h4 {
+      color: #8dccff;
+      font-size: 0.72rem;
+    }
+
+    #toc .toc-section-content .osi-grid .info-card p {
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    #toc .toc-section-content .rail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content .rail-grid .rail-card {
+      display: grid;
+      grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 0;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .rail-grid .rail-card:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .rail-grid .rail-card strong,
+    #toc .toc-section-content .rail-grid .rail-card p {
+      margin: 0;
+      padding: 0;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .rail-grid .rail-card strong {
+      color: #8dccff;
+      font-size: 0.72rem;
+    }
+
+    #toc .toc-section-content .rail-grid .rail-card p {
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > * {
+      min-height: 0;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > *:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > :is(div, li):not(:has(> .phase)) {
+      display: grid;
+      grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .qa-grid,
+      .site-grid
+    ) > :is(div, li):has(> .phase) {
+      display: grid;
+      grid-template-columns: minmax(6.5rem, 10%) minmax(10rem, 18%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > * > :is(h3, h4, strong, p) {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > * > :is(h3, h4, strong) {
+      color: #8dccff;
+      font-size: 0.72rem;
+    }
+
+    #toc .toc-section-content :is(
+      .tool-grid,
+      .timeline,
+      .direction-strip,
+      .flowchart,
+      .handshake-grid,
+      .split-grid,
+      .packet-train,
+      .tx-grid,
+      .compare-grid,
+      .qa-grid,
+      .host-map,
+      .docker-grid,
+      .diagram-pipeline,
+      .ops-board,
+      .attack-lanes,
+      .setup-map,
+      .sandbox-grid,
+      .site-grid,
+      .product-grid
+    ) > * > p {
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    #toc .toc-section-content :is(.flow-box, .direction-node, .packet-part, .tx-step)::after {
+      display: none;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) {
+      display: grid;
+      grid-template-columns: minmax(4.5rem, 7%) minmax(9rem, 18%) minmax(0, 1fr);
+      grid-template-rows: auto;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 0;
+      padding: 0.38rem 0.55rem;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) > :is(.phase, h4, pre) {
+      grid-row: 1;
+      min-width: 0;
+      margin: 0;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) > .phase {
+      grid-column: 1;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) > h4 {
+      grid-column: 2;
+      width: 100%;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) > pre {
+      grid-column: 3;
+      max-height: 1.3em;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      overflow: hidden;
+      background: transparent;
+      white-space: pre;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .tool-grid > .info-card:has(> pre) > pre code {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre;
+      font-size: 0.72rem;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content :is(.detail-list, .mini-list) {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+      list-style: none;
+    }
+
+    #toc .toc-section-content :is(.detail-list, .mini-list) > li {
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content :is(.detail-list, .mini-list) > li:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .swimlane-diagram {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-row {
+      display: grid;
+      grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      background: transparent;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-row:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-label {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-right: 1px solid rgba(42, 58, 75, 0.72);
+      color: #8dccff;
+      font-size: 0.72rem;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-card {
+      display: grid;
+      grid-template-columns: minmax(9rem, 25%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 0;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-card:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-card :is(strong, p) {
+      margin: 0;
+      padding: 0;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-card strong {
+      color: #8dccff;
+      font-size: 0.72rem;
+    }
+
+    #toc .toc-section-content .swimlane-diagram .lane-card p {
+      color: var(--muted);
+      font-size: 0.73rem;
+    }
+
+    #toc .toc-section-content .accordion {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content .accordion-item {
+      margin: 0;
+      border: 0;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .accordion-item:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .accordion-toggle {
+      min-height: 0;
+      margin: 0;
+      padding: 0.38rem 0.55rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #toc .toc-section-content .accordion-toggle > span:first-child {
+      display: grid;
+      grid-template-columns: minmax(10rem, 30%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.55rem;
+      width: 100%;
+      text-align: left;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .accordion-toggle > span:first-child > br,
+    #toc .toc-section-content .accordion-icon {
+      display: none;
+    }
+
+    #toc .toc-section-content .accordion-toggle > span:first-child > strong,
+    #toc .toc-section-content .accordion-toggle > span:first-child > span {
+      margin: 0;
+      padding: 0;
+      font-size: 0.73rem;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .accordion-toggle > span:first-child > strong {
+      color: #8dccff;
+    }
+
+    #toc .toc-section-content .accordion-toggle > span:first-child > span {
+      color: var(--muted);
+    }
+
+    #toc .toc-section-content .accordion-panel {
+      margin: 0;
+      padding: 0.45rem 0.55rem;
+      border: 0;
+      border-top: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    #toc .toc-section-content .phase,
+    #toc .toc-section-content .band-label,
+    #toc .toc-section-content .section-context-folder {
+      min-height: 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #8dccff;
+      font-size: 0.68rem;
+    }
+
+    #toc .toc-link small {
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+
+    #toc .toc-leaf-list,
+    #toc .toc-leaf-children,
+    #toc .toc-card[class*="theme-"] .toc-leaf-list,
+    #toc .toc-card[class*="theme-"] .toc-leaf-children {
+      margin: 0;
+      padding: 0;
+      border-left: 0;
+    }
+
+    #toc .toc-leaf {
+      min-height: 32px;
+      padding: 0.35rem 0.65rem 0.35rem 1.4rem;
+      border-top: 1px solid rgba(42, 58, 75, 0.7);
+      color: var(--muted);
+    }
+
+    #toc .toc-leaf::before,
+    #toc .toc-card[class*="theme-"] .toc-leaf::before {
+      left: 0.7rem;
+      background: #4da3ff;
+    }
+
+    .accordion {
+      gap: 0.4rem;
+    }
+
+    .accordion-toggle {
+      min-height: 42px;
+      padding: 0.55rem 0.7rem;
+      border-radius: 6px;
+      background: #101820;
+    }
+
+    .accordion-panel {
+      padding: 0 0.7rem 0.7rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+    }
+
+    th {
+      position: sticky;
+      top: 61px;
+      z-index: 4;
+      padding: 0.45rem 0.6rem;
+      border: 1px solid var(--line);
+      background: #1c2a38;
+      color: #8dccff;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 0.45rem 0.6rem;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(28, 42, 56, 0.45);
+    }
+
+    .section-card.is-collapsible .section-title:hover,
+    .accordion-toggle:hover,
+    .toc-link:hover,
+    .search-button:hover:not(:disabled) {
+      border-color: rgba(77, 163, 255, 0.5);
+      background: #1b2a38;
+    }
+
+    @media (max-width: 760px) {
+      .sidebar,
+      .sidebar.is-mobile-collapsed,
+      .sidebar:not(.is-mobile-collapsed) {
+        position: sticky;
+        top: 0;
+        left: auto;
+        bottom: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        padding: 0.55rem;
+      }
+
+      .content-pane {
+        margin-left: 0;
+        padding-top: 0.55rem;
+      }
+
+      .tool-grid,
+      .site-grid,
+      .qa-grid,
+      .card-grid,
+      .toc-list,
+      .hero-grid,
+      .split-grid,
+      .diagram-pipeline,
+      .host-map {
+        grid-template-columns: 1fr;
+      }
+
+      #toc .toc-card h4,
+      #toc .toc-card[class*="theme-"] h4 {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      #toc .toc-link,
+      #toc .toc-card[class*="theme-"] .toc-link {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+      }
+
+      #toc .toc-section-row {
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
+      }
+
+      th {
+        top: 120px;
+      }
+    }
   </style>
 </head>
 <body>
-  <script>
-    (function () {
-      const navEntries = typeof performance.getEntriesByType === "function"
-        ? performance.getEntriesByType("navigation")
-        : [];
-      const navType = navEntries.length > 0
-        ? navEntries[0].type
-        : (performance.navigation && performance.navigation.type === 1 ? "reload" : "navigate");
-
-      if (navType === "reload") {
-        window.location.replace("/");
-      }
-    }());
-  </script>
   <div class="app">
     <aside class="sidebar is-mobile-collapsed">
       <a class="doc-back-link" id="docBackLink" href="/" aria-label="Return to home page">Homepage</a>
       <div class="sidebar-head">
         <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-expanded="false" aria-controls="sidebarNav" aria-label="Open navigation" title="Open navigation">></button>
       </div>
+
+      <label class="soc-section-control">
+        <span>Category</span>
+        <select class="soc-section-select" id="socSectionSelect">
+          <option value="toc">Table of Contents</option>
+          <optgroup label="Core Workflow">
+            <option value="soc">SOC</option>
+            <option value="ir">Incident Response</option>
+            <option value="splunk">Splunk</option>
+          </optgroup>
+          <optgroup label="Networking">
+            <option value="network">Network</option>
+            <option value="osi">OSI</option>
+            <option value="protocols">Protocols</option>
+            <option value="vpn">VPN</option>
+            <option value="ports">Ports</option>
+          </optgroup>
+          <optgroup label="Environment">
+            <option value="lab">Lab</option>
+            <option value="vm">VM</option>
+            <option value="docker">Docker</option>
+          </optgroup>
+          <optgroup label="Systems">
+            <option value="linux">Linux</option>
+            <option value="windows">Windows</option>
+            <option value="scripting">Scripting</option>
+          </optgroup>
+          <optgroup label="Operations">
+            <option value="incident">Incident</option>
+            <option value="kali">Kali</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="crypto">Crypto</option>
+          </optgroup>
+          <optgroup label="Reference and Interview">
+            <option value="acronyms">Acronyms</option>
+            <option value="practice">Practice</option>
+            <option value="interview-prep">Interview Prep</option>
+            <option value="qa">QA</option>
+            <option value="scrum">Scrum</option>
+            <option value="research">Research</option>
+            <option value="ai">AI</option>
+          </optgroup>
+        </select>
+      </label>
 
       <div class="search-wrap">
         <div class="search-row">
@@ -2527,7 +3657,7 @@
         <div class="section-card theme-network">
           <div class="section-title">
             <h3>TCP Three-Way Handshake</h3>
-            <span>SYN → SYN-ACK → ACK</span>
+            <span>SYN, SYN-ACK, ACK</span>
           </div>
           <div class="handshake-grid">
             <div class="info-card">
@@ -5443,10 +6573,10 @@ Get-WinEvent -FilterHashtable @{LogName="Microsoft-Windows-PowerShell/Operationa
           <div class="qa-card theme-qa"><h4>2. Vulnerability vs Threat vs Risk</h4><p><strong>Vulnerability</strong> is the weakness, <strong>Threat</strong> is what could exploit it, and <strong>Risk</strong> is the likelihood and impact of that happening.</p></div>
           <div class="qa-card theme-qa"><h4>3. True / False Positives</h4><p><strong>True Positive</strong>: real attack, correct alert. <strong>False Positive</strong>: alert on benign activity. <strong>False Negative</strong>: attack happened but no alert fired.</p></div>
           <div class="qa-card theme-qa"><h4>4. IoCs</h4><p>Observable artifacts that suggest compromise, such as malicious IPs, hashes, registry changes, suspicious processes, or domains.</p></div>
-          <div class="qa-card theme-qa"><h4>5. Incident Response</h4><p>Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned.</p></div>
+          <div class="qa-card theme-qa"><h4>5. Incident Response</h4><p>Preparation, Identification, Containment, Eradication, Recovery, and Lessons Learned.</p></div>
           <div class="qa-card theme-qa"><h4>6. Hashing vs Encryption</h4><p>Hashing is one-way and used for integrity checks. Encryption is reversible with a key and used for confidentiality.</p></div>
           <div class="qa-card theme-qa"><h4>7. What is a SIEM?</h4><p>A SIEM centralizes logs and telemetry so analysts can search, correlate, alert, and triage from one place. `Splunk` is a common SIEM platform.</p></div>
-          <div class="qa-card theme-qa"><h4>8. TCP Handshake</h4><p>SYN → SYN-ACK → ACK. It establishes a reliable TCP connection before application data flows.</p></div>
+          <div class="qa-card theme-qa"><h4>8. TCP Handshake</h4><p>SYN, SYN-ACK, then ACK. It establishes a reliable TCP connection before application data flows.</p></div>
           <div class="qa-card theme-qa"><h4>9. Suspicious File Investigation</h4><p>Get hash, path, size, parent process, user context, and network activity. Check threat intel, sandboxing, and EDR telemetry.</p></div>
           <div class="qa-card theme-qa"><h4>10. Explaining Attacks To Non-Technical People</h4><p>Use “what happened, what it means, and what we are doing about it.” Focus on business impact and next steps, not jargon.</p></div>
         </div>
@@ -6378,6 +7508,7 @@ and next update time. Remove jargon.</code></pre>
     const searchMeta = document.getElementById("searchMeta");
     const searchPrev = document.getElementById("searchPrev");
     const searchNext = document.getElementById("searchNext");
+    const sectionSelect = document.getElementById("socSectionSelect");
     const docBackLink = document.getElementById("docBackLink");
     const sidebar = document.querySelector(".sidebar");
     const sidebarBackdrop = document.getElementById("sidebarBackdrop");
@@ -6494,7 +7625,7 @@ and next update time. Remove jargon.</code></pre>
 
         if (
           parent.closest("script, style, code, pre, #acronyms") ||
-          parent.closest(".logo-meta, .phase, .band-label, .accordion-icon") ||
+          parent.closest(".logo-meta, .phase, .band-label, .accordion-icon, .toc-link") ||
           parent.classList.contains("acronym-inline")
         ) {
           continue;
@@ -6584,7 +7715,7 @@ and next update time. Remove jargon.</code></pre>
 
         if (
           parent.closest("script, style") ||
-          parent.closest(".tab-button, .search-wrap") ||
+          parent.closest(".tab-button, .toc-link, .search-wrap") ||
           parent.closest("mark.search-hit")
         ) {
           continue;
@@ -7016,6 +8147,9 @@ and next update time. Remove jargon.</code></pre>
 
         const title = document.createElement("h4");
         title.textContent = label.textContent.trim();
+        title.setAttribute("role", "button");
+        title.setAttribute("tabindex", "0");
+        title.setAttribute("aria-expanded", "false");
         tocCard.appendChild(title);
 
         const sublist = document.createElement("div");
@@ -7024,27 +8158,133 @@ and next update time. Remove jargon.</code></pre>
         const chapterTabs = group.querySelectorAll(":scope .nav-items > .tab-button");
         chapterTabs.forEach((tab) => {
           const panel = document.getElementById(tab.dataset.tab);
+          const topic = document.createElement("div");
+          topic.className = "toc-topic is-collapsed";
           const tocLink = document.createElement("button");
           tocLink.className = "toc-link";
           tocLink.type = "button";
           tocLink.textContent = tab.textContent.trim();
-          tocLink.addEventListener("click", () => {
-            openTabTarget(tab.dataset.tab);
-          });
+          tocLink.setAttribute("aria-expanded", "false");
 
           if (panel) {
-            const headings = [...panel.querySelectorAll(":scope .section-card.is-collapsible > .section-title h3")]
-              .slice(0, 3)
-              .map((heading) => heading.textContent.trim());
+            const cards = [...panel.querySelectorAll(":scope .section-card.is-collapsible")];
+            const headings = [cards.length + (cards.length === 1 ? " section" : " sections")];
             const detail = document.createElement("small");
             detail.textContent = headings.join(" • ");
             tocLink.appendChild(detail);
+
+            const sectionList = document.createElement("div");
+            sectionList.className = "toc-section-list";
+            sectionList.hidden = true;
+
+            cards.forEach((card) => {
+              const heading = card.querySelector(":scope > .section-title h3");
+              if (!heading) return;
+
+              const sectionRow = document.createElement("button");
+              sectionRow.className = "toc-section-row";
+              sectionRow.type = "button";
+              sectionRow.textContent = heading.textContent.trim();
+              sectionRow.setAttribute("aria-expanded", "false");
+
+              const sectionEntry = document.createElement("div");
+              sectionEntry.className = "toc-section-entry is-collapsed";
+
+              const sectionContent = document.createElement("div");
+              sectionContent.className = "toc-section-content";
+              sectionContent.hidden = true;
+
+              const sectionMeta = card.querySelector(":scope > .section-title > span:not(.section-caret)");
+              if (sectionMeta && sectionMeta.textContent.trim()) {
+                const meta = document.createElement("small");
+                meta.textContent = sectionMeta.textContent.trim();
+                sectionRow.appendChild(meta);
+              }
+
+              sectionRow.addEventListener("click", () => {
+                const shouldOpen = sectionEntry.classList.contains("is-collapsed");
+
+                sectionList.querySelectorAll(":scope > .toc-section-entry").forEach((otherEntry) => {
+                  const otherRow = otherEntry.querySelector(":scope > .toc-section-row");
+                  const otherContent = otherEntry.querySelector(":scope > .toc-section-content");
+                  const isCurrent = otherEntry === sectionEntry;
+                  otherEntry.classList.toggle("is-collapsed", !isCurrent || !shouldOpen);
+                  if (otherRow) otherRow.setAttribute("aria-expanded", String(isCurrent && shouldOpen));
+                  if (otherContent) otherContent.hidden = !isCurrent || !shouldOpen;
+                });
+
+                if (shouldOpen && !sectionContent.hasChildNodes()) {
+                  const sourceBody = card.querySelector(":scope > .section-body");
+                  if (sourceBody) {
+                    const clone = sourceBody.cloneNode(true);
+                    clone.querySelectorAll("[id]").forEach((node) => node.removeAttribute("id"));
+                    clone.querySelectorAll("[aria-controls]").forEach((node) => node.removeAttribute("aria-controls"));
+                    clone.querySelectorAll(".accordion-toggle").forEach((toggle) => {
+                      toggle.addEventListener("click", () => {
+                        const item = toggle.closest(".accordion-item");
+                        if (item) setAccordionItemOpen(item, !item.classList.contains("open"));
+                      });
+                    });
+                    sectionContent.appendChild(clone);
+                  }
+                }
+              });
+              sectionEntry.appendChild(sectionRow);
+              sectionEntry.appendChild(sectionContent);
+              sectionList.appendChild(sectionEntry);
+            });
+
+            tocLink.addEventListener("click", () => {
+              const shouldOpen = topic.classList.contains("is-collapsed");
+              sublist.querySelectorAll(":scope > .toc-topic").forEach((otherTopic) => {
+                const otherLink = otherTopic.querySelector(":scope > .toc-link");
+                const otherSections = otherTopic.querySelector(":scope > .toc-section-list");
+                const isCurrent = otherTopic === topic;
+                otherTopic.classList.toggle("is-collapsed", !isCurrent || !shouldOpen);
+                if (otherLink) otherLink.setAttribute("aria-expanded", String(isCurrent && shouldOpen));
+                if (otherSections) otherSections.hidden = !isCurrent || !shouldOpen;
+              });
+            });
+
+            topic.appendChild(tocLink);
+            topic.appendChild(sectionList);
+          } else {
+            tocLink.addEventListener("click", () => openTabTarget(tab.dataset.tab));
+            topic.appendChild(tocLink);
           }
 
-          sublist.appendChild(tocLink);
+          sublist.appendChild(topic);
         });
 
         tocCard.appendChild(sublist);
+        tocCard.classList.add("is-collapsed");
+        sublist.hidden = true;
+
+        const toggleChapter = () => {
+          const shouldOpen = tocCard.classList.contains("is-collapsed");
+
+          tocList.querySelectorAll(".toc-card").forEach((otherCard) => {
+            const otherTitle = otherCard.querySelector(":scope > h4");
+            const otherSublist = otherCard.querySelector(":scope > .toc-sublist");
+            const isCurrent = otherCard === tocCard;
+            otherCard.classList.toggle("is-collapsed", !isCurrent || !shouldOpen);
+            if (otherTitle) {
+              otherTitle.setAttribute("aria-expanded", String(isCurrent && shouldOpen));
+            }
+            if (otherSublist) {
+              otherSublist.hidden = !isCurrent || !shouldOpen;
+            }
+          });
+        };
+
+        title.addEventListener("click", toggleChapter);
+        title.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleChapter();
+          }
+        });
+
         tocList.appendChild(tocCard);
       });
     }
@@ -7088,6 +8328,10 @@ and next update time. Remove jargon.</code></pre>
       panels.forEach((panel) => {
         panel.classList.toggle("active", panel.id === tabId);
       });
+
+      if (sectionSelect && sectionSelect.value !== tabId) {
+        sectionSelect.value = tabId;
+      }
 
       document.querySelectorAll(".nav-subitems").forEach((subitems) => {
         subitems.classList.toggle("is-collapsed", subitems.dataset.parentTab !== tabId);
@@ -7186,6 +8430,15 @@ and next update time. Remove jargon.</code></pre>
         closeMobileSidebar();
       });
     });
+
+    if (sectionSelect) {
+      sectionSelect.addEventListener("change", () => {
+        const tabId = sectionSelect.value;
+        expandGroupForTab(tabId);
+        setActiveTab(tabId);
+        scrollTabToTop(tabId);
+      });
+    }
 
     traceButtons.forEach((button, index) => {
       button.addEventListener("click", () => {

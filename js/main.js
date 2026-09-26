@@ -21,10 +21,15 @@ const state = {
   },
   searchTerm: "",
   sopCategory: "",
+  expandedSopCategories: new Set(),
+  sopCategoriesInitialized: false,
   trainingArea: "",
+  expandedTrainingTiers: new Set(),
   onCallDate: "",
   certPhase: "",
+  expandedCertCategories: new Set(),
   linkCategory: "",
+  expandedLinkCategories: new Set(),
   onCallMonth: "",
   githubSection: "Overview",
 };
@@ -49,6 +54,7 @@ const globalSearch = document.querySelector("#global-search");
 const tableRowDialog = document.querySelector("#table-row-dialog");
 const tableRowForm = document.querySelector("#table-row-form");
 const tableRowFields = document.querySelector("#table-row-fields");
+const socFrame = document.querySelector(".soc-frame");
 
 const DASHBOARD_STORAGE_KEY = "dashboard-items";
 const DASHBOARD_SECTIONS = [
@@ -64,7 +70,7 @@ const TABLE_FORM_SCHEMAS = {
   training: [["id", "ID", "text", true], ["tier", "Tier", "text", true], ["title", "Task", "text", true], ["area", "Area", "text", true], ["standard", "Performance Standard", "textarea", true]],
   sops: [["id", "ID", "text", true], ["title", "Title", "text", true], ["category", "Category", "text", true], ["purpose", "Purpose", "textarea", true]],
   certs: [["track", "Track", "text", true], ["name", "Certification", "text", true], ["provider", "Provider", "text", false], ["phase", "Category", "text", true], ["focus", "Focus", "textarea", true], ["notes", "Notes", "textarea", false], ["url", "Official URL", "url", true]],
-  links: [["name", "Resource", "text", true], ["category", "Category", "text", true], ["description", "Description", "textarea", true], ["url", "URL", "url", true]],
+  links: [["name", "Title", "text", true], ["category", "Category", "select", true], ["url", "URL", "url", true], ["description", "Description", "textarea", true]],
 };
 const ON_CALL_PEOPLE = ["Maya Chen", "Andre Patel", "Nina Brooks", "Luis Romero", "Jordan Ellis"];
 const ON_CALL_PTO_ROTATION = [["Sam Rivera"], ["Taylor Morgan", "Chris Lee"], [], ["Avery Scott"], ["Morgan Blake"], [], ["Riley Park"]];
@@ -155,6 +161,28 @@ const GITHUB_REPO_DESCRIPTIONS = {
   WraithWatch: "Monitoring project for detecting suspicious activity and coordinating follow-up reviews.",
 };
 
+const LINK_CATEGORY_GROUPS = {
+  "Apple Artifacts": "Digital Forensics",
+  "Artifact Extraction": "Digital Forensics",
+  "Browser Artifacts": "Digital Forensics",
+  "File Analysis": "Digital Forensics",
+  "File Recovery": "Digital Forensics",
+  "Forensic Imaging": "Digital Forensics",
+  "Forensic Suites": "Digital Forensics",
+  "Memory Forensics": "Digital Forensics",
+  "Windows Artifacts": "Digital Forensics",
+  "Malware Analysis": "Malware & Reverse Engineering",
+  "Reverse Engineering": "Malware & Reverse Engineering",
+  "Network Analysis": "Network & Threat Intelligence",
+  "Threat Intelligence": "Network & Threat Intelligence",
+  "Linux References": "Operating Systems",
+  "Windows Tools": "Operating Systems",
+  "Lab Platforms": "Labs & Learning",
+  "Learning Resources": "Labs & Learning",
+  Hashing: "Utilities & Hashing",
+  Utilities: "Utilities & Hashing",
+};
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -175,6 +203,18 @@ function matchRecord(record, term) {
 function filtered(collection) {
   const data = state.data[collection];
   return Array.isArray(data) ? data.filter((item) => item._draft || matchRecord(item, state.searchTerm)) : data;
+}
+
+function syncSocSearch() {
+  const socSearch = socFrame?.contentDocument?.querySelector("#pageSearch");
+  if (!socSearch) {
+    return;
+  }
+
+  if (socSearch.value !== state.searchTerm) {
+    socSearch.value = state.searchTerm;
+  }
+  socSearch.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
 async function loadData() {
@@ -198,13 +238,19 @@ async function loadData() {
 
 function setView(view) {
   state.activeView = view;
+  if (view === "github") {
+    state.githubSection = "Overview";
+    renderGithub();
+  }
   document.querySelectorAll(".view").forEach((section) => {
     section.classList.toggle("is-active", section.id === view);
   });
   navItems.forEach((item) => {
     item.classList.toggle("is-active", item.dataset.view === view);
   });
-  viewTitle.textContent = viewTitles[view] || "Dashboard";
+  if (viewTitle) {
+    viewTitle.textContent = viewTitles[view] || "Dashboard";
+  }
   window.history.replaceState(null, "", `#${encodeURIComponent(view)}`);
   appNav.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
@@ -216,20 +262,48 @@ function setView(view) {
       scroller.scrollTop = 0;
       scroller.scrollLeft = 0;
     });
+    if (view === "soc") {
+      syncSocSearch();
+    }
   });
 }
 
 function renderDashboard() {
-  const dashboard = state.data.dashboard;
+  const topics = [
+    ["sops", "SOPs", "Standard operating procedures document repeatable security and operational workflows."],
+    ["links", "Links", "Shared references provide quick access to approved tools, documentation, and research resources."],
+    ["certs", "Certs", "Certification paths organize professional credentials by category, provider, and security focus."],
+    ["training", "JQS", "Job qualification standards define the tasks and performance expectations used for training."],
+    ["schedule", "On-Call", "The team calendar tracks primary coverage, backup coverage, absences, and daily handoff notes."],
+    ["github", "GitHub", "Repository, project, team, people, and security views organize collaborative development work."],
+    ["soc", "SOC", "The cybersecurity workspace groups analyst workflows, networking, systems, labs, and reference material."],
+  ];
+  const search = state.searchTerm.toLowerCase();
+  const visibleTopics = topics.filter(([, name, description]) =>
+    `${name} ${description}`.toLowerCase().includes(search),
+  );
 
-  document.querySelector("#dashboard-grid").innerHTML = DASHBOARD_SECTIONS
-    .map(([key, title]) => {
-      const entries = (dashboard[key] || [])
-        .map((item, index) => ({ item, index }))
-        .filter(({ item }) => item._draft || matchRecord(item, state.searchTerm));
-      return renderHudPanel(key, title, entries);
-    })
-    .join("");
+  document.querySelector("#dashboard-grid").innerHTML = `
+    <section class="github-section dashboard-section" aria-labelledby="dashboard-overview-heading">
+      <h3 id="dashboard-overview-heading">Overview</h3>
+      ${
+        visibleTopics.length
+          ? `<div class="github-overview-cards">
+              ${visibleTopics
+                .map(
+                  ([view, name, description]) => `
+                    <button class="github-overview-card" type="button" data-dashboard-view="${escapeHtml(view)}">
+                      <strong>${escapeHtml(name)}</strong>
+                      <span>${escapeHtml(description)}</span>
+                    </button>
+                  `,
+                )
+                .join("")}
+            </div>`
+          : renderEmpty("No dashboard topics match.")
+      }
+    </section>
+  `;
 }
 
 function renderHudPanel(key, title, entries) {
@@ -241,7 +315,6 @@ function renderHudPanel(key, title, entries) {
     <section class="hud-panel" aria-label="${escapeHtml(title)}">
       <div class="hud-panel-header">
         <h3>${escapeHtml(title)}</h3>
-        <button class="hud-add" type="button" data-dashboard-add="${escapeHtml(key)}" aria-label="Add ${escapeHtml(title)} entry">+</button>
       </div>
       <div class="hud-list">${content}</div>
     </section>
@@ -351,10 +424,10 @@ function saveTable(collection) {
   localStorage.setItem(tableStorageKey(collection), JSON.stringify(cleanItems));
 }
 
-function renderTableTools(collection, label) {
+function renderTableTools(collection) {
   return `
     <div class="table-tools">
-      <button class="table-add" type="button" data-table-add="${escapeHtml(collection)}">+ ${escapeHtml(label)}</button>
+      <button class="table-add" type="button" data-table-add="${escapeHtml(collection)}">Add Item</button>
     </div>
   `;
 }
@@ -364,6 +437,29 @@ function renderEditableField(collection, index, name, value, label, multiline = 
   const isLinkText = name === "url" || name === "id";
   const attrs = `class="editable-field ${multiline ? "is-multiline" : ""} ${isLinkText ? "is-link-like" : ""}" contenteditable="true" role="textbox" data-table-field="${escapeHtml(fieldId)}" data-table-name="${escapeHtml(name)}" aria-label="${escapeHtml(label)}"`;
   return `<span ${attrs}>${escapeHtml(value || "")}</span>`;
+}
+
+function safeExternalUrl(value) {
+  const rawUrl = String(value || "").trim();
+  if (!rawUrl) {
+    return "";
+  }
+
+  try {
+    const parsedUrl = new URL(/^[a-z][a-z\d+.-]*:/i.test(rawUrl) ? rawUrl : `https://${rawUrl}`);
+    return ["http:", "https:"].includes(parsedUrl.protocol) ? parsedUrl.href : "";
+  } catch {
+    return "";
+  }
+}
+
+function renderExternalLink(value, label) {
+  const href = safeExternalUrl(value);
+  if (!href) {
+    return renderEditableField(collection, index, name, value, label);
+  }
+
+  return `<a class="is-link-like table-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(`${label}: ${value}`)}">${escapeHtml(value)}</a>`;
 }
 
 function renderRowActions(collection, index) {
@@ -419,18 +515,34 @@ function addTableRow(collection) {
   }
 
   tableRowForm.dataset.collection = collection;
-  document.querySelector("#entry-dialog-title").textContent = `Add ${viewTitles[collection] || "Row"}`;
+  document.querySelector("#entry-dialog-title").textContent = `Add ${viewTitles[collection] || "Table"} Item`;
   tableRowFields.innerHTML = schema
     .map(([name, label, type, required]) => {
       const value = defaults[collection][name] || "";
-      const control = type === "textarea"
-        ? `<textarea id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" rows="3" ${required ? "required" : ""}>${escapeHtml(value)}</textarea>`
-        : `<input id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" type="${escapeHtml(type)}" value="${escapeHtml(value)}" ${required ? "required" : ""}>`;
-      return `<label for="entry-${escapeHtml(name)}"><span>${escapeHtml(label)}</span>${control}</label>`;
+      let control;
+      if (type === "textarea") {
+        control = `<textarea id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" rows="3" ${required ? "required" : ""}>${escapeHtml(value)}</textarea>`;
+      } else if (type === "select") {
+        const categories = [...new Set((state.data.links || []).map((item) => normalizeLinkCategory(item.category)).filter(Boolean))]
+          .concat(value)
+          .filter((category, index, values) => category && values.indexOf(category) === index)
+          .sort((a, b) => a.localeCompare(b));
+        control = `
+          <select id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" ${required ? "required" : ""}>
+            ${categories
+              .map((category) => `<option value="${escapeHtml(category)}" ${category === value ? "selected" : ""}>${escapeHtml(category)}</option>`)
+              .join("")}
+          </select>
+        `;
+      } else {
+        control = `<input id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" type="${escapeHtml(type)}" value="${escapeHtml(value)}" ${required ? "required" : ""}>`;
+      }
+      const wideClass = type === "textarea" || type === "url" ? " class=\"entry-field-wide\"" : "";
+      return `<label${wideClass} for="entry-${escapeHtml(name)}"><span>${escapeHtml(label)}</span>${control}</label>`;
     })
     .join("");
   tableRowDialog.showModal();
-  tableRowFields.querySelector("input, textarea")?.focus();
+  tableRowFields.querySelector("input, select, textarea")?.focus();
 }
 
 function syncTableRow(collection, index, shouldRender = false) {
@@ -594,10 +706,37 @@ function renderTraining() {
   const items = state.trainingArea
     ? allItems.filter((item) => (item.area || "Uncategorized") === state.trainingArea)
     : allItems;
-  const rows = items
-    .map((item) => ({ item, index: state.data.training.indexOf(item) }))
-    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
-    .map(({ item, index }) => renderTrainingRow(item, index))
+  const tierOrder = new Map([["Tier I", 1], ["Tier II", 2], ["Tier III", 3], ["Advanced", 4], ["Unassigned", 5]]);
+  const tierGroups = Object.entries(
+    items.reduce((result, item) => {
+      const tier = normalizeTrainingTier(item.tier);
+      result[tier] ||= [];
+      result[tier].push(item);
+      return result;
+    }, {}),
+  ).sort(([a], [b]) => (tierOrder.get(a) || 99) - (tierOrder.get(b) || 99) || a.localeCompare(b));
+  const rows = tierGroups
+    .map(([tier, tierItems]) => {
+      const isExpanded = Boolean(state.searchTerm) || state.expandedTrainingTiers.has(tier);
+      const childRows = isExpanded
+        ? tierItems
+            .map((item) => ({ item, index: state.data.training.indexOf(item) }))
+            .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
+            .map(({ item, index }) => renderTrainingRow(item, index, true))
+            .join("")
+        : "";
+      return `
+        <tr class="training-tier-row">
+          <td colspan="5">
+            <button type="button" class="training-tier-toggle" data-training-tier="${escapeHtml(tier)}" aria-expanded="${isExpanded}">
+              <strong>${escapeHtml(tier)}</strong>
+              <span>${tierItems.length} ${tierItems.length === 1 ? "task" : "tasks"}</span>
+            </button>
+          </td>
+        </tr>
+        ${childRows}
+      `;
+    })
     .join("");
 
   target.innerHTML = `
@@ -616,7 +755,7 @@ function renderTraining() {
               .join("")}
           </select>
         </div>
-        ${renderTableTools("training", "Add JQS Row")}
+        ${renderTableTools("training")}
       </div>
       <div>
         <div class="table-wrap">
@@ -650,11 +789,11 @@ function groupTrainingByArea(items) {
     }, {});
 }
 
-function renderTrainingRow(item, index) {
+function renderTrainingRow(item, index, isTierChild = false) {
   return `
-    <tr>
+    <tr class="${isTierChild ? "training-tier-child" : ""}">
       <td>${renderEditableField("training", index, "id", item.id, "JQS ID")}</td>
-      <td>${renderEditableField("training", index, "tier", formatTier(item.tier), "Tier")}</td>
+      <td>${isTierChild ? `<span class="training-tier-child-label">${escapeHtml(formatTier(item.tier))}</span>` : renderEditableField("training", index, "tier", formatTier(item.tier), "Tier")}</td>
       <td>${renderEditableField("training", index, "title", item.title, "Task", true)}</td>
       <td>${renderEditableField("training", index, "standard", item.standard, "Performance Standard", true)}</td>
       <td>${renderRowActions("training", index)}</td>
@@ -663,7 +802,19 @@ function renderTrainingRow(item, index) {
 }
 
 function formatTier(tier) {
-  return String(tier || "").replace(/^Tier\s+/i, "") || "N/A";
+  return normalizeTrainingTier(tier).replace(/^Tier\s+/i, "") || "N/A";
+}
+
+function normalizeTrainingTier(tier) {
+  const value = String(tier || "").trim();
+  const romanTier = value.match(/^(?:tier\s*)?(i|ii|iii)$/i);
+  if (romanTier) {
+    return `Tier ${romanTier[1].toUpperCase()}`;
+  }
+  if (/^advanced$/i.test(value)) {
+    return "Advanced";
+  }
+  return value || "Unassigned";
 }
 
 function renderSops() {
@@ -675,15 +826,32 @@ function renderSops() {
     return;
   }
 
-  const groups = Object.entries(groupByCategory(allItems));
+  const groups = Object.entries(groupByCategory(allItems)).sort(([a], [b]) => a.localeCompare(b));
   const categories = groups.map(([category]) => category);
+  if (!state.sopCategoriesInitialized) {
+    categories.forEach((category) => state.expandedSopCategories.add(category));
+    state.sopCategoriesInitialized = true;
+  }
   if (state.sopCategory && !categories.includes(state.sopCategory)) {
     state.sopCategory = "";
   }
 
   const rows = groups
     .filter(([category]) => !state.sopCategory || category === state.sopCategory)
-    .map(([, sops]) => sops.map((item) => renderSopTocRow(item, state.data.sops.indexOf(item))).join(""))
+    .map(([category, sops]) => {
+      const isExpanded = Boolean(state.searchTerm || state.sopCategory) || state.expandedSopCategories.has(category);
+      return `
+        <tr class="sop-category-row">
+          <td colspan="5">
+            <button type="button" class="sop-category-toggle" data-sop-category-toggle="${escapeHtml(category)}" aria-expanded="${isExpanded}">
+              <strong>${escapeHtml(category)}</strong>
+              <span>${sops.length} ${sops.length === 1 ? "SOP" : "SOPs"}</span>
+            </button>
+          </td>
+        </tr>
+        ${isExpanded ? sops.map((item) => renderSopTocRow(item, state.data.sops.indexOf(item), true)).join("") : ""}
+      `;
+    })
     .join("");
   const visibleItems = state.sopCategory
     ? allItems.filter((item) => (item.category || item.type || "General") === state.sopCategory)
@@ -705,7 +873,7 @@ function renderSops() {
               .join("")}
           </select>
         </div>
-        ${renderTableTools("sops", "Add SOP Row")}
+        ${renderTableTools("sops")}
       </div>
       <div class="sop-content">
         <div class="table-wrap">
@@ -749,10 +917,10 @@ function groupByCategory(items) {
     }, {});
 }
 
-function renderSopTocRow(item, index) {
+function renderSopTocRow(item, index, isCategoryChild = false) {
   const id = sopId(item);
   return `
-    <tr>
+    <tr class="${isCategoryChild ? "sop-category-child" : ""}">
       <td>
         ${renderEditableField("sops", index, "id", item.id || item.name || "", "SOP ID")}
       </td>
@@ -830,13 +998,29 @@ function renderCerts() {
   if (state.certPhase && !phases.includes(state.certPhase)) {
     state.certPhase = "";
   }
-  const items = state.certPhase
-    ? allItems.filter((item) => (item.phase || "Other") === state.certPhase)
-    : allItems;
-  const rows = items
-    .map((item) => ({ item, index: state.data.certs.indexOf(item) }))
-    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.phase || "").localeCompare(b.item.phase || "") || (a.item.track || "").localeCompare(b.item.track || "") || (a.item.name || "").localeCompare(b.item.name || ""))
-    .map(({ item, index }) => renderCertRow(item, index))
+  const rows = groups
+    .filter(([phase]) => !state.certPhase || phase === state.certPhase)
+    .map(([phase, categoryItems]) => {
+      const isExpanded = Boolean(state.searchTerm || state.certPhase) || state.expandedCertCategories.has(phase);
+      const childRows = isExpanded
+        ? categoryItems
+            .map((item) => ({ item, index: state.data.certs.indexOf(item) }))
+            .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.track || "").localeCompare(b.item.track || "") || (a.item.name || "").localeCompare(b.item.name || ""))
+            .map(({ item, index }) => renderCertRow(item, index, true))
+            .join("")
+        : "";
+      return `
+        <tr class="cert-category-row">
+          <td colspan="5">
+            <button type="button" class="cert-category-toggle" data-cert-category-toggle="${escapeHtml(phase)}" aria-expanded="${isExpanded}">
+              <strong>${escapeHtml(phase)}</strong>
+              <span>${categoryItems.length} ${categoryItems.length === 1 ? "certification" : "certifications"}</span>
+            </button>
+          </td>
+        </tr>
+        ${childRows}
+      `;
+    })
     .join("");
 
   target.innerHTML = `
@@ -855,7 +1039,7 @@ function renderCerts() {
               .join("")}
           </select>
         </div>
-        ${renderTableTools("certs", "Add Cert Row")}
+        ${renderTableTools("certs")}
       </div>
       <div>
         <div class="table-wrap">
@@ -877,9 +1061,9 @@ function renderCerts() {
   `;
 }
 
-function renderCertRow(item, index) {
+function renderCertRow(item, index, isCategoryChild = false) {
   return `
-    <tr>
+    <tr class="${isCategoryChild ? "cert-category-child" : ""}">
       <td>${renderEditableField("certs", index, "track", item.track || "", "Track")}</td>
       <td>
         <a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a>
@@ -930,6 +1114,7 @@ function renderSchedule(preservedScrollTop = null) {
         })
         .join("")}
     </section>
+    ${renderOnCallDayDialog()}
   `;
 
   target.querySelectorAll("[data-oncall-notes]").forEach((field) => {
@@ -938,6 +1123,18 @@ function renderSchedule(preservedScrollTop = null) {
   });
 
   const calendarWindow = target.querySelector("[data-oncall-window]");
+  const dayDialog = target.querySelector("[data-oncall-dialog]");
+  if (dayDialog && !dayDialog.open) {
+    dayDialog.showModal();
+    dayDialog.querySelectorAll("[data-oncall-notes]").forEach((field) => {
+      field.style.height = "auto";
+      field.style.height = `${field.scrollHeight}px`;
+    });
+    dayDialog.addEventListener("cancel", () => {
+      state.onCallDate = "";
+      renderSchedule(calendarWindow.scrollTop);
+    }, { once: true });
+  }
   const selectedCalendar = target.querySelector(`[data-oncall-calendar-month="${CSS.escape(state.onCallMonth)}"]`);
   calendarWindow.dataset.shifting = "true";
   requestAnimationFrame(() => {
@@ -1066,12 +1263,6 @@ function renderOnCallCalendarDays(items, monthValue) {
   const days = items.map((item) => {
     const date = new Date(`${item.date}T12:00:00`);
     const isActive = state.onCallDate === item.date;
-    const fullDateLabel = new Intl.DateTimeFormat("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(date);
     const current = onCallDisplayItem(item);
     const savedNotes = localStorage.getItem(onCallNotesKey(item.date));
     const notes = savedNotes ?? defaultOnCallNotes(item);
@@ -1079,28 +1270,56 @@ function renderOnCallCalendarDays(items, monthValue) {
     return `
       <article class="oncall-day ${isActive ? "is-active" : ""}" tabindex="0" role="button" data-oncall-date="${escapeHtml(item.date)}">
         <span class="oncall-date">${date.getDate()}</span>
-        ${isActive ? `<span class="oncall-date-label">${escapeHtml(fullDateLabel)}</span>` : ""}
-        ${
-          isActive
-            ? `
-              <label>IRM<input data-oncall-field="primary" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.primary)}"></label>
-              <label>BIRM<input data-oncall-field="backup" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.backup)}"></label>
-              <label>Out of Office<input data-oncall-field="pto" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml((current.pto || []).join(", "))}"></label>
-              <label>Notes<textarea data-oncall-notes="${escapeHtml(item.date)}" rows="6">${escapeHtml(notes)}</textarea></label>
-            `
-            : `
-              <p class="oncall-role"><b>IRM:</b> ${escapeHtml(current.primary)}</p>
-              <p class="oncall-role"><b>BIRM:</b> ${escapeHtml(current.backup)}</p>
-              <button class="oncall-note-trigger" type="button" data-oncall-open>
-                ${escapeHtml(preview)}${preview ? "…" : "No notes…"}
-              </button>
-            `
-        }
+        <p class="oncall-role"><b>IRM:</b> ${escapeHtml(current.primary)}</p>
+        <p class="oncall-role"><b>BIRM:</b> ${escapeHtml(current.backup)}</p>
+        <button class="oncall-note-trigger" type="button" data-oncall-open>
+          ${escapeHtml(preview)}${preview ? "…" : "No notes…"}
+        </button>
       </article>
     `;
   });
 
   return [...blanks, ...days].join("");
+}
+
+function renderOnCallDayDialog() {
+  if (!state.onCallDate) {
+    return "";
+  }
+
+  const item = state.data.schedule.find((entry) => entry.date === state.onCallDate);
+  if (!item) {
+    return "";
+  }
+
+  const date = new Date(`${item.date}T12:00:00`);
+  const fullDateLabel = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+  const current = onCallDisplayItem(item);
+  const savedNotes = localStorage.getItem(onCallNotesKey(item.date));
+  const notes = savedNotes ?? defaultOnCallNotes(item);
+
+  return `
+    <dialog class="oncall-day-dialog" data-oncall-dialog aria-labelledby="oncall-dialog-title">
+      <div class="oncall-dialog-header">
+        <div>
+          <span class="oncall-date">${date.getDate()}</span>
+          <h3 id="oncall-dialog-title">${escapeHtml(fullDateLabel)}</h3>
+        </div>
+        <button type="button" class="oncall-dialog-close" data-oncall-close aria-label="Close day details">Close</button>
+      </div>
+      <div class="oncall-dialog-fields">
+        <label>IRM<input data-oncall-field="primary" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.primary)}"></label>
+        <label>BIRM<input data-oncall-field="backup" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml(current.backup)}"></label>
+        <label>Out of Office<input data-oncall-field="pto" data-oncall-edit="${escapeHtml(item.date)}" value="${escapeHtml((current.pto || []).join(", "))}"></label>
+        <label class="oncall-dialog-notes">Notes<textarea data-oncall-notes="${escapeHtml(item.date)}" rows="6">${escapeHtml(notes)}</textarea></label>
+      </div>
+    </dialog>
+  `;
 }
 
 function onCallNotePreview(notes) {
@@ -1154,24 +1373,29 @@ function renderLinks() {
   if (state.linkCategory && !categories.includes(state.linkCategory)) {
     state.linkCategory = "";
   }
-  const items = state.linkCategory
-    ? allItems.filter((item) => (item.category || "Reference") === state.linkCategory)
-    : allItems;
-  const rows = items
-    .map((item) => ({ item, index: state.data.links.indexOf(item) }))
-    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.category || "").localeCompare(b.item.category || "") || (a.item.name || "").localeCompare(b.item.name || ""))
-    .map(
-      ({ item, index }) => `
-        <tr>
-          <td>
-            ${renderEditableField("links", index, "name", item.name || "", "Resource")}
+  const rows = groups
+    .filter(([category]) => !state.linkCategory || category === state.linkCategory)
+    .map(([category, categoryItems]) => {
+      const isExpanded = Boolean(state.searchTerm || state.linkCategory) || state.expandedLinkCategories.has(category);
+      const childRows = isExpanded
+        ? categoryItems
+            .map((item) => ({ item, index: state.data.links.indexOf(item) }))
+            .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.name || "").localeCompare(b.item.name || ""))
+            .map(({ item, index }) => renderLinkRow(item, index, true))
+            .join("")
+        : "";
+      return `
+        <tr class="link-category-row">
+          <td colspan="4">
+            <button type="button" class="link-category-toggle" data-link-category-toggle="${escapeHtml(category)}" aria-expanded="${isExpanded}">
+              <strong>${escapeHtml(category)}</strong>
+              <span>${categoryItems.length} ${categoryItems.length === 1 ? "link" : "links"}</span>
+            </button>
           </td>
-          <td>${renderEditableField("links", index, "description", item.description || "", "Description", true)}</td>
-          <td>${renderEditableField("links", index, "url", item.url || "", "URL", true)}</td>
-          <td>${renderRowActions("links", index)}</td>
         </tr>
-      `,
-    )
+        ${childRows}
+      `;
+    })
     .join("");
 
   target.innerHTML = `
@@ -1190,7 +1414,7 @@ function renderLinks() {
               .join("")}
           </select>
         </div>
-        ${renderTableTools("links", "Add Link Row")}
+        ${renderTableTools("links")}
       </div>
       <div>
         <div class="table-wrap">
@@ -1211,20 +1435,39 @@ function renderLinks() {
   `;
 }
 
+function renderLinkRow(item, index, isCategoryChild = false) {
+  return `
+    <tr class="${isCategoryChild ? "link-category-child" : ""}">
+      <td>${renderEditableField("links", index, "name", item.name || "", "Resource")}</td>
+      <td>${renderEditableField("links", index, "description", item.description || "", "Description", true)}</td>
+      <td>${renderExternalLink(item.url || "", "URL")}</td>
+      <td>${renderRowActions("links", index)}</td>
+    </tr>
+  `;
+}
+
 function groupByResourceCategory(items) {
   return items
     .slice()
-    .sort((a, b) => (a.category || "Reference").localeCompare(b.category || "Reference"))
+    .sort((a, b) => normalizeLinkCategory(a.category).localeCompare(normalizeLinkCategory(b.category)))
     .reduce((groups, item) => {
-      const category = item.category || "Reference";
+      const category = normalizeLinkCategory(item.category);
       groups[category] ||= [];
       groups[category].push(item);
       return groups;
     }, {});
 }
 
+function normalizeLinkCategory(category) {
+  const value = String(category || "Reference").trim() || "Reference";
+  return LINK_CATEGORY_GROUPS[value] || value;
+}
+
 function renderGithub() {
   const sections = ["Overview", "Repo", "Projects", "Teams", "People", "Security"];
+  if (!sections.includes(state.githubSection)) {
+    state.githubSection = "Overview";
+  }
   const overviewItems = [
     ["Repo", "A repository stores a project's files, code, documentation, and change history so people can work together and track updates."],
     ["Projects", "Projects organize work into boards, roadmaps, and task lists so teams can plan assignments, monitor progress, and manage deadlines."],
@@ -1232,14 +1475,6 @@ function renderGithub() {
     ["People", "People are the organization members and collaborators who create content, review changes, manage repositories, and support projects."],
     ["Security", "Security tools identify vulnerable dependencies, exposed secrets, risky code, and access concerns so teams can investigate and correct them."],
   ];
-  const descriptions = {
-    Overview: "Summary and activity for the GitHub workspace.",
-    Repo: "Repository folders, files, branches, and documentation.",
-    Projects: "Project boards, milestones, and tracked work.",
-    Teams: "Team structure, responsibilities, and collaboration resources.",
-    People: "Repository contributors, owners, and contacts.",
-    Security: "Security guidance, reviews, alerts, and repository controls.",
-  };
   const target = document.querySelector("#github-list");
   const githubSearch = state.searchTerm.toLowerCase();
   const visibleOverviewItems = overviewItems.filter(([name, description]) =>
@@ -1264,22 +1499,17 @@ function renderGithub() {
 
   target.innerHTML = `
     <div class="github-layout">
-      <div class="section-filter-toolbar">
-        <label for="github-section-select">Section</label>
-        <select id="github-section-select" data-github-section-select>
-          ${sections
-            .map(
-              (section) => `
-                <option value="${escapeHtml(section)}" ${state.githubSection === section ? "selected" : ""}>${escapeHtml(section)}</option>
-              `,
-            )
-            .join("")}
-        </select>
-      </div>
+      <nav class="github-mini-nav" aria-label="GitHub sections">
+        ${sections
+          .map(
+            (section) => `
+              <button type="button" data-github-section="${escapeHtml(section)}" class="${state.githubSection === section ? "is-active" : ""}" aria-current="${state.githubSection === section ? "page" : "false"}">${escapeHtml(section)}</button>
+            `,
+          )
+          .join("")}
+      </nav>
       <div>
-        <section class="github-section" aria-labelledby="github-section-heading">
-          <h3 id="github-section-heading">${escapeHtml(state.githubSection)}</h3>
-          <p>${escapeHtml(descriptions[state.githubSection])}</p>
+        <section class="github-section" aria-label="${escapeHtml(state.githubSection)}">
           ${
             state.githubSection === "Overview"
               ? `
@@ -1375,7 +1605,12 @@ function bindEvents() {
   globalSearch.addEventListener("input", (event) => {
     state.searchTerm = event.target.value.trim();
     renderAll();
+    if (state.activeView === "soc") {
+      syncSocSearch();
+    }
   });
+
+  socFrame?.addEventListener("load", syncSocSearch);
 
   document.addEventListener("change", (event) => {
     const trainingAreaSelect = event.target.closest("[data-training-area-select]");
@@ -1481,6 +1716,69 @@ function bindEvents() {
   });
 
   document.addEventListener("click", (event) => {
+    const certCategoryToggle = event.target.closest("[data-cert-category-toggle]");
+    if (certCategoryToggle) {
+      const category = certCategoryToggle.dataset.certCategoryToggle;
+      if (state.expandedCertCategories.has(category)) {
+        state.expandedCertCategories.delete(category);
+      } else {
+        state.expandedCertCategories.add(category);
+      }
+      renderCerts();
+      return;
+    }
+
+    const linkCategoryToggle = event.target.closest("[data-link-category-toggle]");
+    if (linkCategoryToggle) {
+      const category = linkCategoryToggle.dataset.linkCategoryToggle;
+      if (state.expandedLinkCategories.has(category)) {
+        state.expandedLinkCategories.delete(category);
+      } else {
+        state.expandedLinkCategories.add(category);
+      }
+      renderLinks();
+      return;
+    }
+
+    const sopCategoryToggle = event.target.closest("[data-sop-category-toggle]");
+    if (sopCategoryToggle) {
+      const category = sopCategoryToggle.dataset.sopCategoryToggle;
+      if (state.expandedSopCategories.has(category)) {
+        state.expandedSopCategories.delete(category);
+      } else {
+        state.expandedSopCategories.add(category);
+      }
+      renderSops();
+      return;
+    }
+
+    const onCallClose = event.target.closest("[data-oncall-close]");
+    if (onCallClose) {
+      const calendarWindow = document.querySelector("[data-oncall-window]");
+      const scrollTop = calendarWindow?.scrollTop ?? null;
+      state.onCallDate = "";
+      renderSchedule(scrollTop);
+      return;
+    }
+
+    const trainingTier = event.target.closest("[data-training-tier]");
+    if (trainingTier) {
+      const tier = trainingTier.dataset.trainingTier;
+      if (state.expandedTrainingTiers.has(tier)) {
+        state.expandedTrainingTiers.delete(tier);
+      } else {
+        state.expandedTrainingTiers.add(tier);
+      }
+      renderTraining();
+      return;
+    }
+
+    const dashboardView = event.target.closest("[data-dashboard-view]");
+    if (dashboardView) {
+      setView(dashboardView.dataset.dashboardView);
+      return;
+    }
+
     const tableAdd = event.target.closest("[data-table-add]");
     if (tableAdd) {
       addTableRow(tableAdd.dataset.tableAdd);
