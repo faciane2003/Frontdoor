@@ -204,11 +204,13 @@ function setView(view) {
     item.classList.toggle("is-active", item.dataset.view === view);
   });
   viewTitle.textContent = viewTitles[view] || "Dashboard";
-  window.location.hash = view;
+  window.history.replaceState(null, "", `#${encodeURIComponent(view)}`);
   appNav.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     document.querySelectorAll(`#${CSS.escape(view)} .table-wrap, #${CSS.escape(view)} [data-oncall-window]`).forEach((scroller) => {
       scroller.scrollTop = 0;
       scroller.scrollLeft = 0;
