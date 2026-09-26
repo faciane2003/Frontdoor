@@ -288,6 +288,16 @@ The user requested local-only work by default:
 - Do not commit or push unless the user explicitly asks.
 - Exception: on 2026-09-16, the user explicitly requested updating this `AGENT.md`, committing, and pushing the current checkpoint to GitHub.
 
+## Hosting Note
+
+### 2026-09-19
+
+- GitHub Pages for `faciane2003/GithubPages` was temporarily pointed at a `gh-pages` branch containing the Kevin repo map demo.
+- User then requested the live site return to the main `GithubPages` project.
+- GitHub Pages source was switched back to `main` at `/` using GitHub CLI.
+- A Pages rebuild was requested after the switch.
+- The Kevin map work remains on pushed branches `kevinExample` and `gh-pages`, but live hosting should now use `main`.
+
 ## Working Rules
 
 - Keep the site static and GitHub Pages compatible.
@@ -295,3 +305,14 @@ The user requested local-only work by default:
 - Prefer simple, readable HTML/CSS/JS over build tooling unless the project needs it.
 - Test locally in a browser before publishing.
 - Keep filenames lowercase and URL-friendly where practical.
+
+## 2026-09-26 Navigation and Shared Editing UI Update
+
+- Added Dashboard and GitHub to the primary navigation.
+- GitHub includes Overview, Repo, Projects, Teams, People, and Security sections.
+- Replaced pinned subsection navigation with dropdown filters above the JQS, SOPs, Certs, Links, and GitHub content.
+- Table headers remain visible inside vertically scrolling tables.
+- `+ Add Row` opens a form with Save and Cancel actions; saved rows are placed at the top and persist in browser `localStorage`.
+- On-Call uses a scrollable month calendar with editable day details and locally persistent notes.
+- Opening a primary navigation view resets the page and that view's internal table or calendar to the top.
+- Shared cross-user persistence is not implemented; browser edits remain local to each user's browser.

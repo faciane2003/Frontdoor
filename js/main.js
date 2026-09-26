@@ -207,6 +207,13 @@ function setView(view) {
   window.location.hash = view;
   appNav.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  requestAnimationFrame(() => {
+    document.querySelectorAll(`#${CSS.escape(view)} .table-wrap, #${CSS.escape(view)} [data-oncall-window]`).forEach((scroller) => {
+      scroller.scrollTop = 0;
+      scroller.scrollLeft = 0;
+    });
+  });
 }
 
 function renderDashboard() {
