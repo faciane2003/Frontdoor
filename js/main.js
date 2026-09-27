@@ -1,3 +1,5 @@
+// Static JSON files are the site's shared baseline. Browser edits are layered on
+// top later, so refreshing never mutates the checked-in source data.
 const DATA_FILES = {
   dashboard: "data/dashboard.json",
   knowledge: "data/knowledge.json",
@@ -7,8 +9,12 @@ const DATA_FILES = {
   schedule: "data/on-call.json",
   links: "data/links.json",
   whitepages: "data/whitepages.json",
+  cons: "data/cons.json",
+  usStates: "assets/us-states.json",
 };
 
+// This single state object keeps rendering predictable: UI controls update state,
+// then only the affected view is redrawn.
 const state = {
   activeView: "dashboard",
   data: {
@@ -20,6 +26,8 @@ const state = {
     schedule: [],
     links: [],
     whitepages: [],
+    cons: [],
+    usStates: [],
   },
   searchTerm: "",
   sopCategory: "",
@@ -27,6 +35,7 @@ const state = {
   sopCategoriesInitialized: false,
   trainingArea: "",
   expandedTrainingTiers: new Set(),
+  expandedTrainingAreas: new Set(),
   onCallDate: "",
   certPhase: "",
   expandedCertCategories: new Set(),
@@ -36,8 +45,11 @@ const state = {
   githubSection: "Overview",
   toolsStanding: [],
   toolsNew: [],
+  toolsSection: "Intune Checker",
+  consSelectedMonth: "",
 };
 
+// Navigation keys match both the section IDs in index.html and the URL hashes.
 const viewTitles = {
   dashboard: "SOC HUD",
   knowledge: "Knowledge Base",
@@ -48,8 +60,8 @@ const viewTitles = {
   links: "Links",
   github: "GitHub",
   tools: "Tools",
-  whitepages: "Whitepages",
-  soc: "SOC",
+  cons: "CONs",
+  soc: "SOC Reference",
 };
 
 const navToggle = document.querySelector(".nav-toggle");
@@ -61,7 +73,14 @@ const tableRowDialog = document.querySelector("#table-row-dialog");
 const tableRowForm = document.querySelector("#table-row-form");
 const tableRowFields = document.querySelector("#table-row-fields");
 const socFrame = document.querySelector(".soc-frame");
+const conferenceDialog = document.querySelector("#conference-dialog");
+const conferenceDialogTitle = document.querySelector("#conference-dialog-title");
+const conferenceDialogContent = document.querySelector("#conference-dialog-content");
+const intuneEntryDialog = document.querySelector("#intune-entry-dialog");
+const intuneEntryForm = document.querySelector("#intune-entry-form");
+const intuneEntryValue = document.querySelector("#intune-entry-value");
 
+// Local-storage keys are centralized to avoid accidental collisions between tools.
 const DASHBOARD_STORAGE_KEY = "dashboard-items";
 const DASHBOARD_SECTIONS = [
   ["tasks", "Tasks"],
@@ -71,18 +90,23 @@ const DASHBOARD_SECTIONS = [
   ["updates", "Webpage Updates"],
 ];
 const TABLE_STORAGE_PREFIX = "editable-table";
+const CERTS_DATA_VERSION_KEY = "editable-table:certs-version";
+const CERTS_DATA_VERSION = "2";
 const INTUNE_STORAGE_KEYS = {
   standing: "intune-checker:standing",
   new: "intune-checker:new",
 };
 const EDITABLE_TABLES = ["training", "sops", "certs", "links", "whitepages"];
+// Each schema drives the shared Add Item dialog, including field order and type.
 const TABLE_FORM_SCHEMAS = {
   training: [["id", "ID", "text", true], ["tier", "Tier", "text", true], ["title", "Task", "text", true], ["area", "Area", "text", true], ["standard", "Performance Standard", "textarea", true]],
   sops: [["id", "ID", "text", true], ["title", "Title", "text", true], ["category", "Category", "text", true], ["purpose", "Purpose", "textarea", true]],
-  certs: [["track", "Track", "text", true], ["name", "Certification", "text", true], ["provider", "Provider", "text", false], ["phase", "Category", "text", true], ["focus", "Focus", "textarea", true], ["notes", "Notes", "textarea", false], ["url", "Official URL", "url", true]],
+  certs: [["track", "Track", "text", true], ["name", "Certification", "text", true], ["provider", "Provider", "text", false], ["rating", "Rating", "rating", true], ["phase", "Category", "text", true], ["focus", "Focus", "textarea", true], ["notes", "Notes", "textarea", false], ["url", "Official URL", "url", true]],
   links: [["name", "Title", "text", true], ["category", "Category", "select", true], ["url", "URL", "url", true], ["description", "Description", "textarea", true]],
   whitepages: [["ticket", "Ticket", "text", true], ["reason", "Reason", "text", true], ["domain", "Domain", "text", true]],
 };
+// Mock schedule inputs produce consistent sample coverage for months generated in
+// the browser. Replace these arrays when a real schedule source is connected.
 const ON_CALL_PEOPLE = ["Maya Chen", "Andre Patel", "Nina Brooks", "Luis Romero", "Jordan Ellis"];
 const ON_CALL_PTO_ROTATION = [["Sam Rivera"], ["Taylor Morgan", "Chris Lee"], [], ["Avery Scott"], ["Morgan Blake"], [], ["Riley Park"]];
 const ON_CALL_ROTATION_ANCHOR = "2026-09-17";
@@ -100,6 +124,45 @@ const ON_CALL_OFFICE_NOTES = [
   "Inventory review is due today. Record equipment changes and submit replacement requests for missing or damaged items.",
   "End-of-day reminder: close completed tasks, update pending work, and leave a clear handoff note for the next shift.",
 ];
+// Conference pins use real city coordinates. The same projection is applied to
+// these points and the Census state boundaries, keeping every pin aligned.
+const CONFERENCE_COORDINATES = {
+  "Bethesda, Maryland": [38.9847, -77.0947],
+  "Atlanta, Georgia": [33.749, -84.388],
+  "Bellevue, Washington": [47.6101, -122.2015],
+  "Reston, Virginia": [38.9586, -77.357],
+  "Boston, Massachusetts": [42.3601, -71.0589],
+  "Orlando, Florida": [28.5383, -81.3792],
+  "Arlington, Virginia": [38.8816, -77.091],
+  "New York City, New York": [40.7128, -74.006],
+  "Coral Gables, Florida": [25.7215, -80.2684],
+  "Dallas, Texas": [32.7767, -96.797],
+  "The Woodlands, Texas": [30.1658, -95.4613],
+  "Houston, Texas": [29.7604, -95.3698],
+  "Scottsdale, Arizona": [33.4942, -111.9261],
+  "Jacksonville, Florida": [30.3322, -81.6557],
+  "Washington, District of Columbia": [38.9072, -77.0369],
+  "San Francisco, California": [37.7749, -122.4194],
+};
+// Intl formatters are relatively expensive to construct, so reuse them for every
+// timeline row, tooltip, popup, and scrubber update.
+const CONFERENCE_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const CONFERENCE_SHORT_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const CONFERENCE_MONTH_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+// GitHub data is intentionally static placeholder content until an API is wired in.
 const GITHUB_SECTION_ITEMS = {
   Overview: [],
   Repo: [
@@ -172,6 +235,7 @@ const GITHUB_REPO_DESCRIPTIONS = {
   WraithWatch: "Monitoring project for detecting suspicious activity and coordinating follow-up reviews.",
 };
 
+// These maps consolidate narrow legacy categories without rewriting saved rows.
 const LINK_CATEGORY_GROUPS = {
   "Apple Artifacts": "Digital Forensics",
   "Artifact Extraction": "Digital Forensics",
@@ -210,6 +274,7 @@ const SOP_CATEGORY_GROUPS = {
   "Vulnerability Management": "Network & Vulnerability",
 };
 
+// All data inserted into HTML templates passes through this small escaping helper.
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -244,6 +309,8 @@ function syncSocSearch() {
   socSearch.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
+// Fetch all baseline files in parallel; one failed response stops initialization
+// with a useful message rather than leaving partially populated views.
 async function loadData() {
   const entries = await Promise.all(
     Object.entries(DATA_FILES).map(async ([key, url]) => {
@@ -263,6 +330,7 @@ async function loadData() {
   applySavedTables();
 }
 
+// Switch views, restore view-specific defaults, and reset each scroll container.
 function setView(view) {
   state.activeView = view;
   if (view === "github") {
@@ -275,6 +343,9 @@ function setView(view) {
     ensureOnCallMonth(state.onCallMonth);
     state.onCallDate = "";
     renderSchedule();
+  }
+  if (view !== "github" && view !== "schedule" && view !== "soc") {
+    renderView(view);
   }
   document.querySelectorAll(".view").forEach((section) => {
     section.classList.toggle("is-active", section.id === view);
@@ -316,8 +387,8 @@ function renderDashboard() {
     ["schedule", "On-Call", "The team calendar tracks primary coverage, backup coverage, absences, and daily handoff notes."],
     ["github", "GitHub", "Repository, project, team, people, and security views organize collaborative development work."],
     ["tools", "Tools", "Operational utilities compare, normalize, and review shared data lists."],
-    ["whitepages", "Whitepages", "Whitepages provides a dedicated workspace for shared directory and contact-reference information."],
-    ["soc", "SOC", "The cybersecurity workspace groups analyst workflows, networking, systems, labs, and reference material."],
+    ["cons", "CONs", "Upcoming U.S. cybersecurity conferences provide dates, locations, focus areas, and official event links."],
+    ["soc", "SOC Reference", "The cybersecurity reference groups analyst workflows, networking, systems, labs, and supporting material."],
   ];
   const search = state.searchTerm.toLowerCase();
   const visibleTopics = topics.filter(([, name, description]) =>
@@ -411,6 +482,8 @@ function tableStorageKey(collection) {
   return `${TABLE_STORAGE_PREFIX}:${collection}`;
 }
 
+// Merge local edits with the latest checked-in rows. Source fields fill missing
+// values, while explicitly edited browser values continue to win.
 function applySavedTables() {
   EDITABLE_TABLES.forEach((collection) => {
     const saved = localStorage.getItem(tableStorageKey(collection));
@@ -421,7 +494,15 @@ function applySavedTables() {
     try {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed)) {
-        state.data[collection] = mergeSavedRows(collection, state.data[collection], parsed);
+        const sourceRows = state.data[collection];
+        state.data[collection] = mergeSavedRows(collection, sourceRows, parsed);
+        if (collection === "certs" && localStorage.getItem(CERTS_DATA_VERSION_KEY) !== CERTS_DATA_VERSION) {
+          const savedKeys = new Set(state.data.certs.map((row) => rowKey("certs", row)).filter(Boolean));
+          const newCatalogRows = sourceRows.filter((row) => !savedKeys.has(rowKey("certs", row)));
+          state.data.certs.push(...newCatalogRows);
+          localStorage.setItem(CERTS_DATA_VERSION_KEY, CERTS_DATA_VERSION);
+          saveTable("certs");
+        }
       }
     } catch {
       localStorage.removeItem(tableStorageKey(collection));
@@ -514,7 +595,7 @@ function safeExternalUrl(value) {
 function renderExternalLink(value, label) {
   const href = safeExternalUrl(value);
   if (!href) {
-    return renderEditableField(collection, index, name, value, label);
+    return `<span aria-label="${escapeHtml(label)}">${escapeHtml(value)}</span>`;
   }
 
   return `<a class="is-link-like table-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(`${label}: ${value}`)}">${escapeHtml(value)}</a>`;
@@ -532,6 +613,8 @@ function fieldText(field) {
   return field.isContentEditable ? field.textContent.trim() : field.value.trim();
 }
 
+// Build one shared dialog from the selected table schema instead of maintaining a
+// separate form for every section.
 function addTableRow(collection) {
   const defaults = {
     training: {
@@ -554,6 +637,7 @@ function addTableRow(collection) {
       name: "",
       provider: "",
       track: "",
+      rating: "Beginner",
       phase: state.certPhase || "Foundations",
       focus: "",
       notes: "",
@@ -585,6 +669,14 @@ function addTableRow(collection) {
       let control;
       if (type === "textarea") {
         control = `<textarea id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" rows="3" ${required ? "required" : ""}>${escapeHtml(value)}</textarea>`;
+      } else if (type === "rating") {
+        control = `
+          <select id="entry-${escapeHtml(name)}" name="${escapeHtml(name)}" ${required ? "required" : ""}>
+            ${["Beginner", "Average", "Expert"]
+              .map((rating) => `<option value="${rating}" ${rating === value ? "selected" : ""}>${rating}</option>`)
+              .join("")}
+          </select>
+        `;
       } else if (type === "select") {
         const categories = [...new Set((state.data.links || []).map((item) => normalizeLinkCategory(item.category)).filter(Boolean))]
           .concat(value)
@@ -783,10 +875,26 @@ function renderTraining() {
     .map(([tier, tierItems]) => {
       const isExpanded = Boolean(state.searchTerm) || state.expandedTrainingTiers.has(tier);
       const childRows = isExpanded
-        ? tierItems
-            .map((item) => ({ item, index: state.data.training.indexOf(item) }))
-            .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.area || "").localeCompare(b.item.area || "") || (a.item.id || "").localeCompare(b.item.id || ""))
-            .map(({ item, index }) => renderTrainingRow(item, index, true))
+        ? Object.entries(groupTrainingByArea(tierItems))
+            .map(([area, areaItems]) => {
+              const areaKey = `${tier}::${area}`;
+              const isAreaExpanded = Boolean(state.searchTerm) || state.expandedTrainingAreas.has(areaKey);
+              const areaRows = isAreaExpanded
+                ? areaItems
+                    .map((item) => ({ item, index: state.data.training.indexOf(item) }))
+                    .sort((a, b) => (b.item._addedAt || 0) - (a.item._addedAt || 0) || (a.item.id || "").localeCompare(b.item.id || ""))
+                    .map(({ item, index }) => renderTrainingRow(item, index, true))
+                    .join("")
+                : "";
+              return `
+                <tr class="training-area-row">
+                  <td colspan="5">
+                    <button type="button" class="training-area-toggle" data-training-area="${escapeHtml(areaKey)}" aria-expanded="${isAreaExpanded}">${escapeHtml(area)}</button>
+                  </td>
+                </tr>
+                ${areaRows}
+              `;
+            })
             .join("")
         : "";
       return `
@@ -794,7 +902,6 @@ function renderTraining() {
           <td colspan="5">
             <button type="button" class="training-tier-toggle" data-training-tier="${escapeHtml(tier)}" aria-expanded="${isExpanded}">
               <strong>${escapeHtml(tier)}</strong>
-              <span>${tierItems.length} ${tierItems.length === 1 ? "task" : "tasks"}</span>
             </button>
           </td>
         </tr>
@@ -827,7 +934,7 @@ function renderTraining() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Tier</th>
+                <th>Area</th>
                 <th>Task</th>
                 <th>Performance Standard</th>
                 <th>Actions</th>
@@ -857,7 +964,7 @@ function renderTrainingRow(item, index, isTierChild = false) {
   return `
     <tr class="${isTierChild ? "training-tier-child" : ""}">
       <td>${renderEditableField("training", index, "id", item.id, "JQS ID")}</td>
-      <td>${isTierChild ? `<span class="training-tier-child-label">${escapeHtml(formatTier(item.tier))}</span>` : renderEditableField("training", index, "tier", formatTier(item.tier), "Tier")}</td>
+      <td>${isTierChild ? `<span class="training-tier-child-label">${escapeHtml(item.area || "Uncategorized")}</span>` : renderEditableField("training", index, "area", item.area || "Uncategorized", "Area")}</td>
       <td>${renderEditableField("training", index, "title", item.title, "Task", true)}</td>
       <td>${renderEditableField("training", index, "standard", item.standard, "Performance Standard", true)}</td>
       <td>${renderRowActions("training", index)}</td>
@@ -990,7 +1097,7 @@ function renderSopTocRow(item, index, isCategoryChild = false) {
   return `
     <tr class="${isCategoryChild ? "sop-category-child" : ""}">
       <td>
-        ${renderEditableField("sops", index, "id", item.id || item.name || "", "SOP ID")}
+        <a class="table-link" href="https://www.google.com/" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeHtml(item.id || item.name || "SOP")} example link">${escapeHtml(item.id || item.name || "")}</a>
       </td>
       <td>
         <button class="table-link sop-open-link editable-field is-multiline" type="button" contenteditable="true" data-sop-open="${id}" data-table-field="sops-${index}" data-table-name="title" aria-label="SOP Title">${escapeHtml(item.title || item.type || item.name || "")}</button>
@@ -1079,10 +1186,9 @@ function renderCerts() {
         : "";
       return `
         <tr class="cert-category-row">
-          <td colspan="5">
+          <td colspan="6">
             <button type="button" class="cert-category-toggle" data-cert-category-toggle="${escapeHtml(phase)}" aria-expanded="${isExpanded}">
               <strong>${escapeHtml(phase)}</strong>
-              <span>${categoryItems.length} ${categoryItems.length === 1 ? "certification" : "certifications"}</span>
             </button>
           </td>
         </tr>
@@ -1116,6 +1222,7 @@ function renderCerts() {
               <tr>
                 <th>Track</th>
                 <th>Certification</th>
+                <th>Rating</th>
                 <th>Focus</th>
                 <th>Notes</th>
                 <th>Actions</th>
@@ -1137,6 +1244,7 @@ function renderCertRow(item, index, isCategoryChild = false) {
         <a class="table-link" href="${escapeHtml(item.url || "#")}">${escapeHtml(item.name || "Untitled Certification")}</a>
         ${renderEditableField("certs", index, "provider", item.provider || "", "Provider")}
       </td>
+      <td>${renderEditableField("certs", index, "rating", item.rating || "Average", "Rating")}</td>
       <td>${renderEditableField("certs", index, "focus", item.focus || "", "Focus", true)}</td>
       <td>${renderEditableField("certs", index, "notes", item.notes || "", "Notes", true)}</td>
       <td>${renderRowActions("certs", index)}</td>
@@ -1144,6 +1252,8 @@ function renderCertRow(item, index, isCategoryChild = false) {
   `;
 }
 
+// The calendar renders a three-month window and preserves its own scroll position
+// while days or adjacent months are opened.
 function renderSchedule(preservedScrollTop = null) {
   const target = document.querySelector("#schedule-list");
   const availableMonths = onCallMonths(state.data.schedule);
@@ -1537,6 +1647,8 @@ function normalizeLinkCategory(category) {
   return LINK_CATEGORY_GROUPS[value] || value;
 }
 
+// GitHub sections share one renderer so switching the mini navigation does not
+// duplicate cards, empty states, or repository-table markup.
 function renderGithub() {
   const sections = ["Overview", "Repo", "Projects", "Teams", "People", "Security"];
   if (!sections.includes(state.githubSection)) {
@@ -1623,7 +1735,7 @@ function renderGithub() {
   `;
 }
 
-function renderWhitepages() {
+function renderWhitepagesContent() {
   const rows = filtered("whitepages")
     .map((item) => ({ item, index: state.data.whitepages.indexOf(item) }))
     .map(
@@ -1638,11 +1750,15 @@ function renderWhitepages() {
     )
     .join("");
 
-  document.querySelector("#whitepages-list").innerHTML = rows
+  return `<div class="whitepages-content">${rows
     ? `
       <div class="table-tools whitepages-tools">
         <button class="table-add" type="button" data-table-add="whitepages">Add Row</button>
         <button class="table-import" type="button" data-whitepages-import>Import Sheet</button>
+        <select data-whitepages-export-format aria-label="Whitepages export format">
+          <option value="xlsx">XLSX</option><option value="xls">XLS</option><option value="ods">ODS</option><option value="csv">CSV</option><option value="txt">TXT</option>
+        </select>
+        <button class="table-import" type="button" data-whitepages-export>Export</button>
         <input class="sr-only" type="file" data-whitepages-file accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Import Whitepages spreadsheet or text file">
         <span class="import-status" data-whitepages-import-status aria-live="polite"></span>
       </div>
@@ -1657,11 +1773,272 @@ function renderWhitepages() {
       <div class="table-tools whitepages-tools">
         <button class="table-add" type="button" data-table-add="whitepages">Add Row</button>
         <button class="table-import" type="button" data-whitepages-import>Import Sheet</button>
+        <select data-whitepages-export-format aria-label="Whitepages export format">
+          <option value="xlsx">XLSX</option><option value="xls">XLS</option><option value="ods">ODS</option><option value="csv">CSV</option><option value="txt">TXT</option>
+        </select>
+        <button class="table-import" type="button" data-whitepages-export>Export</button>
         <input class="sr-only" type="file" data-whitepages-file accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Import Whitepages spreadsheet or text file">
         <span class="import-status" data-whitepages-import-status aria-live="polite"></span>
       </div>
       ${renderEmpty("No Whitepages entries match.")}
+    `}</div>`;
+}
+
+function renderWhitepages() {
+  renderTools();
+}
+
+function downloadTextFile(contents, filename, type) {
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([contents], { type }));
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+// Export only the three user-facing columns. These headers are also understood by
+// the importer, so exported files can be edited and imported again later.
+function exportWhitepages(format) {
+  const rows = (state.data.whitepages || []).map((item) => ({
+    Ticket: item.ticket || "",
+    Reason: item.reason || "",
+    Domain: item.domain || "",
+  }));
+  const filename = `whitepages-${currentLocalDateValue()}`;
+
+  if (format === "txt") {
+    const text = ["Ticket\tReason\tDomain", ...rows.map((row) => `${row.Ticket}\t${row.Reason}\t${row.Domain}`)].join("\n");
+    downloadTextFile(text, `${filename}.txt`, "text/plain;charset=utf-8");
+    return;
+  }
+
+  if (format === "csv") {
+    const quote = (value) => `"${String(value).replaceAll('"', '""')}"`;
+    const csv = ["Ticket,Reason,Domain", ...rows.map((row) => [row.Ticket, row.Reason, row.Domain].map(quote).join(","))].join("\n");
+    downloadTextFile(csv, `${filename}.csv`, "text/csv;charset=utf-8");
+    return;
+  }
+
+  if (!window.XLSX) {
+    const status = document.querySelector("[data-whitepages-import-status]");
+    if (status) status.textContent = "Spreadsheet export is still loading. Try again in a moment.";
+    return;
+  }
+
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(rows), "Whitepages");
+  XLSX.writeFile(workbook, `${filename}.${format}`, { bookType: format });
+}
+
+// Conference dates are parsed in UTC to prevent a date moving backward for users
+// west of Greenwich.
+function formatConferenceDate(startDate, endDate) {
+  const format = (value, includeYear = true) => (includeYear ? CONFERENCE_DATE_FORMATTER : CONFERENCE_SHORT_DATE_FORMATTER)
+    .format(new Date(`${value}T00:00:00Z`));
+  if (!endDate || endDate === startDate) return format(startDate);
+  const sameYear = startDate.slice(0, 4) === endDate.slice(0, 4);
+  const sameMonth = startDate.slice(0, 7) === endDate.slice(0, 7);
+  if (sameMonth) {
+    return `${format(startDate, false)}-${new Date(`${endDate}T00:00:00Z`).getUTCDate()}, ${endDate.slice(0, 4)}`;
+  }
+  return `${format(startDate, !sameYear)}-${format(endDate)}`;
+}
+
+// Apply one projection to state boundaries and city coordinates. This simple
+// contiguous-U.S. projection is fast, deterministic, and requires no map library.
+function projectUsCoordinate(longitude, latitude) {
+  return [
+    30 + ((longitude + 125) / 58.5) * 740,
+    25 + ((49.5 - latitude) / 25.1) * 350,
+  ];
+}
+
+let cachedUsStatePaths = "";
+
+// State geometry never changes during a session, so build its large SVG path
+// string once and reuse it on later searches or CONs rerenders.
+function renderUsStatePaths() {
+  if (cachedUsStatePaths) return cachedUsStatePaths;
+  cachedUsStatePaths = (state.data.usStates || []).map((item) => {
+    const path = (item.rings || []).map((ring) => ring.map(([longitude, latitude], index) => {
+      const [x, y] = projectUsCoordinate(longitude, latitude);
+      return `${index ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
+    }).join(" ") + " Z").join(" ");
+    return `<path class="cons-map-state" d="${path}"></path>`;
+  }).join("");
+  return cachedUsStatePaths;
+}
+
+// Build the map and chronological list from the same filtered conference set so
+// search results, pins, and timeline entries can never disagree.
+function renderCons() {
+  const target = document.querySelector("#cons-list");
+  const today = currentLocalDateValue();
+  const conferences = filtered("cons")
+    .filter((item) => (item.endDate || item.startDate) >= today)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate) || a.name.localeCompare(b.name));
+
+  if (!conferences.length) {
+    target.innerHTML = renderEmpty("No upcoming conferences match.");
+    return;
+  }
+
+  const firstMonth = conferences[0].startDate.slice(0, 7);
+  const lastMonth = conferences.reduce((latest, item) => item.endDate > latest ? item.endDate : latest, conferences[0].endDate).slice(0, 7);
+  const mapMonths = [];
+  const monthCursor = new Date(`${firstMonth}-01T00:00:00Z`);
+  while (monthCursor.toISOString().slice(0, 7) <= lastMonth) {
+    mapMonths.push(monthCursor.toISOString().slice(0, 7));
+    monthCursor.setUTCMonth(monthCursor.getUTCMonth() + 1);
+  }
+  if (!mapMonths.includes(state.consSelectedMonth)) state.consSelectedMonth = mapMonths[0];
+  const selectedMonthIndex = mapMonths.indexOf(state.consSelectedMonth);
+  const selectedRange = conferenceMonthRange(state.consSelectedMonth);
+
+  const months = conferences.reduce((groups, item) => {
+    const month = CONFERENCE_MONTH_FORMATTER.format(new Date(`${item.startDate}T00:00:00Z`));
+    groups[month] ||= [];
+    groups[month].push(item);
+    return groups;
+  }, {});
+  const locations = conferences.reduce((groups, item) => {
+    const coordinates = CONFERENCE_COORDINATES[item.location];
+    if (!coordinates) return groups;
+    groups[item.location] ||= { coordinates, conferences: [] };
+    groups[item.location].conferences.push(item.name);
+    return groups;
+  }, {});
+  const selectedLocationCount = new Set(
+    conferences
+      .filter((item) => item.startDate <= selectedRange.end && item.endDate >= selectedRange.start)
+      .filter((item) => CONFERENCE_COORDINATES[item.location])
+      .map((item) => item.location),
+  ).size;
+  const mapPins = Object.entries(locations).map(([location, details]) => {
+    const [latitude, longitude] = details.coordinates;
+    const [x, y] = projectUsCoordinate(longitude, latitude);
+    const locationEvents = conferences.filter((item) => item.location === location);
+    const context = locationEvents.map((item) => `${item.name} (${formatConferenceDate(item.startDate, item.endDate)})`).join("; ");
+    const intervals = locationEvents.map((item) => `${item.startDate}|${item.endDate}`).join(",");
+    const visible = locationEvents.some((item) => item.startDate <= selectedRange.end && item.endDate >= selectedRange.start);
+    const label = `${location}: ${context}`;
+    return `
+      <g class="cons-map-pin" tabindex="0" role="img" aria-label="${escapeHtml(label)}" data-map-location="${escapeHtml(location)}" data-map-context="${escapeHtml(context)}" data-map-intervals="${escapeHtml(intervals)}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" ${visible ? "" : "hidden"}>
+        <circle r="8"></circle>
+        <circle r="3"></circle>
+      </g>
     `;
+  }).join("");
+
+  target.innerHTML = `
+    <section class="cons-map" aria-label="Map of upcoming conference locations">
+      <svg viewBox="0 0 800 400" role="img" aria-label="Upcoming U.S. cybersecurity conference locations; pins mark cities represented in the timeline below.">
+        ${renderUsStatePaths()}
+        ${mapPins}
+      </svg>
+      <div class="cons-map-tooltip" data-cons-map-tooltip role="tooltip" hidden></div>
+      <div class="cons-map-scrubber" aria-label="Conference map month">
+        <div class="cons-scrubber-heading">
+          <strong>Map month</strong>
+          <span><span data-cons-month-label>${escapeHtml(CONFERENCE_MONTH_FORMATTER.format(new Date(`${state.consSelectedMonth}-01T00:00:00Z`)))}</span><b class="cons-vacancy" data-cons-vacancy ${selectedLocationCount ? "hidden" : ""}>Vacant</b></span>
+        </div>
+        <label><span>${escapeHtml(CONFERENCE_MONTH_FORMATTER.format(new Date(`${firstMonth}-01T00:00:00Z`)))}</span><input type="range" min="0" max="${mapMonths.length - 1}" value="${selectedMonthIndex}" step="1" data-cons-month data-cons-months="${mapMonths.join(",")}"><span>${escapeHtml(CONFERENCE_MONTH_FORMATTER.format(new Date(`${lastMonth}-01T00:00:00Z`)))}</span></label>
+      </div>
+    </section>
+    <div class="cons-timeline" aria-label="Upcoming cybersecurity conference timeline">
+      ${Object.entries(months).map(([month, items]) => `
+        <section class="cons-month">
+          <h3>${escapeHtml(month)}</h3>
+          <div class="cons-month-events">
+            ${items.map((item) => `
+              <article class="cons-event">
+                <time datetime="${escapeHtml(item.startDate)}">${escapeHtml(formatConferenceDate(item.startDate, item.endDate))}</time>
+                <div class="cons-event-details">
+                  <a class="table-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.name)}</a>
+                  <span>${escapeHtml(item.location)}</span>
+                  <p>${escapeHtml(item.focus)}</p>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `).join("")}
+    </div>
+  `;
+}
+
+function conferenceMonthRange(month) {
+  const [year, monthNumber] = month.split("-").map(Number);
+  const end = new Date(Date.UTC(year, monthNumber, 0)).toISOString().slice(0, 10);
+  return { start: `${month}-01`, end };
+}
+
+function conferenceEventsForLocation(location) {
+  const today = currentLocalDateValue();
+  const range = conferenceMonthRange(state.consSelectedMonth);
+  return (state.data.cons || [])
+    .filter((item) => item.location === location && (item.endDate || item.startDate) >= today)
+    .filter((item) => item.startDate <= range.end && item.endDate >= range.start)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+}
+
+// Move one monthly scrubber and update the existing SVG nodes in place. Avoiding
+// a full rerender keeps the control smooth while it is being dragged.
+function updateConferenceMapMonth(control) {
+  const map = control.closest(".cons-map");
+  const months = control.dataset.consMonths.split(",");
+  state.consSelectedMonth = months[Number(control.value)];
+  const range = conferenceMonthRange(state.consSelectedMonth);
+  map.querySelector("[data-cons-month-label]").textContent = CONFERENCE_MONTH_FORMATTER.format(new Date(`${state.consSelectedMonth}-01T00:00:00Z`));
+  let visiblePinCount = 0;
+  map.querySelectorAll(".cons-map-pin").forEach((pin) => {
+    const isVisible = pin.dataset.mapIntervals.split(",").some((interval) => {
+      const [startDate, endDate] = interval.split("|");
+      return startDate <= range.end && endDate >= range.start;
+    });
+    // SVGElement does not implement HTMLElement.hidden consistently. Toggle the
+    // actual attribute so the CSS selector hides and reveals pins while scrubbing.
+    pin.toggleAttribute("hidden", !isVisible);
+    if (isVisible) visiblePinCount += 1;
+  });
+  map.querySelector("[data-cons-vacancy]")?.toggleAttribute("hidden", visiblePinCount > 0);
+  const tooltip = map.querySelector("[data-cons-map-tooltip]");
+  if (tooltip) tooltip.hidden = true;
+  if (conferenceDialog?.open) conferenceDialog.close();
+}
+
+function openConferenceDetails(location, pin) {
+  if (conferenceDialog.open && conferenceDialog.dataset.location === location) {
+    conferenceDialog.close();
+    conferenceDialog.dataset.location = "";
+    return;
+  }
+  const events = conferenceEventsForLocation(location);
+  if (!events.length) return;
+
+  conferenceDialogTitle.textContent = location;
+  conferenceDialogContent.innerHTML = events.map((item) => `
+    <article class="conference-dialog-event">
+      <div>
+        <time datetime="${escapeHtml(item.startDate)}">${escapeHtml(formatConferenceDate(item.startDate, item.endDate))}</time>
+        <h3>${escapeHtml(item.name)}</h3>
+      </div>
+      <p>${escapeHtml(item.focus)}</p>
+      <a class="table-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Open official event website</a>
+    </article>
+  `).join("");
+  if (conferenceDialog.open) conferenceDialog.close();
+  conferenceDialog.show();
+  conferenceDialog.dataset.location = location;
+  const pinRect = pin.getBoundingClientRect();
+  const popupRect = conferenceDialog.getBoundingClientRect();
+  const gap = 12;
+  const preferredLeft = pinRect.right + gap;
+  const fallbackLeft = pinRect.left - popupRect.width - gap;
+  const left = preferredLeft + popupRect.width <= window.innerWidth - 12 ? preferredLeft : Math.max(12, fallbackLeft);
+  const top = Math.max(12, Math.min(window.innerHeight - popupRect.height - 12, pinRect.top + pinRect.height / 2 - popupRect.height / 2));
+  conferenceDialog.style.left = `${left}px`;
+  conferenceDialog.style.top = `${top}px`;
 }
 
 function normalizeComparisonValue(value) {
@@ -1669,25 +2046,27 @@ function normalizeComparisonValue(value) {
 }
 
 function renderIntuneList(listName, title, items, standingValues) {
-  const visibleItems = items.filter((item) => !state.searchTerm || item.toLowerCase().includes(state.searchTerm.toLowerCase()));
+  const visibleItems = items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => !state.searchTerm || item.toLowerCase().includes(state.searchTerm.toLowerCase()));
   const rows = visibleItems
-    .map((item) => {
+    .map(({ item, index }) => {
       const isNewList = listName === "new";
       const isMatch = isNewList && standingValues.has(normalizeComparisonValue(item));
       const status = isNewList ? `<span class="intune-status ${isMatch ? "is-match" : "is-missing"}">${isMatch ? "Match" : "Not in standing list"}</span>` : "";
-      return `<li class="intune-item ${isNewList ? (isMatch ? "is-match" : "is-missing") : ""}"><span>${escapeHtml(item)}</span>${status}</li>`;
+      return `<tr class="intune-item ${isNewList ? (isMatch ? "is-match" : "is-missing") : ""}"><td>${escapeHtml(item)}</td><td>${status}</td><td><button class="row-trash" type="button" data-tools-delete="${escapeHtml(listName)}" data-tools-index="${index}" aria-label="Delete ${escapeHtml(item)}">&#128465;</button></td></tr>`;
     })
     .join("");
 
   return `
     <section class="intune-list-panel">
       <header class="intune-list-header">
-        <div><h3>${escapeHtml(title)}</h3><span>${items.length} ${items.length === 1 ? "item" : "items"}</span></div>
-        <button class="table-add" type="button" data-tools-upload="${escapeHtml(listName)}">Upload File</button>
+        <h3>${escapeHtml(title)}</h3>
+        <div class="intune-list-tools"><button class="table-add" type="button" data-tools-add="${escapeHtml(listName)}">Add Item</button><button class="table-import" type="button" data-tools-upload="${escapeHtml(listName)}">Upload File</button></div>
         <input class="sr-only" type="file" data-tools-file="${escapeHtml(listName)}" accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Upload ${escapeHtml(title)}">
       </header>
       <div class="import-status" data-tools-status="${escapeHtml(listName)}" aria-live="polite"></div>
-      ${rows ? `<ol class="intune-list">${rows}</ol>` : `<div class="empty-state">Upload a file to populate this list.</div>`}
+      ${rows ? `<div class="intune-table-wrap"><table class="data-table intune-table"><thead><tr><th>Item</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows}</tbody></table></div>` : `<div class="empty-state">Add an item or upload a file to populate this list.</div>`}
     </section>
   `;
 }
@@ -1696,13 +2075,38 @@ function renderTools() {
   const target = document.querySelector("#tools-list");
   if (!target) return;
   const standingValues = new Set(state.toolsStanding.map(normalizeComparisonValue));
+  const isIntune = state.toolsSection === "Intune Checker";
   target.innerHTML = `
-    <div class="tools-selector" aria-label="Selected tool">Intune Checker</div>
-    <div class="intune-columns">
-      ${renderIntuneList("standing", "Standing Comparison List", state.toolsStanding, standingValues)}
-      ${renderIntuneList("new", "New List", state.toolsNew, standingValues)}
+    <div class="tools-layout">
+      <nav class="tools-mini-nav" aria-label="Tools subcategories">
+        ${["Intune Checker", "Whitepages"].map((section) => `<button type="button" class="${state.toolsSection === section ? "is-active" : ""}" data-tools-section="${escapeHtml(section)}" ${state.toolsSection === section ? 'aria-current="page"' : ""}>${escapeHtml(section)}</button>`).join("")}
+      </nav>
+      <section class="tools-subcategory" aria-label="${escapeHtml(state.toolsSection)}">
+        ${isIntune
+          ? `<div class="intune-columns">
+              ${renderIntuneList("standing", "Standing Comparison List", state.toolsStanding, standingValues)}
+              ${renderIntuneList("new", "New List", state.toolsNew, standingValues)}
+            </div>`
+          : renderWhitepagesContent()}
+      </section>
     </div>
   `;
+}
+
+function openIntuneAdd(listName) {
+  intuneEntryForm.dataset.listName = listName;
+  document.querySelector("#intune-entry-dialog-title").textContent = `Add ${listName === "standing" ? "Standing Comparison" : "New List"} Item`;
+  intuneEntryForm.reset();
+  intuneEntryDialog.showModal();
+  intuneEntryValue.focus();
+}
+
+function deleteIntuneItem(listName, index) {
+  const values = listName === "standing" ? state.toolsStanding : state.toolsNew;
+  if (!values[index]) return;
+  values.splice(index, 1);
+  saveIntuneList(listName);
+  renderTools();
 }
 
 function parseIntuneText(text) {
@@ -1724,6 +2128,8 @@ function cleanIntuneValues(values) {
   });
 }
 
+// Imports accept text directly and use SheetJS only when a workbook is supplied.
+// Values are normalized before comparison so casing and whitespace do not matter.
 async function importIntuneFile(file, listName) {
   const status = document.querySelector(`[data-tools-status="${CSS.escape(listName)}"]`);
   const setStatus = (message, isError = false) => {
@@ -1793,6 +2199,8 @@ function parseWhitepagesText(text) {
     .filter((item) => item?.ticket && item.domain);
 }
 
+// Whitepages imports prepend only new records; either a repeated ticket or domain
+// is enough to reject a duplicate.
 async function importWhitepagesFile(file) {
   const status = document.querySelector("[data-whitepages-import-status]");
   const setStatus = (message, isError = false) => {
@@ -1867,20 +2275,42 @@ function renderEmpty(message) {
   return `<div class="empty-state">${escapeHtml(message)}</div>`;
 }
 
-function renderAll() {
-  renderDashboard();
-  renderKnowledge();
-  renderTraining();
-  renderSops();
-  renderCerts();
-  renderSchedule();
-  renderLinks();
-  renderGithub();
-  renderTools();
-  renderWhitepages();
+// A shared renderer registry keeps navigation and search dispatch concise.
+const VIEW_RENDERERS = {
+  dashboard: renderDashboard,
+  knowledge: renderKnowledge,
+  training: renderTraining,
+  sops: renderSops,
+  certs: renderCerts,
+  schedule: renderSchedule,
+  links: renderLinks,
+  github: renderGithub,
+  tools: renderTools,
+  cons: renderCons,
+};
+
+function renderView(view) {
+  VIEW_RENDERERS[view]?.();
 }
 
+// Event delegation keeps listener count stable even though table rows, calendar
+// days, map pins, and forms are replaced during renders.
 function bindEvents() {
+  intuneEntryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const listName = intuneEntryForm.dataset.listName;
+    const value = intuneEntryValue.value.trim();
+    const values = listName === "standing" ? state.toolsStanding : state.toolsNew;
+    if (value && !values.some((item) => normalizeComparisonValue(item) === normalizeComparisonValue(value))) {
+      values.unshift(value);
+      saveIntuneList(listName);
+    }
+    intuneEntryDialog.close();
+    renderTools();
+  });
+
+  document.querySelector("[data-intune-entry-cancel]").addEventListener("click", () => intuneEntryDialog.close());
+
   tableRowForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const collection = tableRowForm.dataset.collection;
@@ -1920,13 +2350,77 @@ function bindEvents() {
 
   globalSearch.addEventListener("input", (event) => {
     state.searchTerm = event.target.value.trim();
-    renderAll();
+    renderView(state.activeView);
     if (state.activeView === "soc") {
       syncSocSearch();
     }
   });
 
   socFrame?.addEventListener("load", syncSocSearch);
+
+  const showMapTooltip = (pin, clientX, clientY) => {
+    const map = pin.closest(".cons-map");
+    const tooltip = map?.querySelector("[data-cons-map-tooltip]");
+    if (!map || !tooltip) return;
+    const context = conferenceEventsForLocation(pin.dataset.mapLocation)
+      .map((item) => `${item.name} (${formatConferenceDate(item.startDate, item.endDate)})`)
+      .join("; ");
+    const signature = `${pin.dataset.mapLocation}|${context}`;
+    if (tooltip.dataset.signature !== signature) {
+      tooltip.innerHTML = `<strong>${escapeHtml(pin.dataset.mapLocation)}</strong><span>${escapeHtml(context)}</span>`;
+      tooltip.dataset.signature = signature;
+    }
+    tooltip.hidden = false;
+    const mapRect = map.getBoundingClientRect();
+    const pinRect = pin.getBoundingClientRect();
+    const x = Number.isFinite(clientX) ? clientX - mapRect.left : pinRect.left + pinRect.width / 2 - mapRect.left;
+    const y = Number.isFinite(clientY) ? clientY - mapRect.top : pinRect.top - mapRect.top;
+    tooltip.style.left = `${Math.max(8, Math.min(mapRect.width - 268, x + 12))}px`;
+    tooltip.style.top = `${Math.max(8, y - 12)}px`;
+  };
+
+  document.addEventListener("pointerover", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    if (pin) showMapTooltip(pin, event.clientX, event.clientY);
+  });
+
+  document.addEventListener("pointermove", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    if (pin) showMapTooltip(pin, event.clientX, event.clientY);
+  });
+
+  document.addEventListener("pointerout", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    if (!pin || pin.contains(event.relatedTarget)) return;
+    const tooltip = pin.closest(".cons-map")?.querySelector("[data-cons-map-tooltip]");
+    if (tooltip) tooltip.hidden = true;
+  });
+
+  document.addEventListener("focusin", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    if (pin) showMapTooltip(pin);
+  });
+
+  document.addEventListener("focusout", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    const tooltip = pin?.closest(".cons-map")?.querySelector("[data-cons-map-tooltip]");
+    if (tooltip) tooltip.hidden = true;
+  });
+
+  document.addEventListener("click", (event) => {
+    const pin = event.target.closest?.(".cons-map-pin");
+    if (pin) {
+      const tooltip = pin.closest(".cons-map")?.querySelector("[data-cons-map-tooltip]");
+      if (tooltip) tooltip.hidden = true;
+      openConferenceDetails(pin.dataset.mapLocation, pin);
+      return;
+    }
+    if (event.target.closest?.("[data-conference-close]")) {
+      conferenceDialog.close();
+      return;
+    }
+    if (conferenceDialog?.open && !event.target.closest?.("#conference-dialog")) conferenceDialog.close();
+  });
 
   document.addEventListener("change", (event) => {
     const toolsFile = event.target.closest("[data-tools-file]");
@@ -2002,6 +2496,12 @@ function bindEvents() {
   });
 
   document.addEventListener("input", (event) => {
+    const monthControl = event.target.closest?.("[data-cons-month]");
+    if (monthControl) {
+      updateConferenceMapMonth(monthControl);
+      return;
+    }
+
     const dashboardField = event.target.closest("[data-dashboard-field]");
     if (dashboardField) {
       syncDashboardItem(dashboardField);
@@ -2103,15 +2603,46 @@ function bindEvents() {
       return;
     }
 
+    const trainingArea = event.target.closest("[data-training-area]");
+    if (trainingArea) {
+      const areaKey = trainingArea.dataset.trainingArea;
+      if (state.expandedTrainingAreas.has(areaKey)) {
+        state.expandedTrainingAreas.delete(areaKey);
+      } else {
+        state.expandedTrainingAreas.add(areaKey);
+      }
+      renderTraining();
+      return;
+    }
+
     const dashboardView = event.target.closest("[data-dashboard-view]");
     if (dashboardView) {
       setView(dashboardView.dataset.dashboardView);
       return;
     }
 
+    const toolsSection = event.target.closest("[data-tools-section]");
+    if (toolsSection) {
+      state.toolsSection = toolsSection.dataset.toolsSection;
+      renderTools();
+      return;
+    }
+
     const toolsUpload = event.target.closest("[data-tools-upload]");
     if (toolsUpload) {
       document.querySelector(`[data-tools-file="${CSS.escape(toolsUpload.dataset.toolsUpload)}"]`)?.click();
+      return;
+    }
+
+    const toolsAdd = event.target.closest("[data-tools-add]");
+    if (toolsAdd) {
+      openIntuneAdd(toolsAdd.dataset.toolsAdd);
+      return;
+    }
+
+    const toolsDelete = event.target.closest("[data-tools-delete]");
+    if (toolsDelete) {
+      deleteIntuneItem(toolsDelete.dataset.toolsDelete, Number(toolsDelete.dataset.toolsIndex));
       return;
     }
 
@@ -2124,6 +2655,13 @@ function bindEvents() {
     const whitepagesImport = event.target.closest("[data-whitepages-import]");
     if (whitepagesImport) {
       document.querySelector("[data-whitepages-file]")?.click();
+      return;
+    }
+
+    const whitepagesExport = event.target.closest("[data-whitepages-export]");
+    if (whitepagesExport) {
+      const format = document.querySelector("[data-whitepages-export-format]")?.value || "xlsx";
+      exportWhitepages(format);
       return;
     }
 
@@ -2211,19 +2749,23 @@ async function init() {
   bindEvents();
   loadIntuneLists();
 
+  let loadError = null;
   try {
     await loadData();
-    renderAll();
   } catch (error) {
-    document.querySelector("#dashboard").insertAdjacentHTML(
-      "afterbegin",
-      renderEmpty(`Data load failed: ${error.message}`),
-    );
+    loadError = error;
   }
 
+  // Render only the requested view at startup. Other sections are created lazily
+  // when selected, which avoids building every large table and calendar up front.
   const hashView = window.location.hash.replace("#", "");
-  if (viewTitles[hashView]) {
-    setView(hashView);
+  setView(viewTitles[hashView] ? hashView : "dashboard");
+
+  if (loadError) {
+    document.querySelector("#dashboard").insertAdjacentHTML(
+      "afterbegin",
+      renderEmpty(`Data load failed: ${loadError.message}`),
+    );
   }
 }
 

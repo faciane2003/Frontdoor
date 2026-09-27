@@ -114,7 +114,7 @@ Current import mapping:
 - workbook task/category summaries -> `data/knowledge.json`
 - no workbook schedule source exists yet -> `data/on-call.json` is generated with mock on-call assignments
 
-`data/certs.json` is not imported from the JQS workbook. It is maintained separately as a cybersecurity certification catalog with provider, level, focus, estimated cost, notes, and official links.
+`data/certs.json` is not imported from the JQS workbook. It is maintained separately as a cybersecurity certification catalog with provider, level, Beginner/Average/Expert rating, focus, estimated cost, notes, and official links.
 
 The importer intentionally treats internal-looking URLs as blank. Public forensics URLs are preserved.
 
@@ -401,7 +401,7 @@ The user requested local-only work by default:
 
 ## Current implementation snapshot
 
-- Primary navigation currently includes Dashboard, SOPs, Links, Certs, JQS, On-Call, GitHub, SOC, Tools, and Whitepages; Whitepages remains the final navigation item.
+- Primary navigation currently includes Dashboard, SOPs, Links, Certs, JQS, On-Call, GitHub, Tools, Whitepages, CONs, and SOC Reference; SOC Reference is the final navigation item.
 - Editable portal tables use local browser storage for persistence, shared Save/Cancel add-row forms, and red row-delete actions where enabled. Static GitHub Pages hosting does not synchronize these browser-local edits between users.
 - SOPs use five consolidated, collapsed-by-default hierarchy categories; Links use six consolidated categories; Certs and JQS retain their category/tier hierarchies. Their hierarchy labels use regular-weight title case.
 - Links columns are ordered Resource, URL, Description, and Actions. URL values open externally, and category count labels have been removed.
@@ -410,3 +410,29 @@ The user requested local-only work by default:
 - Tools contains the Intune Checker with Standing Comparison List and New List panels. Both accept the same supported file formats, normalize and de-duplicate entries, persist locally, and label New List values as matching or missing from the standing list.
 - SOC uses the portal color theme and compact expandable table hierarchy. Static detail rows use readable regular-weight title case, while functional hierarchy rows remain interactive.
 - Puppeteer regression coverage verifies current-day On-Call positioning, popup behavior, sticky Monday-first headers, Intune TXT parsing and comparison, Links column order, and removal of Links category counts.
+- Changed SOC Table of Contents labels, chapter headings, and section metadata from forced uppercase to their natural title casing.
+- Renamed the primary navigation item and Dashboard card from SOC to SOC Reference, updated accessible labels, and positioned it as the final navigation entry after Whitepages.
+- Expanded the Certs dataset through official vendor research from 17 to 55 credentials, adding broader IT foundations, networking, Linux, cloud, identity, SOC, SIEM, governance, privacy, offensive security, forensics, malware analysis, and security architecture coverage without adding new top-level categories.
+- Added an editable Beginner, Average, or Expert rating to every certification and to the add-item form, removed certification-count labels from hierarchy rows, and versioned the expanded catalog so existing browser data receives the new official entries once without defeating later user deletions.
+- Converted SOC Reference's Safe Malware Practice Sources content from oversized cards and pills into compact, regular-weight table rows consistent with the rest of the reference hierarchy.
+- Added a CONs navigation view with a searchable, date-sorted vertical timeline of upcoming U.S. cybersecurity conferences, official external event links, locations, and concise focus descriptions; expired events are hidden automatically.
+- Added a responsive contiguous-U.S. map above the CONs timeline using simplified 2025 U.S. Census Bureau state boundaries, exact latitude/longitude projection for each city, keyboard-focusable pins, and combined labels for cities hosting multiple upcoming events.
+- Added immediate themed CONs map tooltips on pin hover and keyboard focus, showing the city plus every upcoming conference and date represented by that pin.
+- Removed the pins' native SVG title tooltips so only the themed CONs context popup appears.
+- Removed the root SVG title that browsers exposed as a second map tooltip, retaining the map description through an ARIA label instead.
+- Changed CONs map pins from the question-mark help cursor to the standard pointer cursor.
+- Made CONs map pins open a themed details dialog containing every upcoming event in that city, including dates, focus descriptions, and official external links.
+- Anchored the CONs event-details popup beside the selected map pin with viewport edge detection, replacing the centered modal presentation.
+- Added a single monthly scrubber below the CONs map; each position represents one calendar month and immediately filters map pins, hover context, and clicked event details to conferences overlapping that month.
+- Removed the explanatory Census and pin-interaction sentence beneath the CONs map.
+- Refactored portal rendering for performance: views now render lazily, global search redraws only the active view, static U.S. SVG paths are cached, conference date formatters are reused, scrubber movement updates existing pins instead of rebuilding the map, duplicate Certs CSS was removed, and the invalid external-link fallback was corrected.
+- Added plain-English maintenance comments throughout the portal shell, persistence, forms, calendar, GitHub, imports, conference map, event delegation, and SOC Reference hierarchy/search logic.
+- Removed numeric item-count labels from the SOC Reference table of contents while preserving its expandable hierarchy.
+- Added Whitepages exports for TXT, CSV, XLS, XLSX, and ODS with reusable import-compatible headers and a compact format selector beside the Export button.
+- Made an open CONs pin retract its anchored details popup when the same pin is clicked again.
+- Made SOP ID values clickable external example links that open Google in a new tab.
+- Constrained the global search header panel to 320px so its border and background no longer stretch across unused body space.
+- Made Intune Checker an explicit Tools subcategory and added persistent Add Item and per-row delete controls to both its Standing Comparison and New lists while retaining file uploads and comparison status.
+- Fixed the CONs monthly scrubber to toggle the actual `hidden` attribute on SVG pins, allowing visible cities to update correctly for every month; `scripts/verify-cons-map.mjs` provides a browser-level regression check.
+- Moved Whitepages from the primary sidebar into the Tools sub-navigation while preserving its editable table, add/delete controls, imports, exports, and local persistence.
+- Empty months on the CONs map scrubber display a compact `Vacant` badge, which is covered by the browser-level monthly pin regression check.

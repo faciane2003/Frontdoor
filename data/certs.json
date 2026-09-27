@@ -8,7 +8,8 @@
     "url": "https://www.isc2.org/certifications/cc",
     "notes": "Entry-level ISC2 credential for people starting a cybersecurity path.",
     "phase": "1. Foundations",
-    "track": "Entry Foundation"
+    "track": "Entry Foundation",
+    "rating": "Beginner"
   },
   {
     "name": "Security+",
@@ -19,7 +20,8 @@
     "url": "https://www.comptia.org/certifications/security",
     "notes": "Baseline SOC credential; verify regional voucher pricing before purchase.",
     "phase": "1. Foundations",
-    "track": "Entry Foundation"
+    "track": "Entry Foundation",
+    "rating": "Beginner"
   },
   {
     "name": "GSEC",
@@ -30,7 +32,8 @@
     "url": "https://www.giac.org/certifications/security-essentials-gsec/",
     "notes": "Hands-on security fundamentals credential aligned with SANS training.",
     "phase": "1. Foundations",
-    "track": "Hands-On Foundation"
+    "track": "Hands-On Foundation",
+    "rating": "Beginner"
   },
   {
     "name": "Microsoft Security Operations Analyst Associate",
@@ -41,7 +44,8 @@
     "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/",
     "notes": "Best fit for SOCs using Microsoft Sentinel and Defender.",
     "phase": "2. SOC Analyst",
-    "track": "Microsoft SOC"
+    "track": "Microsoft SOC",
+    "rating": "Average"
   },
   {
     "name": "CySA+",
@@ -52,7 +56,8 @@
     "url": "https://www.comptia.org/certifications/cybersecurity-analyst",
     "notes": "Strong fit for blue-team analysts and SOC progression after Security+.",
     "phase": "2. SOC Analyst",
-    "track": "Blue Team Analytics"
+    "track": "Blue Team Analytics",
+    "rating": "Average"
   },
   {
     "name": "GCIH",
@@ -63,7 +68,8 @@
     "url": "https://www.giac.org/certifications/certified-incident-handler-gcih/",
     "notes": "Strong incident response credential for SOC/CSIRT analysts.",
     "phase": "2. SOC Analyst",
-    "track": "Incident Response"
+    "track": "Incident Response",
+    "rating": "Average"
   },
   {
     "name": "GCIA",
@@ -74,7 +80,8 @@
     "url": "https://www.giac.org/certifications/certified-intrusion-analyst-gcia/",
     "notes": "Good fit for network detection and packet-analysis-heavy SOC roles.",
     "phase": "2. SOC Analyst",
-    "track": "Network Detection"
+    "track": "Network Detection",
+    "rating": "Average"
   },
   {
     "name": "AWS Certified Security - Specialty",
@@ -85,7 +92,8 @@
     "url": "https://aws.amazon.com/certification/certified-security-specialty/",
     "notes": "Best fit for cloud security roles in AWS-heavy environments.",
     "phase": "4. Cloud Security",
-    "track": "AWS Cloud Security"
+    "track": "AWS Cloud Security",
+    "rating": "Expert"
   },
   {
     "name": "CCSP",
@@ -96,7 +104,8 @@
     "url": "https://www.isc2.org/certifications/ccsp",
     "notes": "Good fit for cloud security engineers and security architects.",
     "phase": "4. Cloud Security",
-    "track": "Cloud Architecture"
+    "track": "Cloud Architecture",
+    "rating": "Expert"
   },
   {
     "name": "CISA",
@@ -107,7 +116,8 @@
     "url": "https://www.isaca.org/credentialing/cisa",
     "notes": "Best fit for audit, compliance, assurance, and risk roles.",
     "phase": "5. Governance, Risk, and Leadership",
-    "track": "Audit and Assurance"
+    "track": "Audit and Assurance",
+    "rating": "Average"
   },
   {
     "name": "CISM",
@@ -118,7 +128,8 @@
     "url": "https://www.isaca.org/credentialing/cism",
     "notes": "Good management-track certification for security leaders and program owners.",
     "phase": "5. Governance, Risk, and Leadership",
-    "track": "Security Management"
+    "track": "Security Management",
+    "rating": "Expert"
   },
   {
     "name": "CISSP",
@@ -129,7 +140,8 @@
     "url": "https://www.isc2.org/certifications/cissp",
     "notes": "Widely recognized senior cybersecurity certification. Requires experience endorsement after passing.",
     "phase": "5. Governance, Risk, and Leadership",
-    "track": "Senior Security Leadership"
+    "track": "Senior Security Leadership",
+    "rating": "Expert"
   },
   {
     "name": "GCFA",
@@ -140,7 +152,8 @@
     "url": "https://www.giac.org/certifications/certified-forensic-analyst-gcfa/",
     "notes": "Strong forensics and DFIR credential for advanced responders.",
     "phase": "6. Advanced Specialist",
-    "track": "DFIR and Threat Hunting"
+    "track": "DFIR and Threat Hunting",
+    "rating": "Expert"
   },
   {
     "name": "PenTest+",
@@ -151,7 +164,8 @@
     "url": "https://www.comptia.org/certifications/pentest",
     "notes": "Useful for analysts moving toward offensive security or validation testing.",
     "phase": "3. Red Team",
-    "track": "Offensive Security"
+    "track": "Offensive Security",
+    "rating": "Average"
   },
   {
     "name": "CEH",
@@ -162,7 +176,8 @@
     "url": "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
     "notes": "Well-known HR-filter certification. Compare against hands-on options if the role is technical.",
     "phase": "3. Red Team",
-    "track": "Offensive Security"
+    "track": "Offensive Security",
+    "rating": "Average"
   },
   {
     "name": "OSCP",
@@ -173,7 +188,8 @@
     "url": "https://www.offsec.com/courses/pen-200/",
     "notes": "Practical offensive-security certification with a strong hands-on reputation.",
     "phase": "3. Red Team",
-    "track": "Hands-On Offensive Security"
+    "track": "Hands-On Offensive Security",
+    "rating": "Expert"
   },
   {
     "name": "SecurityX",
@@ -184,6 +200,463 @@
     "url": "https://www.comptia.org/certifications/securityx",
     "notes": "Previously CASP+. Better aligned to senior technical security roles than entry-level SOC work.",
     "phase": "6. Advanced Specialist",
-    "track": "Advanced Enterprise Security"
+    "track": "Advanced Enterprise Security",
+    "rating": "Expert"
+  },
+  {
+    "name": "A+",
+    "provider": "CompTIA",
+    "level": "Foundational",
+    "focus": "Computer hardware, operating systems, software troubleshooting, networking, security, and technical support.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/a",
+    "notes": "Broad starting credential for help desk, desktop support, and early IT operations roles.",
+    "phase": "1. Foundations",
+    "track": "IT Support Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Network+",
+    "provider": "CompTIA",
+    "level": "Foundational",
+    "focus": "Network architecture, implementation, operations, troubleshooting, and security fundamentals.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/network",
+    "notes": "Vendor-neutral networking baseline for infrastructure and security careers.",
+    "phase": "1. Foundations",
+    "track": "Network Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Linux+",
+    "provider": "CompTIA",
+    "level": "Foundational",
+    "focus": "Linux administration, security, scripting, containers, troubleshooting, and operational automation.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/linux",
+    "notes": "Vendor-neutral Linux credential useful for system administration and security operations.",
+    "phase": "1. Foundations",
+    "track": "Linux Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Server+",
+    "provider": "CompTIA",
+    "level": "Intermediate",
+    "focus": "Server installation, administration, storage, security, disaster recovery, and troubleshooting.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/server",
+    "notes": "Infrastructure credential for administrators supporting physical and virtual server environments.",
+    "phase": "1. Foundations",
+    "track": "Server Administration",
+    "rating": "Average"
+  },
+  {
+    "name": "Cloud+",
+    "provider": "CompTIA",
+    "level": "Intermediate",
+    "focus": "Cloud architecture, deployment, operations, security, DevOps fundamentals, and troubleshooting.",
+    "cost": "",
+    "url": "https://www.comptia.org/certifications/cloud",
+    "notes": "Vendor-neutral cloud operations credential spanning multiple deployment models.",
+    "phase": "4. Cloud Security",
+    "track": "Cloud Operations",
+    "rating": "Average"
+  },
+  {
+    "name": "CCNA",
+    "provider": "Cisco",
+    "level": "Foundational",
+    "focus": "Network fundamentals, IP connectivity, network access, security fundamentals, automation, and programmability.",
+    "cost": "",
+    "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html",
+    "notes": "Widely recognized networking credential for infrastructure and security practitioners.",
+    "phase": "1. Foundations",
+    "track": "Cisco Networking",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Cisco CyberOps Associate",
+    "provider": "Cisco",
+    "level": "Intermediate",
+    "focus": "Security monitoring, host and network analysis, intrusion investigation, and incident response procedures.",
+    "cost": "",
+    "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/cyberops/cyberops-associate/index.html",
+    "notes": "Cisco blue-team credential aligned with entry and intermediate SOC analyst work.",
+    "phase": "2. SOC Analyst",
+    "track": "Security Operations",
+    "rating": "Average"
+  },
+  {
+    "name": "Cisco CyberOps Professional",
+    "provider": "Cisco",
+    "level": "Advanced",
+    "focus": "Advanced threat hunting, incident response, forensic analysis, automation, and security operations leadership.",
+    "cost": "",
+    "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/cyberops/cyberops-professional/index.html",
+    "notes": "Advanced Cisco SOC credential for experienced analysts and incident responders.",
+    "phase": "6. Advanced Specialist",
+    "track": "Advanced Security Operations",
+    "rating": "Expert"
+  },
+  {
+    "name": "CCNP Security",
+    "provider": "Cisco",
+    "level": "Advanced",
+    "focus": "Enterprise security architecture, network security, identity, secure access, VPNs, content security, and automation.",
+    "cost": "",
+    "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/security/ccnp-security/index.html",
+    "notes": "Professional-level Cisco credential for implementing and operating enterprise security controls.",
+    "phase": "6. Advanced Specialist",
+    "track": "Network Security Engineering",
+    "rating": "Expert"
+  },
+  {
+    "name": "Microsoft Security, Compliance, and Identity Fundamentals",
+    "provider": "Microsoft",
+    "level": "Foundational",
+    "focus": "Security, compliance, identity concepts, Microsoft Entra, and Microsoft security and compliance solutions.",
+    "cost": "",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-compliance-and-identity-fundamentals/",
+    "notes": "Entry Microsoft credential for learners beginning a security, identity, or compliance path.",
+    "phase": "1. Foundations",
+    "track": "Microsoft Security Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Microsoft Azure Fundamentals",
+    "provider": "Microsoft",
+    "level": "Foundational",
+    "focus": "Cloud concepts, Azure architecture and services, governance, management, pricing, and support.",
+    "cost": "",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    "notes": "Foundational Azure credential for technical and nontechnical cloud learners.",
+    "phase": "1. Foundations",
+    "track": "Azure Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Microsoft Identity and Access Administrator Associate",
+    "provider": "Microsoft",
+    "level": "Intermediate",
+    "focus": "Microsoft Entra identities, authentication, access management, workload identities, and identity governance.",
+    "cost": "",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/",
+    "notes": "Role-based Microsoft credential for identity administrators and IAM engineers.",
+    "phase": "4. Cloud Security",
+    "track": "Cloud Identity",
+    "rating": "Average"
+  },
+  {
+    "name": "Microsoft Cybersecurity Architect Expert",
+    "provider": "Microsoft",
+    "level": "Advanced",
+    "focus": "Zero Trust strategy, governance, security operations, identity, infrastructure, applications, and data security architecture.",
+    "cost": "",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/cybersecurity-architect-expert/",
+    "notes": "Expert credential requiring an eligible Microsoft security associate certification plus SC-100.",
+    "phase": "6. Advanced Specialist",
+    "track": "Security Architecture",
+    "rating": "Expert"
+  },
+  {
+    "name": "AWS Certified Cloud Practitioner",
+    "provider": "AWS",
+    "level": "Foundational",
+    "focus": "AWS cloud concepts, core services, security and compliance, billing, pricing, and support.",
+    "cost": "",
+    "url": "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+    "notes": "Foundational AWS credential for understanding cloud services and the shared responsibility model.",
+    "phase": "1. Foundations",
+    "track": "AWS Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "AWS Certified Solutions Architect - Associate",
+    "provider": "AWS",
+    "level": "Intermediate",
+    "focus": "Designing secure, resilient, high-performing, and cost-optimized distributed systems on AWS.",
+    "cost": "",
+    "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+    "notes": "Core AWS architecture credential that provides strong context for cloud security work.",
+    "phase": "4. Cloud Security",
+    "track": "AWS Architecture",
+    "rating": "Average"
+  },
+  {
+    "name": "AWS Certified CloudOps Engineer - Associate",
+    "provider": "AWS",
+    "level": "Intermediate",
+    "focus": "Deploying, managing, monitoring, securing, and troubleshooting workloads and services on AWS.",
+    "cost": "",
+    "url": "https://aws.amazon.com/certification/certified-cloudops-engineer-associate/",
+    "notes": "Operations-focused AWS credential formerly named SysOps Administrator - Associate.",
+    "phase": "4. Cloud Security",
+    "track": "AWS Operations",
+    "rating": "Average"
+  },
+  {
+    "name": "Google Cloud Digital Leader",
+    "provider": "Google Cloud",
+    "level": "Foundational",
+    "focus": "Cloud concepts, Google Cloud products, digital transformation, trust, security, operations, and business value.",
+    "cost": "",
+    "url": "https://cloud.google.com/learn/certification/cloud-digital-leader",
+    "notes": "Foundational Google Cloud credential with no technical prerequisite.",
+    "phase": "1. Foundations",
+    "track": "Google Cloud Foundation",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Google Associate Cloud Engineer",
+    "provider": "Google Cloud",
+    "level": "Intermediate",
+    "focus": "Deploying and securing infrastructure, managing cloud solutions, monitoring operations, and configuring access.",
+    "cost": "",
+    "url": "https://cloud.google.com/learn/certification/cloud-engineer",
+    "notes": "Hands-on Google Cloud operations credential for deploying and maintaining cloud projects.",
+    "phase": "4. Cloud Security",
+    "track": "Google Cloud Operations",
+    "rating": "Average"
+  },
+  {
+    "name": "Google Professional Cloud Security Engineer",
+    "provider": "Google Cloud",
+    "level": "Advanced",
+    "focus": "Identity, network defense, data protection, security operations, automation, compliance, and secure cloud workloads.",
+    "cost": "",
+    "url": "https://cloud.google.com/learn/certification/cloud-security-engineer",
+    "notes": "Advanced Google Cloud credential for designing and operating secure cloud environments.",
+    "phase": "4. Cloud Security",
+    "track": "Google Cloud Security",
+    "rating": "Expert"
+  },
+  {
+    "name": "Google Professional Security Operations Engineer",
+    "provider": "Google Cloud",
+    "level": "Advanced",
+    "focus": "Security monitoring, detection engineering, threat hunting, incident response, and Google security operations tooling.",
+    "cost": "",
+    "url": "https://cloud.google.com/learn/certification",
+    "notes": "Role-based Google Cloud certification for advanced security operations practitioners.",
+    "phase": "2. SOC Analyst",
+    "track": "Cloud Security Operations",
+    "rating": "Expert"
+  },
+  {
+    "name": "SSCP",
+    "provider": "ISC2",
+    "level": "Intermediate",
+    "focus": "Access controls, security operations, risk identification, incident response, cryptography, networks, and systems security.",
+    "cost": "",
+    "url": "https://www.isc2.org/certifications/sscp",
+    "notes": "Practitioner-focused ISC2 credential for implementing and operating security controls.",
+    "phase": "2. SOC Analyst",
+    "track": "Security Administration",
+    "rating": "Average"
+  },
+  {
+    "name": "CGRC",
+    "provider": "ISC2",
+    "level": "Intermediate",
+    "focus": "Governance, risk management, control assessment, authorization, continuous monitoring, and compliance frameworks.",
+    "cost": "",
+    "url": "https://www.isc2.org/certifications/cgrc",
+    "notes": "ISC2 credential for practitioners applying risk management and authorization frameworks.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Governance and Compliance",
+    "rating": "Average"
+  },
+  {
+    "name": "CSSLP",
+    "provider": "ISC2",
+    "level": "Advanced",
+    "focus": "Secure software lifecycle, requirements, architecture, implementation, testing, deployment, and supply-chain security.",
+    "cost": "",
+    "url": "https://www.isc2.org/certifications/csslp",
+    "notes": "Advanced secure-development credential for software and application security professionals.",
+    "phase": "6. Advanced Specialist",
+    "track": "Application Security",
+    "rating": "Expert"
+  },
+  {
+    "name": "CRISC",
+    "provider": "ISACA",
+    "level": "Advanced",
+    "focus": "IT risk identification, assessment, response, mitigation, control design, monitoring, and reporting.",
+    "cost": "",
+    "url": "https://www.isaca.org/credentialing/crisc",
+    "notes": "Risk-focused credential for practitioners connecting technology risk with business objectives.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Technology Risk",
+    "rating": "Expert"
+  },
+  {
+    "name": "CDPSE",
+    "provider": "ISACA",
+    "level": "Advanced",
+    "focus": "Privacy governance, privacy architecture, data lifecycle management, and privacy engineering controls.",
+    "cost": "",
+    "url": "https://www.isaca.org/credentialing/cdpse",
+    "notes": "Technical privacy credential for designing and operating privacy-protective systems.",
+    "phase": "5. Governance, Risk, and Leadership",
+    "track": "Privacy Engineering",
+    "rating": "Expert"
+  },
+  {
+    "name": "GCTI",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Cyber threat intelligence collection, analysis, attribution, intelligence requirements, and strategic reporting.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/cyber-threat-intelligence-gcti/",
+    "notes": "Specialist credential for analysts producing operational and strategic threat intelligence.",
+    "phase": "6. Advanced Specialist",
+    "track": "Threat Intelligence",
+    "rating": "Expert"
+  },
+  {
+    "name": "GREM",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Malware reverse engineering, behavioral analysis, code analysis, document malware, and malicious software reporting.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/reverse-engineering-malware-grem/",
+    "notes": "Advanced hands-on credential for malware analysts and reverse engineers.",
+    "phase": "6. Advanced Specialist",
+    "track": "Malware Analysis",
+    "rating": "Expert"
+  },
+  {
+    "name": "GNFA",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Network forensics, packet analysis, flow records, log correlation, encrypted traffic, and incident reconstruction.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/network-forensic-analyst-gnfa/",
+    "notes": "Network-forensics credential for responders investigating activity across packet and log evidence.",
+    "phase": "6. Advanced Specialist",
+    "track": "Network Forensics",
+    "rating": "Expert"
+  },
+  {
+    "name": "GPEN",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Penetration testing methodology, reconnaissance, exploitation, password attacks, web testing, and reporting.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/penetration-tester-gpen/",
+    "notes": "GIAC penetration-testing credential covering enterprise attack techniques and reporting.",
+    "phase": "3. Red Team",
+    "track": "Penetration Testing",
+    "rating": "Expert"
+  },
+  {
+    "name": "GWAPT",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Web application reconnaissance, authentication attacks, injection, client-side attacks, APIs, and testing methodology.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/web-application-penetration-tester-gwapt/",
+    "notes": "Specialist credential for web application and API penetration testing.",
+    "phase": "3. Red Team",
+    "track": "Web Application Security",
+    "rating": "Expert"
+  },
+  {
+    "name": "GDSA",
+    "provider": "GIAC",
+    "level": "Advanced",
+    "focus": "Defense-in-depth architecture, zero trust, network segmentation, cloud security, identity, and resilient design.",
+    "cost": "",
+    "url": "https://www.giac.org/certifications/defensible-security-architecture-gdsa/",
+    "notes": "Architecture credential for senior defenders designing layered enterprise security controls.",
+    "phase": "6. Advanced Specialist",
+    "track": "Defensible Architecture",
+    "rating": "Expert"
+  },
+  {
+    "name": "Splunk Core Certified Power User",
+    "provider": "Splunk",
+    "level": "Foundational",
+    "focus": "Searching, reporting, knowledge objects, field aliases, lookups, macros, data models, and workflow actions.",
+    "cost": "",
+    "url": "https://www.splunk.com/en_us/training/certification-track/splunk-core-certified-power-user.html",
+    "notes": "Practical starting credential for analysts who search and report in Splunk.",
+    "phase": "2. SOC Analyst",
+    "track": "SIEM Analytics",
+    "rating": "Beginner"
+  },
+  {
+    "name": "Splunk Enterprise Certified Admin",
+    "provider": "Splunk",
+    "level": "Intermediate",
+    "focus": "Splunk Enterprise configuration, data ingestion, indexing, user management, distributed search, and platform monitoring.",
+    "cost": "",
+    "url": "https://www.splunk.com/en_us/training/certification.html",
+    "notes": "Administration credential for operating enterprise Splunk environments and data pipelines.",
+    "phase": "6. Advanced Specialist",
+    "track": "SIEM Administration",
+    "rating": "Average"
+  },
+  {
+    "name": "Splunk Certified Cybersecurity Defense Analyst",
+    "provider": "Splunk",
+    "level": "Intermediate",
+    "focus": "Threat detection, investigation, risk-based alerting, threat intelligence, incident response, and Splunk security workflows.",
+    "cost": "",
+    "url": "https://www.splunk.com/en_us/training/certification.html",
+    "notes": "Splunk security credential designed for SOC and defensive analysis workflows.",
+    "phase": "2. SOC Analyst",
+    "track": "Splunk Security Operations",
+    "rating": "Average"
+  },
+  {
+    "name": "Red Hat Certified System Administrator",
+    "provider": "Red Hat",
+    "level": "Intermediate",
+    "focus": "Enterprise Linux administration, storage, users, services, networking, security, shell scripting, and containers.",
+    "cost": "",
+    "url": "https://www.redhat.com/en/services/certification/rhcsa",
+    "notes": "Performance-based Linux administration credential with direct relevance to security operations.",
+    "phase": "1. Foundations",
+    "track": "Enterprise Linux",
+    "rating": "Average"
+  },
+  {
+    "name": "Red Hat Certified Engineer",
+    "provider": "Red Hat",
+    "level": "Advanced",
+    "focus": "Enterprise Linux automation, configuration management, deployment, administration, and Ansible-based operations.",
+    "cost": "",
+    "url": "https://www.redhat.com/en/services/certification/rhce",
+    "notes": "Advanced performance-based Linux engineering credential built on current RHCSA skills.",
+    "phase": "6. Advanced Specialist",
+    "track": "Linux Automation",
+    "rating": "Expert"
+  },
+  {
+    "name": "Red Hat Certified Specialist in Security: Linux",
+    "provider": "Red Hat",
+    "level": "Advanced",
+    "focus": "Linux security hardening, access controls, encrypted storage, intrusion detection, compliance scanning, and remediation.",
+    "cost": "",
+    "url": "https://www.redhat.com/en/services/training/ex415-red-hat-certified-specialist-security-linux-exam",
+    "notes": "Performance-based specialist credential for securing Red Hat Enterprise Linux systems.",
+    "phase": "6. Advanced Specialist",
+    "track": "Linux Security",
+    "rating": "Expert"
+  },
+  {
+    "name": "Certified Kubernetes Administrator",
+    "provider": "Linux Foundation / CNCF",
+    "level": "Intermediate",
+    "focus": "Kubernetes cluster architecture, installation, networking, workloads, storage, troubleshooting, and security administration.",
+    "cost": "",
+    "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+    "notes": "Performance-based Kubernetes administration credential useful for cloud and container security roles.",
+    "phase": "4. Cloud Security",
+    "track": "Container Infrastructure",
+    "rating": "Average"
   }
 ]

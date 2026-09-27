@@ -2290,6 +2290,8 @@
 
     #toc > .eyebrow {
       margin-bottom: 0.85rem;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     .hero,
@@ -2426,8 +2428,8 @@
       background: var(--panel-strong, #1c2a38);
       color: #8dccff;
       font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      letter-spacing: 0;
+      text-transform: none;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -2553,8 +2555,8 @@
     #toc .toc-section-row small {
       color: var(--muted);
       font-size: 0.7rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     #toc .toc-section-entry {
@@ -3388,6 +3390,51 @@
 
       th {
         top: 120px;
+      }
+    }
+
+    #toc .toc-section-content .safe-malware-sources .safe-source-table {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      border: 1px solid rgba(42, 58, 75, 0.72);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #toc .toc-section-content .safe-malware-sources .safe-source-row {
+      display: grid;
+      grid-template-columns: minmax(7.5rem, 13%) minmax(11rem, 21%) minmax(18rem, 1fr) minmax(13rem, 27%);
+      align-items: center;
+      gap: 0.6rem;
+      min-height: 0;
+      padding: 0.4rem 0.55rem;
+      border-bottom: 1px solid rgba(42, 58, 75, 0.72);
+      background: transparent;
+      font-size: 0.73rem;
+      line-height: 1.3;
+    }
+
+    #toc .toc-section-content .safe-malware-sources .safe-source-row:last-child {
+      border-bottom: 0;
+    }
+
+    #toc .toc-section-content .safe-malware-sources .safe-source-row > * {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+      font: inherit;
+    }
+
+    #toc .toc-section-content .safe-malware-sources .safe-source-row > strong {
+      color: #8dccff;
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      #toc .toc-section-content .safe-malware-sources .safe-source-row {
+        grid-template-columns: minmax(7rem, 28%) minmax(0, 1fr);
       }
     }
   </style>
@@ -5722,55 +5769,16 @@ Get-WinEvent -LogName "Microsoft-Windows-PowerShell/Operational" -MaxEvents 20</
           </div>
         </div>
 
-        <div class="section-card theme-incident">
+        <div class="section-card theme-incident safe-malware-sources">
           <div class="section-title">
             <h3>Safe Malware Practice Sources</h3>
             <span>Sandbox-Oriented</span>
           </div>
-          <div class="sandbox-grid">
-            <div class="sandbox-card roomy-card">
-              <div class="visual-kicker">Traffic / Samples</div>
-              <h4>Malware-Traffic-Analysis.net</h4>
-              <p>Good for practice PCAPs, malware traffic exercises, and case-style walkthroughs without forcing you to collect live malware yourself.</p>
-              <div class="icon-row">
-                <span class="icon-chip">PCAP</span>
-                <span class="icon-chip">DNS</span>
-                <span class="icon-chip">HTTP</span>
-                <span class="icon-chip">Walkthroughs</span>
-              </div>
-            </div>
-            <div class="sandbox-card roomy-card">
-              <div class="visual-kicker">Sandbox</div>
-              <h4>ANY.RUN</h4>
-              <p>Useful for interactive malware behavior viewing and learning what execution chains look like in a controlled analysis platform.</p>
-              <div class="icon-row">
-                <span class="icon-chip">Process Tree</span>
-                <span class="icon-chip">Network</span>
-                <span class="icon-chip">Registry</span>
-                <span class="icon-chip">Screens</span>
-              </div>
-            </div>
-            <div class="sandbox-card roomy-card">
-              <div class="visual-kicker">Challenge Data</div>
-              <h4>CyberDefenders / Blue Labs</h4>
-              <p>Many training platforms provide sanitized artifacts, memory captures, PCAPs, or logs that are safer for skill-building than collecting unknown live samples yourself.</p>
-              <div class="icon-row">
-                <span class="icon-chip">Memory</span>
-                <span class="icon-chip">Artifacts</span>
-                <span class="icon-chip">Cases</span>
-                <span class="icon-chip">Reports</span>
-              </div>
-            </div>
-            <div class="sandbox-card roomy-card">
-              <div class="visual-kicker">Rule</div>
-              <h4>Best practice</h4>
-              <p>Prefer curated PCAPs, challenge artifacts, and controlled analysis platforms over downloading arbitrary unknown binaries to your own environment.</p>
-              <div class="workflow-strip">
-                <div class="workflow-stage"><strong>Acquire</strong><p>Use known training sources.</p></div>
-                <div class="workflow-stage"><strong>Observe</strong><p>Watch in a sandbox or with sensors.</p></div>
-                <div class="workflow-stage"><strong>Document</strong><p>Write what host and network evidence appeared.</p></div>
-              </div>
-            </div>
+          <div class="safe-source-table">
+            <div class="safe-source-row"><span>Traffic / Samples</span><strong>Malware-Traffic-Analysis.net</strong><p>Practice PCAPs, malware traffic exercises, and guided cases without collecting live malware.</p><span>PCAP · DNS · HTTP · Walkthroughs</span></div>
+            <div class="safe-source-row"><span>Sandbox</span><strong>ANY.RUN</strong><p>Interactive malware behavior viewing in a controlled analysis platform.</p><span>Process tree · Network · Registry · Screens</span></div>
+            <div class="safe-source-row"><span>Challenge Data</span><strong>CyberDefenders / Blue Labs</strong><p>Sanitized artifacts, memory captures, PCAPs, and logs for safer skill-building.</p><span>Memory · Artifacts · Cases · Reports</span></div>
+            <div class="safe-source-row"><span>Rule</span><strong>Best practice</strong><p>Use curated challenge data and controlled platforms instead of unknown binaries.</p><span>Acquire safely · Observe behavior · Document evidence</span></div>
           </div>
           <div class="app-shot-grid">
             <div class="app-shot">
@@ -7638,6 +7646,8 @@ and next update time. Remove jargon.</code></pre>
   </div>
 
   <script>
+    // Cache permanent controls once. This reference is a static document, so
+    // repeatedly querying the same elements would only add overhead.
     const tabs = document.querySelectorAll(".tab-button");
     const panels = document.querySelectorAll(".tab-panel");
     const traceButtons = document.querySelectorAll(".trace-button");
@@ -7658,6 +7668,7 @@ and next update time. Remove jargon.</code></pre>
     const MOBILE_SIDEBAR_OPEN_LABEL = "<";
     const MOBILE_SIDEBAR_CLOSED_LABEL = ">";
 
+    // Each trace state shows how evidence accumulates during a sample incident.
     const traceStates = [
       {
         active: ["host"],
@@ -7689,6 +7700,7 @@ and next update time. Remove jargon.</code></pre>
     const searchableRoot = document.querySelector(".content-pane");
     let searchHits = [];
     let activeSearchHitIndex = -1;
+    // Expand acronyms in readable content while leaving code and navigation alone.
     const acronymMap = {
       "IR": "Incident Response",
       "SIEM": "Security Information and Event Management",
@@ -7813,6 +7825,8 @@ and next update time. Remove jargon.</code></pre>
       });
     }
 
+    // Search highlights use mark elements so results can be navigated without
+    // changing the underlying reference content.
     function clearSearchHighlights() {
       const hits = searchableRoot.querySelectorAll("mark.search-hit");
       hits.forEach((hit) => {
@@ -7971,6 +7985,8 @@ and next update time. Remove jargon.</code></pre>
       return "theme-research";
     }
 
+    // Derive hierarchy numbers from DOM order so reordered content never needs
+    // manual renumbering.
     function applyHierarchyNumbers() {
       const chapterGroups = document.querySelectorAll(".nav-group");
 
@@ -8267,6 +8283,7 @@ and next update time. Remove jargon.</code></pre>
       });
     }
 
+    // Build the compact table of contents directly from the authored panels.
     function buildTableOfContents() {
       const tocList = document.getElementById("tocList");
       if (!tocList) {
@@ -8308,10 +8325,6 @@ and next update time. Remove jargon.</code></pre>
 
           if (panel) {
             const cards = [...panel.querySelectorAll(":scope .section-card.is-collapsible")];
-            const headings = [cards.length + (cards.length === 1 ? " section" : " sections")];
-            const detail = document.createElement("small");
-            detail.textContent = headings.join(" • ");
-            tocLink.appendChild(detail);
 
             const sectionList = document.createElement("div");
             sectionList.className = "toc-section-list";
