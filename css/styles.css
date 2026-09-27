@@ -622,29 +622,30 @@ button.table-link {
 }
 
 .whitepages-table {
-  width: 48rem;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
   table-layout: fixed;
 }
 
 .whitepages-table th:first-child,
 .whitepages-table td:first-child {
-  width: 11rem;
+  width: 23%;
 }
 
 .whitepages-table th:nth-child(2),
 .whitepages-table td:nth-child(2) {
-  width: 20rem;
+  width: 42%;
 }
 
 .whitepages-table th:nth-child(3),
 .whitepages-table td:nth-child(3) {
-  width: 11rem;
+  width: 23%;
 }
 
 .whitepages-table th:nth-child(4),
 .whitepages-table td:nth-child(4) {
-  width: 6rem;
+  width: 12%;
 }
 
 .whitepages-table th,
@@ -655,6 +656,11 @@ button.table-link {
 #whitepages-list > .table-tools {
   justify-content: flex-start;
   margin-bottom: 0.55rem;
+}
+
+#whitepages-list > .table-wrap {
+  width: min(100%, 48rem);
+  overflow-x: hidden;
 }
 
 .whitepages-tools {
@@ -1217,7 +1223,8 @@ button.table-link {
 .sop-category-toggle strong {
   color: var(--accent);
   font-size: 0.78rem;
-  text-transform: uppercase;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .sop-category-toggle span {
@@ -1260,7 +1267,8 @@ button.table-link {
 .link-category-toggle strong {
   color: var(--accent);
   font-size: 0.78rem;
-  text-transform: uppercase;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .link-category-toggle span {
@@ -1303,7 +1311,8 @@ button.table-link {
 .cert-category-toggle strong {
   color: var(--accent);
   font-size: 0.78rem;
-  text-transform: uppercase;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .cert-category-toggle span {
@@ -1370,7 +1379,8 @@ button.table-link {
 .training-tier-toggle strong {
   color: var(--accent);
   font-size: 0.78rem;
-  text-transform: uppercase;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .training-tier-toggle span {

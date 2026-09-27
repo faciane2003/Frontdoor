@@ -394,3 +394,19 @@ The user requested local-only work by default:
 - Added a Tools navigation view with an Intune Checker containing standing and new comparison lists, multi-format file imports, normalized de-duplication, match/missing results, search filtering, and local persistence.
 - Reordered Links columns to Resource, URL, Description, and Actions, and removed numeric link counts from category hierarchy rows.
 - Restyled static SOC flowchart rows, including Kali Types, as non-interactive text with title case and normal font weight instead of link-like bold uppercase labels.
+- Restyled Links category hierarchy labels in normal title case and regular font weight while preserving their expand/collapse behavior.
+- Standardized SOP, Certs, and JQS hierarchy labels to match Links with normal casing and regular font weight, while retaining distinct table column headers.
+- Constrained the Whitepages table wrapper to the compact table width so its border and background no longer extend across unused horizontal space.
+- Removed Whitepages horizontal scrolling by allowing its table to shrink to the compact wrapper and converting column widths to proportional sizing.
+
+## Current implementation snapshot
+
+- Primary navigation currently includes Dashboard, SOPs, Links, Certs, JQS, On-Call, GitHub, SOC, Tools, and Whitepages; Whitepages remains the final navigation item.
+- Editable portal tables use local browser storage for persistence, shared Save/Cancel add-row forms, and red row-delete actions where enabled. Static GitHub Pages hosting does not synchronize these browser-local edits between users.
+- SOPs use five consolidated, collapsed-by-default hierarchy categories; Links use six consolidated categories; Certs and JQS retain their category/tier hierarchies. Their hierarchy labels use regular-weight title case.
+- Links columns are ordered Resource, URL, Description, and Actions. URL values open externally, and category count labels have been removed.
+- On-Call opens the calendar without a popup, centers and highlights the current local day, uses a sticky Monday-through-Sunday weekday row, supports adjacent-month scrolling, and opens editable day details only after a click.
+- Whitepages provides editable Ticket, Reason, and Domain columns, compact no-horizontal-scroll layout, add/delete controls, and TXT/CSV/XLS/XLSX/ODS/Google Sheets export imports. Imports prepend new rows and reject any entry whose normalized Ticket or Domain already exists.
+- Tools contains the Intune Checker with Standing Comparison List and New List panels. Both accept the same supported file formats, normalize and de-duplicate entries, persist locally, and label New List values as matching or missing from the standing list.
+- SOC uses the portal color theme and compact expandable table hierarchy. Static detail rows use readable regular-weight title case, while functional hierarchy rows remain interactive.
+- Puppeteer regression coverage verifies current-day On-Call positioning, popup behavior, sticky Monday-first headers, Intune TXT parsing and comparison, Links column order, and removal of Links category counts.
