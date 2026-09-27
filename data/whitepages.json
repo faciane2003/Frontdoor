@@ -1,0 +1,12 @@
+[
+  {
+    "ticket": "INC-1042",
+    "reason": "Investigate a reported domain",
+    "domain": "example.com"
+  },
+  {
+    "ticket": "REQ-2087",
+    "reason": "Review a domain access request",
+    "domain": "contoso.com"
+  }
+]

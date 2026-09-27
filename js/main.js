@@ -6,6 +6,7 @@ const DATA_FILES = {
   certs: "data/certs.json",
   schedule: "data/on-call.json",
   links: "data/links.json",
+  whitepages: "data/whitepages.json",
 };
 
 const state = {
@@ -18,6 +19,7 @@ const state = {
     certs: [],
     schedule: [],
     links: [],
+    whitepages: [],
   },
   searchTerm: "",
   sopCategory: "",
@@ -32,6 +34,8 @@ const state = {
   expandedLinkCategories: new Set(),
   onCallMonth: "",
   githubSection: "Overview",
+  toolsStanding: [],
+  toolsNew: [],
 };
 
 const viewTitles = {
@@ -43,6 +47,8 @@ const viewTitles = {
   schedule: "On-Call",
   links: "Links",
   github: "GitHub",
+  tools: "Tools",
+  whitepages: "Whitepages",
   soc: "SOC",
 };
 
@@ -65,12 +71,17 @@ const DASHBOARD_SECTIONS = [
   ["updates", "Webpage Updates"],
 ];
 const TABLE_STORAGE_PREFIX = "editable-table";
-const EDITABLE_TABLES = ["training", "sops", "certs", "links"];
+const INTUNE_STORAGE_KEYS = {
+  standing: "intune-checker:standing",
+  new: "intune-checker:new",
+};
+const EDITABLE_TABLES = ["training", "sops", "certs", "links", "whitepages"];
 const TABLE_FORM_SCHEMAS = {
   training: [["id", "ID", "text", true], ["tier", "Tier", "text", true], ["title", "Task", "text", true], ["area", "Area", "text", true], ["standard", "Performance Standard", "textarea", true]],
   sops: [["id", "ID", "text", true], ["title", "Title", "text", true], ["category", "Category", "text", true], ["purpose", "Purpose", "textarea", true]],
   certs: [["track", "Track", "text", true], ["name", "Certification", "text", true], ["provider", "Provider", "text", false], ["phase", "Category", "text", true], ["focus", "Focus", "textarea", true], ["notes", "Notes", "textarea", false], ["url", "Official URL", "url", true]],
   links: [["name", "Title", "text", true], ["category", "Category", "select", true], ["url", "URL", "url", true], ["description", "Description", "textarea", true]],
+  whitepages: [["ticket", "Ticket", "text", true], ["reason", "Reason", "text", true], ["domain", "Domain", "text", true]],
 };
 const ON_CALL_PEOPLE = ["Maya Chen", "Andre Patel", "Nina Brooks", "Luis Romero", "Jordan Ellis"];
 const ON_CALL_PTO_ROTATION = [["Sam Rivera"], ["Taylor Morgan", "Chris Lee"], [], ["Avery Scott"], ["Morgan Blake"], [], ["Riley Park"]];
@@ -183,6 +194,22 @@ const LINK_CATEGORY_GROUPS = {
   Utilities: "Utilities & Hashing",
 };
 
+const SOP_CATEGORY_GROUPS = {
+  Triage: "Security Operations",
+  "Case Management": "Security Operations",
+  Operations: "Security Operations",
+  "Response Management": "Incident Response",
+  "Endpoint Response": "Incident Response",
+  "Email Security": "Incident Response",
+  "Detection Engineering": "Detection & Intelligence",
+  "Threat Intelligence": "Detection & Intelligence",
+  "Identity and Access": "Identity, Cloud & Data",
+  "Cloud Security": "Identity, Cloud & Data",
+  "Data Protection": "Identity, Cloud & Data",
+  "Network Security": "Network & Vulnerability",
+  "Vulnerability Management": "Network & Vulnerability",
+};
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -242,6 +269,13 @@ function setView(view) {
     state.githubSection = "Overview";
     renderGithub();
   }
+  if (view === "schedule") {
+    const today = currentLocalDateValue();
+    state.onCallMonth = today.slice(0, 7);
+    ensureOnCallMonth(state.onCallMonth);
+    state.onCallDate = "";
+    renderSchedule();
+  }
   document.querySelectorAll(".view").forEach((section) => {
     section.classList.toggle("is-active", section.id === view);
   });
@@ -258,7 +292,7 @@ function setView(view) {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-    document.querySelectorAll(`#${CSS.escape(view)} .table-wrap, #${CSS.escape(view)} [data-oncall-window]`).forEach((scroller) => {
+    document.querySelectorAll(`#${CSS.escape(view)} .table-wrap`).forEach((scroller) => {
       scroller.scrollTop = 0;
       scroller.scrollLeft = 0;
     });
@@ -266,6 +300,11 @@ function setView(view) {
       syncSocSearch();
     }
   });
+}
+
+function currentLocalDateValue() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
 function renderDashboard() {
@@ -276,6 +315,8 @@ function renderDashboard() {
     ["training", "JQS", "Job qualification standards define the tasks and performance expectations used for training."],
     ["schedule", "On-Call", "The team calendar tracks primary coverage, backup coverage, absences, and daily handoff notes."],
     ["github", "GitHub", "Repository, project, team, people, and security views organize collaborative development work."],
+    ["tools", "Tools", "Operational utilities compare, normalize, and review shared data lists."],
+    ["whitepages", "Whitepages", "Whitepages provides a dedicated workspace for shared directory and contact-reference information."],
     ["soc", "SOC", "The cybersecurity workspace groups analyst workflows, networking, systems, labs, and reference material."],
   ];
   const search = state.searchTerm.toLowerCase();
@@ -388,6 +429,22 @@ function applySavedTables() {
   });
 }
 
+function loadIntuneLists() {
+  Object.entries(INTUNE_STORAGE_KEYS).forEach(([listName, storageKey]) => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      if (Array.isArray(saved)) state[listName === "standing" ? "toolsStanding" : "toolsNew"] = saved;
+    } catch {
+      localStorage.removeItem(storageKey);
+    }
+  });
+}
+
+function saveIntuneList(listName) {
+  const values = listName === "standing" ? state.toolsStanding : state.toolsNew;
+  localStorage.setItem(INTUNE_STORAGE_KEYS[listName], JSON.stringify(values));
+}
+
 function mergeSavedRows(collection, sourceRows, savedRows) {
   const sourceByKey = new Map(sourceRows.map((row) => [rowKey(collection, row), row]).filter(([key]) => key));
   return savedRows.map((savedRow) => {
@@ -415,6 +472,7 @@ function rowKey(collection, row) {
     sops: "id",
     certs: "url",
     links: "url",
+    whitepages: "ticket",
   };
   return String(row?.[keys[collection]] || "").trim().toLowerCase();
 }
@@ -424,10 +482,10 @@ function saveTable(collection) {
   localStorage.setItem(tableStorageKey(collection), JSON.stringify(cleanItems));
 }
 
-function renderTableTools(collection) {
+function renderTableTools(collection, label = "Add Item") {
   return `
     <div class="table-tools">
-      <button class="table-add" type="button" data-table-add="${escapeHtml(collection)}">Add Item</button>
+      <button class="table-add" type="button" data-table-add="${escapeHtml(collection)}">${escapeHtml(label)}</button>
     </div>
   `;
 }
@@ -486,7 +544,7 @@ function addTableRow(collection) {
     sops: {
       id: "",
       title: "",
-      category: state.sopCategory || "General",
+      category: state.sopCategory || "Security Operations",
       purpose: "",
       status: "Pending",
       updated: new Date().toISOString().slice(0, 10),
@@ -506,6 +564,11 @@ function addTableRow(collection) {
       description: "",
       url: "",
       category: state.linkCategory || "Reference",
+    },
+    whitepages: {
+      ticket: "",
+      reason: "",
+      domain: "",
     },
   };
 
@@ -587,6 +650,7 @@ function renderCollection(collection) {
     sops: renderSops,
     certs: renderCerts,
     links: renderLinks,
+    whitepages: renderWhitepages,
   };
   renderers[collection]?.();
 }
@@ -829,7 +893,7 @@ function renderSops() {
   const groups = Object.entries(groupByCategory(allItems)).sort(([a], [b]) => a.localeCompare(b));
   const categories = groups.map(([category]) => category);
   if (!state.sopCategoriesInitialized) {
-    categories.forEach((category) => state.expandedSopCategories.add(category));
+    state.expandedSopCategories.clear();
     state.sopCategoriesInitialized = true;
   }
   if (state.sopCategory && !categories.includes(state.sopCategory)) {
@@ -845,7 +909,6 @@ function renderSops() {
           <td colspan="5">
             <button type="button" class="sop-category-toggle" data-sop-category-toggle="${escapeHtml(category)}" aria-expanded="${isExpanded}">
               <strong>${escapeHtml(category)}</strong>
-              <span>${sops.length} ${sops.length === 1 ? "SOP" : "SOPs"}</span>
             </button>
           </td>
         </tr>
@@ -854,7 +917,7 @@ function renderSops() {
     })
     .join("");
   const visibleItems = state.sopCategory
-    ? allItems.filter((item) => (item.category || item.type || "General") === state.sopCategory)
+    ? allItems.filter((item) => normalizeSopCategory(item.category || item.type) === state.sopCategory)
     : allItems;
 
   target.innerHTML = `
@@ -906,15 +969,20 @@ function groupByCategory(items) {
       if (addedSort) {
         return addedSort;
       }
-      const categorySort = (a.category || a.type || "General").localeCompare(b.category || b.type || "General");
+      const categorySort = normalizeSopCategory(a.category || a.type).localeCompare(normalizeSopCategory(b.category || b.type));
       return categorySort || (a.id || a.name || "").localeCompare(b.id || b.name || "");
     })
     .reduce((groups, item) => {
-      const category = item.category || item.type || "General";
+      const category = normalizeSopCategory(item.category || item.type);
       groups[category] ||= [];
       groups[category].push(item);
       return groups;
     }, {});
+}
+
+function normalizeSopCategory(category) {
+  const value = String(category || "Security Operations").trim() || "Security Operations";
+  return SOP_CATEGORY_GROUPS[value] || value;
 }
 
 function renderSopTocRow(item, index, isCategoryChild = false) {
@@ -927,7 +995,7 @@ function renderSopTocRow(item, index, isCategoryChild = false) {
       <td>
         <button class="table-link sop-open-link editable-field is-multiline" type="button" contenteditable="true" data-sop-open="${id}" data-table-field="sops-${index}" data-table-name="title" aria-label="SOP Title">${escapeHtml(item.title || item.type || item.name || "")}</button>
       </td>
-      <td>${renderEditableField("sops", index, "category", item.category || item.type || "", "Category")}</td>
+      <td>${renderEditableField("sops", index, "category", normalizeSopCategory(item.category || item.type), "Category")}</td>
       <td>${renderEditableField("sops", index, "purpose", item.purpose || "", "Purpose", true)}</td>
       <td>${renderRowActions("sops", index)}</td>
     </tr>
@@ -950,15 +1018,15 @@ function renderSopBody(item) {
     <article id="${id}" class="sop-body" hidden>
       <header class="sop-body-header">
         <div>
-          <h3>${escapeHtml(item.id || item.name || "")} - ${escapeHtml(item.category || item.type || "General")} - ${escapeHtml(item.title || item.type || item.name || "Untitled SOP")}</h3>
+          <h3>${escapeHtml(item.id || item.name || "")} - ${escapeHtml(normalizeSopCategory(item.category || item.type))} - ${escapeHtml(item.title || item.type || item.name || "Untitled SOP")}</h3>
         </div>
+        <dl class="sop-meta">
+          <div>
+            <dt>Updated</dt>
+            <dd>${escapeHtml(item.updated || "Not set")}</dd>
+          </div>
+        </dl>
       </header>
-      <dl class="sop-meta">
-        <div>
-          <dt>Updated</dt>
-          <dd>${escapeHtml(item.updated || "Not set")}</dd>
-        </div>
-      </dl>
       <section class="sop-notes">
         <label for="${id}-notes">Notes</label>
         <textarea id="${id}-notes" data-sop-notes="${id}" rows="5">${escapeHtml(notes)}</textarea>
@@ -1136,9 +1204,15 @@ function renderSchedule(preservedScrollTop = null) {
     }, { once: true });
   }
   const selectedCalendar = target.querySelector(`[data-oncall-calendar-month="${CSS.escape(state.onCallMonth)}"]`);
+  const selectedDay = state.onCallDate
+    ? target.querySelector(`[data-oncall-date="${CSS.escape(state.onCallDate)}"]`)
+    : target.querySelector('[aria-current="date"]');
   calendarWindow.dataset.shifting = "true";
   requestAnimationFrame(() => {
-    calendarWindow.scrollTop = preservedScrollTop ?? selectedCalendar.offsetTop - calendarWindow.offsetTop;
+    const selectedDayPosition = selectedDay
+      ? selectedDay.offsetTop - calendarWindow.offsetTop - Math.max(0, (calendarWindow.clientHeight - selectedDay.offsetHeight) / 2)
+      : null;
+    calendarWindow.scrollTop = preservedScrollTop ?? selectedDayPosition ?? selectedCalendar.offsetTop - calendarWindow.offsetTop;
     requestAnimationFrame(() => {
       calendarWindow.dataset.shifting = "false";
     });
@@ -1173,7 +1247,7 @@ function renderOnCallMonth(monthValue, label, items) {
         <h3 id="oncall-month-${escapeHtml(monthValue)}">${escapeHtml(label)}</h3>
       </header>
       <div class="oncall-weekdays" aria-hidden="true">
-        ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => `<span>${day}</span>`).join("")}
+        ${["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => `<span>${day}</span>`).join("")}
       </div>
       <div class="oncall-calendar-grid">
         ${renderOnCallCalendarDays(items, monthValue)}
@@ -1258,17 +1332,18 @@ function onCallMonths(items) {
 
 function renderOnCallCalendarDays(items, monthValue) {
   const firstDate = new Date(`${monthValue}-01T12:00:00`);
-  const offset = firstDate.getDay();
+  const offset = (firstDate.getDay() + 6) % 7;
   const blanks = Array.from({ length: offset }, () => `<div class="oncall-day is-empty" aria-hidden="true"></div>`);
   const days = items.map((item) => {
     const date = new Date(`${item.date}T12:00:00`);
     const isActive = state.onCallDate === item.date;
+    const isToday = currentLocalDateValue() === item.date;
     const current = onCallDisplayItem(item);
     const savedNotes = localStorage.getItem(onCallNotesKey(item.date));
     const notes = savedNotes ?? defaultOnCallNotes(item);
     const preview = onCallNotePreview(notes);
     return `
-      <article class="oncall-day ${isActive ? "is-active" : ""}" tabindex="0" role="button" data-oncall-date="${escapeHtml(item.date)}">
+      <article class="oncall-day ${isActive ? "is-active" : ""} ${isToday ? "is-today" : ""}" tabindex="0" role="button" data-oncall-date="${escapeHtml(item.date)}" ${isToday ? 'aria-current="date"' : ""}>
         <span class="oncall-date">${date.getDate()}</span>
         <p class="oncall-role"><b>IRM:</b> ${escapeHtml(current.primary)}</p>
         <p class="oncall-role"><b>BIRM:</b> ${escapeHtml(current.backup)}</p>
@@ -1389,7 +1464,6 @@ function renderLinks() {
           <td colspan="4">
             <button type="button" class="link-category-toggle" data-link-category-toggle="${escapeHtml(category)}" aria-expanded="${isExpanded}">
               <strong>${escapeHtml(category)}</strong>
-              <span>${categoryItems.length} ${categoryItems.length === 1 ? "link" : "links"}</span>
             </button>
           </td>
         </tr>
@@ -1422,8 +1496,8 @@ function renderLinks() {
             <thead>
               <tr>
                 <th>Resource</th>
-                <th>Description</th>
                 <th>URL</th>
+                <th>Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -1439,8 +1513,8 @@ function renderLinkRow(item, index, isCategoryChild = false) {
   return `
     <tr class="${isCategoryChild ? "link-category-child" : ""}">
       <td>${renderEditableField("links", index, "name", item.name || "", "Resource")}</td>
-      <td>${renderEditableField("links", index, "description", item.description || "", "Description", true)}</td>
       <td>${renderExternalLink(item.url || "", "URL")}</td>
+      <td>${renderEditableField("links", index, "description", item.description || "", "Description", true)}</td>
       <td>${renderRowActions("links", index)}</td>
     </tr>
   `;
@@ -1549,6 +1623,246 @@ function renderGithub() {
   `;
 }
 
+function renderWhitepages() {
+  const rows = filtered("whitepages")
+    .map((item) => ({ item, index: state.data.whitepages.indexOf(item) }))
+    .map(
+      ({ item, index }) => `
+        <tr>
+          <td>${renderEditableField("whitepages", index, "ticket", item.ticket || "", "Ticket")}</td>
+          <td>${renderEditableField("whitepages", index, "reason", item.reason || "", "Reason")}</td>
+          <td>${renderEditableField("whitepages", index, "domain", item.domain || "", "Domain")}</td>
+          <td>${renderRowActions("whitepages", index)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+
+  document.querySelector("#whitepages-list").innerHTML = rows
+    ? `
+      <div class="table-tools whitepages-tools">
+        <button class="table-add" type="button" data-table-add="whitepages">Add Row</button>
+        <button class="table-import" type="button" data-whitepages-import>Import Sheet</button>
+        <input class="sr-only" type="file" data-whitepages-file accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Import Whitepages spreadsheet or text file">
+        <span class="import-status" data-whitepages-import-status aria-live="polite"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table whitepages-table">
+          <thead><tr><th>Ticket</th><th>Reason</th><th>Domain</th><th>Actions</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `
+    : `
+      <div class="table-tools whitepages-tools">
+        <button class="table-add" type="button" data-table-add="whitepages">Add Row</button>
+        <button class="table-import" type="button" data-whitepages-import>Import Sheet</button>
+        <input class="sr-only" type="file" data-whitepages-file accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Import Whitepages spreadsheet or text file">
+        <span class="import-status" data-whitepages-import-status aria-live="polite"></span>
+      </div>
+      ${renderEmpty("No Whitepages entries match.")}
+    `;
+}
+
+function normalizeComparisonValue(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function renderIntuneList(listName, title, items, standingValues) {
+  const visibleItems = items.filter((item) => !state.searchTerm || item.toLowerCase().includes(state.searchTerm.toLowerCase()));
+  const rows = visibleItems
+    .map((item) => {
+      const isNewList = listName === "new";
+      const isMatch = isNewList && standingValues.has(normalizeComparisonValue(item));
+      const status = isNewList ? `<span class="intune-status ${isMatch ? "is-match" : "is-missing"}">${isMatch ? "Match" : "Not in standing list"}</span>` : "";
+      return `<li class="intune-item ${isNewList ? (isMatch ? "is-match" : "is-missing") : ""}"><span>${escapeHtml(item)}</span>${status}</li>`;
+    })
+    .join("");
+
+  return `
+    <section class="intune-list-panel">
+      <header class="intune-list-header">
+        <div><h3>${escapeHtml(title)}</h3><span>${items.length} ${items.length === 1 ? "item" : "items"}</span></div>
+        <button class="table-add" type="button" data-tools-upload="${escapeHtml(listName)}">Upload File</button>
+        <input class="sr-only" type="file" data-tools-file="${escapeHtml(listName)}" accept=".csv,.txt,.xls,.xlsx,.ods" aria-label="Upload ${escapeHtml(title)}">
+      </header>
+      <div class="import-status" data-tools-status="${escapeHtml(listName)}" aria-live="polite"></div>
+      ${rows ? `<ol class="intune-list">${rows}</ol>` : `<div class="empty-state">Upload a file to populate this list.</div>`}
+    </section>
+  `;
+}
+
+function renderTools() {
+  const target = document.querySelector("#tools-list");
+  if (!target) return;
+  const standingValues = new Set(state.toolsStanding.map(normalizeComparisonValue));
+  target.innerHTML = `
+    <div class="tools-selector" aria-label="Selected tool">Intune Checker</div>
+    <div class="intune-columns">
+      ${renderIntuneList("standing", "Standing Comparison List", state.toolsStanding, standingValues)}
+      ${renderIntuneList("new", "New List", state.toolsNew, standingValues)}
+    </div>
+  `;
+}
+
+function parseIntuneText(text) {
+  return String(text || "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.split(/\t|,|\|/)[0].trim().replace(/^['"]|['"]$/g, ""));
+}
+
+function cleanIntuneValues(values) {
+  const headerNames = new Set(["device", "device name", "hostname", "computer", "computer name", "name", "serial number", "identifier", "standing comparison list", "new list"]);
+  const seen = new Set();
+  return values.filter((value, index) => {
+    const normalized = normalizeComparisonValue(value);
+    if (!normalized || (index === 0 && headerNames.has(normalized)) || seen.has(normalized)) return false;
+    seen.add(normalized);
+    return true;
+  });
+}
+
+async function importIntuneFile(file, listName) {
+  const status = document.querySelector(`[data-tools-status="${CSS.escape(listName)}"]`);
+  const setStatus = (message, isError = false) => {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.toggle("is-error", isError);
+  };
+  if (!file) return;
+
+  const isTextFile = file.name.toLowerCase().endsWith(".txt");
+  if (!isTextFile && !window.XLSX) {
+    setStatus("Spreadsheet reader could not load. Check your connection and try again.", true);
+    return;
+  }
+
+  try {
+    setStatus("Reading file...");
+    let values;
+    if (isTextFile) {
+      values = parseIntuneText(await file.text());
+    } else {
+      const workbook = XLSX.read(await file.arrayBuffer(), { type: "array" });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: "", raw: false });
+      values = rows.map((row) => row.find((cell) => String(cell).trim()) || "");
+    }
+
+    const cleaned = cleanIntuneValues(values);
+    if (!cleaned.length) {
+      setStatus("No list entries were found in that file.", true);
+      return;
+    }
+
+    if (listName === "standing") state.toolsStanding = cleaned;
+    else state.toolsNew = cleaned;
+    saveIntuneList(listName);
+    renderTools();
+    const updatedStatus = document.querySelector(`[data-tools-status="${CSS.escape(listName)}"]`);
+    if (updatedStatus) updatedStatus.textContent = `${cleaned.length} unique ${cleaned.length === 1 ? "item" : "items"} loaded.`;
+  } catch {
+    setStatus("Could not read that file. Upload TXT, CSV, or an exported spreadsheet.", true);
+  }
+}
+
+function parseWhitepagesText(text) {
+  const lines = String(text || "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  return lines
+    .map((line, index) => {
+      const values = line.includes("\t")
+        ? line.split("\t")
+        : line.includes(",")
+          ? line.split(",")
+          : line.includes("|")
+            ? line.split("|")
+            : line.split(/\s+/);
+      const cleaned = values.map((value) => value.trim().replace(/^['"]|['"]$/g, ""));
+      const ticket = cleaned[0] || "";
+      const domain = cleaned.at(-1) || "";
+      const reason = cleaned.length > 2 ? cleaned.slice(1, -1).join(" ") : "";
+      if (index === 0 && ticket.toLowerCase() === "ticket" && domain.toLowerCase() === "domain") return null;
+      return { ticket, reason, domain };
+    })
+    .filter((item) => item?.ticket && item.domain);
+}
+
+async function importWhitepagesFile(file) {
+  const status = document.querySelector("[data-whitepages-import-status]");
+  const setStatus = (message, isError = false) => {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.toggle("is-error", isError);
+  };
+
+  if (!file) return;
+  const isTextFile = file.name.toLowerCase().endsWith(".txt");
+  if (!isTextFile && !window.XLSX) {
+    setStatus("Spreadsheet reader could not load. Check your connection and try again.", true);
+    return;
+  }
+
+  try {
+    setStatus("Reading file...");
+    let importedRows;
+    if (isTextFile) {
+      importedRows = parseWhitepagesText(await file.text());
+    } else {
+      const workbook = XLSX.read(await file.arrayBuffer(), { type: "array" });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const sourceRows = XLSX.utils.sheet_to_json(firstSheet, { defval: "", raw: false });
+      importedRows = sourceRows
+        .map((sourceRow) => {
+          const normalized = Object.fromEntries(
+            Object.entries(sourceRow).map(([key, value]) => [String(key).trim().toLowerCase(), String(value).trim()]),
+          );
+          return { ticket: normalized.ticket || "", reason: normalized.reason || "", domain: normalized.domain || "" };
+        })
+        .filter((item) => item.ticket && item.domain);
+    }
+
+    if (!importedRows.length) {
+      setStatus("No rows found. Use Ticket, Reason, and Domain column headers.", true);
+      return;
+    }
+
+    const knownTickets = new Set(
+      state.data.whitepages.map((item) => String(item.ticket || "").trim().toLowerCase()).filter(Boolean),
+    );
+    const knownDomains = new Set(
+      state.data.whitepages.map((item) => String(item.domain || "").trim().toLowerCase()).filter(Boolean),
+    );
+    const additions = importedRows.filter((item) => {
+      const ticket = String(item.ticket || "").trim().toLowerCase();
+      const domain = String(item.domain || "").trim().toLowerCase();
+      if (knownTickets.has(ticket) || knownDomains.has(domain)) return false;
+      knownTickets.add(ticket);
+      knownDomains.add(domain);
+      return true;
+    });
+
+    if (additions.length) {
+      state.data.whitepages.unshift(...additions);
+      saveTable("whitepages");
+      renderWhitepages();
+    }
+
+    const updatedStatus = document.querySelector("[data-whitepages-import-status]");
+    if (updatedStatus) {
+      const skipped = importedRows.length - additions.length;
+      updatedStatus.textContent = `${additions.length} added${skipped ? `, ${skipped} already listed` : ""}.`;
+    }
+  } catch {
+    setStatus("Could not read that file. Upload TXT, CSV, or an exported Excel workbook.", true);
+  }
+}
+
 function renderEmpty(message) {
   return `<div class="empty-state">${escapeHtml(message)}</div>`;
 }
@@ -1562,6 +1876,8 @@ function renderAll() {
   renderSchedule();
   renderLinks();
   renderGithub();
+  renderTools();
+  renderWhitepages();
 }
 
 function bindEvents() {
@@ -1613,6 +1929,20 @@ function bindEvents() {
   socFrame?.addEventListener("load", syncSocSearch);
 
   document.addEventListener("change", (event) => {
+    const toolsFile = event.target.closest("[data-tools-file]");
+    if (toolsFile) {
+      importIntuneFile(toolsFile.files?.[0], toolsFile.dataset.toolsFile);
+      toolsFile.value = "";
+      return;
+    }
+
+    const whitepagesFile = event.target.closest("[data-whitepages-file]");
+    if (whitepagesFile) {
+      importWhitepagesFile(whitepagesFile.files?.[0]);
+      whitepagesFile.value = "";
+      return;
+    }
+
     const trainingAreaSelect = event.target.closest("[data-training-area-select]");
     if (trainingAreaSelect) {
       state.trainingArea = trainingAreaSelect.value;
@@ -1779,9 +2109,21 @@ function bindEvents() {
       return;
     }
 
+    const toolsUpload = event.target.closest("[data-tools-upload]");
+    if (toolsUpload) {
+      document.querySelector(`[data-tools-file="${CSS.escape(toolsUpload.dataset.toolsUpload)}"]`)?.click();
+      return;
+    }
+
     const tableAdd = event.target.closest("[data-table-add]");
     if (tableAdd) {
       addTableRow(tableAdd.dataset.tableAdd);
+      return;
+    }
+
+    const whitepagesImport = event.target.closest("[data-whitepages-import]");
+    if (whitepagesImport) {
+      document.querySelector("[data-whitepages-file]")?.click();
       return;
     }
 
@@ -1862,10 +2204,12 @@ function bindEvents() {
     toggle.setAttribute("aria-expanded", String(!isExpanded));
     body.hidden = isExpanded;
   });
+
 }
 
 async function init() {
   bindEvents();
+  loadIntuneLists();
 
   try {
     await loadData();

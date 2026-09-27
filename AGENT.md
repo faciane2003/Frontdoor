@@ -367,3 +367,30 @@ The user requested local-only work by default:
 - Grouped Links into independently expandable Category hierarchy rows with counts and SOP-style inset indentation; search and category filtering expand matching groups automatically.
 - Consolidated 19 narrow Links categories into six broader operational groups while normalizing legacy and locally saved category values at render time.
 - Grouped Certs into independently expandable Category hierarchy rows with certification counts and Links-style indented children; search and category filtering expand matches automatically.
+- Converted the SOC interactive packet trace board from large cards and circular controls into compact table-style controls, evidence rows, and a single-line readout.
+- Added Whitepages as a primary navigation view with a dedicated body and a matching Dashboard overview card.
+- Positioned Whitepages as the final item at the bottom of the primary navigation.
+- Added a searchable two-column Whitepages table with Ticket and Domain fields and two example rows.
+- Made Whitepages a locally persistent editable table with click-to-edit cells, red row deletion, and a blue Add Row form using Save and Cancel actions.
+- Added Whitepages spreadsheet import for CSV, Excel, and Google Sheets exports; imports de-duplicate Ticket/Domain pairs, prepend new rows, and use a compact fixed-width table layout.
+- Extended Whitepages import to TXT files containing Ticket, optional Reason, and Domain values separated by tabs, commas, pipes, or whitespace, with an optional header row.
+- Added an editable Reason column between Ticket and Domain across the Whitepages table, Add Row form, sample data, and spreadsheet/text imports.
+- Improved expanded On-Call note readability with normal font weight, larger text, increased line spacing and padding, and stronger foreground/background contrast.
+- Tightened Whitepages import de-duplication so a row is skipped when either its normalized Ticket or normalized Domain already exists, including duplicates within the uploaded file.
+- Made the On-Call navigation default to the user's current local date by selecting the current month, generating the month if needed, and opening today's day details.
+- Added a persistent gold calendar highlight and `aria-current="date"` marker for the user's current local day, distinct from the selected-day state.
+- Centered the preset/current On-Call day within the scrollable calendar viewport on initial navigation so it remains immediately visible after the day-details dialog closes.
+- Changed the optional spreadsheet parser to load asynchronously so a slow or unavailable CDN cannot block initialization of navigation, On-Call, or the rest of the application.
+- Fixed On-Call navigation after Puppeteer reproduction: selecting the nav now rerenders the current-day state, and the generic navigation reset no longer forces the calendar viewport back to scroll position zero.
+- Changed the On-Call default to show the calendar centered on highlighted today without automatically opening the day-details dialog; the dialog remains click-initiated.
+- Made each On-Call weekday row sticky at the top of the scrolling calendar window and added Puppeteer coverage for the sticky position.
+- Changed the On-Call calendar to a Monday-first week with Saturday and Sunday in the final columns, including corrected date-grid offsets and Puppeteer coverage for header order.
+- Removed the numeric “SOP/SOPs” item counts from SOP category hierarchy rows while preserving their expand/collapse controls.
+- Increased the SOC Table of Contents top and left inset, with additional separation below its label, while retaining compact row heights.
+- Removed bold styling from expanded SOC comparison descriptions while retaining emphasis on their short protocol or comparison labels.
+- Consolidated 13 narrow SOP categories into five broader operational groups at render time while retaining compatibility with original and locally saved category values.
+- Moved the SOP Updated metadata card from its own full-width row into the right side of the expanded SOP header, with a stacked responsive fallback.
+- Changed SOP category groups to initialize collapsed by default while retaining manual expansion and automatic expansion during search or category filtering.
+- Added a Tools navigation view with an Intune Checker containing standing and new comparison lists, multi-format file imports, normalized de-duplication, match/missing results, search filtering, and local persistence.
+- Reordered Links columns to Resource, URL, Description, and Actions, and removed numeric link counts from category hierarchy rows.
+- Restyled static SOC flowchart rows, including Kali Types, as non-interactive text with title case and normal font weight instead of link-like bold uppercase labels.

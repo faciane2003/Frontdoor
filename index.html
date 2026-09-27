@@ -29,6 +29,8 @@
           <button class="nav-item" type="button" data-view="schedule">On-Call</button>
           <button class="nav-item" type="button" data-view="github">GitHub</button>
           <button class="nav-item" type="button" data-view="soc">SOC</button>
+          <button class="nav-item" type="button" data-view="tools">Tools</button>
+          <button class="nav-item" type="button" data-view="whitepages">Whitepages</button>
         </nav>
 
       </aside>
@@ -83,6 +85,16 @@
           <div id="github-list"></div>
         </section>
 
+        <section id="whitepages" class="view" aria-labelledby="whitepages-heading">
+          <h2 id="whitepages-heading" class="sr-only">Whitepages</h2>
+          <div id="whitepages-list"></div>
+        </section>
+
+        <section id="tools" class="view" aria-labelledby="tools-heading">
+          <h2 id="tools-heading" class="sr-only">Tools</h2>
+          <div id="tools-list"></div>
+        </section>
+
         <section id="soc" class="view soc-view" aria-labelledby="soc-heading">
           <h2 id="soc-heading" class="sr-only">SOC</h2>
           <iframe class="soc-frame" src="SOC/index.html" title="SOC cybersecurity workspace"></iframe>
@@ -104,6 +116,7 @@
       </form>
     </dialog>
 
+    <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
