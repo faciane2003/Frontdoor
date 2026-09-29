@@ -459,3 +459,11 @@ The user requested local-only work by default:
 - A live screenshot showed the new Frontdoor HTML paired with the browser-cached pre-rename stylesheet, leaving the hamburger on the right near the 1060px breakpoint.
 - Added matching deployment version parameters to the main CSS and JavaScript URLs so browsers fetch coordinated assets after a release.
 - GitHub Pages serves these files with a ten-minute cache lifetime, so versioned URLs prevent mixed deployment layouts without requiring users to clear browser data.
+
+## 2026-09-29 Persistent Expanded Navigation
+
+- Removed the responsive hamburger and flyout behavior.
+- The complete primary navigation now remains expanded in a fixed left sidebar at every viewport size.
+- The sidebar stays 170px wide on desktop and tablet and narrows to 140px below 700px so phone content retains usable space.
+- Advanced the main asset version to `20260929-3` so the persistent sidebar CSS is fetched immediately after deployment.
+- Verified all ten navigation items remain visible with no hamburger at 1400px, 1034px, 700px, and 390px widths; On-Call and Tools browser tests still pass.
