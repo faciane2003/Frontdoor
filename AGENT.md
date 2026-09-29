@@ -1,4 +1,4 @@
-# GitHub Pages Project Notes
+# Frontdoor Project Notes
 
 ## Project
 
@@ -6,11 +6,11 @@ This project is for building a GitHub Pages website using plain HTML, CSS, and J
 
 Project folder:
 
-`C:\Users\Ames\Desktop\Projects\GithubPages`
+`C:\Users\Ames\Desktop\Projects\Frontdoor`
 
 GitHub repository:
 
-`https://github.com/faciane2003/GithubPages`
+`https://github.com/faciane2003/Frontdoor`
 
 Repository visibility is private. Treat the repository as private source control, but remember that GitHub Pages publishing may still expose the published site publicly depending on GitHub plan/settings.
 
@@ -41,7 +41,7 @@ Create a static website that can be published with GitHub Pages.
 ## Planned File Structure
 
 ```text
-GithubPages/
+Frontdoor/
   AGENT.md
   index.html
   css/
@@ -86,7 +86,7 @@ Global layout state:
 
 The web project can import static data from:
 
-`C:\Users\Ames\Desktop\Projects\GithubPages\assets\JQS_SOC_CSIRT2.xlsx`
+`C:\Users\Ames\Desktop\Projects\Frontdoor\assets\JQS_SOC_CSIRT2.xlsx`
 
 This workbook is the updated version of the Tier 3 workbook:
 
@@ -292,8 +292,8 @@ The user requested local-only work by default:
 
 ### 2026-09-19
 
-- GitHub Pages for `faciane2003/GithubPages` was temporarily pointed at a `gh-pages` branch containing the Kevin repo map demo.
-- User then requested the live site return to the main `GithubPages` project.
+- GitHub Pages for `faciane2003/Frontdoor` was temporarily pointed at a `gh-pages` branch containing the Kevin repo map demo.
+- User then requested the live site return to the main `Frontdoor` project.
 - GitHub Pages source was switched back to `main` at `/` using GitHub CLI.
 - A Pages rebuild was requested after the switch.
 - The Kevin map work remains on pushed branches `kevinExample` and `gh-pages`, but live hosting should now use `main`.
@@ -436,3 +436,20 @@ The user requested local-only work by default:
 - Fixed the CONs monthly scrubber to toggle the actual `hidden` attribute on SVG pins, allowing visible cities to update correctly for every month; `scripts/verify-cons-map.mjs` provides a browser-level regression check.
 - Moved Whitepages from the primary sidebar into the Tools sub-navigation while preserving its editable table, add/delete controls, imports, exports, and local persistence.
 - Empty months on the CONs map scrubber display a compact `Vacant` badge, which is covered by the browser-level monthly pin regression check.
+
+## 2026-09-29 Frontdoor Rename
+
+- Renamed the project identity from GithubPages to Frontdoor in browser metadata, repository documentation, local paths, and GitHub references.
+- Preserved generic GitHub Pages platform terminology and the existing relative asset routing.
+- Repaired stale On-Call and Tools Puppeteer selectors and made the CONs monthly map test launch its own browser.
+- Verified all JSON data, JavaScript syntax, inline scripts, On-Call behavior, Intune comparison behavior, Links layout, CONs monthly pin filtering, and SOC asset requests.
+- Preserved the untracked `ExampleGithub Download - Kevin` folder and `kevin-file-map.txt` without modification.
+- No commit or push was performed. The Pages deployment remains pending an explicit commit and push request.
+
+## 2026-09-29 Left Navigation Layout
+
+- Kept the primary navigation on the left at every viewport size.
+- Replaced the tablet and mobile top bar with a compact 56px left rail and a left-anchored flyout menu.
+- Verified sidebar and workspace positions at 1400px, 900px, and 390px widths.
+- Re-ran the On-Call and Tools Puppeteer regression checks successfully.
+- No commit or push was performed.

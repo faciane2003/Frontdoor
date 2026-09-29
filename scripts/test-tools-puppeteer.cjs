@@ -15,16 +15,16 @@ const puppeteer = require("puppeteer");
 
   const standingInput = await page.$('[data-tools-file="standing"]');
   await standingInput.uploadFile(path.join(__dirname, "fixtures", "intune-standing.txt"));
-  await page.waitForFunction(() => document.querySelectorAll(".intune-list-panel:first-of-type .intune-item").length === 2);
+  await page.waitForFunction(() => document.querySelectorAll('.intune-list-panel:has([data-tools-file="standing"]) .intune-item').length === 2);
 
   const newInput = await page.$('[data-tools-file="new"]');
   await newInput.uploadFile(path.join(__dirname, "fixtures", "intune-new.txt"));
-  await page.waitForFunction(() => document.querySelectorAll(".intune-list-panel:nth-of-type(2) .intune-item").length === 2);
+  await page.waitForFunction(() => document.querySelectorAll('.intune-list-panel:has([data-tools-file="new"]) .intune-item').length === 2);
 
   const result = await page.evaluate(() => ({
-    standing: [...document.querySelectorAll(".intune-list-panel:first-of-type .intune-item > span:first-child")].map((item) => item.textContent.trim()),
-    newItems: [...document.querySelectorAll(".intune-list-panel:nth-of-type(2) .intune-item")].map((item) => ({
-      value: item.querySelector("span")?.textContent.trim(),
+    standing: [...document.querySelectorAll('.intune-list-panel:has([data-tools-file="standing"]) .intune-item')].map((item) => item.querySelector("td")?.textContent.trim()),
+    newItems: [...document.querySelectorAll('.intune-list-panel:has([data-tools-file="new"]) .intune-item')].map((item) => ({
+      value: item.querySelector("td")?.textContent.trim(),
       status: item.querySelector(".intune-status")?.textContent.trim(),
     })),
   }));

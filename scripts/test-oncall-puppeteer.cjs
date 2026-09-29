@@ -12,8 +12,8 @@ const puppeteer = require("puppeteer");
   await page.setViewport({ width: 1400, height: 800 });
   await page.goto("http://127.0.0.1:8000/", { waitUntil: "domcontentloaded" });
   await page.waitForSelector('[data-view="schedule"]');
-  await page.waitForSelector("[data-oncall-window]");
   await page.click('[data-view="schedule"]');
+  await page.waitForSelector("[data-oncall-window]");
   await new Promise((resolve) => setTimeout(resolve, 150));
 
   const result = await page.evaluate(() => {
