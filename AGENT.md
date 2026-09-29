@@ -453,3 +453,9 @@ The user requested local-only work by default:
 - Verified sidebar and workspace positions at 1400px, 900px, and 390px widths.
 - Re-ran the On-Call and Tools Puppeteer regression checks successfully.
 - No commit or push was performed.
+
+## 2026-09-29 Deployment Cache Versioning
+
+- A live screenshot showed the new Frontdoor HTML paired with the browser-cached pre-rename stylesheet, leaving the hamburger on the right near the 1060px breakpoint.
+- Added matching deployment version parameters to the main CSS and JavaScript URLs so browsers fetch coordinated assets after a release.
+- GitHub Pages serves these files with a ten-minute cache lifetime, so versioned URLs prevent mixed deployment layouts without requiring users to clear browser data.
