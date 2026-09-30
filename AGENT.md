@@ -467,3 +467,35 @@ The user requested local-only work by default:
 - The sidebar stays 170px wide on desktop and tablet and narrows to 140px below 700px so phone content retains usable space.
 - Advanced the main asset version to `20260929-3` so the persistent sidebar CSS is fetched immediately after deployment.
 - Verified all ten navigation items remain visible with no hamburger at 1400px, 1034px, 700px, and 390px widths; On-Call and Tools browser tests still pass.
+
+## 2026-09-29 Conference Timeline Spacing
+
+- Removed large empty timeline regions near the 1034px browser width by moving month labels into full-width headers below 1200px.
+- Rebalanced event detail columns so conference descriptions receive enough width instead of wrapping into tall narrow stacks.
+- Advanced the main asset version to `20260929-4` so the corrected timeline CSS is fetched immediately after deployment.
+
+## 2026-09-29 SOP and JQS Horizontal Overflow
+
+- Removed the forced 1180px SOP table width and 1080px JQS table width.
+- SOP and JQS tables now fit the available workspace and wrap cell content instead of displaying horizontal scrollbars.
+- Advanced the main asset version to `20260929-5` so browsers fetch the corrected table layout immediately after deployment.
+
+## 2026-09-29 JQS Column Headers
+
+- Rebalanced JQS column widths after removing the table minimum width.
+- Kept the short ID, Area, and Actions headers on one line while retaining most table width for Task and Performance Standard.
+- Advanced the main asset version to `20260929-6` for immediate delivery after deployment.
+
+## 2026-09-29 Generic GitHub Repositories
+
+- Replaced the identifiable placeholder names in the GitHub Repo table with ten neutral names from Project Alpha through Project Kappa.
+- Replaced the repository-specific descriptions with concise generic project descriptions.
+- Advanced the main asset version to `20260929-8` so browsers fetch the updated repository data immediately after deployment.
+
+## 2026-09-29 Generic GitHub Organization Data
+
+- Added ten neutral Team names with generic responsibilities.
+- Added ten neutral People names with generic organization roles.
+- Added ten neutral Security entries covering example reviews, alerts, and remediation work.
+- Generalized the shared GitHub item-description map so Repo, Teams, People, and Security use the same table renderer and search behavior.
+- Advanced the main asset version to `20260929-9` so browsers fetch the new dummy data immediately after deployment.
