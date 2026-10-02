@@ -1,3 +1,4 @@
+// Reduce state-boundary geometry for a smaller, faster conference map.
 const fs = require("fs");
 
 const sourcePath = process.argv[2];

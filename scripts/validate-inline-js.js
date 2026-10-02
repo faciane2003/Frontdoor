@@ -1,3 +1,4 @@
+// Check inline JavaScript syntax without executing browser code.
 // Lightweight syntax check for inline browser scripts without adding a test dependency.
 const fs = require("fs");
 const vm = require("vm");

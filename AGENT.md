@@ -1,5 +1,39 @@
 # Frontdoor Project Notes
 
+## 2026-10-01 Refactor and maintenance
+
+- Maintained JavaScript is now under `js/src/core`, `js/src/shared`, and `js/src/views`; `js/main.js` is generated. Edit source modules and run `npm run build`.
+- Maintained portal styles are under `css/src`; their import order preserves the existing cascade. `css/styles.css` is generated.
+- SOC reference scripts and styles are now in `SOC/js` and `SOC/css`, with content retained in the HTML documents.
+- Existing local-storage keys are preserved. Stable row identities and explicit edited-field metadata preserve newer intentional blanks while restoring blanks in legacy rows as before. Table writes batch typing and flush on blur/page exit.
+- Outlook and spreadsheet tools load on demand; the SOC iframe loads on its first visit. Failed optional loads can be retried.
+- `npm test` builds assets, starts an isolated temporary static server, and runs syntax and browser checks. Tests share Playwright's downloaded Chromium rather than a machine-specific Chrome path. The On-Call sticky check now scrolls the weekday header before asserting its pinned position.
+- Dashboard and Features checks cover editing, persistence, deletion, navigation, responsive layout, storage migration, load retries, partial catalog failure, and storage-write failure.
+- Plain-language comments explain maintained source files and non-obvious logic. Generated bundles identify their source entry points; third-party license notices remain intact.
+- See `README.md` and `scripts/README.md` for current setup. Earlier notes below describe historical layouts and testing limitations.
+
+## 2026-10-01 Mail Templates
+
+Add Email opens a modal form with Category, Title, Description, To, Subject, and Body fields. Save validates and creates the row; Cancel or Escape adds nothing. The category defaults to the active filter or Team and Compliance. Browser tests cover opening/canceling without adding a row and saving a completed form.
+
+Mail toolbar now has Add Email and Import controls. New rows use the selected category or Team and Compliance when All categories is selected. Import accepts multiple `.oft`/`.msg` files, creates one row per readable file, and reports individual failures without dropping valid imports. Added rows persist separately under `frontdoor:mail-added`, keeping the shared JSON baseline intact. New rows open their inline editor, support metadata edits, email Save, deletion, and generated `.oft` downloads. Browser tests verify mixed valid/invalid multi-file imports, row counts, category placement, new-row downloads, and reload persistence.
+
+Mail previews now edit recipient, subject, and body with explicit Save and browser-local persistence (`frontdoor:mail-edits`). Title downloads generate binary `.oft` from saved content in the browser using bundled `html-to-oft`. Upload `.oft` or `.msg` inside a preview to import recipient, subject, and plain-text body, then review and Save. Attachments and rich formatting are not imported. When an email row is expanded, its title and description become plain contenteditable table text styled like Links and autosave on blur. No Title/Description form fields or pencil control are present. Collapse the email row to restore its title download link. The email-content form still uses Save. Trash deletes rows locally and persists deletion. All table trash columns have blank visible headers with accessible `Row actions` labels. Browser tests cover edits/reload, generated file contents, imports, malformed-file rejection, metadata editing, and deletion.
+
+Mail subsection rows toggle inline email previews when clicked outside their title links; Enter/Space also toggles a focused row. Title links still download `.oft` files. Preview recipient, subject, and body are stored in `data/mail.json` and used by the template generator to keep downloads and examples aligned.
+
+Grouped Mail, Links, SOPs, Certs, and JQS tables hide their column headers until at least one hierarchy group is expanded. Category names remain visible for navigation.
+
+Follow-up: installed Puppeteer and Playwright as development dependencies with a lockfile and downloaded their Chromium browsers. Mail now shares the compact resource-table styling, Category dropdown, sticky headers, and hierarchy indentation used by the other tables. The Playwright Mail browser regression passes, including category filtering, download, search, collapse/expand, and 390px overflow checks. Existing Tools/Links and conference-map tests pass. The existing On-Call test reports a weekday sticky-header failure. `npm test` runs all checks; the local HTTP server must already be running on port 8000.
+
+- Added Mail to primary navigation and the Dashboard overview.
+- `data/mail.json` defines five consolidated sections: Incident Response (9 templates), Access and Vulnerabilities (6), Threat Intelligence (3), Operations and Changes (6), and Team and Compliance (6). All 30 subsection template IDs and paths remain unchanged to preserve saved edits.
+- Sections start collapsed and use the same full-width `link-category-toggle` buttons and `link-category-row` styling as Links, including hover/focus highlighting. Subsection rows use `link-category-child`; subsection titles download their email files. Search and Category filtering expand matching subsections.
+- Forty binary `.oft` Outlook templates live under `assets/mail/`, generated by `node scripts/build-mail-templates.mjs` using the `html-to-oft` development dependency. Previous `.eml` dummy files were removed. Compound-file signatures, template structure, HTTP responses, and browser downloads were checked. Opening in Outlook remains unverified because Outlook is not installed here.
+- Global search filters Mail titles and descriptions and expands matching subsections.
+- Checked JavaScript syntax, renderer counts, collapsed state, search, empty state, and HTTP availability of all forty files. Browser interaction and Outlook launch were not verified because browser automation is unavailable in this session.
+- Changes are local only.
+
 ## Project
 
 This project is for building a GitHub Pages website using plain HTML, CSS, and JavaScript.

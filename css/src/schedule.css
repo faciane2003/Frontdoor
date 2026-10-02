@@ -1,0 +1,488 @@
+/* On-call coverage calendar, scrolling months, and day details. */
+.oncall-month-picker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(21, 31, 42, 0.95);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.oncall-month-picker label {
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.oncall-month-picker select {
+  min-width: 190px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #091018;
+  color: var(--text);
+  padding: 0.55rem 0.75rem;
+}
+
+.oncall-month-picker select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+  outline: none;
+}
+
+.oncall-calendar-window {
+  display: grid;
+  gap: 1rem;
+  max-height: 72vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.35rem;
+}
+
+.oncall-calendar {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(21, 31, 42, 0.9);
+  box-shadow: var(--shadow);
+  overflow: clip;
+}
+
+.oncall-calendar-header {
+  border-bottom: 1px solid var(--line);
+  padding: 0.85rem 1rem;
+}
+
+.oncall-calendar-header h3 {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 1rem;
+}
+
+.oncall-calendar-header label {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 320px;
+}
+
+.oncall-calendar-header span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.oncall-calendar-header select {
+  font-size: 0.78rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #091018;
+  color: var(--text);
+  padding: 0.6rem 0.7rem;
+}
+
+.oncall-calendar-header select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+  outline: none;
+}
+
+.oncall-weekdays,
+.oncall-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.oncall-weekdays {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: #162330;
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.oncall-weekdays span {
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 850;
+  padding: 0.55rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.oncall-day {
+  font-size: 0.72rem;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  align-self: start;
+  border-right: 1px solid var(--line);
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0.65rem;
+  text-align: left;
+}
+
+.oncall-day:nth-child(7n) {
+  border-right: 0;
+}
+
+.oncall-day:hover,
+.oncall-day:focus-visible,
+.oncall-day.is-active {
+  background: rgba(77, 163, 255, 0.1);
+  outline: none;
+}
+
+.oncall-day.is-active {
+  box-shadow: inset 0 0 0 2px rgba(77, 163, 255, 0.35);
+}
+
+.oncall-day.is-today {
+  background: rgba(255, 193, 7, 0.08);
+  box-shadow: inset 0 0 0 2px rgba(255, 193, 7, 0.72);
+}
+
+.oncall-day.is-today .oncall-date {
+  background: #ffc107;
+  color: #101820;
+}
+
+.oncall-day.is-today.is-active {
+  box-shadow: inset 0 0 0 2px #ffc107, inset 0 0 0 4px rgba(77, 163, 255, 0.4);
+}
+
+.oncall-day-dialog {
+  width: min(440px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #101820;
+  color: var(--text);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  padding: 0;
+  overflow: auto;
+}
+
+.oncall-day-dialog::backdrop {
+  background: rgba(3, 8, 13, 0.76);
+}
+
+.oncall-dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: #162330;
+  padding: 0.8rem 1rem;
+}
+
+.oncall-dialog-header > div {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.oncall-dialog-header h3 {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 1rem;
+}
+
+.oncall-dialog-header .oncall-date {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(77, 163, 255, 0.16);
+  color: var(--accent-strong);
+  font-weight: 850;
+}
+
+.oncall-dialog-close {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #203244;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.42rem 0.7rem;
+}
+
+.oncall-dialog-close:hover,
+.oncall-dialog-close:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.oncall-dialog-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.oncall-dialog-fields label {
+  display: grid;
+  gap: 0.3rem;
+  color: var(--accent-strong);
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+
+.oncall-dialog-fields input,
+.oncall-dialog-fields textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #091018;
+  color: var(--text);
+  font: inherit;
+  padding: 0.55rem 0.65rem;
+}
+
+.oncall-dialog-fields input:focus,
+.oncall-dialog-fields textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+  outline: none;
+}
+
+.oncall-dialog-notes {
+  grid-column: 1 / -1;
+}
+
+.oncall-dialog-notes textarea {
+  min-height: 180px;
+  background: #0d1721;
+  color: #d7e5f2;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.55;
+  padding: 0.8rem 0.9rem;
+  resize: vertical;
+}
+
+.oncall-day.is-empty {
+  background: rgba(255, 255, 255, 0.02);
+  cursor: default;
+}
+
+.oncall-day .oncall-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(77, 163, 255, 0.16);
+  color: var(--accent-strong);
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.oncall-day .oncall-date-label {
+  display: inline-block;
+  margin-left: 0.55rem;
+  color: var(--accent-strong);
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+.oncall-day span,
+.oncall-day p {
+  display: block;
+}
+
+.oncall-day p {
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+}
+
+.oncall-day b {
+  color: var(--accent-strong);
+}
+
+.oncall-day .oncall-role {
+  margin-top: 0.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oncall-note-trigger {
+  display: -webkit-box;
+  width: 100%;
+  margin-top: 0.65rem;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.35;
+  padding: 0;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.oncall-note-trigger:focus-visible {
+  outline: none;
+}
+
+.oncall-day label {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.45rem;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.oncall-day input,
+.oncall-day textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #091018;
+  color: var(--text);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.45rem;
+}
+
+.oncall-day textarea {
+  resize: vertical;
+}
+
+.oncall-day input:focus,
+.oncall-day textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+  outline: none;
+}
+
+.oncall-notes {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.oncall-notes label {
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.oncall-notes textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #091018;
+  color: var(--text);
+  padding: 0.75rem;
+}
+
+.oncall-notes textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.14);
+  outline: none;
+}
+
+.oncall-notes-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.oncall-notes-actions span {
+  color: var(--green);
+  font-size: 0.82rem;
+}
+
+.cert-table {
+  min-width: 0;
+}
+
+.cert-table th,
+.cert-table td {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.84rem;
+  line-height: 1.28;
+}
+
+.cert-table th {
+  font-size: 0.68rem;
+}
+
+.cert-table td span {
+  margin-top: 0.1rem;
+}
+
+.cert-table td:nth-child(5) .editable-field {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.cert-table td:nth-child(5) .editable-field:focus {
+  display: block;
+  overflow: visible;
+}
+
+.cert-table th:nth-child(1),
+.cert-table td:nth-child(1) {
+  width: 12%;
+}
+
+.cert-table th:nth-child(2),
+.cert-table td:nth-child(2) {
+  width: 20%;
+}
+
+.cert-table th:nth-child(3),
+.cert-table td:nth-child(3) {
+  width: 10%;
+  white-space: nowrap;
+}
+
+.cert-table th:nth-child(4),
+.cert-table td:nth-child(4) {
+  width: 30%;
+}
+
+.cert-table th:nth-child(5),
+.cert-table td:nth-child(5) {
+  width: 20%;
+}
+
+.cert-table th:nth-child(6),
+.cert-table td:nth-child(6) {
+  width: 8%;
+}
+
+.resource-table {
+  min-width: 1120px;
+}
+
+/* CONs uses one visual language for its map, date scrubber, and event timeline. */

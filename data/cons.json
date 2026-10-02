@@ -152,6 +152,70 @@
     "url": "https://www.sans.org/cyber-security-training-events"
   },
   {
+    "name": "Workplace Ninjas US 2027",
+    "startDate": "2027-01-11",
+    "endDate": "2027-01-13",
+    "location": "Scottsdale, Arizona",
+    "focus": "Endpoint management, identity security, and Microsoft workplace technology.",
+    "url": "https://www.workplaceninjas.us/"
+  },
+  {
+    "name": "Orlando Cybersecurity Conference",
+    "startDate": "2027-01-28",
+    "endDate": "2027-01-28",
+    "location": "Orlando, Florida",
+    "focus": "Security leadership, emerging threats, risk management, and practitioner networking.",
+    "url": "https://futureconevents.com/events/orlando-fl-2027/"
+  },
+  {
+    "name": "CactusCon 15",
+    "startDate": "2027-02-05",
+    "endDate": "2027-02-06",
+    "location": "Mesa, Arizona",
+    "focus": "Community-led cybersecurity learning and networking for security practitioners.",
+    "url": "https://www.cactuscon.com/"
+  },
+  {
+    "name": "Keyfactor Tech Days 2027",
+    "startDate": "2027-02-23",
+    "endDate": "2027-02-25",
+    "location": "San Diego, California",
+    "focus": "Digital trust, identity, cryptography, and security in the AI and quantum era.",
+    "url": "https://www.keyfactor.com/tech-days/program/"
+  },
+  {
+    "name": "Apres-Cyber Slopes Summit 2027",
+    "startDate": "2027-02-24",
+    "endDate": "2027-02-26",
+    "location": "Park City, Utah",
+    "focus": "AI and cybersecurity workshops, technical briefings, and offensive and defensive operations.",
+    "url": "https://www.aprescyber.com/"
+  },
+  {
+    "name": "CS4CA USA 2027",
+    "startDate": "2027-03-02",
+    "endDate": "2027-03-03",
+    "location": "Houston, Texas",
+    "focus": "Critical infrastructure protection, industrial cybersecurity, and OT security leadership.",
+    "url": "https://usa.cs4ca.com/"
+  },
+  {
+    "name": "NICE K12 Cybersecurity Education Conference 2027",
+    "startDate": "2027-03-07",
+    "endDate": "2027-03-09",
+    "location": "New Orleans, Louisiana",
+    "focus": "Cybersecurity education, student career pathways, and workforce development.",
+    "url": "https://www.nist.gov/itl/applied-cybersecurity/nice/events/nice-k12-cybersecurity-education-conference"
+  },
+  {
+    "name": "Billington State and Local CyberSecurity Summit 2027",
+    "startDate": "2027-03-17",
+    "endDate": "2027-03-19",
+    "location": "National Harbor, Maryland",
+    "focus": "Government cybersecurity collaboration, operational best practices, and future defenses.",
+    "url": "https://statelocal.billingtoncybersummit.com/"
+  },
+  {
     "name": "RSAC 2027",
     "startDate": "2027-04-05",
     "endDate": "2027-04-08",

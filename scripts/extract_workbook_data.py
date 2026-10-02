@@ -1,3 +1,5 @@
+"""Import workbook tables into static catalogs and generate sample on-call coverage."""
+
 from __future__ import annotations
 
 import json
@@ -24,12 +26,14 @@ INTERNAL_HOST_MARKERS = (
 
 
 def clean(value):
+    """Normalize spreadsheet values into trimmed text."""
     if value is None:
         return ""
     return str(value).replace("\ufffd", "").strip()
 
 
 def table_rows(ws, table_name):
+    """Read a named Excel table using its header row."""
     table = ws.tables.get(table_name)
     if table is None:
         return []
@@ -48,6 +52,7 @@ def table_rows(ws, table_name):
 
 
 def public_url(url):
+    """Keep public reference links while excluding internal hostnames."""
     if not url:
         return ""
     normalized = url.lower()
@@ -59,6 +64,7 @@ def public_url(url):
 
 
 def extract_tasks(wb):
+    """Collect qualification tasks from the supported training sheets."""
     tasks = []
 
     for sheet in TASK_SHEETS:
@@ -89,6 +95,7 @@ def extract_tasks(wb):
 
 
 def extract_sops(wb):
+    """Convert workbook procedures into the portal SOP format."""
     rows = []
     for row in table_rows(wb["SOPs"], "tbl_SOPs"):
         name = row.get("ID", "")
@@ -116,6 +123,7 @@ def extract_sops(wb):
 
 
 def extract_links(wb):
+    """Combine resource sheets into the portal link catalog."""
     links = []
 
     for row in table_rows(wb["Links"], "tbl_Links"):
@@ -154,6 +162,7 @@ def extract_links(wb):
 
 
 def categorize_link(name):
+    """Assign a readable category using resource names."""
     normalized = name.lower()
     rules = [
         ("malware", "Malware Analysis"),
@@ -200,6 +209,7 @@ def categorize_link(name):
 
 
 def extract_qualifications(wb):
+    """Read available workbook qualification records."""
     ws = wb["Quals"]
     quals = []
     current_section = ""
@@ -242,6 +252,7 @@ def extract_qualifications(wb):
 
 
 def build_knowledge(tasks, sops, links):
+    """Summarize imported tasks, procedures, and resources."""
     by_tier = Counter(task["tier"] for task in tasks)
     by_area = Counter(task["area"] for task in tasks if task["area"])
     tier_articles = [
@@ -274,6 +285,7 @@ def build_knowledge(tasks, sops, links):
 
 
 def build_mock_on_call():
+    """Generate sample coverage when the workbook has no schedule source."""
     people = ["Maya Chen", "Andre Patel", "Nina Brooks", "Luis Romero", "Jordan Ellis"]
     pto_rotation = [["Sam Rivera"], ["Taylor Morgan", "Chris Lee"], [], ["Avery Scott"], ["Morgan Blake"], [], ["Riley Park"]]
     start = date(2026, 9, 17)
@@ -296,12 +308,14 @@ def build_mock_on_call():
 
 
 def write_json(filename, data):
+    """Write a catalog using consistent readable JSON formatting."""
     DATA_DIR.mkdir(exist_ok=True)
     path = DATA_DIR / filename
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
 def main():
+    """Load the workbook, prepare catalogs, and write the import results."""
     if not WORKBOOK.exists():
         raise SystemExit(f"Workbook not found: {WORKBOOK}")
 

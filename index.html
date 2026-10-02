@@ -9,7 +9,7 @@
     >
     <meta name="application-name" content="Frontdoor">
     <title>Frontdoor</title>
-    <link rel="stylesheet" href="css/styles.css?v=20260929-9">
+    <link rel="stylesheet" href="css/styles.css?v=20261001-refactor">
   </head>
   <body>
     <div class="app-shell">
@@ -23,16 +23,18 @@
 
         <!-- Primary navigation keys intentionally match section IDs and URL hashes. -->
         <nav id="app-nav" class="app-nav">
-          <button class="nav-item" type="button" data-view="dashboard">Dashboard</button>
-          <button class="nav-item" type="button" data-view="sops">SOPs</button>
-          <button class="nav-item" type="button" data-view="links">Links</button>
           <button class="nav-item" type="button" data-view="certs">Certs</button>
-          <button class="nav-item" type="button" data-view="training">JQS</button>
-          <button class="nav-item" type="button" data-view="schedule">On-Call</button>
-          <button class="nav-item" type="button" data-view="github">GitHub</button>
-          <button class="nav-item" type="button" data-view="tools">Tools</button>
           <button class="nav-item" type="button" data-view="cons">CONs</button>
+          <button class="nav-item" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view="features">Features</button>
+          <button class="nav-item" type="button" data-view="github">GitHub</button>
+          <button class="nav-item" type="button" data-view="training">JQS</button>
+          <button class="nav-item" type="button" data-view="links">Links</button>
+          <button class="nav-item" type="button" data-view="mail">Mail</button>
+          <button class="nav-item" type="button" data-view="schedule">On-Call</button>
           <button class="nav-item" type="button" data-view="soc">SOC Reference</button>
+          <button class="nav-item" type="button" data-view="sops">SOPs</button>
+          <button class="nav-item" type="button" data-view="tools">Tools</button>
         </nav>
 
       </aside>
@@ -51,6 +53,11 @@
         <section id="dashboard" class="view is-active" aria-labelledby="dashboard-heading">
           <h2 id="dashboard-heading" class="sr-only">Dashboard</h2>
           <div id="dashboard-grid" class="dashboard-overview"></div>
+        </section>
+
+        <section id="features" class="view" aria-labelledby="features-heading">
+          <h2 id="features-heading" class="sr-only">Features</h2>
+          <div id="features-list"></div>
         </section>
 
         <section id="knowledge" class="view" aria-labelledby="knowledge-heading">
@@ -83,6 +90,11 @@
           <div id="links-list"></div>
         </section>
 
+        <section id="mail" class="view" aria-labelledby="mail-heading">
+          <h2 id="mail-heading" class="sr-only">Mail</h2>
+          <div id="mail-list"></div>
+        </section>
+
         <section id="github" class="view" aria-labelledby="github-heading">
           <h2 id="github-heading" class="sr-only">GitHub</h2>
           <div id="github-list"></div>
@@ -100,7 +112,7 @@
 
         <section id="soc" class="view soc-view" aria-labelledby="soc-heading">
           <h2 id="soc-heading" class="sr-only">SOC Reference</h2>
-          <iframe class="soc-frame" src="SOC/index.html" title="SOC cybersecurity reference"></iframe>
+          <iframe class="soc-frame" data-src="SOC/index.html" title="SOC cybersecurity reference"></iframe>
         </section>
 
       </main>
@@ -142,7 +154,25 @@
       </form>
     </dialog>
 
-    <script async src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <script src="js/main.js?v=20260929-9"></script>
+    <dialog id="mail-add-dialog" class="entry-dialog" aria-labelledby="mail-add-heading">
+      <form id="mail-add-form">
+        <div class="entry-dialog-header"><h2 id="mail-add-heading">Add Email</h2></div>
+        <div class="entry-form-fields">
+          <div class="mail-add-field"><label for="mail-add-category">Category</label><select id="mail-add-category" name="categoryId" required></select></div>
+          <label>Title<input name="title" type="text" required></label>
+          <label class="entry-field-wide">Description<input name="description" type="text"></label>
+          <label>To<input name="to" type="email" multiple></label>
+          <label>Subject<input name="subject" type="text" required></label>
+          <div class="mail-add-field entry-field-wide"><label for="mail-add-body">Body</label><textarea id="mail-add-body" name="body" rows="5" required></textarea></div>
+        </div>
+        <div class="mail-add-status" role="status" aria-live="polite"></div>
+        <div class="entry-dialog-actions">
+          <button class="entry-cancel" type="button" data-mail-add-cancel>Cancel</button>
+          <button class="entry-save" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="js/main.js?v=20261001-github-nav-fix"></script>
   </body>
 </html>

@@ -1,0 +1,372 @@
+[
+  {
+    "id": "section-01",
+    "title": "Incident Response",
+    "description": "Security incident, phishing, and endpoint communications.",
+    "template": "assets/mail/section-01.oft",
+    "subsections": [
+      {
+        "id": "section-01-1",
+        "title": "Initial Notification",
+        "description": "Dummy template for initial notification.",
+        "template": "assets/mail/section-01-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Initial Notification",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Initial Notification.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-01-2",
+        "title": "Status Update",
+        "description": "Dummy template for status update.",
+        "template": "assets/mail/section-01-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Status Update",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Status Update.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-01-3",
+        "title": "Closure Summary",
+        "description": "Dummy template for closure summary.",
+        "template": "assets/mail/section-01-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Closure Summary",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Closure Summary.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-02-1",
+        "title": "Report Acknowledgment",
+        "description": "Dummy template for report acknowledgment.",
+        "template": "assets/mail/section-02-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Report Acknowledgment",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Report Acknowledgment.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-02-2",
+        "title": "Investigation Results",
+        "description": "Dummy template for investigation results.",
+        "template": "assets/mail/section-02-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Investigation Results",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Investigation Results.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-02-3",
+        "title": "User Guidance",
+        "description": "Dummy template for user guidance.",
+        "template": "assets/mail/section-02-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] User Guidance",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for User Guidance.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-03-1",
+        "title": "Isolation Request",
+        "description": "Dummy template for isolation request.",
+        "template": "assets/mail/section-03-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Isolation Request",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Isolation Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-03-2",
+        "title": "Remediation Request",
+        "description": "Dummy template for remediation request.",
+        "template": "assets/mail/section-03-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Remediation Request",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Remediation Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-03-3",
+        "title": "Recovery Confirmation",
+        "description": "Dummy template for recovery confirmation.",
+        "template": "assets/mail/section-03-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Recovery Confirmation",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Recovery Confirmation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "section-04",
+    "title": "Access and Vulnerabilities",
+    "description": "Account access and vulnerability remediation communications.",
+    "template": "assets/mail/section-04.oft",
+    "subsections": [
+      {
+        "id": "section-04-1",
+        "title": "Access Review",
+        "description": "Dummy template for access review.",
+        "template": "assets/mail/section-04-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Access Review",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Access Review.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-04-2",
+        "title": "Account Lockout",
+        "description": "Dummy template for account lockout.",
+        "template": "assets/mail/section-04-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Account Lockout",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Account Lockout.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-04-3",
+        "title": "Password Reset",
+        "description": "Dummy template for password reset.",
+        "template": "assets/mail/section-04-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Password Reset",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Password Reset.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-05-1",
+        "title": "New Finding",
+        "description": "Dummy template for new finding.",
+        "template": "assets/mail/section-05-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] New Finding",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for New Finding.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-05-2",
+        "title": "Patch Reminder",
+        "description": "Dummy template for patch reminder.",
+        "template": "assets/mail/section-05-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Patch Reminder",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Patch Reminder.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-05-3",
+        "title": "Resolution Confirmation",
+        "description": "Dummy template for resolution confirmation.",
+        "template": "assets/mail/section-05-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Resolution Confirmation",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Resolution Confirmation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "section-06",
+    "title": "Threat Intelligence",
+    "description": "Threat advisories and intelligence sharing.",
+    "template": "assets/mail/section-06.oft",
+    "subsections": [
+      {
+        "id": "section-06-1",
+        "title": "Threat Advisory",
+        "description": "Dummy template for threat advisory.",
+        "template": "assets/mail/section-06-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Threat Advisory",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Threat Advisory.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-06-2",
+        "title": "Indicator Sharing",
+        "description": "Dummy template for indicator sharing.",
+        "template": "assets/mail/section-06-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Indicator Sharing",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Indicator Sharing.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-06-3",
+        "title": "Intelligence Summary",
+        "description": "Dummy template for intelligence summary.",
+        "template": "assets/mail/section-06-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Intelligence Summary",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Intelligence Summary.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "section-07",
+    "title": "Operations and Changes",
+    "description": "On-call coverage, handoffs, and change management.",
+    "template": "assets/mail/section-07.oft",
+    "subsections": [
+      {
+        "id": "section-07-1",
+        "title": "Shift Handoff",
+        "description": "Dummy template for shift handoff.",
+        "template": "assets/mail/section-07-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Shift Handoff",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Shift Handoff.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-07-2",
+        "title": "Coverage Request",
+        "description": "Dummy template for coverage request.",
+        "template": "assets/mail/section-07-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Coverage Request",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Coverage Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-07-3",
+        "title": "Escalation Notice",
+        "description": "Dummy template for escalation notice.",
+        "template": "assets/mail/section-07-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Escalation Notice",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Escalation Notice.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-08-1",
+        "title": "Change Request",
+        "description": "Dummy template for change request.",
+        "template": "assets/mail/section-08-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Change Request",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Change Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-08-2",
+        "title": "Maintenance Notice",
+        "description": "Dummy template for maintenance notice.",
+        "template": "assets/mail/section-08-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Maintenance Notice",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Maintenance Notice.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-08-3",
+        "title": "Change Completion",
+        "description": "Dummy template for change completion.",
+        "template": "assets/mail/section-08-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Change Completion",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Change Completion.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "section-09",
+    "title": "Team and Compliance",
+    "description": "Training, compliance, and general team communications.",
+    "template": "assets/mail/section-09.oft",
+    "subsections": [
+      {
+        "id": "section-09-1",
+        "title": "Training Invitation",
+        "description": "Dummy template for training invitation.",
+        "template": "assets/mail/section-09-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Training Invitation",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Training Invitation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-09-2",
+        "title": "Completion Reminder",
+        "description": "Dummy template for completion reminder.",
+        "template": "assets/mail/section-09-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Completion Reminder",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Completion Reminder.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-09-3",
+        "title": "Evidence Request",
+        "description": "Dummy template for evidence request.",
+        "template": "assets/mail/section-09-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Evidence Request",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Evidence Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-10-1",
+        "title": "Team Announcement",
+        "description": "Dummy template for team announcement.",
+        "template": "assets/mail/section-10-1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Team Announcement",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Team Announcement.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-10-2",
+        "title": "Meeting Follow-Up",
+        "description": "Dummy template for meeting follow-up.",
+        "template": "assets/mail/section-10-2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Meeting Follow-Up",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Meeting Follow-Up.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      },
+      {
+        "id": "section-10-3",
+        "title": "Service Update",
+        "description": "Dummy template for service update.",
+        "template": "assets/mail/section-10-3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[DUMMY TEMPLATE] Service Update",
+          "body": "Hello [Recipient],\n\nThis is a dummy email template for Service Update.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
+        }
+      }
+    ]
+  }
+]
