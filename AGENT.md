@@ -554,3 +554,24 @@ Validation on 2026-10-03: build, syntax, portal, Mail hierarchy/migration/edit/i
 2026-10-03: Removed the 400_Email Templates wrapper. Its child folders are now top-level Mail categories; all 113 emails and deeper nesting remain. Mail folders start collapsed.
 
 2026-10-03: Generated 113 example Outlook .oft assets for the Mail catalog. Each preview and download uses an [EXAMPLE] subject, demonstration notice, placeholder recipient, and editable placeholder body. All files parsed and served locally; Mail browser checks passed. Existing browser-saved edits still take precedence over examples.
+
+2026-10-03: Added Personnel navigation and 18 fictional specialist profiles in data/personnel.json. Cards show callsign, role, bio, three talents, and six stats out of 100. Global search filters profiles. Build, Personnel desktop/mobile/navigation/search/reload checks, and portal regression passed. Changes remain local pending new commit/push authorization.
+
+
+## 2026-10-03 Personnel roster layout
+
+- The Personnel tab contains 18 fictional profiles. Removed callsigns, specialty titles, and biographical/tagline sentences from both the data and cards.
+- Elias Brooks is IRM and Maya Chen is Backup IRM. These two lead the page in larger cards.
+- The remaining roster is grouped in descending order: Tier 3 (6 profiles), Tier 2 (5), Tier 1 (5). Names, talents, and six stats are retained.
+- Global search filters names, ranks, talents, and stats; the layout adapts to mobile screens.
+- These changes remain local until the user authorizes another commit and push.
+
+2026-10-03: IRM has the largest profile card, followed by Backup IRM, then tier profiles. Each profile displays its three talents as standard bullet points.
+
+
+2026-10-03: Leadership profiles stack vertically: IRM first, Backup IRM directly underneath at a smaller width, followed by the tier groups.
+
+
+2026-10-03: Reduced leadership card sizes: IRM capped at 580px and Backup IRM at 520px, with compact padding, avatars, and headings. They remain vertically stacked.
+
+2026-10-03 final Personnel: Removed all numerical stats, stat bars, and Stats / 100 headings from data and cards. Profiles display name, rank, and three bullet talents. Compact IRM and Backup IRM cards stack above Tier 3, Tier 2, and Tier 1. User authorized committing and pushing this Personnel update.

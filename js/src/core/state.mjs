@@ -1,6 +1,7 @@
 // Keep shared page state, catalog paths, and navigation names in one place.
 
 export const DATA_FILES = {
+  personnel: "data/personnel.json",
   features: "data/features.json",
   knowledge: "data/knowledge.json",
   training: "data/training.json",
@@ -20,6 +21,7 @@ export const DATA_FILES = {
 export const state = {
   activeView: "dashboard",
   data: {
+    personnel: [],
     features: [],
     knowledge: [],
     training: [],
@@ -62,6 +64,7 @@ export const state = {
 
 export const viewTitles = {
   dashboard: "SOC HUD",
+  personnel: "Personnel",
   features: "Features",
   knowledge: "Knowledge Base",
   training: "JQS",

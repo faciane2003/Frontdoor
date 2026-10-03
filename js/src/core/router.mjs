@@ -2,6 +2,7 @@
 
 import { currentLocalDateValue } from "./utils.mjs";
 import { renderDashboard } from "../views/dashboard.mjs";
+import { renderPersonnel } from "../views/personnel.mjs";
 import { renderFeatures } from "../views/features.mjs";
 import { renderKnowledge } from "../views/knowledge.mjs";
 import { renderTraining } from "../views/training.mjs";
@@ -83,6 +84,7 @@ export function renderCollection(collection) {
 }
 
 export const VIEW_RENDERERS = {
+  personnel: renderPersonnel,
   features: renderFeatures,
   dashboard: renderDashboard,
   knowledge: renderKnowledge,

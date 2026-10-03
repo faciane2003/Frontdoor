@@ -9,7 +9,7 @@
     >
     <meta name="application-name" content="Frontdoor">
     <title>Frontdoor</title>
-    <link rel="stylesheet" href="css/styles.css?v=20261003-mail-outline">
+    <link rel="stylesheet" href="css/styles.css?v=20261003-personnel-roster">
   </head>
   <body>
     <div class="app-shell">
@@ -32,6 +32,7 @@
           <button class="nav-item" type="button" data-view="links">Links</button>
           <button class="nav-item" type="button" data-view="mail">Mail</button>
           <button class="nav-item" type="button" data-view="schedule">On-Call</button>
+          <button class="nav-item" type="button" data-view="personnel">Personnel</button>
           <button class="nav-item" type="button" data-view="soc">SOC Reference</button>
           <button class="nav-item" type="button" data-view="sops">SOPs</button>
           <button class="nav-item" type="button" data-view="tools">Tools</button>
@@ -53,6 +54,11 @@
         <section id="dashboard" class="view is-active" aria-labelledby="dashboard-heading">
           <h2 id="dashboard-heading" class="sr-only">Dashboard</h2>
           <div id="dashboard-grid" class="dashboard-overview"></div>
+        </section>
+
+        <section id="personnel" class="view" aria-labelledby="personnel-heading">
+          <h2 id="personnel-heading" class="sr-only">Personnel</h2>
+          <div id="personnel-list"></div>
         </section>
 
         <section id="features" class="view" aria-labelledby="features-heading">
@@ -173,6 +179,6 @@
       </form>
     </dialog>
 
-    <script src="js/main.js?v=20261003-mail-outline"></script>
+    <script src="js/main.js?v=20261003-personnel-roster"></script>
   </body>
 </html>

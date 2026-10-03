@@ -230,3 +230,56 @@
 @media (max-width: 700px) { .mail-table th:last-child, .mail-table td:last-child { width: 48px; } .mail-table .mail-section-row td, .mail-table .mail-preview-row td { width: auto; } }
 
 @media (min-width: 701px) { .mail-layout .section-filter-toolbar select { width: 240px; } }
+
+/* Personnel profile cards follow the portal palette and responsive workspace. */
+.personnel-intro { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem; }
+.personnel-intro h3 { margin:0.2rem 0 0.4rem; font-size:1.35rem; }
+.personnel-intro p { margin:0; color:var(--muted); font-size:0.8rem; }
+.personnel-intro .personnel-eyebrow { color:var(--accent-strong); font-size:0.65rem; letter-spacing:0.14em; font-weight:700; }
+.personnel-count { flex-shrink:0; color:var(--accent-strong); font-size:0.78rem; }
+.personnel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:0.9rem; }
+.personnel-card { min-width:0; padding:1rem; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+.personnel-card-header { display:flex; gap:0.75rem; align-items:center; }
+.personnel-avatar { display:grid; place-items:center; width:48px; height:48px; flex-shrink:0; border:1px solid rgba(77,163,255,0.4); border-radius:12px; background:#172d41; color:var(--accent-strong); font-size:1rem; font-weight:700; }
+.personnel-card h4 { margin:0; font-size:1rem; color:var(--text); }
+.personnel-card h5 { margin:0.8rem 0 0.5rem; font-size:0.7rem; color:var(--accent-strong); font-weight:700; }
+.personnel-card h5 span { color:var(--muted); font-weight:400; }
+.personnel-talents { display:flex; flex-wrap:wrap; list-style:none; padding:0; margin:0; gap:0.35rem; }
+.personnel-talents li { font-size:0.68rem; padding:0.3rem 0.45rem; border:1px solid var(--line); border-radius:5px; color:var(--text); background:#101e2b; }
+@media(max-width:700px) { .personnel-intro { align-items:flex-start; flex-direction:column; gap:0.4rem; } .personnel-card { padding:0.75rem; } }
+
+.personnel-leadership { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-bottom:1.5rem; }
+.personnel-leader { padding:1.4rem; border-top:3px solid var(--accent); background:linear-gradient(135deg,#1b2b3b,var(--panel)); }
+.personnel-leader .personnel-avatar { width:64px; height:64px; font-size:1.3rem; }
+.personnel-leader h4 { font-size:1.3rem; }
+.personnel-rank { margin:0 0 0.3rem; font-size:0.72rem; color:var(--accent-strong); font-weight:700; }
+.personnel-leader .personnel-rank { color:var(--gold); font-size:0.85rem; }
+.personnel-tier { margin-bottom:1.5rem; }
+.personnel-tier > h3 { margin:0 0 0.7rem; padding-bottom:0.5rem; border-bottom:1px solid var(--line); color:var(--accent-strong); font-size:0.95rem; }
+@media(max-width:900px) { .personnel-leadership { grid-template-columns:1fr; } }
+
+/* Rank controls card prominence; talents remain a simple three-item list. */
+.personnel-leadership { grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); align-items:start; }
+.personnel-irm { padding:1.7rem; }
+.personnel-irm .personnel-avatar { width:76px; height:76px; font-size:1.5rem; }
+.personnel-irm h4 { font-size:1.5rem; }
+.personnel-irm .personnel-rank { font-size:1rem; }
+.personnel-talents { display:block; list-style:disc; padding-left:1.15rem; margin:0; }
+.personnel-talents li { padding:0; border:0; border-radius:0; background:transparent; font-size:0.78rem; line-height:1.5; margin:0.2rem 0; }
+.personnel-talents li::marker { color:var(--accent-strong); }
+@media(max-width:900px) { .personnel-leadership { grid-template-columns:1fr; } .personnel-irm { padding:1.4rem; } }
+
+/* Stack leadership in rank order, with IRM remaining the largest profile. */
+.personnel-leadership { grid-template-columns:minmax(0,1fr); }
+.personnel-backup { width:85%; box-sizing:border-box; }
+@media(max-width:900px) { .personnel-backup { width:95%; } }
+
+/* Keep leadership prominent without stretching across the workspace. */
+.personnel-irm { width:min(100%,580px); box-sizing:border-box; padding:1rem; }
+.personnel-backup { width:min(95%,520px); padding:1rem; }
+.personnel-irm .personnel-avatar { width:56px; height:56px; font-size:1.15rem; }
+.personnel-backup .personnel-avatar { width:48px; height:48px; font-size:1rem; }
+.personnel-irm h4 { font-size:1.15rem; }
+.personnel-backup h4 { font-size:1.05rem; }
+.personnel-irm .personnel-rank, .personnel-backup .personnel-rank { font-size:0.78rem; }
+@media(max-width:900px) { .personnel-backup { width:min(95%,520px); } }

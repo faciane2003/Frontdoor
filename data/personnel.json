@@ -1,0 +1,182 @@
+[
+  {
+    "id": "personnel-02",
+    "name": "Elias Brooks",
+    "role": "IRM",
+    "talents": [
+      "Crisis leadership",
+      "Incident triage",
+      "Decision making"
+    ]
+  },
+  {
+    "id": "personnel-01",
+    "name": "Maya Chen",
+    "role": "Backup IRM",
+    "talents": [
+      "Cipher analysis",
+      "Pattern recognition",
+      "Secure protocols"
+    ]
+  },
+  {
+    "id": "personnel-03",
+    "name": "Nora Patel",
+    "role": "Tier 3",
+    "talents": [
+      "Memory forensics",
+      "Evidence handling",
+      "Timeline reconstruction"
+    ]
+  },
+  {
+    "id": "personnel-04",
+    "name": "Julian Reyes",
+    "role": "Tier 3",
+    "talents": [
+      "Adversary emulation",
+      "Stealth operations",
+      "Exploit research"
+    ]
+  },
+  {
+    "id": "personnel-05",
+    "name": "Amara Okafor",
+    "role": "Tier 3",
+    "talents": [
+      "Threat research",
+      "Attribution analysis",
+      "Intelligence briefings"
+    ]
+  },
+  {
+    "id": "personnel-06",
+    "name": "Theo Morgan",
+    "role": "Tier 3",
+    "talents": [
+      "Endpoint hardening",
+      "Automation",
+      "Patch deployment"
+    ]
+  },
+  {
+    "id": "personnel-07",
+    "name": "Sofia Alvarez",
+    "role": "Tier 3",
+    "talents": [
+      "Packet analysis",
+      "Network monitoring",
+      "Traffic isolation"
+    ]
+  },
+  {
+    "id": "personnel-08",
+    "name": "Kai Nakamura",
+    "role": "Tier 3",
+    "talents": [
+      "Detection rules",
+      "SIEM tuning",
+      "Telemetry design"
+    ]
+  },
+  {
+    "id": "personnel-09",
+    "name": "Leila Hassan",
+    "role": "Tier 2",
+    "talents": [
+      "Reverse engineering",
+      "Sandbox analysis",
+      "Behavior mapping"
+    ]
+  },
+  {
+    "id": "personnel-10",
+    "name": "Owen Carter",
+    "role": "Tier 2",
+    "talents": [
+      "Disaster recovery",
+      "Backup validation",
+      "Service restoration"
+    ]
+  },
+  {
+    "id": "personnel-11",
+    "name": "Zara Williams",
+    "role": "Tier 2",
+    "talents": [
+      "Cloud architecture",
+      "Identity boundaries",
+      "Infrastructure review"
+    ]
+  },
+  {
+    "id": "personnel-12",
+    "name": "Finn Gallagher",
+    "role": "Tier 2",
+    "talents": [
+      "SOAR workflows",
+      "API integration",
+      "Scripting"
+    ]
+  },
+  {
+    "id": "personnel-13",
+    "name": "Imani Davis",
+    "role": "Tier 2",
+    "talents": [
+      "Access reviews",
+      "Identity investigations",
+      "Least privilege"
+    ]
+  },
+  {
+    "id": "personnel-14",
+    "name": "Luca Romano",
+    "role": "Tier 1",
+    "talents": [
+      "Risk assessment",
+      "Policy design",
+      "Audit readiness"
+    ]
+  },
+  {
+    "id": "personnel-15",
+    "name": "Priya Shah",
+    "role": "Tier 1",
+    "talents": [
+      "Phishing analysis",
+      "Awareness coaching",
+      "Behavioral research"
+    ]
+  },
+  {
+    "id": "personnel-16",
+    "name": "Miles Turner",
+    "role": "Tier 1",
+    "talents": [
+      "Threat hunting",
+      "Log correlation",
+      "Hypothesis testing"
+    ]
+  },
+  {
+    "id": "personnel-17",
+    "name": "Ava Bennett",
+    "role": "Tier 1",
+    "talents": [
+      "Mentoring",
+      "Scenario design",
+      "Knowledge sharing"
+    ]
+  },
+  {
+    "id": "personnel-18",
+    "name": "Darius Cole",
+    "role": "Tier 1",
+    "talents": [
+      "System hardening",
+      "Segmentation",
+      "Resilience planning"
+    ]
+  }
+]

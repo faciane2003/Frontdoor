@@ -2501,5 +2501,241 @@ button.table-link {
     width: 240px;
   }
 }
+.personnel-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.personnel-intro h3 {
+  margin: .2rem 0 .4rem;
+  font-size: 1.35rem;
+}
+.personnel-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+.personnel-intro .personnel-eyebrow {
+  color: var(--accent-strong);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  font-weight: 700;
+}
+.personnel-count {
+  flex-shrink: 0;
+  color: var(--accent-strong);
+  font-size: .78rem;
+}
+.personnel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: .9rem;
+}
+.personnel-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.personnel-card-header {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+.personnel-avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid rgba(77, 163, 255, .4);
+  border-radius: 12px;
+  background: #172d41;
+  color: var(--accent-strong);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.personnel-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text);
+}
+.personnel-card h5 {
+  margin: .8rem 0 .5rem;
+  font-size: .7rem;
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+.personnel-card h5 span {
+  color: var(--muted);
+  font-weight: 400;
+}
+.personnel-talents {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: .35rem;
+}
+.personnel-talents li {
+  font-size: .68rem;
+  padding: .3rem .45rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--text);
+  background: #101e2b;
+}
+@media (max-width: 700px) {
+  .personnel-intro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  .personnel-card {
+    padding: .75rem;
+  }
+}
+.personnel-leadership {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.personnel-leader {
+  padding: 1.4rem;
+  border-top: 3px solid var(--accent);
+  background:
+    linear-gradient(
+      135deg,
+      #1b2b3b,
+      var(--panel));
+}
+.personnel-leader .personnel-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 1.3rem;
+}
+.personnel-leader h4 {
+  font-size: 1.3rem;
+}
+.personnel-rank {
+  margin: 0 0 .3rem;
+  font-size: .72rem;
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+.personnel-leader .personnel-rank {
+  color: var(--gold);
+  font-size: .85rem;
+}
+.personnel-tier {
+  margin-bottom: 1.5rem;
+}
+.personnel-tier > h3 {
+  margin: 0 0 .7rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent-strong);
+  font-size: .95rem;
+}
+@media (max-width: 900px) {
+  .personnel-leadership {
+    grid-template-columns: 1fr;
+  }
+}
+.personnel-leadership {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: start;
+}
+.personnel-irm {
+  padding: 1.7rem;
+}
+.personnel-irm .personnel-avatar {
+  width: 76px;
+  height: 76px;
+  font-size: 1.5rem;
+}
+.personnel-irm h4 {
+  font-size: 1.5rem;
+}
+.personnel-irm .personnel-rank {
+  font-size: 1rem;
+}
+.personnel-talents {
+  display: block;
+  list-style: disc;
+  padding-left: 1.15rem;
+  margin: 0;
+}
+.personnel-talents li {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: .78rem;
+  line-height: 1.5;
+  margin: .2rem 0;
+}
+.personnel-talents li::marker {
+  color: var(--accent-strong);
+}
+@media (max-width: 900px) {
+  .personnel-leadership {
+    grid-template-columns: 1fr;
+  }
+  .personnel-irm {
+    padding: 1.4rem;
+  }
+}
+.personnel-leadership {
+  grid-template-columns: minmax(0, 1fr);
+}
+.personnel-backup {
+  width: 85%;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .personnel-backup {
+    width: 95%;
+  }
+}
+.personnel-irm {
+  width: min(100%, 580px);
+  box-sizing: border-box;
+  padding: 1rem;
+}
+.personnel-backup {
+  width: min(95%, 520px);
+  padding: 1rem;
+}
+.personnel-irm .personnel-avatar {
+  width: 56px;
+  height: 56px;
+  font-size: 1.15rem;
+}
+.personnel-backup .personnel-avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1rem;
+}
+.personnel-irm h4 {
+  font-size: 1.15rem;
+}
+.personnel-backup h4 {
+  font-size: 1.05rem;
+}
+.personnel-irm .personnel-rank,
+.personnel-backup .personnel-rank {
+  font-size: .78rem;
+}
+@media (max-width: 900px) {
+  .personnel-backup {
+    width: min(95%, 520px);
+  }
+}
 
 /* css/src/styles.css */
