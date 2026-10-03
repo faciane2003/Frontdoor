@@ -1,3 +1,12 @@
+# 2026-10-03 Mail outline replacement
+
+- Mail now follows the tab-indented ENO outline: 75 folders and 113 .oft filenames. The Passdown spreadsheet is excluded.
+- Folders use parentId and order; subsections contain email rows. Full paths supply distinct stable IDs for repeated filenames.
+- Email contents are blank until uploaded or entered and saved. The template generator skips rows without contents.
+- The eno-outline-v1 catalog marker resets old Mail-only browser data once; later local edits persist.
+- Local preview: npm start, then http://127.0.0.1:8000/#mail. Source changes require npm run build and a browser refresh.
+- User requires verbal authorization before any commit or push.
+
 # Frontdoor Project Notes
 
 ## 2026-10-01 Refactor and maintenance
@@ -533,3 +542,15 @@ The user requested local-only work by default:
 - Added ten neutral Security entries covering example reviews, alerts, and remediation work.
 - Generalized the shared GitHub item-description map so Repo, Teams, People, and Security use the same table renderer and search behavior.
 - Advanced the main asset version to `20260929-9` so browsers fetch the new dummy data immediately after deployment.
+
+Validation on 2026-10-03: build, syntax, portal, Mail hierarchy/migration/edit/import/download/mobile, Tools/Links, and CONs checks passed. Full npm test stops at the separate On-Call weekday sticky-header check. No On-Call source was changed.
+
+
+2026-10-03: Mail now starts at 400_Email Templates, retaining its 48 folders (including the root) and 113 .oft entries. Ancestor and sibling folders are omitted from the Mail catalog.
+
+2026-10-03: Mail now shares the JQS tier/area folder controls and matches its table font sizes, cell padding, header colors, and hierarchy accents. Mail controls and folder nesting remain intact; Mail browser checks pass.
+
+
+2026-10-03: Removed the 400_Email Templates wrapper. Its child folders are now top-level Mail categories; all 113 emails and deeper nesting remain. Mail folders start collapsed.
+
+2026-10-03: Generated 113 example Outlook .oft assets for the Mail catalog. Each preview and download uses an [EXAMPLE] subject, demonstration notice, placeholder recipient, and editable placeholder body. All files parsed and served locally; Mail browser checks passed. Existing browser-saved edits still take precedence over examples.

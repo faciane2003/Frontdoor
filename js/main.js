@@ -9,7 +9,7 @@
     certs: "data/certs.json",
     schedule: "data/on-call.json",
     links: "data/links.json",
-    mail: "data/mail.json",
+    mail: "data/mail.json?v=20261003-mail-outline",
     whitepages: "data/whitepages.json",
     cons: "data/cons.json",
     usStates: "assets/us-states.json"
@@ -2005,7 +2005,7 @@ ${secondNote}`;
     return parseMailOft(bytes);
   }
   function addMailEmail(preview = { to: "", subject: "New Email", body: "" }, title = "New Email", description = "", categoryId = state.mailSection) {
-    const section = state.data.mail.find((section2) => section2.id === categoryId) || state.data.mail.at(-1);
+    const section = state.data.mail.find((section2) => section2.id === categoryId) || state.data.mail[0];
     const item = { id: `mail-${crypto.randomUUID()}`, categoryId: section.id, title, description, template: "#", preview: { to: preview.to, subject: preview.subject, body: preview.body } };
     const added = [...state.mailAdded, item];
     writeStoredValue("frontdoor:mail-added", JSON.stringify(added));
@@ -2018,6 +2018,8 @@ ${secondNote}`;
   async function downloadMailTemplate(id) {
     const item = state.data.mail.flatMap((section) => section.subsections).find((row) => row.id === id);
     if (!item) throw new Error("Email template not found.");
+    const saved = { ...item.preview, ...state.mailEdits[id] };
+    if (!saved.subject.trim() || !saved.body.trim()) throw new Error("Upload or enter email contents and Save before downloading.");
     const { createMailOft } = await loadOutlookLibrary();
     const preview = { ...item.preview, ...state.mailEdits[id] };
     const bytes = await createMailOft({
@@ -2029,7 +2031,7 @@ ${secondNote}`;
     const url = URL.createObjectURL(new Blob([bytes], { type: "application/vnd.ms-outlook" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${item.id}.oft`;
+    link.download = /\.oft$/i.test(item.title) ? item.title : `${item.title}.oft`;
     document.body.append(link);
     link.click();
     link.remove();
@@ -2037,35 +2039,40 @@ ${secondNote}`;
   }
   function renderMail() {
     const term = state.searchTerm.trim().toLowerCase();
-    const rows = state.data.mail.filter((section) => !state.mailSection || section.id === state.mailSection).map((section) => {
-      const sectionMatches = matchRecord({ title: section.title, description: section.description }, term);
-      const children = (sectionMatches ? section.subsections : section.subsections.filter((item) => matchRecord({ ...item, ...state.mailEdits[item.id] }, term))).filter((item) => !state.mailEdits[item.id]?.deleted).map((item) => ({ ...item, ...state.mailEdits[item.id] }));
-      if (!sectionMatches && !children.length) return "";
-      const expanded = Boolean(term || state.mailSection) || state.expandedMailSections.has(section.id);
-      const titleLink = (item) => `<a class="table-link" href="${escapeHtml(item.template)}" data-mail-download="${escapeHtml(item.id)}" download>${escapeHtml(item.title)}</a>`;
-      return `
-      <tbody><tr class="link-category-row mail-section-row">
-        <td colspan="3"><button class="link-category-toggle" type="button" data-mail-toggle="${escapeHtml(section.id)}" aria-expanded="${expanded}" aria-controls="mail-children-${escapeHtml(section.id)}"><strong>${escapeHtml(section.title)}</strong></button></td>
-      </tr></tbody>
-      <tbody id="mail-children-${escapeHtml(section.id)}" ${expanded ? "" : "hidden"}>
-        ${children.map((item) => {
+    const folders = state.data.mail;
+    const descendants = (id) => folders.filter((folder) => folder.parentId === id);
+    const selected = folders.find((folder) => folder.id === state.mailSection);
+    const roots = selected ? [selected] : folders.filter((folder) => !folder.parentId);
+    const matches = (folder) => matchRecord({ title: folder.title }, term) || folder.subsections.some((item) => !state.mailEdits[item.id]?.deleted && matchRecord({ ...item, ...state.mailEdits[item.id] }, term)) || descendants(folder.id).some(matches);
+    const renderFolder = (section, depth = 0, inheritedMatch = false, visible = true) => {
+      const sectionMatches = inheritedMatch || matchRecord({ title: section.title }, term);
+      if (term && !sectionMatches && !matches(section)) return "";
+      const children = section.subsections.filter((item) => !state.mailEdits[item.id]?.deleted && (sectionMatches || matchRecord({ ...item, ...state.mailEdits[item.id] }, term))).map((item) => ({ ...item, ...state.mailEdits[item.id] }));
+      const expanded = Boolean(term || selected) || state.expandedMailSections.has(section.id);
+      const titleLink = (item) => `<a class="table-link" aria-disabled="${!{ ...item.preview, ...state.mailEdits[item.id] }.body?.trim()}" href="${escapeHtml(item.template)}" data-mail-download="${escapeHtml(item.id)}" download>${escapeHtml(item.title)}</a>`;
+      const renderEmail = (item) => {
         const previewExpanded = state.expandedMailPreviews.has(item.id);
         const preview = { ...item.preview, ...state.mailEdits[item.id] };
-        return `<tr class="link-category-child mail-subsection-row" data-mail-preview-toggle="${escapeHtml(item.id)}" tabindex="0" aria-expanded="${previewExpanded}" aria-controls="mail-preview-${escapeHtml(item.id)}" aria-label="Preview ${escapeHtml(item.title)}"><td><span data-mail-title-link ${previewExpanded ? "hidden" : ""}>${titleLink(item)}</span><span class="editable-field is-link-like" contenteditable="true" role="textbox" aria-label="Title" data-mail-meta="title" data-mail-id="${escapeHtml(item.id)}" ${previewExpanded ? "" : "hidden"}>${escapeHtml(item.title)}</span></td><td><span class="editable-field is-multiline" contenteditable="${previewExpanded}" ${previewExpanded ? 'role="textbox" aria-label="Description"' : ""} data-mail-meta="description" data-mail-id="${escapeHtml(item.id)}">${escapeHtml(item.description)}</span></td><td><span class="row-actions"><button class="row-trash" type="button" data-mail-delete="${escapeHtml(item.id)}" aria-label="Delete row" title="Delete row">${renderTrashIcon()}</button></span></td></tr>
+        return `<tr class="mail-subsection-row" data-mail-preview-toggle="${escapeHtml(item.id)}" tabindex="0" aria-expanded="${previewExpanded}" aria-controls="mail-preview-${escapeHtml(item.id)}" aria-label="Preview ${escapeHtml(item.title)}"><td style="--mail-depth:${depth + 1}"><span data-mail-title-link ${previewExpanded ? "hidden" : ""}>${titleLink(item)}</span><span class="editable-field is-link-like" contenteditable="true" role="textbox" aria-label="Title" data-mail-meta="title" data-mail-id="${escapeHtml(item.id)}" ${previewExpanded ? "" : "hidden"}>${escapeHtml(item.title)}</span></td><td><span class="editable-field is-multiline" contenteditable="${previewExpanded}" ${previewExpanded ? 'role="textbox" aria-label="Description"' : ""} data-mail-meta="description" data-mail-id="${escapeHtml(item.id)}">${escapeHtml(item.description)}</span></td><td><span class="row-actions"><button class="row-trash" type="button" data-mail-delete="${escapeHtml(item.id)}" aria-label="Delete row" title="Delete row">${renderTrashIcon()}</button></span></td></tr>
             <tr id="mail-preview-${escapeHtml(item.id)}" class="mail-preview-row" ${previewExpanded ? "" : "hidden"}><td colspan="3"><form class="mail-preview" data-mail-edit="${escapeHtml(item.id)}" aria-label="${escapeHtml(item.title)} email example"><div class="mail-upload-control"><button type="button" class="table-add" data-mail-upload-open>Upload</button><input data-mail-upload type="file" accept=".oft,.msg" aria-label="Upload Outlook Template" hidden></div><label>To<input name="to" type="email" multiple value="${escapeHtml(preview.to)}"></label><label>Subject<input name="subject" type="text" required value="${escapeHtml(preview.subject)}"></label><label for="mail-body-${escapeHtml(item.id)}">Body</label><textarea id="mail-body-${escapeHtml(item.id)}" name="body" rows="12" required>${escapeHtml(preview.body)}</textarea><button class="table-add" type="submit">Save</button><span class="mail-save-status" role="status" aria-live="polite"></span></form></td></tr>`;
-      }).join("")}
-      </tbody>`;
-    }).filter(Boolean);
+      };
+      return `
+      <tbody ${visible ? "" : "hidden"}><tr class="${depth === 0 ? "training-tier-row" : "training-area-row"} mail-section-row">
+        <td colspan="3"><button class="${depth === 0 ? "training-tier-toggle" : "training-area-toggle"}" type="button" data-mail-toggle="${escapeHtml(section.id)}" aria-expanded="${expanded}">${depth === 0 ? `<strong>${escapeHtml(section.title)}</strong>` : `<span style="--mail-depth:${depth}">${escapeHtml(section.title)}</span>`}</button></td>
+      </tr></tbody>
+      ${[...children, ...descendants(section.id)].sort((a, b) => (a.order ?? -1) - (b.order ?? -1)).map((item) => item.subsections ? renderFolder(item, depth + 1, sectionMatches, visible && expanded) : `<tbody ${visible && expanded ? "" : "hidden"}>${renderEmail(item)}</tbody>`).join("")}`;
+    };
+    const rows = roots.map((folder) => renderFolder(folder)).filter(Boolean);
     document.querySelector("#mail-list").innerHTML = `
-    <div class="links-layout mail-layout">
+    <div class="mail-layout">
       <div class="section-controls">
-        <div class="section-filter-toolbar"><label for="mail-section-select">Category</label><select id="mail-section-select"><option value="">All categories</option>${state.data.mail.map((section) => `<option value="${escapeHtml(section.id)}" ${state.mailSection === section.id ? "selected" : ""}>${escapeHtml(section.title)}</option>`).join("")}</select></div>
+        <div class="section-filter-toolbar"><label for="mail-section-select">Category</label><select id="mail-section-select"><option value="">All categories</option>${state.data.mail.map((section) => `<option value="${escapeHtml(section.id)}" ${state.mailSection === section.id ? "selected" : ""}>${escapeHtml(section.path || section.title)}</option>`).join("")}</select></div>
         <button class="table-add" type="button" data-mail-add>Add Email</button>
         <button class="table-add" type="button" data-mail-import-open ${state.mailImporting ? "disabled" : ""}>Import</button>
         <input type="file" accept=".oft,.msg" multiple data-mail-import hidden aria-label="Import Outlook emails">
       </div>
       <div role="status" data-mail-import-status aria-live="polite"></div>
-      ${rows.length ? `<div class="table-wrap"><table class="data-table resource-table mail-table"><thead><tr><th scope="col">Title</th><th scope="col">Description</th><th aria-label="Row actions"></th></tr></thead>${rows.join("")}</table></div>` : renderEmpty("No mail templates match.")}
+      ${rows.length ? `<div class="table-wrap"><table class="data-table mail-table"><thead><tr><th scope="col">Title</th><th scope="col">Description</th><th aria-label="Row actions"></th></tr></thead>${rows.join("")}</table></div>` : renderEmpty("No mail templates match.")}
     </div>`;
   }
   function bindMailEvents() {
@@ -2175,6 +2182,7 @@ ${secondNote}`;
       try {
         writeStoredValue("frontdoor:mail-edits", JSON.stringify(nextEdits));
         state.mailEdits = nextEdits;
+        document.querySelector(`[data-mail-download="${CSS.escape(form.dataset.mailEdit)}"]`).setAttribute("aria-disabled", "false");
         status.textContent = "Saved. Title downloads now use this email.";
       } catch {
         status.textContent = "Unable to save. Check available browser storage and try again.";
@@ -2216,8 +2224,8 @@ ${secondNote}`;
     document.querySelector("#mail-list").addEventListener("click", (event) => {
       if (event.target.closest("[data-mail-add]")) {
         mailAddForm.reset();
-        mailAddForm.elements.categoryId.innerHTML = state.data.mail.map((section) => `<option value="${escapeHtml(section.id)}">${escapeHtml(section.title)}</option>`).join("");
-        mailAddForm.elements.categoryId.value = state.mailSection || state.data.mail.at(-1).id;
+        mailAddForm.elements.categoryId.innerHTML = state.data.mail.map((section) => `<option value="${escapeHtml(section.id)}">${escapeHtml(section.path || section.title)}</option>`).join("");
+        mailAddForm.elements.categoryId.value = state.mailSection || state.data.mail[0].id;
         mailAddForm.querySelector(".mail-add-status").textContent = "";
         mailAddDialog.showModal();
         mailAddForm.elements.title.focus();
@@ -2254,8 +2262,7 @@ ${secondNote}`;
       const expanded = toggle.getAttribute("aria-expanded") !== "true";
       if (expanded) state.expandedMailSections.add(id);
       else state.expandedMailSections.delete(id);
-      document.getElementById(`mail-children-${id}`).hidden = !expanded;
-      toggle.setAttribute("aria-expanded", String(expanded));
+      renderMail();
     });
   }
 
@@ -2358,19 +2365,29 @@ ${secondNote}`;
     }
     EDITABLE_TABLES.forEach((collection) => ensureRowIds(collection, state.data[collection]));
     applySavedTables();
+    state.expandedMailSections = /* @__PURE__ */ new Set();
+    const catalogReady = readStoredValue("frontdoor:mail-catalog") === "eno-outline-v1";
+    if (!catalogReady) {
+      try {
+        writeStoredValue("frontdoor:mail-edits", "{}");
+        writeStoredValue("frontdoor:mail-added", "[]");
+        writeStoredValue("frontdoor:mail-catalog", "eno-outline-v1");
+      } catch {
+      }
+    }
     try {
-      const edits = JSON.parse(readStoredValue("frontdoor:mail-edits") || "{}");
+      const edits = JSON.parse((catalogReady ? readStoredValue("frontdoor:mail-edits") : null) || "{}");
       if (edits && typeof edits === "object" && !Array.isArray(edits)) state.mailEdits = edits;
     } catch {
       state.mailEdits = {};
     }
     try {
-      const added = JSON.parse(readStoredValue("frontdoor:mail-added") || "[]");
+      const added = JSON.parse((catalogReady ? readStoredValue("frontdoor:mail-added") : null) || "[]");
       if (Array.isArray(added)) {
         state.mailAdded = added.filter((item) => typeof item.id === "string" && typeof item.title === "string" && item.preview && ["to", "subject", "body"].every((key) => typeof item.preview[key] === "string"));
         for (const item of state.mailAdded) {
           const section = state.data.mail.find((section2) => section2.id === item.categoryId) || state.data.mail.at(-1);
-          section.subsections.unshift(item);
+          if (section) section.subsections.unshift(item);
         }
       }
     } catch {

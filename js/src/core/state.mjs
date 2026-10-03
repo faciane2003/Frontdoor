@@ -8,7 +8,7 @@ export const DATA_FILES = {
   certs: "data/certs.json",
   schedule: "data/on-call.json",
   links: "data/links.json",
-  mail: "data/mail.json",
+  mail: "data/mail.json?v=20261003-mail-outline",
   whitepages: "data/whitepages.json",
   cons: "data/cons.json",
   usStates: "assets/us-states.json",

@@ -1,372 +1,1817 @@
 [
   {
-    "id": "section-01",
-    "title": "Incident Response",
-    "description": "Security incident, phishing, and endpoint communications.",
-    "template": "assets/mail/section-01.oft",
+    "id": "outline-2b8240699399262c",
+    "title": "AI Usage",
+    "parentId": null,
+    "depth": 0,
+    "path": "AI Usage",
     "subsections": [
       {
-        "id": "section-01-1",
-        "title": "Initial Notification",
-        "description": "Dummy template for initial notification.",
-        "template": "assets/mail/section-01-1.oft",
+        "id": "outline-637d4cd4e0b45724",
+        "title": "Approved - Downloaded AI Tool.oft",
+        "description": "Example email for Approved - Downloaded AI Tool.",
+        "template": "assets/mail/outline-637d4cd4e0b45724.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Initial Notification",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Initial Notification.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] Approved - Downloaded AI Tool",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Approved - Downloaded AI Tool in AI Usage.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 10
       },
       {
-        "id": "section-01-2",
-        "title": "Status Update",
-        "description": "Dummy template for status update.",
-        "template": "assets/mail/section-01-2.oft",
+        "id": "outline-8e743ade58b0a9ae",
+        "title": "Not Approved - Browser User and Install.oft",
+        "description": "Example email for Not Approved - Browser User and Install.",
+        "template": "assets/mail/outline-8e743ade58b0a9ae.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Status Update",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Status Update.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] Not Approved - Browser User and Install",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Not Approved - Browser User and Install in AI Usage.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 11
       },
       {
-        "id": "section-01-3",
-        "title": "Closure Summary",
-        "description": "Dummy template for closure summary.",
-        "template": "assets/mail/section-01-3.oft",
+        "id": "outline-60f9e66a538431e9",
+        "title": "Not Approved - Browser Use.oft",
+        "description": "Example email for Not Approved - Browser Use.",
+        "template": "assets/mail/outline-60f9e66a538431e9.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Closure Summary",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Closure Summary.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-02-1",
-        "title": "Report Acknowledgment",
-        "description": "Dummy template for report acknowledgment.",
-        "template": "assets/mail/section-02-1.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Report Acknowledgment",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Report Acknowledgment.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-02-2",
-        "title": "Investigation Results",
-        "description": "Dummy template for investigation results.",
-        "template": "assets/mail/section-02-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Investigation Results",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Investigation Results.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-02-3",
-        "title": "User Guidance",
-        "description": "Dummy template for user guidance.",
-        "template": "assets/mail/section-02-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] User Guidance",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for User Guidance.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-03-1",
-        "title": "Isolation Request",
-        "description": "Dummy template for isolation request.",
-        "template": "assets/mail/section-03-1.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Isolation Request",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Isolation Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-03-2",
-        "title": "Remediation Request",
-        "description": "Dummy template for remediation request.",
-        "template": "assets/mail/section-03-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Remediation Request",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Remediation Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-03-3",
-        "title": "Recovery Confirmation",
-        "description": "Dummy template for recovery confirmation.",
-        "template": "assets/mail/section-03-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Recovery Confirmation",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Recovery Confirmation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] Not Approved - Browser Use",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Not Approved - Browser Use in AI Usage.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 12
       }
-    ]
+    ],
+    "order": 9
   },
   {
-    "id": "section-04",
-    "title": "Access and Vulnerabilities",
-    "description": "Account access and vulnerability remediation communications.",
-    "template": "assets/mail/section-04.oft",
+    "id": "outline-28c4bf1da1541125",
+    "title": "ATH Bug Bounty Template",
+    "parentId": null,
+    "depth": 0,
+    "path": "ATH Bug Bounty Template",
     "subsections": [
       {
-        "id": "section-04-1",
-        "title": "Access Review",
-        "description": "Dummy template for access review.",
-        "template": "assets/mail/section-04-1.oft",
+        "id": "outline-ac64c51095add905",
+        "title": "Bug Bounty Submission Validation Request.oft",
+        "description": "Example email for Bug Bounty Submission Validation Request.",
+        "template": "assets/mail/outline-ac64c51095add905.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Access Review",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Access Review.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-04-2",
-        "title": "Account Lockout",
-        "description": "Dummy template for account lockout.",
-        "template": "assets/mail/section-04-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Account Lockout",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Account Lockout.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-04-3",
-        "title": "Password Reset",
-        "description": "Dummy template for password reset.",
-        "template": "assets/mail/section-04-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Password Reset",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Password Reset.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-05-1",
-        "title": "New Finding",
-        "description": "Dummy template for new finding.",
-        "template": "assets/mail/section-05-1.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] New Finding",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for New Finding.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-05-2",
-        "title": "Patch Reminder",
-        "description": "Dummy template for patch reminder.",
-        "template": "assets/mail/section-05-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Patch Reminder",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Patch Reminder.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-05-3",
-        "title": "Resolution Confirmation",
-        "description": "Dummy template for resolution confirmation.",
-        "template": "assets/mail/section-05-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Resolution Confirmation",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Resolution Confirmation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] Bug Bounty Submission Validation Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Bug Bounty Submission Validation Request in ATH Bug Bounty Template.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 15
       }
-    ]
+    ],
+    "order": 14
   },
   {
-    "id": "section-06",
-    "title": "Threat Intelligence",
-    "description": "Threat advisories and intelligence sharing.",
-    "template": "assets/mail/section-06.oft",
+    "id": "outline-11a76e20e1fe02a2",
+    "title": "AWS",
+    "parentId": null,
+    "depth": 0,
+    "path": "AWS",
     "subsections": [
       {
-        "id": "section-06-1",
-        "title": "Threat Advisory",
-        "description": "Dummy template for threat advisory.",
-        "template": "assets/mail/section-06-1.oft",
+        "id": "outline-841b0fed657e52ba",
+        "title": "ATH CloudMonitor AWS Splunk Alert.oft",
+        "description": "Example email for ATH CloudMonitor AWS Splunk Alert.",
+        "template": "assets/mail/outline-841b0fed657e52ba.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Threat Advisory",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Threat Advisory.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] ATH CloudMonitor AWS Splunk Alert",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns ATH CloudMonitor AWS Splunk Alert in AWS.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 17
       },
       {
-        "id": "section-06-2",
-        "title": "Indicator Sharing",
-        "description": "Dummy template for indicator sharing.",
-        "template": "assets/mail/section-06-2.oft",
+        "id": "outline-7c8bdc686955eb01",
+        "title": "User AWS Internet Gateway Attachment.oft",
+        "description": "Example email for User AWS Internet Gateway Attachment.",
+        "template": "assets/mail/outline-7c8bdc686955eb01.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Indicator Sharing",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Indicator Sharing.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] User AWS Internet Gateway Attachment",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns User AWS Internet Gateway Attachment in AWS.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 18
       },
       {
-        "id": "section-06-3",
-        "title": "Intelligence Summary",
-        "description": "Dummy template for intelligence summary.",
-        "template": "assets/mail/section-06-3.oft",
+        "id": "outline-d8d8fc12db05d1d4",
+        "title": "User AWS Public DB Snapshot Alert.oft",
+        "description": "Example email for User AWS Public DB Snapshot Alert.",
+        "template": "assets/mail/outline-d8d8fc12db05d1d4.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Intelligence Summary",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Intelligence Summary.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] User AWS Public DB Snapshot Alert",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns User AWS Public DB Snapshot Alert in AWS.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 19
+      },
+      {
+        "id": "outline-ce7f3e8776cb22e2",
+        "title": "User AWS Public EBS Snapshot Alert.oft",
+        "description": "Example email for User AWS Public EBS Snapshot Alert.",
+        "template": "assets/mail/outline-ce7f3e8776cb22e2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] User AWS Public EBS Snapshot Alert",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns User AWS Public EBS Snapshot Alert in AWS.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 20
+      },
+      {
+        "id": "outline-4d7fb04d8f58a38a",
+        "title": "User AWS S3 Bucket Access Alert.oft",
+        "description": "Example email for User AWS S3 Bucket Access Alert.",
+        "template": "assets/mail/outline-4d7fb04d8f58a38a.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] User AWS S3 Bucket Access Alert",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns User AWS S3 Bucket Access Alert in AWS.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 21
       }
-    ]
+    ],
+    "order": 16
   },
   {
-    "id": "section-07",
-    "title": "Operations and Changes",
-    "description": "On-call coverage, handoffs, and change management.",
-    "template": "assets/mail/section-07.oft",
+    "id": "outline-27f1cf765b835825",
+    "title": "Class Spills",
+    "parentId": null,
+    "depth": 0,
+    "path": "Class Spills",
     "subsections": [
       {
-        "id": "section-07-1",
-        "title": "Shift Handoff",
-        "description": "Dummy template for shift handoff.",
-        "template": "assets/mail/section-07-1.oft",
+        "id": "outline-4f65e1233f2f853a",
+        "title": "2 GWO Notification (Once Confirmed).oft",
+        "description": "Example email for 2 GWO Notification (Once Confirmed).",
+        "template": "assets/mail/outline-4f65e1233f2f853a.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Shift Handoff",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Shift Handoff.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 2 GWO Notification (Once Confirmed)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 2 GWO Notification (Once Confirmed) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 23
       },
       {
-        "id": "section-07-2",
-        "title": "Coverage Request",
-        "description": "Dummy template for coverage request.",
-        "template": "assets/mail/section-07-2.oft",
+        "id": "outline-b4aef86187457f2e",
+        "title": "3 FSM Information Request (Alternate).oft",
+        "description": "Example email for 3 FSM Information Request (Alternate).",
+        "template": "assets/mail/outline-b4aef86187457f2e.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Coverage Request",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Coverage Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 3 FSM Information Request (Alternate)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 3 FSM Information Request (Alternate) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 24
       },
       {
-        "id": "section-07-3",
-        "title": "Escalation Notice",
-        "description": "Dummy template for escalation notice.",
-        "template": "assets/mail/section-07-3.oft",
+        "id": "outline-362fb5dfb24b8400",
+        "title": "3A FSM Information Request.oft",
+        "description": "Example email for 3A FSM Information Request.",
+        "template": "assets/mail/outline-362fb5dfb24b8400.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Escalation Notice",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Escalation Notice.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 3A FSM Information Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 3A FSM Information Request in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 25
       },
       {
-        "id": "section-08-1",
-        "title": "Change Request",
-        "description": "Dummy template for change request.",
-        "template": "assets/mail/section-08-1.oft",
+        "id": "outline-3df6643580c0be80",
+        "title": "4 Email to Application ISSO CPMS FDNS.oft",
+        "description": "Example email for 4 Email to Application ISSO CPMS FDNS.",
+        "template": "assets/mail/outline-3df6643580c0be80.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Change Request",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Change Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 4 Email to Application ISSO CPMS FDNS",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4 Email to Application ISSO CPMS FDNS in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 26
       },
       {
-        "id": "section-08-2",
-        "title": "Maintenance Notice",
-        "description": "Dummy template for maintenance notice.",
-        "template": "assets/mail/section-08-2.oft",
+        "id": "outline-7fcde45139fba2d2",
+        "title": "4 Email to the Application ISSO FIRST.oft",
+        "description": "Example email for 4 Email to the Application ISSO FIRST.",
+        "template": "assets/mail/outline-7fcde45139fba2d2.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Maintenance Notice",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Maintenance Notice.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 4 Email to the Application ISSO FIRST",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4 Email to the Application ISSO FIRST in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 27
       },
       {
-        "id": "section-08-3",
-        "title": "Change Completion",
-        "description": "Dummy template for change completion.",
-        "template": "assets/mail/section-08-3.oft",
+        "id": "outline-82bac3389daf179f",
+        "title": "4 Email to the Application ISSO GLOBAL.oft",
+        "description": "Example email for 4 Email to the Application ISSO GLOBAL.",
+        "template": "assets/mail/outline-82bac3389daf179f.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Change Completion",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Change Completion.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] 4 Email to the Application ISSO GLOBAL",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4 Email to the Application ISSO GLOBAL in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 28
+      },
+      {
+        "id": "outline-120b080b5cc73706",
+        "title": "4A RM Site Tasking for PRINTERSCANNER Remediation.oft",
+        "description": "Example email for 4A RM Site Tasking for PRINTERSCANNER Remediation.",
+        "template": "assets/mail/outline-120b080b5cc73706.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 4A RM Site Tasking for PRINTERSCANNER Remediation",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4A RM Site Tasking for PRINTERSCANNER Remediation in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 29
+      },
+      {
+        "id": "outline-67e65fb3ca8aed22",
+        "title": "4A RM Site Tasking for Wipe and Reimage.oft",
+        "description": "Example email for 4A RM Site Tasking for Wipe and Reimage.",
+        "template": "assets/mail/outline-67e65fb3ca8aed22.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 4A RM Site Tasking for Wipe and Reimage",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4A RM Site Tasking for Wipe and Reimage in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 30
+      },
+      {
+        "id": "outline-8475331db5517514",
+        "title": "4A RM Site Tasking to Bring Device Online for SOC file remediation.oft",
+        "description": "Example email for 4A RM Site Tasking to Bring Device Online for SOC file remediation.",
+        "template": "assets/mail/outline-8475331db5517514.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 4A RM Site Tasking to Bring Device Online for SOC file remediation",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4A RM Site Tasking to Bring Device Online for SOC file remediation in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 31
+      },
+      {
+        "id": "outline-aed3b2c42a1e4c07",
+        "title": "4A RM Site Tasking to Obtain An Asset.oft",
+        "description": "Example email for 4A RM Site Tasking to Obtain An Asset.",
+        "template": "assets/mail/outline-aed3b2c42a1e4c07.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 4A RM Site Tasking to Obtain An Asset",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 4A RM Site Tasking to Obtain An Asset in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 32
+      },
+      {
+        "id": "outline-bbe62c6859c8c547",
+        "title": "5C GFE PHONE Wireless Remediation.oft",
+        "description": "Example email for 5C GFE PHONE Wireless Remediation.",
+        "template": "assets/mail/outline-bbe62c6859c8c547.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 5C GFE PHONE Wireless Remediation",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 5C GFE PHONE Wireless Remediation in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 33
+      },
+      {
+        "id": "outline-53935e62234e1174",
+        "title": "6 Backup Tape Tasking Template.oft",
+        "description": "Example email for 6 Backup Tape Tasking Template.",
+        "template": "assets/mail/outline-53935e62234e1174.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 6 Backup Tape Tasking Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 6 Backup Tape Tasking Template in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 34
+      },
+      {
+        "id": "outline-8fff512e302d1d33",
+        "title": "7 Tape Recall and Destruction.oft",
+        "description": "Example email for 7 Tape Recall and Destruction.",
+        "template": "assets/mail/outline-8fff512e302d1d33.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 7 Tape Recall and Destruction",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 7 Tape Recall and Destruction in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 35
+      },
+      {
+        "id": "outline-3cff42331d24a012",
+        "title": "8 GWO Closure Approval Request.oft",
+        "description": "Example email for 8 GWO Closure Approval Request.",
+        "template": "assets/mail/outline-3cff42331d24a012.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 8 GWO Closure Approval Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 8 GWO Closure Approval Request in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 36
+      },
+      {
+        "id": "outline-acf84c89db7f235d",
+        "title": "9 Incident Resolution.oft",
+        "description": "Example email for 9 Incident Resolution.",
+        "template": "assets/mail/outline-acf84c89db7f235d.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] 9 Incident Resolution",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns 9 Incident Resolution in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 37
+      },
+      {
+        "id": "outline-d11dd124e1142d78",
+        "title": "CryptoErasure Approval.oft",
+        "description": "Example email for CryptoErasure Approval.",
+        "template": "assets/mail/outline-d11dd124e1142d78.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] CryptoErasure Approval",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns CryptoErasure Approval in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 38
+      },
+      {
+        "id": "outline-572a75b63591632b",
+        "title": "Devices Identified by SOC - Email Involved.oft",
+        "description": "Example email for Devices Identified by SOC - Email Involved.",
+        "template": "assets/mail/outline-572a75b63591632b.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Devices Identified by SOC - Email Involved",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Devices Identified by SOC - Email Involved in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 39
+      },
+      {
+        "id": "outline-7bef3db19d0f96e3",
+        "title": "Devices Identified by SOC - No Email Involved.oft",
+        "description": "Example email for Devices Identified by SOC - No Email Involved.",
+        "template": "assets/mail/outline-7bef3db19d0f96e3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Devices Identified by SOC - No Email Involved",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Devices Identified by SOC - No Email Involved in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 40
+      },
+      {
+        "id": "outline-0d0afc7d83be06a6",
+        "title": "DHS Request for Escalation (11000-10 NOT provided_Sensitive).oft",
+        "description": "Example email for DHS Request for Escalation (11000-10 NOT provided_Sensitive).",
+        "template": "assets/mail/outline-0d0afc7d83be06a6.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] DHS Request for Escalation (11000-10 NOT provided_Sensitive)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns DHS Request for Escalation (11000-10 NOT provided_Sensitive) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 41
+      },
+      {
+        "id": "outline-b2ef316694502cab",
+        "title": "DHS Request for Escalation (11000-10 provided).oft",
+        "description": "Example email for DHS Request for Escalation (11000-10 provided).",
+        "template": "assets/mail/outline-b2ef316694502cab.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] DHS Request for Escalation (11000-10 provided)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns DHS Request for Escalation (11000-10 provided) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 42
+      },
+      {
+        "id": "outline-fd9f939201299b1e",
+        "title": "HQ NOSC Request for Closure.oft",
+        "description": "Example email for HQ NOSC Request for Closure.",
+        "template": "assets/mail/outline-fd9f939201299b1e.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] HQ NOSC Request for Closure",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns HQ NOSC Request for Closure in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 43
+      },
+      {
+        "id": "outline-843df12048f2a5c7",
+        "title": "Incident Notification CIS-CLASS(No Purge).oft",
+        "description": "Example email for Incident Notification CIS-CLASS(No Purge).",
+        "template": "assets/mail/outline-843df12048f2a5c7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Incident Notification CIS-CLASS(No Purge)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Incident Notification CIS-CLASS(No Purge) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 44
+      },
+      {
+        "id": "outline-be692a2994dba4a4",
+        "title": "Incident notification CIS-CLASS(Requires Purge).oft",
+        "description": "Example email for Incident notification CIS-CLASS(Requires Purge).",
+        "template": "assets/mail/outline-be692a2994dba4a4.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Incident notification CIS-CLASS(Requires Purge)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Incident notification CIS-CLASS(Requires Purge) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 45
+      },
+      {
+        "id": "outline-4d8414699783e89b",
+        "title": "Request for Header Information (if not provided by FSM).oft",
+        "description": "Example email for Request for Header Information (if not provided by FSM).",
+        "template": "assets/mail/outline-4d8414699783e89b.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Request for Header Information (if not provided by FSM)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Request for Header Information (if not provided by FSM) in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 46
+      },
+      {
+        "id": "outline-59caeafea7ef56b8",
+        "title": "SADOM Email Trace and Purge Request.oft",
+        "description": "Example email for SADOM Email Trace and Purge Request.",
+        "template": "assets/mail/outline-59caeafea7ef56b8.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Email Trace and Purge Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Email Trace and Purge Request in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 47
+      },
+      {
+        "id": "outline-6a664a79799786c3",
+        "title": "SADOM Onedrive_Sharepoint Assistance.oft",
+        "description": "Example email for SADOM Onedrive_Sharepoint Assistance.",
+        "template": "assets/mail/outline-6a664a79799786c3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Onedrive_Sharepoint Assistance",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Onedrive_Sharepoint Assistance in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 48
+      },
+      {
+        "id": "outline-bfd340ab596c4132",
+        "title": "USCIS GWO Spill Update.oft",
+        "description": "Example email for USCIS GWO Spill Update.",
+        "template": "assets/mail/outline-bfd340ab596c4132.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] USCIS GWO Spill Update",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns USCIS GWO Spill Update in Class Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 49
       }
-    ]
+    ],
+    "order": 22
   },
   {
-    "id": "section-09",
-    "title": "Team and Compliance",
-    "description": "Training, compliance, and general team communications.",
-    "template": "assets/mail/section-09.oft",
+    "id": "outline-2076c9b6ba5f2785",
+    "title": "Cleared Logs",
+    "parentId": null,
+    "depth": 0,
+    "path": "Cleared Logs",
     "subsections": [
       {
-        "id": "section-09-1",
-        "title": "Training Invitation",
-        "description": "Dummy template for training invitation.",
-        "template": "assets/mail/section-09-1.oft",
+        "id": "outline-f070b52851e645f6",
+        "title": "Logs Cleared Template.oft",
+        "description": "Example email for Logs Cleared Template.",
+        "template": "assets/mail/outline-f070b52851e645f6.oft",
         "preview": {
           "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Training Invitation",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Training Invitation.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-09-2",
-        "title": "Completion Reminder",
-        "description": "Dummy template for completion reminder.",
-        "template": "assets/mail/section-09-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Completion Reminder",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Completion Reminder.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-09-3",
-        "title": "Evidence Request",
-        "description": "Dummy template for evidence request.",
-        "template": "assets/mail/section-09-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Evidence Request",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Evidence Request.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-10-1",
-        "title": "Team Announcement",
-        "description": "Dummy template for team announcement.",
-        "template": "assets/mail/section-10-1.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Team Announcement",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Team Announcement.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-10-2",
-        "title": "Meeting Follow-Up",
-        "description": "Dummy template for meeting follow-up.",
-        "template": "assets/mail/section-10-2.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Meeting Follow-Up",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Meeting Follow-Up.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
-      },
-      {
-        "id": "section-10-3",
-        "title": "Service Update",
-        "description": "Dummy template for service update.",
-        "template": "assets/mail/section-10-3.oft",
-        "preview": {
-          "to": "recipient@example.com",
-          "subject": "[DUMMY TEMPLATE] Service Update",
-          "body": "Hello [Recipient],\n\nThis is a dummy email template for Service Update.\nReplace this sample text with your approved message.\n\nSummary: [Add details]\nAction required: [Add action]\nDue date: [Add date]\n\nRegards,\n[Your name]"
-        }
+          "subject": "[EXAMPLE] Logs Cleared Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Logs Cleared Template in Cleared Logs.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 51
       }
-    ]
+    ],
+    "order": 50
+  },
+  {
+    "id": "outline-178c0bc9de77c682",
+    "title": "CTI Report - ICE Hits",
+    "parentId": null,
+    "depth": 0,
+    "path": "CTI Report - ICE Hits",
+    "subsections": [
+      {
+        "id": "outline-a133965c03da51d8",
+        "title": "ICE IPs  IOCs Found on CTI Daily OPS Report.oft",
+        "description": "Example email for ICE IPs  IOCs Found on CTI Daily OPS Report.",
+        "template": "assets/mail/outline-a133965c03da51d8.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] ICE IPs  IOCs Found on CTI Daily OPS Report",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns ICE IPs  IOCs Found on CTI Daily OPS Report in CTI Report - ICE Hits.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 53
+      }
+    ],
+    "order": 52
+  },
+  {
+    "id": "outline-b675618f3f7a9b8e",
+    "title": "DLP IP Alerts",
+    "parentId": null,
+    "depth": 0,
+    "path": "DLP IP Alerts",
+    "subsections": [
+      {
+        "id": "outline-35db20d5f89698e6",
+        "title": "IP DLP Alert to EU.oft",
+        "description": "Example email for IP DLP Alert to EU.",
+        "template": "assets/mail/outline-35db20d5f89698e6.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] IP DLP Alert to EU",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns IP DLP Alert to EU in DLP IP Alerts.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 55
+      }
+    ],
+    "order": 54
+  },
+  {
+    "id": "outline-278a5a960c8de5bf",
+    "title": "Exfil Data Review",
+    "parentId": null,
+    "depth": 0,
+    "path": "Exfil Data Review",
+    "subsections": [
+      {
+        "id": "outline-fd3858b0e333978c",
+        "title": "Excessive Personal Use (no exfil).oft",
+        "description": "Example email for Excessive Personal Use (no exfil).",
+        "template": "assets/mail/outline-fd3858b0e333978c.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Excessive Personal Use (no exfil)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Excessive Personal Use (no exfil) in Exfil Data Review.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 57
+      },
+      {
+        "id": "outline-960114021d7d114a",
+        "title": "Exfil Data Review.oft",
+        "description": "Example email for Exfil Data Review.",
+        "template": "assets/mail/outline-960114021d7d114a.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Exfil Data Review",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Exfil Data Review in Exfil Data Review.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 58
+      },
+      {
+        "id": "outline-41ceb0ed761a17c2",
+        "title": "Upload of PII Information -TAXES.oft",
+        "description": "Example email for Upload of PII Information -TAXES.",
+        "template": "assets/mail/outline-41ceb0ed761a17c2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Upload of PII Information -TAXES",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Upload of PII Information -TAXES in Exfil Data Review.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 59
+      }
+    ],
+    "order": 56
+  },
+  {
+    "id": "outline-5d35784ad92e0ec3",
+    "title": "Exposed Email Address_Password",
+    "parentId": null,
+    "depth": 0,
+    "path": "Exposed Email Address_Password",
+    "subsections": [
+      {
+        "id": "outline-fd5a7d503c62b487",
+        "title": "Exposed Email Address Password.oft",
+        "description": "Example email for Exposed Email Address Password.",
+        "template": "assets/mail/outline-fd5a7d503c62b487.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Exposed Email Address Password",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Exposed Email Address Password in Exposed Email Address_Password.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 61
+      }
+    ],
+    "order": 60
+  },
+  {
+    "id": "outline-3857a7f51c6b3a5a",
+    "title": "External Email Account in GFE Outlook Profile",
+    "parentId": null,
+    "depth": 0,
+    "path": "External Email Account in GFE Outlook Profile",
+    "subsections": [
+      {
+        "id": "outline-b88202b291dfe2b9",
+        "title": "EXTERNAL EMAIL ACCOUNT IN GFE OUTLOOK PROFILE.oft",
+        "description": "Example email for EXTERNAL EMAIL ACCOUNT IN GFE OUTLOOK PROFILE.",
+        "template": "assets/mail/outline-b88202b291dfe2b9.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] EXTERNAL EMAIL ACCOUNT IN GFE OUTLOOK PROFILE",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns EXTERNAL EMAIL ACCOUNT IN GFE OUTLOOK PROFILE in External Email Account in GFE Outlook Profile.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 63
+      }
+    ],
+    "order": 62
+  },
+  {
+    "id": "outline-0e168438b2b169e0",
+    "title": "Failed Logins",
+    "parentId": null,
+    "depth": 0,
+    "path": "Failed Logins",
+    "subsections": [
+      {
+        "id": "outline-eafad80ca44e328f",
+        "title": "Failed Logins.oft",
+        "description": "Example email for Failed Logins.",
+        "template": "assets/mail/outline-eafad80ca44e328f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Failed Logins",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Failed Logins in Failed Logins.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 65
+      },
+      {
+        "id": "outline-fe88d4b689bdd8e7",
+        "title": "Potentially Compromised Home Network.oft",
+        "description": "Example email for Potentially Compromised Home Network.",
+        "template": "assets/mail/outline-fe88d4b689bdd8e7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Potentially Compromised Home Network",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Potentially Compromised Home Network in Failed Logins.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 66
+      }
+    ],
+    "order": 64
+  },
+  {
+    "id": "outline-fc7257d25f18a53d",
+    "title": "FDB",
+    "parentId": null,
+    "depth": 0,
+    "path": "FDB",
+    "subsections": [
+      {
+        "id": "outline-646f087c5aad72c0",
+        "title": "FDB Legagneux Template.oft",
+        "description": "Example email for FDB Legagneux Template.",
+        "template": "assets/mail/outline-646f087c5aad72c0.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] FDB Legagneux Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns FDB Legagneux Template in FDB.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 68
+      }
+    ],
+    "order": 67
+  },
+  {
+    "id": "outline-f76378a0147c3037",
+    "title": "Fiddler Approval",
+    "parentId": null,
+    "depth": 0,
+    "path": "Fiddler Approval",
+    "subsections": [
+      {
+        "id": "outline-9af113eeb363fb86",
+        "title": "ACTION REQUIRED Request to install Fiddler.oft",
+        "description": "Example email for ACTION REQUIRED Request to install Fiddler.",
+        "template": "assets/mail/outline-9af113eeb363fb86.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] ACTION REQUIRED Request to install Fiddler",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns ACTION REQUIRED Request to install Fiddler in Fiddler Approval.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 70
+      },
+      {
+        "id": "outline-a104ccc568801bcd",
+        "title": "Fiddler Install Approved.oft",
+        "description": "Example email for Fiddler Install Approved.",
+        "template": "assets/mail/outline-a104ccc568801bcd.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Fiddler Install Approved",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Fiddler Install Approved in Fiddler Approval.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 71
+      }
+    ],
+    "order": 69
+  },
+  {
+    "id": "outline-0b850ff7a5d6a781",
+    "title": "FireEye Uninstalled_Stopped",
+    "parentId": null,
+    "depth": 0,
+    "path": "FireEye Uninstalled_Stopped",
+    "subsections": [
+      {
+        "id": "outline-3ccc299980acefaa",
+        "title": "FireEye Uninstalled_Stopped.oft",
+        "description": "Example email for FireEye Uninstalled_Stopped.",
+        "template": "assets/mail/outline-3ccc299980acefaa.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] FireEye Uninstalled_Stopped",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns FireEye Uninstalled_Stopped in FireEye Uninstalled_Stopped.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 73
+      }
+    ],
+    "order": 72
+  },
+  {
+    "id": "outline-74c3b1cef8d5f39a",
+    "title": "Google Grammar",
+    "parentId": null,
+    "depth": 0,
+    "path": "Google Grammar",
+    "subsections": [
+      {
+        "id": "outline-6e350d72ba4328e6",
+        "title": "Use of Google Search for Grammar Checks.oft",
+        "description": "Example email for Use of Google Search for Grammar Checks.",
+        "template": "assets/mail/outline-6e350d72ba4328e6.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Use of Google Search for Grammar Checks",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Use of Google Search for Grammar Checks in Google Grammar.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 75
+      }
+    ],
+    "order": 74
+  },
+  {
+    "id": "outline-38942833d1c2b3fa",
+    "title": "iOS Update Phones and iPads",
+    "parentId": null,
+    "depth": 0,
+    "path": "iOS Update Phones and iPads",
+    "subsections": [
+      {
+        "id": "outline-3a57c39714a2eda7",
+        "title": "Update the iOS (Operating System) on Your USCIS iPhone andor iPad.oft",
+        "description": "Example email for Update the iOS (Operating System) on Your USCIS iPhone andor iPad.",
+        "template": "assets/mail/outline-3a57c39714a2eda7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Update the iOS (Operating System) on Your USCIS iPhone andor iPad",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Update the iOS (Operating System) on Your USCIS iPhone andor iPad in iOS Update Phones and iPads.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 77
+      }
+    ],
+    "order": 76
+  },
+  {
+    "id": "outline-bb9f222d48c7f0d0",
+    "title": "Lasso",
+    "parentId": null,
+    "depth": 0,
+    "path": "Lasso",
+    "subsections": [
+      {
+        "id": "outline-5d945e14580dad0c",
+        "title": "LASSO Classified email.oft",
+        "description": "Example email for LASSO Classified email.",
+        "template": "assets/mail/outline-5d945e14580dad0c.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] LASSO Classified email",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns LASSO Classified email in Lasso.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 79
+      },
+      {
+        "id": "outline-9d6872d4d9a75e8f",
+        "title": "LASSO email for supervisor.oft",
+        "description": "Example email for LASSO email for supervisor.",
+        "template": "assets/mail/outline-9d6872d4d9a75e8f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] LASSO email for supervisor",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns LASSO email for supervisor in Lasso.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 80
+      },
+      {
+        "id": "outline-6e05a1db1d099fb9",
+        "title": "LASSO email for user.oft",
+        "description": "Example email for LASSO email for user.",
+        "template": "assets/mail/outline-6e05a1db1d099fb9.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] LASSO email for user",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns LASSO email for user in Lasso.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 81
+      }
+    ],
+    "order": 78
+  },
+  {
+    "id": "outline-1999141c1cb256b1",
+    "title": "Lost_Stolen GFE Laptop",
+    "parentId": null,
+    "depth": 0,
+    "path": "Lost_Stolen GFE Laptop",
+    "subsections": [
+      {
+        "id": "outline-43e8d90c54c08fba",
+        "title": "SIR Request Template.oft",
+        "description": "Example email for SIR Request Template.",
+        "template": "assets/mail/outline-43e8d90c54c08fba.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SIR Request Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SIR Request Template in Lost_Stolen GFE Laptop.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 83
+      }
+    ],
+    "order": 82
+  },
+  {
+    "id": "outline-1faa3e01e6138c36",
+    "title": "Lost_Stolen GFE Phone",
+    "parentId": null,
+    "depth": 0,
+    "path": "Lost_Stolen GFE Phone",
+    "subsections": [
+      {
+        "id": "outline-9794cb0471f8e638",
+        "title": "Step 4(B) - Wireless Phone (RE-ACTIVATE).oft",
+        "description": "Example email for Step 4(B) - Wireless Phone (RE-ACTIVATE).",
+        "template": "assets/mail/outline-9794cb0471f8e638.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 4(B) - Wireless Phone (RE-ACTIVATE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 4(B) - Wireless Phone (RE-ACTIVATE) in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 85
+      },
+      {
+        "id": "outline-e8a6c3b7ba7bd27b",
+        "title": "Step 4(A) - Wireless Phone (RE-ISSUE).oft",
+        "description": "Example email for Step 4(A) - Wireless Phone (RE-ISSUE).",
+        "template": "assets/mail/outline-e8a6c3b7ba7bd27b.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 4(A) - Wireless Phone (RE-ISSUE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 4(A) - Wireless Phone (RE-ISSUE) in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 86
+      },
+      {
+        "id": "outline-ad1cd46535f46765",
+        "title": "Step 3 - Wireless Phone (SUSPEND).oft",
+        "description": "Example email for Step 3 - Wireless Phone (SUSPEND).",
+        "template": "assets/mail/outline-ad1cd46535f46765.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 3 - Wireless Phone (SUSPEND)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 3 - Wireless Phone (SUSPEND) in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 87
+      },
+      {
+        "id": "outline-0bdf4d47d9fa19a3",
+        "title": "Step 2 - Wireless Phone (COMPLETE WIPE).oft",
+        "description": "Example email for Step 2 - Wireless Phone (COMPLETE WIPE).",
+        "template": "assets/mail/outline-0bdf4d47d9fa19a3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 2 - Wireless Phone (COMPLETE WIPE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 2 - Wireless Phone (COMPLETE WIPE) in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 88
+      },
+      {
+        "id": "outline-984afedc590ff4ca",
+        "title": "Step 1 - Wireless Phone Information (DO NOT USE).oft",
+        "description": "Example email for Step 1 - Wireless Phone Information (DO NOT USE).",
+        "template": "assets/mail/outline-984afedc590ff4ca.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 1 - Wireless Phone Information (DO NOT USE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 1 - Wireless Phone Information (DO NOT USE) in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 89
+      },
+      {
+        "id": "outline-ea862b597d21f9a1",
+        "title": "SIR Request Template.oft",
+        "description": "Example email for SIR Request Template.",
+        "template": "assets/mail/outline-ea862b597d21f9a1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SIR Request Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SIR Request Template in Lost_Stolen GFE Phone.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 90
+      }
+    ],
+    "order": 84
+  },
+  {
+    "id": "outline-64d2a2bb9731f8ec",
+    "title": "M365 Mailbox Forwarding Alert",
+    "parentId": null,
+    "depth": 0,
+    "path": "M365 Mailbox Forwarding Alert",
+    "subsections": [
+      {
+        "id": "outline-af0bae3c31efcfc8",
+        "title": "M365 Mailbox Forwarding Alert.oft",
+        "description": "Example email for M365 Mailbox Forwarding Alert.",
+        "template": "assets/mail/outline-af0bae3c31efcfc8.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] M365 Mailbox Forwarding Alert",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns M365 Mailbox Forwarding Alert in M365 Mailbox Forwarding Alert.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 92
+      }
+    ],
+    "order": 91
+  },
+  {
+    "id": "outline-a19b8177cb6ad703",
+    "title": "Malware Detection",
+    "parentId": null,
+    "depth": 0,
+    "path": "Malware Detection",
+    "subsections": [
+      {
+        "id": "outline-59ff8b227838dcac",
+        "title": "INCXXXXXXX  Malware Detection in a File.oft",
+        "description": "Example email for INCXXXXXXX  Malware Detection in a File.",
+        "template": "assets/mail/outline-59ff8b227838dcac.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] INCXXXXXXX  Malware Detection in a File",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns INCXXXXXXX  Malware Detection in a File in Malware Detection.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 94
+      }
+    ],
+    "order": 93
+  },
+  {
+    "id": "outline-611f7327d2043c36",
+    "title": "OPM Executable",
+    "parentId": null,
+    "depth": 0,
+    "path": "OPM Executable",
+    "subsections": [
+      {
+        "id": "outline-8ab079910357e9f7",
+        "title": "OPM Executable Indicators.oft",
+        "description": "Example email for OPM Executable Indicators.",
+        "template": "assets/mail/outline-8ab079910357e9f7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] OPM Executable Indicators",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns OPM Executable Indicators in OPM Executable.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 96
+      }
+    ],
+    "order": 95
+  },
+  {
+    "id": "outline-c678b08113eca40c",
+    "title": "Passdown",
+    "parentId": null,
+    "depth": 0,
+    "path": "Passdown",
+    "subsections": [
+      {
+        "id": "outline-3b9e43ad8101aaab",
+        "title": "CSIRT Pass Down for dd mmm yyyy.oft",
+        "description": "Example email for CSIRT Pass Down for dd mmm yyyy.",
+        "template": "assets/mail/outline-3b9e43ad8101aaab.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] CSIRT Pass Down for dd mmm yyyy",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns CSIRT Pass Down for dd mmm yyyy in Passdown.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 98
+      }
+    ],
+    "order": 97
+  },
+  {
+    "id": "outline-f4c10d895438634e",
+    "title": "Phishing Exercise",
+    "parentId": null,
+    "depth": 0,
+    "path": "Phishing Exercise",
+    "subsections": [
+      {
+        "id": "outline-51bc34526b5ba369",
+        "title": "Reporting a Spam Email.oft",
+        "description": "Example email for Reporting a Spam Email.",
+        "template": "assets/mail/outline-51bc34526b5ba369.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Reporting a Spam Email",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Reporting a Spam Email in Phishing Exercise.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 101
+      }
+    ],
+    "order": 100
+  },
+  {
+    "id": "outline-a5431ddad1cdeab8",
+    "title": "PII Spills",
+    "parentId": null,
+    "depth": 0,
+    "path": "PII Spills",
+    "subsections": [
+      {
+        "id": "outline-9734d06c630818ac",
+        "title": "Lockbox - Privacy Breach to Melissa.oft",
+        "description": "Example email for Lockbox - Privacy Breach to Melissa.",
+        "template": "assets/mail/outline-9734d06c630818ac.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Lockbox - Privacy Breach to Melissa",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Lockbox - Privacy Breach to Melissa in PII Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 103
+      },
+      {
+        "id": "outline-795651105e60318f",
+        "title": "SIR Request Template.oft",
+        "description": "Example email for SIR Request Template.",
+        "template": "assets/mail/outline-795651105e60318f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SIR Request Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SIR Request Template in PII Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 104
+      },
+      {
+        "id": "outline-895d4f9bbc88a8a3",
+        "title": "SOC ATH Email Request.oft",
+        "description": "Example email for SOC ATH Email Request.",
+        "template": "assets/mail/outline-895d4f9bbc88a8a3.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SOC ATH Email Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SOC ATH Email Request in PII Spills.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 105
+      }
+    ],
+    "order": 102
+  },
+  {
+    "id": "outline-ff7b0d83702b9fbb",
+    "title": "Privilege Account Disablement",
+    "parentId": null,
+    "depth": 0,
+    "path": "Privilege Account Disablement",
+    "subsections": [
+      {
+        "id": "outline-285c74b579f13e15",
+        "title": "INCXXXXXXX  Privileged User Account Disabled.oft",
+        "description": "Example email for INCXXXXXXX  Privileged User Account Disabled.",
+        "template": "assets/mail/outline-285c74b579f13e15.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] INCXXXXXXX  Privileged User Account Disabled",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns INCXXXXXXX  Privileged User Account Disabled in Privilege Account Disablement.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 107
+      }
+    ],
+    "order": 106
+  },
+  {
+    "id": "outline-aa5168177f3646ec",
+    "title": "Privilege Escalation Unauthorized Access",
+    "parentId": null,
+    "depth": 0,
+    "path": "Privilege Escalation Unauthorized Access",
+    "subsections": [
+      {
+        "id": "outline-9133409df7f01d1e",
+        "title": "Privilege escalation email to EU that added account.oft",
+        "description": "Example email for Privilege escalation email to EU that added account.",
+        "template": "assets/mail/outline-9133409df7f01d1e.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Privilege escalation email to EU that added account",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Privilege escalation email to EU that added account in Privilege Escalation Unauthorized Access.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 109
+      }
+    ],
+    "order": 108
+  },
+  {
+    "id": "outline-84fb950d2a18ce1b",
+    "title": "Reports",
+    "parentId": null,
+    "depth": 0,
+    "path": "Reports",
+    "subsections": [],
+    "order": 110
+  },
+  {
+    "id": "outline-abcccb1cc8e95409",
+    "title": "EOC Morning Reports",
+    "parentId": "outline-84fb950d2a18ce1b",
+    "depth": 1,
+    "path": "Reports/EOC Morning Reports",
+    "subsections": [
+      {
+        "id": "outline-951dc6c5d6116d6a",
+        "title": "Morning Report DD Month YY.oft",
+        "description": "Example email for Morning Report DD Month YY.",
+        "template": "assets/mail/outline-951dc6c5d6116d6a.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Morning Report DD Month YY",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Morning Report DD Month YY in EOC Morning Reports.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 112
+      }
+    ],
+    "order": 111
+  },
+  {
+    "id": "outline-91c7a1e9deaf752c",
+    "title": "SSR Report",
+    "parentId": "outline-84fb950d2a18ce1b",
+    "depth": 1,
+    "path": "Reports/SSR Report",
+    "subsections": [
+      {
+        "id": "outline-4ba2db7ecac03306",
+        "title": "SSR Late Submission.oft",
+        "description": "Example email for SSR Late Submission.",
+        "template": "assets/mail/outline-4ba2db7ecac03306.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SSR Late Submission",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SSR Late Submission in SSR Report.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 114
+      },
+      {
+        "id": "outline-89e1977f8f89b133",
+        "title": "USCIS SOC Security Summary Report.oft",
+        "description": "Example email for USCIS SOC Security Summary Report.",
+        "template": "assets/mail/outline-89e1977f8f89b133.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] USCIS SOC Security Summary Report",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns USCIS SOC Security Summary Report in SSR Report.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 115
+      }
+    ],
+    "order": 113
+  },
+  {
+    "id": "outline-fdf76cf7cfd6d0b2",
+    "title": "RFS Request",
+    "parentId": null,
+    "depth": 0,
+    "path": "RFS Request",
+    "subsections": [
+      {
+        "id": "outline-4498e182e8f455f1",
+        "title": "RFS Instructions.oft",
+        "description": "Example email for RFS Instructions.",
+        "template": "assets/mail/outline-4498e182e8f455f1.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] RFS Instructions",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns RFS Instructions in RFS Request.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 117
+      }
+    ],
+    "order": 116
+  },
+  {
+    "id": "outline-f01573afa5739242",
+    "title": "Rogue Device",
+    "parentId": null,
+    "depth": 0,
+    "path": "Rogue Device",
+    "subsections": [
+      {
+        "id": "outline-09c6df39da3b2bbf",
+        "title": "FSE ROGUE TASK.oft",
+        "description": "Example email for FSE ROGUE TASK.",
+        "template": "assets/mail/outline-09c6df39da3b2bbf.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] FSE ROGUE TASK",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns FSE ROGUE TASK in Rogue Device.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 119
+      },
+      {
+        "id": "outline-5e0b366b73828d49",
+        "title": "ROGUE TOC TASK DISABLE PORT.oft",
+        "description": "Example email for ROGUE TOC TASK DISABLE PORT.",
+        "template": "assets/mail/outline-5e0b366b73828d49.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] ROGUE TOC TASK DISABLE PORT",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns ROGUE TOC TASK DISABLE PORT in Rogue Device.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 120
+      }
+    ],
+    "order": 118
+  },
+  {
+    "id": "outline-ce3737bb2281feeb",
+    "title": "Sadom IOC Block Request (Not SEN)",
+    "parentId": null,
+    "depth": 0,
+    "path": "Sadom IOC Block Request (Not SEN)",
+    "subsections": [
+      {
+        "id": "outline-c611b6d47c84fa24",
+        "title": "IOC Block Request on Zscaler.oft",
+        "description": "Example email for IOC Block Request on Zscaler.",
+        "template": "assets/mail/outline-c611b6d47c84fa24.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] IOC Block Request on Zscaler",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns IOC Block Request on Zscaler in Sadom IOC Block Request (Not SEN).\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 122
+      }
+    ],
+    "order": 121
+  },
+  {
+    "id": "outline-e3c81046a546cae9",
+    "title": "SEN Emails",
+    "parentId": null,
+    "depth": 0,
+    "path": "SEN Emails",
+    "subsections": [
+      {
+        "id": "outline-c6afb0f0e3dbafca",
+        "title": "HQ NOSC assistance request.oft",
+        "description": "Example email for HQ NOSC assistance request.",
+        "template": "assets/mail/outline-c6afb0f0e3dbafca.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] HQ NOSC assistance request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns HQ NOSC assistance request in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 126
+      },
+      {
+        "id": "outline-16ac5e10cfb8d2a5",
+        "title": "HQ NOSC Request for Closure.oft",
+        "description": "Example email for HQ NOSC Request for Closure.",
+        "template": "assets/mail/outline-16ac5e10cfb8d2a5.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] HQ NOSC Request for Closure",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns HQ NOSC Request for Closure in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 127
+      },
+      {
+        "id": "outline-0f09d7d31bab8a69",
+        "title": "Incident Notification Email.oft",
+        "description": "Example email for Incident Notification Email.",
+        "template": "assets/mail/outline-0f09d7d31bab8a69.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Incident Notification Email",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Incident Notification Email in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 128
+      },
+      {
+        "id": "outline-079cd1a55b4718d7",
+        "title": "Incident Resolution Email.oft",
+        "description": "Example email for Incident Resolution Email.",
+        "template": "assets/mail/outline-079cd1a55b4718d7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Incident Resolution Email",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Incident Resolution Email in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 129
+      },
+      {
+        "id": "outline-bc3b10feda3b8a25",
+        "title": "SADOM Email Trace and Copy of Email Request (QUARANTINED_NOT AFFECTED).oft",
+        "description": "Example email for SADOM Email Trace and Copy of Email Request (QUARANTINED_NOT AFFECTED).",
+        "template": "assets/mail/outline-bc3b10feda3b8a25.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Email Trace and Copy of Email Request (QUARANTINED_NOT AFFECTED)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Email Trace and Copy of Email Request (QUARANTINED_NOT AFFECTED) in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 130
+      },
+      {
+        "id": "outline-70014030e44f6ab0",
+        "title": "SADOM Email Trace and Copy of Email Request.oft",
+        "description": "Example email for SADOM Email Trace and Copy of Email Request.",
+        "template": "assets/mail/outline-70014030e44f6ab0.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Email Trace and Copy of Email Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Email Trace and Copy of Email Request in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 131
+      },
+      {
+        "id": "outline-31b568c06f2ed7f0",
+        "title": "SADOM Email Trace and Purge Request.oft",
+        "description": "Example email for SADOM Email Trace and Purge Request.",
+        "template": "assets/mail/outline-31b568c06f2ed7f0.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Email Trace and Purge Request",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Email Trace and Purge Request in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 132
+      },
+      {
+        "id": "outline-3ab70eb563c50a6e",
+        "title": "SADOM Email Trace Request (NOT AFFECTED).oft",
+        "description": "Example email for SADOM Email Trace Request (NOT AFFECTED).",
+        "template": "assets/mail/outline-3ab70eb563c50a6e.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] SADOM Email Trace Request (NOT AFFECTED)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns SADOM Email Trace Request (NOT AFFECTED) in SEN Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 133
+      }
+    ],
+    "order": 123
+  },
+  {
+    "id": "outline-0d1bd0e8673a019a",
+    "title": "Old SEN emails",
+    "parentId": "outline-e3c81046a546cae9",
+    "depth": 1,
+    "path": "SEN Emails/Old SEN emails",
+    "subsections": [
+      {
+        "id": "outline-b28ae94c0738d8a7",
+        "title": "Incident Notification Email WITH CALLBACKS.oft",
+        "description": "Example email for Incident Notification Email WITH CALLBACKS.",
+        "template": "assets/mail/outline-b28ae94c0738d8a7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Incident Notification Email WITH CALLBACKS",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Incident Notification Email WITH CALLBACKS in Old SEN emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 125
+      }
+    ],
+    "order": 124
+  },
+  {
+    "id": "outline-a486555f87354727",
+    "title": "SEN GWO Callback Email",
+    "parentId": null,
+    "depth": 0,
+    "path": "SEN GWO Callback Email",
+    "subsections": [
+      {
+        "id": "outline-368102b8db05ed6f",
+        "title": "GWO CALLBACK EMAIL (CRED PHISH) VIP USER.oft",
+        "description": "Example email for GWO CALLBACK EMAIL (CRED PHISH) VIP USER.",
+        "template": "assets/mail/outline-368102b8db05ed6f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] GWO CALLBACK EMAIL (CRED PHISH) VIP USER",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns GWO CALLBACK EMAIL (CRED PHISH) VIP USER in SEN GWO Callback Email.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 135
+      },
+      {
+        "id": "outline-85475b7c400d1818",
+        "title": "GWO CALLBACK EMAIL (CRED PHISH).oft",
+        "description": "Example email for GWO CALLBACK EMAIL (CRED PHISH).",
+        "template": "assets/mail/outline-85475b7c400d1818.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] GWO CALLBACK EMAIL (CRED PHISH)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns GWO CALLBACK EMAIL (CRED PHISH) in SEN GWO Callback Email.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 136
+      },
+      {
+        "id": "outline-13d0fd28083b8f3a",
+        "title": "GWO CALLBACK EMAIL (ML EMOTET) VIP USER.oft",
+        "description": "Example email for GWO CALLBACK EMAIL (ML EMOTET) VIP USER.",
+        "template": "assets/mail/outline-13d0fd28083b8f3a.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] GWO CALLBACK EMAIL (ML EMOTET) VIP USER",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns GWO CALLBACK EMAIL (ML EMOTET) VIP USER in SEN GWO Callback Email.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 137
+      },
+      {
+        "id": "outline-9ea867fc18a099d2",
+        "title": "GWO CALLBACK EMAIL (ML EMOTET).oft",
+        "description": "Example email for GWO CALLBACK EMAIL (ML EMOTET).",
+        "template": "assets/mail/outline-9ea867fc18a099d2.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] GWO CALLBACK EMAIL (ML EMOTET)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns GWO CALLBACK EMAIL (ML EMOTET) in SEN GWO Callback Email.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 138
+      }
+    ],
+    "order": 134
+  },
+  {
+    "id": "outline-307b7b6dc96f0afd",
+    "title": "Splunk Alert_NIX Processes Using Plaintext Creds",
+    "parentId": null,
+    "depth": 0,
+    "path": "Splunk Alert_NIX Processes Using Plaintext Creds",
+    "subsections": [
+      {
+        "id": "outline-a76641fda53b6f68",
+        "title": "Nix processes running with plaintext credentials.oft",
+        "description": "Example email for Nix processes running with plaintext credentials.",
+        "template": "assets/mail/outline-a76641fda53b6f68.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Nix processes running with plaintext credentials",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Nix processes running with plaintext credentials in Splunk Alert_NIX Processes Using Plaintext Creds.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 140
+      }
+    ],
+    "order": 139
+  },
+  {
+    "id": "outline-9e9fa3a41fcbc695",
+    "title": "Splunk Feed Down",
+    "parentId": null,
+    "depth": 0,
+    "path": "Splunk Feed Down",
+    "subsections": [
+      {
+        "id": "outline-7316c51e5402333f",
+        "title": "Email to TOC and CIRT.oft",
+        "description": "Example email for Email to TOC and CIRT.",
+        "template": "assets/mail/outline-7316c51e5402333f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Email to TOC and CIRT",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Email to TOC and CIRT in Splunk Feed Down.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 142
+      }
+    ],
+    "order": 141
+  },
+  {
+    "id": "outline-691861aa44a8099e",
+    "title": "Streaming Data",
+    "parentId": null,
+    "depth": 0,
+    "path": "Streaming Data",
+    "subsections": [
+      {
+        "id": "outline-9374bf5cb7294176",
+        "title": "Excessive Personal Use (no exfil).oft",
+        "description": "Example email for Excessive Personal Use (no exfil).",
+        "template": "assets/mail/outline-9374bf5cb7294176.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Excessive Personal Use (no exfil)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Excessive Personal Use (no exfil) in Streaming Data.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 144
+      },
+      {
+        "id": "outline-e16e345924e2fa2f",
+        "title": "Streaming Data Template.oft",
+        "description": "Example email for Streaming Data Template.",
+        "template": "assets/mail/outline-e16e345924e2fa2f.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Streaming Data Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Streaming Data Template in Streaming Data.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 145
+      }
+    ],
+    "order": 143
+  },
+  {
+    "id": "outline-3c38770bb262f9ce",
+    "title": "Task Emails",
+    "parentId": null,
+    "depth": 0,
+    "path": "Task Emails",
+    "subsections": [
+      {
+        "id": "outline-497dd5507b2b87e8",
+        "title": "Email to USER AND SUPERVISOR.oft",
+        "description": "Example email for Email to USER AND SUPERVISOR.",
+        "template": "assets/mail/outline-497dd5507b2b87e8.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Email to USER AND SUPERVISOR",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Email to USER AND SUPERVISOR in Task Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 147
+      },
+      {
+        "id": "outline-20b96f66381520d0",
+        "title": "MAC Wipe and Reimage Email.oft",
+        "description": "Example email for MAC Wipe and Reimage Email.",
+        "template": "assets/mail/outline-20b96f66381520d0.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] MAC Wipe and Reimage Email",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns MAC Wipe and Reimage Email in Task Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 148
+      },
+      {
+        "id": "outline-2fade04e0d70d434",
+        "title": "RM Bring Device Online (DO NOT USE).oft",
+        "description": "Example email for RM Bring Device Online (DO NOT USE).",
+        "template": "assets/mail/outline-2fade04e0d70d434.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] RM Bring Device Online (DO NOT USE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns RM Bring Device Online (DO NOT USE) in Task Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 149
+      },
+      {
+        "id": "outline-ff915c2b6808b41a",
+        "title": "RM Wipe and Reimage (DO NOT USE).oft",
+        "description": "Example email for RM Wipe and Reimage (DO NOT USE).",
+        "template": "assets/mail/outline-ff915c2b6808b41a.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] RM Wipe and Reimage (DO NOT USE)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns RM Wipe and Reimage (DO NOT USE) in Task Emails.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 150
+      }
+    ],
+    "order": 146
+  },
+  {
+    "id": "outline-ab9225342d9acb2d",
+    "title": "Unauthorized Software",
+    "parentId": null,
+    "depth": 0,
+    "path": "Unauthorized Software",
+    "subsections": [
+      {
+        "id": "outline-e967ade1e5613197",
+        "title": "Unauthorized Software - Okta Verify.oft",
+        "description": "Example email for Unauthorized Software - Okta Verify.",
+        "template": "assets/mail/outline-e967ade1e5613197.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software - Okta Verify",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software - Okta Verify in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 154
+      },
+      {
+        "id": "outline-d3116c429b73f205",
+        "title": "Unauthorized Software (Adobe Reader) - Software NOT REMOVED.oft",
+        "description": "Example email for Unauthorized Software (Adobe Reader) - Software NOT REMOVED.",
+        "template": "assets/mail/outline-d3116c429b73f205.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software (Adobe Reader) - Software NOT REMOVED",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software (Adobe Reader) - Software NOT REMOVED in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 155
+      },
+      {
+        "id": "outline-d75c79836a26c535",
+        "title": "Unauthorized Software (Adobe Reader) - Software REMOVED.oft",
+        "description": "Example email for Unauthorized Software (Adobe Reader) - Software REMOVED.",
+        "template": "assets/mail/outline-d75c79836a26c535.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software (Adobe Reader) - Software REMOVED",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software (Adobe Reader) - Software REMOVED in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 156
+      },
+      {
+        "id": "outline-df387d5d4b29e37b",
+        "title": "Unauthorized Software (Zoom.exe).oft",
+        "description": "Example email for Unauthorized Software (Zoom.exe).",
+        "template": "assets/mail/outline-df387d5d4b29e37b.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software (Zoom.exe)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software (Zoom.exe) in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 157
+      },
+      {
+        "id": "outline-4a971357f71fbbc7",
+        "title": "Unauthorized Software Template (RazerSteelSeries).oft",
+        "description": "Example email for Unauthorized Software Template (RazerSteelSeries).",
+        "template": "assets/mail/outline-4a971357f71fbbc7.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software Template (RazerSteelSeries)",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software Template (RazerSteelSeries) in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 158
+      },
+      {
+        "id": "outline-eb8d14bc573ada1d",
+        "title": "Unauthorized Software template.oft",
+        "description": "Example email for Unauthorized Software template.",
+        "template": "assets/mail/outline-eb8d14bc573ada1d.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Software template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Software template in Unauthorized Software.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 159
+      }
+    ],
+    "order": 151
+  },
+  {
+    "id": "outline-2b8813cd548c1f21",
+    "title": "UNAUTHORIZED APP_SOFTWARE ON GFE PHONE",
+    "parentId": "outline-ab9225342d9acb2d",
+    "depth": 1,
+    "path": "Unauthorized Software/UNAUTHORIZED APP_SOFTWARE ON GFE PHONE",
+    "subsections": [
+      {
+        "id": "outline-a5f42c7330318e08",
+        "title": "Mobile Unauthorized Software.oft",
+        "description": "Example email for Mobile Unauthorized Software.",
+        "template": "assets/mail/outline-a5f42c7330318e08.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Mobile Unauthorized Software",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Mobile Unauthorized Software in UNAUTHORIZED APP_SOFTWARE ON GFE PHONE.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 153
+      }
+    ],
+    "order": 152
+  },
+  {
+    "id": "outline-b3e9a762996a716d",
+    "title": "Unauthorized Tableau Download",
+    "parentId": null,
+    "depth": 0,
+    "path": "Unauthorized Tableau Download",
+    "subsections": [
+      {
+        "id": "outline-4a8695b5db9a444e",
+        "title": "Unauthorized Tableau Download.oft",
+        "description": "Example email for Unauthorized Tableau Download.",
+        "template": "assets/mail/outline-4a8695b5db9a444e.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Unauthorized Tableau Download",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Unauthorized Tableau Download in Unauthorized Tableau Download.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 161
+      }
+    ],
+    "order": 160
+  },
+  {
+    "id": "outline-3fbe9c1b402a7097",
+    "title": "Unusual GFE Login Activity",
+    "parentId": null,
+    "depth": 0,
+    "path": "Unusual GFE Login Activity",
+    "subsections": [
+      {
+        "id": "outline-aa76fa0613d63926",
+        "title": "Email to supervisor.oft",
+        "description": "Example email for Email to supervisor.",
+        "template": "assets/mail/outline-aa76fa0613d63926.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Email to supervisor",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Email to supervisor in Unusual GFE Login Activity.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 163
+      }
+    ],
+    "order": 162
+  },
+  {
+    "id": "outline-ea0ae2593f85e59a",
+    "title": "USB File Transfers",
+    "parentId": null,
+    "depth": 0,
+    "path": "USB File Transfers",
+    "subsections": [
+      {
+        "id": "outline-7a14c5e7794e14cb",
+        "title": "Misuse Template.oft",
+        "description": "Example email for Misuse Template.",
+        "template": "assets/mail/outline-7a14c5e7794e14cb.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Misuse Template",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Misuse Template in USB File Transfers.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 165
+      },
+      {
+        "id": "outline-45730ca9d2c7cfac",
+        "title": "USB File Transfer - Email to Supervisor.oft",
+        "description": "Example email for USB File Transfer - Email to Supervisor.",
+        "template": "assets/mail/outline-45730ca9d2c7cfac.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] USB File Transfer - Email to Supervisor",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns USB File Transfer - Email to Supervisor in USB File Transfers.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 166
+      }
+    ],
+    "order": 164
+  },
+  {
+    "id": "outline-5b7fb788180e941c",
+    "title": "Wireshark Approval",
+    "parentId": null,
+    "depth": 0,
+    "path": "Wireshark Approval",
+    "subsections": [
+      {
+        "id": "outline-84264ff1c5b11a66",
+        "title": "Step 1 ACTION REQUIRED Request to install Wireshark.oft",
+        "description": "Example email for Step 1 ACTION REQUIRED Request to install Wireshark.",
+        "template": "assets/mail/outline-84264ff1c5b11a66.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 1 ACTION REQUIRED Request to install Wireshark",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 1 ACTION REQUIRED Request to install Wireshark in Wireshark Approval.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 168
+      },
+      {
+        "id": "outline-2b1fbe183475d5af",
+        "title": "Step 2 WireShark Install Approved.oft",
+        "description": "Example email for Step 2 WireShark Install Approved.",
+        "template": "assets/mail/outline-2b1fbe183475d5af.oft",
+        "preview": {
+          "to": "recipient@example.com",
+          "subject": "[EXAMPLE] Step 2 WireShark Install Approved",
+          "body": "EXAMPLE TEMPLATE ? For demonstration only. Replace all placeholders and review before sending.\n\nHello [Recipient],\n\nThis example message concerns Step 2 WireShark Install Approved in Wireshark Approval.\n\nReference: [Ticket or case number]\nSummary: [Describe the situation]\nAffected user or asset: [User or asset]\nRequested action: [Describe the action requested]\nDue date: [Date and time]\n\nPlease reply with your update or any questions.\n\nRegards,\n[Your name]\n[Team]"
+        },
+        "order": 169
+      }
+    ],
+    "order": 167
   }
 ]

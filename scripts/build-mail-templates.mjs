@@ -6,7 +6,7 @@ import { createOft, inspectOft } from "html-to-oft";
 const root = new URL("../", import.meta.url);
 const dataPath = new URL("data/mail.json", root);
 const sections = JSON.parse(await fs.readFile(dataPath, "utf8"));
-const rows = sections.flatMap((section) => [section, ...section.subsections]);
+const rows = sections.flatMap((section) => section.subsections).filter((row) => row.preview?.subject?.trim() && row.preview?.body?.trim());
 const escape = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 for (const row of rows) {
